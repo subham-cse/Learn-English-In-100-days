@@ -1,0 +1,1242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>English Grammar Quiz: Adverbs</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #fdfcfb 0%, #e2d1c3 100%);
+            color: #333;
+            line-height: 1.6;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #1a2980 0%, #26d0ce 100%);
+            color: white;
+            padding: 35px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23ffffff' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
+        }
+        
+        h1 {
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .subtitle {
+            font-size: 1.3rem;
+            opacity: 0.9;
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .topic-badges {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+            position: relative;
+            z-index: 1;
+            flex-wrap: wrap;
+        }
+        
+        .badge {
+            background-color: rgba(255, 255, 255, 0.2);
+            padding: 8px 20px;
+            border-radius: 30px;
+            font-weight: 600;
+            backdrop-filter: blur(5px);
+        }
+        
+        .instructions {
+            background-color: #f0f7ff;
+            padding: 25px;
+            margin: 20px;
+            border-radius: 15px;
+            border-left: 5px solid #1a2980;
+        }
+        
+        .instructions h3 {
+            color: #1a2980;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .instructions ul {
+            padding-left: 20px;
+        }
+        
+        .instructions li {
+            margin-bottom: 10px;
+        }
+        
+        .stats-bar {
+            display: flex;
+            justify-content: space-between;
+            background-color: #f8f9fa;
+            padding: 15px 30px;
+            border-bottom: 1px solid #e9ecef;
+        }
+        
+        .stat-item {
+            text-align: center;
+        }
+        
+        .stat-value {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #1a2980;
+        }
+        
+        .stat-label {
+            font-size: 0.9rem;
+            color: #6c757d;
+            margin-top: 5px;
+        }
+        
+        .timer-container {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            padding: 20px;
+            margin: 20px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .timer {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #d43f00;
+            margin: 10px 0;
+            font-family: 'Courier New', monospace;
+        }
+        
+        .progress-container {
+            padding: 0 30px;
+            margin-bottom: 20px;
+        }
+        
+        .progress-bar {
+            height: 12px;
+            background-color: #e9ecef;
+            border-radius: 6px;
+            overflow: hidden;
+            margin-bottom: 10px;
+        }
+        
+        .progress {
+            height: 100%;
+            background: linear-gradient(90deg, #1a2980 0%, #26d0ce 100%);
+            width: 5%;
+            transition: width 0.5s ease;
+            border-radius: 6px;
+        }
+        
+        .progress-text {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.9rem;
+            color: #6c757d;
+        }
+        
+        .quiz-container {
+            padding: 0 30px 30px;
+        }
+        
+        .question {
+            background-color: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 25px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            border: 1px solid #e9ecef;
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .question.active {
+            display: block;
+        }
+        
+        .question-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #f1f3f4;
+        }
+        
+        .question-number {
+            font-size: 1.2rem;
+            color: #1a2980;
+            font-weight: bold;
+        }
+        
+        .question-tag {
+            background-color: #e0f7fa;
+            color: #006064;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+        
+        .question-text {
+            font-size: 1.4rem;
+            margin-bottom: 30px;
+            color: #2c3e50;
+            line-height: 1.5;
+        }
+        
+        .example {
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            border-left: 4px solid #26d0ce;
+            font-style: italic;
+        }
+        
+        .options {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+        }
+        
+        .option {
+            background-color: #f8f9fa;
+            border: 2px solid #e9ecef;
+            border-radius: 10px;
+            padding: 18px 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .option:hover {
+            background-color: #e3f2fd;
+            border-color: #1a2980;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 10px rgba(26, 41, 128, 0.1);
+        }
+        
+        .option.selected {
+            background-color: #e3f2fd;
+            border-color: #1a2980;
+            box-shadow: 0 0 0 3px rgba(26, 41, 128, 0.2);
+        }
+        
+        .option.correct {
+            background-color: #d4edda;
+            border-color: #28a745;
+            color: #155724;
+        }
+        
+        .option.incorrect {
+            background-color: #f8d7da;
+            border-color: #dc3545;
+            color: #721c24;
+        }
+        
+        .option-label {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            background-color: #e9ecef;
+            border-radius: 50%;
+            margin-right: 15px;
+            font-weight: bold;
+            flex-shrink: 0;
+            transition: all 0.3s ease;
+        }
+        
+        .option.selected .option-label {
+            background-color: #1a2980;
+            color: white;
+        }
+        
+        .option.correct .option-label {
+            background-color: #28a745;
+            color: white;
+        }
+        
+        .option.incorrect .option-label {
+            background-color: #dc3545;
+            color: white;
+        }
+        
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+            padding: 0 30px 30px;
+        }
+        
+        button {
+            padding: 15px 35px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        #prev-btn, #next-btn {
+            background-color: #f8f9fa;
+            color: #1a2980;
+            border: 2px solid #1a2980;
+        }
+        
+        #prev-btn:hover:not(:disabled), #next-btn:hover:not(:disabled) {
+            background-color: #1a2980;
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(26, 41, 128, 0.3);
+        }
+        
+        #prev-btn:disabled, #next-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            background-color: #f8f9fa;
+            color: #1a2980;
+        }
+        
+        #submit-btn {
+            background: linear-gradient(135deg, #1a2980 0%, #26d0ce 100%);
+            color: white;
+            padding: 18px 45px;
+            display: block;
+            margin: 0 auto 40px;
+            font-size: 1.2rem;
+            box-shadow: 0 5px 15px rgba(26, 41, 128, 0.3);
+        }
+        
+        #submit-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(26, 41, 128, 0.4);
+        }
+        
+        .results-container {
+            padding: 30px;
+            display: none;
+        }
+        
+        .score-card {
+            background: linear-gradient(135deg, #1a2980 0%, #26d0ce 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 30px rgba(26, 41, 128, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .score-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23ffffff' fill-opacity='0.1' fill-rule='evenodd'/%3E%3C/svg%3E");
+        }
+        
+        .score-card h2 {
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .score {
+            font-size: 5rem;
+            font-weight: bold;
+            margin: 20px 0;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .score-text {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .performance {
+            background-color: rgba(255, 255, 255, 0.2);
+            padding: 15px;
+            border-radius: 15px;
+            margin-top: 20px;
+            position: relative;
+            z-index: 1;
+            backdrop-filter: blur(5px);
+        }
+        
+        .analysis {
+            background-color: #f8f9fa;
+            padding: 30px;
+            border-radius: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .analysis h3 {
+            color: #2c3e50;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #e9ecef;
+            font-size: 1.8rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .question-review {
+            background-color: white;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            border-left: 5px solid #e9ecef;
+        }
+        
+        .question-review.correct {
+            border-left-color: #28a745;
+        }
+        
+        .question-review.incorrect {
+            border-left-color: #dc3545;
+        }
+        
+        .review-question {
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #2c3e50;
+            font-size: 1.2rem;
+        }
+        
+        .review-answer {
+            margin: 10px 0;
+            padding: 12px 15px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .user-answer.correct {
+            background-color: #d4edda;
+            color: #155724;
+        }
+        
+        .user-answer.incorrect {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+        
+        .correct-answer {
+            background-color: #e7f7ef;
+            color: #155724;
+            padding: 12px 15px;
+            border-radius: 8px;
+            margin: 10px 0;
+        }
+        
+        .explanation {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+            border-left: 4px solid #ffc107;
+        }
+        
+        .explanation h4 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .actions {
+            text-align: center;
+            margin-top: 40px;
+        }
+        
+        #retake-btn {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            color: #721c24;
+            font-weight: bold;
+            padding: 15px 40px;
+            margin: 0 10px;
+        }
+        
+        #retake-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255, 236, 210, 0.4);
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                border-radius: 15px;
+            }
+            
+            header {
+                padding: 25px 20px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .subtitle {
+                font-size: 1.1rem;
+            }
+            
+            .instructions {
+                margin: 15px;
+                padding: 20px;
+            }
+            
+            .stats-bar {
+                flex-direction: column;
+                gap: 15px;
+                padding: 15px;
+            }
+            
+            .question {
+                padding: 20px;
+            }
+            
+            .question-text {
+                font-size: 1.2rem;
+            }
+            
+            .nav-buttons {
+                flex-direction: column;
+                gap: 15px;
+                padding: 0 20px 20px;
+            }
+            
+            button {
+                width: 100%;
+            }
+            
+            .score-card {
+                padding: 25px;
+            }
+            
+            .score {
+                font-size: 3.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>English Grammar: Adverbs</h1>
+            <div class="subtitle">Master the Art of Modifying Verbs, Adjectives, and Other Adverbs</div>
+            <div class="topic-badges">
+                <div class="badge">Adverbs of Manner</div>
+                <div class="badge">Adverbs of Frequency</div>
+                <div class="badge">Comparative Adverbs</div>
+                <div class="badge">Adverb Placement</div>
+            </div>
+        </header>
+        
+        <div class="instructions">
+            <h3><i class="fas fa-info-circle"></i> Quiz Instructions</h3>
+            <ul>
+                <li>This quiz contains <strong>20 questions</strong> about adverbs in English grammar.</li>
+                <li>You have <strong>30 minutes</strong> to complete the quiz. The timer starts when you answer the first question.</li>
+                <li>Read each question carefully and select the best answer.</li>
+                <li>Use the <strong>Previous</strong> and <strong>Next</strong> buttons to navigate between questions.</li>
+                <li>Click <strong>Submit Quiz</strong> when you're done to see your score and detailed explanations.</li>
+                <li>Your progress is automatically saved as you go.</li>
+            </ul>
+        </div>
+        
+        <div class="stats-bar">
+            <div class="stat-item">
+                <div class="stat-value" id="questions-count">20</div>
+                <div class="stat-label">Questions</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value" id="time-limit">30</div>
+                <div class="stat-label">Minutes</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value" id="passing-score">70%</div>
+                <div class="stat-label">Passing Score</div>
+            </div>
+        </div>
+        
+        <div class="timer-container">
+            <h3><i class="fas fa-clock"></i> Time Remaining</h3>
+            <div class="timer" id="timer">30:00</div>
+            <p>Timer starts when you answer the first question</p>
+        </div>
+        
+        <div class="progress-container">
+            <div class="progress-bar">
+                <div class="progress" id="progress"></div>
+            </div>
+            <div class="progress-text">
+                <span>Progress</span>
+                <span id="progress-percent">5%</span>
+            </div>
+        </div>
+        
+        <div class="quiz-container" id="quiz-container">
+            <!-- Questions will be dynamically inserted here -->
+        </div>
+        
+        <div class="nav-buttons">
+            <button id="prev-btn" disabled><i class="fas fa-arrow-left"></i> Previous</button>
+            <button id="next-btn">Next <i class="fas fa-arrow-right"></i></button>
+        </div>
+        
+        <button id="submit-btn"><i class="fas fa-paper-plane"></i> Submit Quiz</button>
+        
+        <div class="results-container" id="results-container">
+            <!-- Results will be dynamically inserted here -->
+        </div>
+    </div>
+
+    <script>
+        // Quiz questions data - Adverbs
+        const quizData = [
+            {
+                question: "Which of the following is an adverb of manner?",
+                options: ["quickly", "often", "here", "very"],
+                correct: 0,
+                explanation: "Adverbs of manner describe how an action is performed. 'Quickly' tells us how something is done.",
+                tag: "Manner",
+                example: "She ran quickly to catch the bus."
+            },
+            {
+                question: "Identify the adverb in this sentence: 'The students worked diligently on their projects.'",
+                options: ["students", "worked", "diligently", "projects"],
+                correct: 2,
+                explanation: "'Diligently' is an adverb that modifies the verb 'worked', describing how the students worked.",
+                tag: "Identification",
+                example: "Diligently modifies 'worked' to show the manner of working."
+            },
+            {
+                question: "Which sentence correctly uses an adverb of frequency?",
+                options: ["I go always to the gym on Mondays.", "I always go to the gym on Mondays.", "Always I go to the gym on Mondays.", "I go to the gym always on Mondays."],
+                correct: 1,
+                explanation: "Adverbs of frequency like 'always' typically come before the main verb but after auxiliary verbs.",
+                tag: "Frequency",
+                example: "Correct placement: subject + adverb of frequency + main verb"
+            },
+            {
+                question: "What is the comparative form of the adverb 'fast'?",
+                options: ["more fast", "faster", "fastly", "fastest"],
+                correct: 1,
+                explanation: "Most one-syllable adverbs form their comparative by adding '-er'. 'Faster' is the comparative form of 'fast'.",
+                tag: "Comparative",
+                example: "fast → faster → fastest (irregular forms)"
+            },
+            {
+                question: "Which adverb completes this sentence correctly: 'She speaks English ______.'",
+                options: ["good", "well", "goodly", "nice"],
+                correct: 1,
+                explanation: "'Well' is the adverb form of 'good'. It modifies the verb 'speaks' to describe how she speaks.",
+                tag: "Manner",
+                example: "Good (adjective) vs. Well (adverb)"
+            },
+            {
+                question: "Identify the adverb of place in: 'Please put the books there.'",
+                options: ["please", "put", "books", "there"],
+                correct: 3,
+                explanation: "Adverbs of place indicate where an action occurs. 'There' is an adverb of place.",
+                tag: "Place",
+                example: "Other adverbs of place: here, everywhere, somewhere, inside"
+            },
+            {
+                question: "Which of these is an adverb of degree?",
+                options: ["yesterday", "extremely", "slowly", "sometimes"],
+                correct: 1,
+                explanation: "Adverbs of degree modify adjectives or other adverbs, indicating intensity. 'Extremely' is an adverb of degree.",
+                tag: "Degree",
+                example: "She is extremely talented. (modifies the adjective 'talented')"
+            },
+            {
+                question: "What is the superlative form of the adverb 'carefully'?",
+                options: ["more carefully", "most carefully", "carefullier", "carefulliest"],
+                correct: 1,
+                explanation: "Most adverbs with two or more syllables form the superlative with 'most'. 'Most carefully' is correct.",
+                tag: "Superlative",
+                example: "carefully → more carefully → most carefully"
+            },
+            {
+                question: "Which sentence has the adverb in the correct position?",
+                options: ["He quickly ran to the store.", "He ran quickly to the store.", "Quickly he ran to the store.", "All of the above are correct."],
+                correct: 3,
+                explanation: "Adverbs of manner can often be placed in different positions: beginning, middle, or end of a sentence.",
+                tag: "Placement",
+                example: "Adverb placement can vary depending on emphasis and style."
+            },
+            {
+                question: "Identify the conjunctive adverb: 'I wanted to go; however, I was too busy.'",
+                options: ["wanted", "however", "too", "busy"],
+                correct: 1,
+                explanation: "Conjunctive adverbs connect independent clauses. 'However' shows contrast between the two clauses.",
+                tag: "Conjunctive",
+                example: "Other conjunctive adverbs: therefore, moreover, consequently, nevertheless"
+            },
+            {
+                question: "Which adverb is formed incorrectly from its adjective?",
+                options: ["quick → quickly", "happy → happily", "good → goodly", "beautiful → beautifully"],
+                correct: 2,
+                explanation: "The adverb form of 'good' is 'well', not 'goodly'. 'Goodly' is an adjective meaning large or considerable.",
+                tag: "Formation",
+                example: "Common irregular adverb: good (adjective) → well (adverb)"
+            },
+            {
+                question: "What type of adverb is 'never' in: 'I never eat seafood.'?",
+                options: ["Adverb of manner", "Adverb of frequency", "Adverb of time", "Adverb of place"],
+                correct: 1,
+                explanation: "'Never' is an adverb of frequency that indicates how often something happens (zero frequency).",
+                tag: "Frequency",
+                example: "Frequency adverbs: always, usually, often, sometimes, rarely, never"
+            },
+            {
+                question: "Which sentence uses an adverb to modify another adverb?",
+                options: ["She sings beautifully.", "He runs very fast.", "They arrived early.", "We work hard."],
+                correct: 1,
+                explanation: "'Very' is an adverb of degree that modifies the adverb 'fast', intensifying its meaning.",
+                tag: "Modification",
+                example: "Adverbs can modify: verbs, adjectives, and other adverbs"
+            },
+            {
+                question: "What is the correct negative form of the adverb 'always'?",
+                options: ["not always", "never always", "no always", "unalways"],
+                correct: 0,
+                explanation: "The negative form of 'always' is 'not always', which means sometimes but not all the time.",
+                tag: "Negation",
+                example: "He is not always late. (Sometimes he's on time.)"
+            },
+            {
+                question: "Which adverb best completes: 'She ______ finishes her homework before dinner.'",
+                options: ["usually", "here", "quickly", "very"],
+                correct: 0,
+                explanation: "'Usually' is an adverb of frequency that fits logically, indicating a habitual action.",
+                tag: "Context",
+                example: "Adverbs of frequency describe how often something happens."
+            },
+            {
+                question: "Identify the adverb of time: 'We will leave tomorrow.'",
+                options: ["we", "will", "leave", "tomorrow"],
+                correct: 3,
+                explanation: "Adverbs of time indicate when an action occurs. 'Tomorrow' tells us when we will leave.",
+                tag: "Time",
+                example: "Other time adverbs: yesterday, today, now, soon, later"
+            },
+            {
+                question: "What is the adverb form of the adjective 'gentle'?",
+                options: ["gentlely", "gently", "gentlily", "gentlefully"],
+                correct: 1,
+                explanation: "The adverb form of 'gentle' is 'gently'. Many adjectives ending in '-le' change to '-ly' for the adverb.",
+                tag: "Formation",
+                example: "gentle → gently, simple → simply, terrible → terribly"
+            },
+            {
+                question: "Which sentence correctly uses 'enough' as an adverb?",
+                options: ["She is enough tall for the ride.", "She is tall enough for the ride.", "Enough she is tall for the ride.", "She enough is tall for the ride."],
+                correct: 1,
+                explanation: "When 'enough' modifies an adjective, it comes after the adjective: adjective + enough.",
+                tag: "Placement",
+                example: "Other examples: fast enough, old enough, good enough"
+            },
+            {
+                question: "What type of adverb is 'outside' in: 'The children are playing outside.'?",
+                options: ["Adverb of manner", "Adverb of degree", "Adverb of place", "Adverb of time"],
+                correct: 2,
+                explanation: "'Outside' indicates where the action (playing) is happening, making it an adverb of place.",
+                tag: "Place",
+                example: "Outside tells us the location of the playing activity."
+            },
+            {
+                question: "Which of these is NOT an adverb?",
+                options: ["fast", "hard", "late", "red"],
+                correct: 3,
+                explanation: "'Red' is an adjective describing color. 'Fast', 'hard', and 'late' can all function as adverbs.",
+                tag: "Identification",
+                example: "Some words like 'fast' can be both adjectives and adverbs without changing form."
+            }
+        ];
+
+        // DOM elements
+        const quizContainer = document.getElementById('quiz-container');
+        const prevBtn = document.getElementById('prev-btn');
+        const nextBtn = document.getElementById('next-btn');
+        const submitBtn = document.getElementById('submit-btn');
+        const resultsContainer = document.getElementById('results-container');
+        const timerDisplay = document.getElementById('timer');
+        const progressBar = document.getElementById('progress');
+        const progressPercent = document.getElementById('progress-percent');
+
+        // Quiz state variables
+        let currentQuestion = 0;
+        let userAnswers = new Array(quizData.length).fill(null);
+        let score = 0;
+        let timer;
+        let timeLeft = 30 * 60; // 30 minutes in seconds
+        let quizStarted = false;
+        let quizSubmitted = false;
+
+        // Initialize the quiz
+        function initQuiz() {
+            // Create question elements
+            quizData.forEach((questionData, index) => {
+                const questionEl = document.createElement('div');
+                questionEl.className = `question ${index === 0 ? 'active' : ''}`;
+                questionEl.id = `question-${index}`;
+                
+                let exampleHtml = '';
+                if (questionData.example) {
+                    exampleHtml = `<div class="example"><i class="fas fa-lightbulb"></i> Example: ${questionData.example}</div>`;
+                }
+                
+                questionEl.innerHTML = `
+                    <div class="question-header">
+                        <div class="question-number">Question ${index + 1} of ${quizData.length}</div>
+                        <div class="question-tag">${questionData.tag}</div>
+                    </div>
+                    <div class="question-text">${questionData.question}</div>
+                    ${exampleHtml}
+                    <div class="options">
+                        ${questionData.options.map((option, optIndex) => `
+                            <div class="option" data-index="${optIndex}">
+                                <span class="option-label">${String.fromCharCode(65 + optIndex)}</span>
+                                <span class="option-text">${option}</span>
+                            </div>
+                        `).join('')}
+                    </div>
+                `;
+                
+                quizContainer.appendChild(questionEl);
+            });
+            
+            // Add event listeners to options
+            document.querySelectorAll('.option').forEach(option => {
+                option.addEventListener('click', handleOptionClick);
+            });
+            
+            // Update progress bar
+            updateProgressBar();
+        }
+
+        // Handle option selection
+        function handleOptionClick(e) {
+            if (quizSubmitted) return;
+            
+            const questionEl = e.target.closest('.question');
+            const questionId = parseInt(questionEl.id.split('-')[1]);
+            const selectedIndex = parseInt(e.target.closest('.option').dataset.index);
+            
+            // Start the timer on first answer
+            if (!quizStarted) {
+                startTimer();
+                quizStarted = true;
+            }
+            
+            // Update user's answer
+            userAnswers[questionId] = selectedIndex;
+            
+            // Remove selected class from all options in this question
+            questionEl.querySelectorAll('.option').forEach(opt => {
+                opt.classList.remove('selected');
+            });
+            
+            // Add selected class to clicked option
+            e.target.closest('.option').classList.add('selected');
+            
+            // Enable/disable navigation buttons
+            updateNavigationButtons();
+            
+            // Auto-advance to next question after selection (if not the last question)
+            if (questionId < quizData.length - 1) {
+                setTimeout(() => {
+                    showQuestion(questionId + 1);
+                }, 300);
+            }
+        }
+
+        // Show specific question
+        function showQuestion(questionIndex) {
+            // Hide all questions
+            document.querySelectorAll('.question').forEach(q => {
+                q.classList.remove('active');
+            });
+            
+            // Show the requested question
+            document.getElementById(`question-${questionIndex}`).classList.add('active');
+            
+            // Update current question
+            currentQuestion = questionIndex;
+            
+            // Update navigation buttons
+            updateNavigationButtons();
+            
+            // Update progress bar
+            updateProgressBar();
+            
+            // Scroll to question
+            document.getElementById(`question-${questionIndex}`).scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
+
+        // Update navigation buttons state
+        function updateNavigationButtons() {
+            prevBtn.disabled = currentQuestion === 0;
+            nextBtn.disabled = currentQuestion === quizData.length - 1;
+            
+            // Show selected answer in current question
+            const questionEl = document.getElementById(`question-${currentQuestion}`);
+            questionEl.querySelectorAll('.option').forEach((opt, index) => {
+                opt.classList.remove('selected');
+                if (userAnswers[currentQuestion] === index) {
+                    opt.classList.add('selected');
+                }
+            });
+        }
+
+        // Update progress bar
+        function updateProgressBar() {
+            const progress = ((currentQuestion + 1) / quizData.length) * 100;
+            progressBar.style.width = `${progress}%`;
+            
+            // Update progress percentage text
+            const answered = userAnswers.filter(answer => answer !== null).length;
+            progressPercent.textContent = `${Math.round(progress)}% (${answered}/${quizData.length} answered)`;
+        }
+
+        // Start the countdown timer
+        function startTimer() {
+            timer = setInterval(() => {
+                timeLeft--;
+                
+                // Update timer display
+                const minutes = Math.floor(timeLeft / 60);
+                const seconds = timeLeft % 60;
+                timerDisplay.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+                
+                // Change color when time is running out
+                if (timeLeft < 5 * 60) { // Less than 5 minutes
+                    timerDisplay.style.color = '#ff5722';
+                }
+                
+                if (timeLeft < 60) { // Less than 1 minute
+                    timerDisplay.style.color = '#dc3545';
+                    timerDisplay.style.animation = 'pulse 1s infinite';
+                }
+                
+                // Time's up - submit the quiz
+                if (timeLeft <= 0) {
+                    clearInterval(timer);
+                    timerDisplay.textContent = "00:00";
+                    submitQuiz();
+                }
+            }, 1000);
+        }
+
+        // Submit the quiz and show results
+        function submitQuiz() {
+            if (quizSubmitted) return;
+            
+            clearInterval(timer);
+            quizSubmitted = true;
+            
+            // Calculate score
+            score = 0;
+            quizData.forEach((question, index) => {
+                if (userAnswers[index] === question.correct) {
+                    score++;
+                }
+            });
+            
+            // Hide quiz and show results
+            document.querySelector('.quiz-container').style.display = 'none';
+            document.querySelector('.nav-buttons').style.display = 'none';
+            submitBtn.style.display = 'none';
+            document.querySelector('.timer-container').innerHTML = '<h3><i class="fas fa-flag-checkered"></i> Quiz Completed!</h3><p>Your results are ready</p>';
+            
+            // Show results
+            showResults();
+        }
+
+        // Display results
+        function showResults() {
+            const percentage = Math.round((score / quizData.length) * 100);
+            let performanceText = '';
+            let performanceColor = '';
+            let emoji = '';
+            
+            if (percentage >= 90) {
+                performanceText = 'Outstanding! You have mastered adverbs.';
+                performanceColor = '#28a745';
+                emoji = '🏆';
+            } else if (percentage >= 75) {
+                performanceText = 'Great job! You have a strong understanding of adverbs.';
+                performanceColor = '#17a2b8';
+                emoji = '👍';
+            } else if (percentage >= 60) {
+                performanceText = 'Good effort! You understand adverb basics but need more practice.';
+                performanceColor = '#ffc107';
+                emoji = '📚';
+            } else {
+                performanceText = 'Keep practicing! Review the explanations to improve your understanding.';
+                performanceColor = '#dc3545';
+                emoji = '💪';
+            }
+            
+            // Calculate performance by category
+            const categories = {};
+            quizData.forEach((question, index) => {
+                const category = question.tag;
+                if (!categories[category]) {
+                    categories[category] = { total: 0, correct: 0 };
+                }
+                categories[category].total++;
+                if (userAnswers[index] === question.correct) {
+                    categories[category].correct++;
+                }
+            });
+            
+            let categoryAnalysis = '<div style="margin-top: 20px;"><h4>Performance by Category:</h4><div style="display: flex; flex-direction: column; gap: 10px; margin-top: 15px;">';
+            
+            for (const [category, data] of Object.entries(categories)) {
+                const categoryPercentage = Math.round((data.correct / data.total) * 100);
+                categoryAnalysis += `
+                    <div>
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                            <span>${category}</span>
+                            <span>${data.correct}/${data.total} (${categoryPercentage}%)</span>
+                        </div>
+                        <div style="height: 8px; background-color: #e9ecef; border-radius: 4px; overflow: hidden;">
+                            <div style="height: 100%; width: ${categoryPercentage}%; background-color: ${categoryPercentage >= 70 ? '#28a745' : categoryPercentage >= 50 ? '#ffc107' : '#dc3545'};"></div>
+                        </div>
+                    </div>
+                `;
+            }
+            
+            categoryAnalysis += '</div></div>';
+            
+            resultsContainer.innerHTML = `
+                <div class="score-card">
+                    <h2>Your Adverb Quiz Results ${emoji}</h2>
+                    <div class="score" style="color: ${performanceColor}">${score}/${quizData.length}</div>
+                    <div class="score-text">${percentage}% Correct</div>
+                    <div class="performance">${performanceText}</div>
+                </div>
+                
+                <div class="analysis">
+                    <h3><i class="fas fa-chart-pie"></i> Performance Analysis</h3>
+                    <p>You answered <strong>${score}</strong> out of <strong>${quizData.length}</strong> questions correctly.</p>
+                    <p>Time remaining: <strong>${Math.floor(timeLeft/60)}:${(timeLeft%60).toString().padStart(2, '0')}</strong></p>
+                    
+                    <div style="margin: 25px 0; display: flex; align-items: center; gap: 20px;">
+                        <div style="flex-grow: 1; height: 20px; background-color: #e9ecef; border-radius: 10px; overflow: hidden;">
+                            <div style="height: 100%; width: ${percentage}%; background: linear-gradient(90deg, #28a745, #17a2b8); transition: width 1.5s ease;"></div>
+                        </div>
+                        <div style="font-size: 1.5rem; font-weight: bold; color: ${performanceColor}">${percentage}%</div>
+                    </div>
+                    
+                    <div style="display: flex; gap: 15px; margin-top: 20px;">
+                        <div style="flex: 1; text-align: center; padding: 15px; background-color: #d4edda; border-radius: 10px;">
+                            <div style="font-size: 1.8rem; font-weight: bold; color: #155724;">${score}</div>
+                            <div>Correct Answers</div>
+                        </div>
+                        <div style="flex: 1; text-align: center; padding: 15px; background-color: #f8d7da; border-radius: 10px;">
+                            <div style="font-size: 1.8rem; font-weight: bold; color: #721c24;">${quizData.length - score}</div>
+                            <div>Incorrect Answers</div>
+                        </div>
+                    </div>
+                    
+                    ${categoryAnalysis}
+                    
+                    <h3 style="margin-top: 40px;"><i class="fas fa-question-circle"></i> Detailed Review</h3>
+            `;
+            
+            // Add review for each question
+            quizData.forEach((question, index) => {
+                const userAnswer = userAnswers[index];
+                const isCorrect = userAnswer === question.correct;
+                const userAnswerText = userAnswer !== null ? question.options[userAnswer] : "Not answered";
+                const correctAnswerText = question.options[question.correct];
+                
+                resultsContainer.innerHTML += `
+                    <div class="question-review ${isCorrect ? 'correct' : 'incorrect'}">
+                        <div class="review-question">${index + 1}. ${question.question}</div>
+                        ${question.example ? `<div style="background-color: #f0f7ff; padding: 10px 15px; border-radius: 8px; margin-bottom: 10px; font-style: italic;">Example: ${question.example}</div>` : ''}
+                        <div class="review-answer user-answer ${isCorrect ? 'correct' : 'incorrect'}">
+                            <i class="fas ${isCorrect ? 'fa-check-circle' : 'fa-times-circle'}"></i>
+                            <div><strong>Your answer:</strong> ${userAnswerText}</div>
+                        </div>
+                        ${!isCorrect ? `
+                        <div class="correct-answer">
+                            <i class="fas fa-check-circle"></i>
+                            <div><strong>Correct answer:</strong> ${correctAnswerText}</div>
+                        </div>` : ''}
+                        <div class="explanation">
+                            <h4><i class="fas fa-lightbulb"></i> Explanation</h4>
+                            <p>${question.explanation}</p>
+                            <div style="margin-top: 10px; padding: 8px 12px; background-color: #e0f7fa; border-radius: 5px; display: inline-block;">
+                                <strong>Category:</strong> ${question.tag}
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            resultsContainer.innerHTML += `
+                <div class="actions">
+                    <button id="retake-btn">
+                        <i class="fas fa-redo"></i> Retake Quiz
+                    </button>
+                </div>
+            `;
+            
+            resultsContainer.style.display = 'block';
+            
+            // Add event listener to retake button
+            document.getElementById('retake-btn').addEventListener('click', retakeQuiz);
+            
+            // Scroll to results
+            resultsContainer.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Retake the quiz
+        function retakeQuiz() {
+            // Reset all state
+            currentQuestion = 0;
+            userAnswers = new Array(quizData.length).fill(null);
+            score = 0;
+            timeLeft = 30 * 60;
+            quizStarted = false;
+            quizSubmitted = false;
+            
+            // Reset UI
+            document.querySelector('.quiz-container').style.display = 'block';
+            document.querySelector('.nav-buttons').style.display = 'flex';
+            submitBtn.style.display = 'block';
+            resultsContainer.style.display = 'none';
+            
+            // Reset timer display
+            timerDisplay.textContent = "30:00";
+            timerDisplay.style.color = '#d43f00';
+            timerDisplay.style.animation = '';
+            
+            // Reset all question displays
+            document.querySelectorAll('.question').forEach((q, index) => {
+                q.classList.remove('active');
+                if (index === 0) q.classList.add('active');
+                
+                // Clear selected options
+                q.querySelectorAll('.option').forEach(opt => {
+                    opt.classList.remove('selected', 'correct', 'incorrect');
+                });
+            });
+            
+            // Reset progress bar
+            updateProgressBar();
+            
+            // Reset timer container
+            document.querySelector('.timer-container').innerHTML = `
+                <h3><i class="fas fa-clock"></i> Time Remaining</h3>
+                <div class="timer" id="timer">30:00</div>
+                <p>Timer starts when you answer the first question</p>
+            `;
+            
+            // Re-attach timer element
+            timerDisplay = document.getElementById('timer');
+            
+            // Clear any existing timer
+            clearInterval(timer);
+            
+            // Update navigation buttons
+            updateNavigationButtons();
+            
+            // Scroll to top
+            window.scrollTo({top: 0, behavior: 'smooth'});
+        }
+
+        // Event listeners
+        prevBtn.addEventListener('click', () => {
+            if (currentQuestion > 0) {
+                showQuestion(currentQuestion - 1);
+            }
+        });
+        
+        nextBtn.addEventListener('click', () => {
+            if (currentQuestion < quizData.length - 1) {
+                showQuestion(currentQuestion + 1);
+            }
+        });
+        
+        submitBtn.addEventListener('click', submitQuiz);
+
+        // Initialize the quiz when page loads
+        document.addEventListener('DOMContentLoaded', initQuiz);
+    </script>
+</body>
+</html>
