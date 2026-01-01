@@ -1,0 +1,1322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>English Grammar: Prepositions Quiz</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            color: #333;
+            line-height: 1.6;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #3a1c71 0%, #d76d77 50%, #ffaf7b 100%);
+            color: white;
+            padding: 35px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23ffffff' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
+        }
+        
+        h1 {
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .subtitle {
+            font-size: 1.3rem;
+            opacity: 0.9;
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .topic-badges {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+            position: relative;
+            z-index: 1;
+            flex-wrap: wrap;
+        }
+        
+        .badge {
+            background-color: rgba(255, 255, 255, 0.2);
+            padding: 8px 20px;
+            border-radius: 30px;
+            font-weight: 600;
+            backdrop-filter: blur(5px);
+        }
+        
+        .instructions {
+            background-color: #f0f7ff;
+            padding: 25px;
+            margin: 20px;
+            border-radius: 15px;
+            border-left: 5px solid #3a1c71;
+        }
+        
+        .instructions h3 {
+            color: #3a1c71;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .instructions ul {
+            padding-left: 20px;
+        }
+        
+        .instructions li {
+            margin-bottom: 10px;
+        }
+        
+        .preposition-facts {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            padding: 20px;
+            margin: 20px;
+            border-radius: 15px;
+            border-left: 5px solid #d76d77;
+        }
+        
+        .preposition-facts h3 {
+            color: #721c24;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .stats-bar {
+            display: flex;
+            justify-content: space-between;
+            background-color: #f8f9fa;
+            padding: 15px 30px;
+            border-bottom: 1px solid #e9ecef;
+        }
+        
+        .stat-item {
+            text-align: center;
+        }
+        
+        .stat-value {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #3a1c71;
+        }
+        
+        .stat-label {
+            font-size: 0.9rem;
+            color: #6c757d;
+            margin-top: 5px;
+        }
+        
+        .timer-container {
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            padding: 20px;
+            margin: 20px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .timer {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #1a2980;
+            margin: 10px 0;
+            font-family: 'Courier New', monospace;
+        }
+        
+        .progress-container {
+            padding: 0 30px;
+            margin-bottom: 20px;
+        }
+        
+        .progress-bar {
+            height: 12px;
+            background-color: #e9ecef;
+            border-radius: 6px;
+            overflow: hidden;
+            margin-bottom: 10px;
+        }
+        
+        .progress {
+            height: 100%;
+            background: linear-gradient(90deg, #3a1c71 0%, #d76d77 50%, #ffaf7b 100%);
+            width: 5%;
+            transition: width 0.5s ease;
+            border-radius: 6px;
+        }
+        
+        .progress-text {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.9rem;
+            color: #6c757d;
+        }
+        
+        .quiz-container {
+            padding: 0 30px 30px;
+        }
+        
+        .question {
+            background-color: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 25px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            border: 1px solid #e9ecef;
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .question.active {
+            display: block;
+        }
+        
+        .question-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #f1f3f4;
+        }
+        
+        .question-number {
+            font-size: 1.2rem;
+            color: #3a1c71;
+            font-weight: bold;
+        }
+        
+        .question-tag {
+            background-color: #e0f7fa;
+            color: #006064;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+        
+        .question-text {
+            font-size: 1.4rem;
+            margin-bottom: 30px;
+            color: #2c3e50;
+            line-height: 1.5;
+        }
+        
+        .sentence {
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            border-left: 4px solid #d76d77;
+            font-style: italic;
+            font-size: 1.2rem;
+        }
+        
+        .gap {
+            display: inline-block;
+            width: 60px;
+            border-bottom: 2px dashed #3a1c71;
+            text-align: center;
+            margin: 0 5px;
+            color: #3a1c71;
+            font-weight: bold;
+        }
+        
+        .options {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+        }
+        
+        .option {
+            background-color: #f8f9fa;
+            border: 2px solid #e9ecef;
+            border-radius: 10px;
+            padding: 18px 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .option:hover {
+            background-color: #e3f2fd;
+            border-color: #3a1c71;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 10px rgba(58, 28, 113, 0.1);
+        }
+        
+        .option.selected {
+            background-color: #e3f2fd;
+            border-color: #3a1c71;
+            box-shadow: 0 0 0 3px rgba(58, 28, 113, 0.2);
+        }
+        
+        .option.correct {
+            background-color: #d4edda;
+            border-color: #28a745;
+            color: #155724;
+        }
+        
+        .option.incorrect {
+            background-color: #f8d7da;
+            border-color: #dc3545;
+            color: #721c24;
+        }
+        
+        .option-label {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            background-color: #e9ecef;
+            border-radius: 50%;
+            margin-right: 15px;
+            font-weight: bold;
+            flex-shrink: 0;
+            transition: all 0.3s ease;
+        }
+        
+        .option.selected .option-label {
+            background-color: #3a1c71;
+            color: white;
+        }
+        
+        .option.correct .option-label {
+            background-color: #28a745;
+            color: white;
+        }
+        
+        .option.incorrect .option-label {
+            background-color: #dc3545;
+            color: white;
+        }
+        
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+            padding: 0 30px 30px;
+        }
+        
+        button {
+            padding: 15px 35px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        #prev-btn, #next-btn {
+            background-color: #f8f9fa;
+            color: #3a1c71;
+            border: 2px solid #3a1c71;
+        }
+        
+        #prev-btn:hover:not(:disabled), #next-btn:hover:not(:disabled) {
+            background-color: #3a1c71;
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(58, 28, 113, 0.3);
+        }
+        
+        #prev-btn:disabled, #next-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            background-color: #f8f9fa;
+            color: #3a1c71;
+        }
+        
+        #submit-btn {
+            background: linear-gradient(135deg, #3a1c71 0%, #d76d77 50%, #ffaf7b 100%);
+            color: white;
+            padding: 18px 45px;
+            display: block;
+            margin: 0 auto 40px;
+            font-size: 1.2rem;
+            box-shadow: 0 5px 15px rgba(58, 28, 113, 0.3);
+        }
+        
+        #submit-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(58, 28, 113, 0.4);
+        }
+        
+        .results-container {
+            padding: 30px;
+            display: none;
+        }
+        
+        .score-card {
+            background: linear-gradient(135deg, #3a1c71 0%, #d76d77 50%, #ffaf7b 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 30px rgba(58, 28, 113, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .score-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23ffffff' fill-opacity='0.1' fill-rule='evenodd'/%3E%3C/svg%3E");
+        }
+        
+        .score-card h2 {
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .score {
+            font-size: 5rem;
+            font-weight: bold;
+            margin: 20px 0;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .score-text {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .performance {
+            background-color: rgba(255, 255, 255, 0.2);
+            padding: 15px;
+            border-radius: 15px;
+            margin-top: 20px;
+            position: relative;
+            z-index: 1;
+            backdrop-filter: blur(5px);
+        }
+        
+        .analysis {
+            background-color: #f8f9fa;
+            padding: 30px;
+            border-radius: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .analysis h3 {
+            color: #2c3e50;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #e9ecef;
+            font-size: 1.8rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .question-review {
+            background-color: white;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            border-left: 5px solid #e9ecef;
+        }
+        
+        .question-review.correct {
+            border-left-color: #28a745;
+        }
+        
+        .question-review.incorrect {
+            border-left-color: #dc3545;
+        }
+        
+        .review-question {
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #2c3e50;
+            font-size: 1.2rem;
+        }
+        
+        .review-sentence {
+            background-color: #f8f9fa;
+            padding: 12px 15px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            font-style: italic;
+            border-left: 4px solid #d76d77;
+        }
+        
+        .review-answer {
+            margin: 10px 0;
+            padding: 12px 15px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .user-answer.correct {
+            background-color: #d4edda;
+            color: #155724;
+        }
+        
+        .user-answer.incorrect {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+        
+        .correct-answer {
+            background-color: #e7f7ef;
+            color: #155724;
+            padding: 12px 15px;
+            border-radius: 8px;
+            margin: 10px 0;
+        }
+        
+        .explanation {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+            border-left: 4px solid #ffc107;
+        }
+        
+        .explanation h4 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .rule-box {
+            background-color: #e3f2fd;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+            border-left: 4px solid #3a1c71;
+        }
+        
+        .actions {
+            text-align: center;
+            margin-top: 40px;
+        }
+        
+        #retake-btn {
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            color: #1a2980;
+            font-weight: bold;
+            padding: 15px 40px;
+            margin: 0 10px;
+        }
+        
+        #retake-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(168, 237, 234, 0.4);
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                border-radius: 15px;
+            }
+            
+            header {
+                padding: 25px 20px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .subtitle {
+                font-size: 1.1rem;
+            }
+            
+            .instructions, .preposition-facts {
+                margin: 15px;
+                padding: 20px;
+            }
+            
+            .stats-bar {
+                flex-direction: column;
+                gap: 15px;
+                padding: 15px;
+            }
+            
+            .question {
+                padding: 20px;
+            }
+            
+            .question-text {
+                font-size: 1.2rem;
+            }
+            
+            .sentence {
+                font-size: 1.1rem;
+            }
+            
+            .nav-buttons {
+                flex-direction: column;
+                gap: 15px;
+                padding: 0 20px 20px;
+            }
+            
+            button {
+                width: 100%;
+            }
+            
+            .score-card {
+                padding: 25px;
+            }
+            
+            .score {
+                font-size: 3.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>English Grammar: Prepositions</h1>
+            <div class="subtitle">Master the Art of Connecting Words in Sentences</div>
+            <div class="topic-badges">
+                <div class="badge">Time Prepositions</div>
+                <div class="badge">Place Prepositions</div>
+                <div class="badge">Phrasal Verbs</div>
+                <div class="badge">Common Combinations</div>
+            </div>
+        </header>
+        
+        <div class="instructions">
+            <h3><i class="fas fa-info-circle"></i> Quiz Instructions</h3>
+            <ul>
+                <li>This quiz contains <strong>20 questions</strong> about prepositions in English grammar.</li>
+                <li>You have <strong>30 minutes</strong> to complete the quiz. The timer starts when you answer the first question.</li>
+                <li>Read each question carefully and select the best preposition to complete the sentence.</li>
+                <li>Use the <strong>Previous</strong> and <strong>Next</strong> buttons to navigate between questions.</li>
+                <li>Click <strong>Submit Quiz</strong> when you're done to see your score and detailed explanations.</li>
+                <li>Your progress is automatically saved as you go.</li>
+            </ul>
+        </div>
+        
+        <div class="preposition-facts">
+            <h3><i class="fas fa-lightbulb"></i> Did You Know?</h3>
+            <p>Prepositions are short words (like <em>in</em>, <em>on</em>, <em>at</em>, <em>by</em>) that show relationships between other words in a sentence. They're one of the trickiest parts of English grammar because their usage often doesn't follow strict rules!</p>
+        </div>
+        
+        <div class="stats-bar">
+            <div class="stat-item">
+                <div class="stat-value" id="questions-count">20</div>
+                <div class="stat-label">Questions</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value" id="time-limit">30</div>
+                <div class="stat-label">Minutes</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value" id="passing-score">70%</div>
+                <div class="stat-label">Passing Score</div>
+            </div>
+        </div>
+        
+        <div class="timer-container">
+            <h3><i class="fas fa-clock"></i> Time Remaining</h3>
+            <div class="timer" id="timer">30:00</div>
+            <p>Timer starts when you answer the first question</p>
+        </div>
+        
+        <div class="progress-container">
+            <div class="progress-bar">
+                <div class="progress" id="progress"></div>
+            </div>
+            <div class="progress-text">
+                <span>Progress</span>
+                <span id="progress-percent">5%</span>
+            </div>
+        </div>
+        
+        <div class="quiz-container" id="quiz-container">
+            <!-- Questions will be dynamically inserted here -->
+        </div>
+        
+        <div class="nav-buttons">
+            <button id="prev-btn" disabled><i class="fas fa-arrow-left"></i> Previous</button>
+            <button id="next-btn">Next <i class="fas fa-arrow-right"></i></button>
+        </div>
+        
+        <button id="submit-btn"><i class="fas fa-paper-plane"></i> Submit Quiz</button>
+        
+        <div class="results-container" id="results-container">
+            <!-- Results will be dynamically inserted here -->
+        </div>
+    </div>
+
+    <script>
+        // Quiz questions data - Prepositions
+        const quizData = [
+            {
+                question: "Choose the correct preposition to complete the sentence:",
+                sentence: "I'll meet you ______ the cinema at 7 PM.",
+                options: ["on", "at", "in", "by"],
+                correct: 1,
+                explanation: "'At' is used for specific points or locations. We use 'at' for specific places like cinemas, restaurants, or addresses.",
+                tag: "Place",
+                rule: "Use 'at' for specific points: at the cinema, at school, at home, at the station"
+            },
+            {
+                question: "Which preposition correctly completes this sentence?",
+                sentence: "My birthday is ______ June.",
+                options: ["on", "at", "in", "by"],
+                correct: 2,
+                explanation: "'In' is used for months, years, seasons, and longer periods of time. We say 'in June', 'in 2023', 'in summer'.",
+                tag: "Time",
+                rule: "Use 'in' for months, years, seasons, and centuries: in January, in 2023, in winter, in the 21st century"
+            },
+            {
+                question: "Select the appropriate preposition:",
+                sentence: "She's interested ______ learning French.",
+                options: ["at", "in", "on", "by"],
+                correct: 1,
+                explanation: "The adjective 'interested' is always followed by 'in'. This is a fixed prepositional phrase.",
+                tag: "Adjective + Prep",
+                rule: "Certain adjectives have fixed prepositions: interested in, good at, afraid of, proud of"
+            },
+            {
+                question: "Complete the sentence with the right preposition:",
+                sentence: "The book is ______ the table.",
+                options: ["on", "at", "in", "by"],
+                correct: 0,
+                explanation: "'On' is used for surfaces. When something is resting on a horizontal surface like a table, we use 'on'.",
+                tag: "Place",
+                rule: "Use 'on' for surfaces: on the table, on the wall, on the floor, on the ceiling"
+            },
+            {
+                question: "Choose the correct preposition:",
+                sentence: "I'll finish this project ______ Friday.",
+                options: ["on", "in", "at", "by"],
+                correct: 3,
+                explanation: "'By' indicates a deadline. 'By Friday' means no later than Friday, possibly earlier.",
+                tag: "Time",
+                rule: "Use 'by' for deadlines: by tomorrow, by next week, by 5 PM, by the end of the month"
+            },
+            {
+                question: "Which preposition completes this sentence correctly?",
+                sentence: "We arrived ______ the airport just in time.",
+                options: ["at", "to", "in", "on"],
+                correct: 0,
+                explanation: "We use 'arrive at' for buildings or specific locations like airports, stations, or schools.",
+                tag: "Verb + Prep",
+                rule: "Arrive + at (for buildings/specific places), Arrive + in (for cities/countries)"
+            },
+            {
+                question: "Select the correct preposition:",
+                sentence: "He's really good ______ playing chess.",
+                options: ["at", "in", "on", "with"],
+                correct: 0,
+                explanation: "The adjective 'good' is followed by 'at' when referring to skills or abilities.",
+                tag: "Adjective + Prep",
+                rule: "Good at (skills/activities), Good with (people/things), Good for (beneficial)"
+            },
+            {
+                question: "Complete the sentence:",
+                sentence: "I've been waiting ______ you for an hour!",
+                options: ["for", "since", "at", "by"],
+                correct: 0,
+                explanation: "The verb 'wait' is followed by 'for' when indicating what or who you're waiting for.",
+                tag: "Verb + Prep",
+                rule: "Wait for (person/thing), Wait + no preposition (when followed by time: wait an hour)"
+            },
+            {
+                question: "Choose the right preposition:",
+                sentence: "We're going ______ vacation next month.",
+                options: ["in", "on", "at", "by"],
+                correct: 1,
+                explanation: "We use 'on' with certain expressions like 'on vacation', 'on holiday', 'on business', 'on a trip'.",
+                tag: "Fixed Phrases",
+                rule: "Fixed phrases with 'on': on vacation, on holiday, on business, on purpose, on time"
+            },
+            {
+                question: "Which preposition correctly completes this sentence?",
+                sentence: "I look forward ______ meeting you.",
+                options: ["to", "at", "for", "with"],
+                correct: 0,
+                explanation: "'Look forward to' is a phrasal verb that must be followed by a noun or gerund (-ing form).",
+                tag: "Phrasal Verbs",
+                rule: "Phrasal verb: look forward to + noun/gerund (always with 'to')"
+            },
+            {
+                question: "Select the appropriate preposition:",
+                sentence: "She was born ______ 1995.",
+                options: ["on", "in", "at", "by"],
+                correct: 1,
+                explanation: "We use 'in' for years. For specific dates, we use 'on' (on January 15, 1995).",
+                tag: "Time",
+                rule: "In + year (in 1995), On + date (on January 15), At + specific time (at 3 PM)"
+            },
+            {
+                question: "Complete the sentence with the correct preposition:",
+                sentence: "I'm afraid ______ spiders.",
+                options: ["of", "from", "about", "with"],
+                correct: 0,
+                explanation: "The adjective 'afraid' is followed by 'of'. This is a fixed prepositional combination.",
+                tag: "Adjective + Prep",
+                rule: "Afraid of, scared of, frightened of, terrified of"
+            },
+            {
+                question: "Choose the correct preposition:",
+                sentence: "The train arrived ______ London at 10 AM.",
+                options: ["at", "to", "in", "on"],
+                correct: 2,
+                explanation: "We use 'arrive in' for cities, towns, and countries. 'Arrive in London', 'arrive in France'.",
+                tag: "Verb + Prep",
+                rule: "Arrive in + cities/countries, Arrive at + specific places/buildings"
+            },
+            {
+                question: "Which preposition completes this sentence correctly?",
+                sentence: "Please don't laugh ______ me.",
+                options: ["at", "on", "to", "with"],
+                correct: 0,
+                explanation: "The verb 'laugh' is followed by 'at' when it means to mock or make fun of someone.",
+                tag: "Verb + Prep",
+                rule: "Laugh at (mock someone), Laugh about (find something funny), Laugh with (laugh together)"
+            },
+            {
+                question: "Select the correct preposition:",
+                sentence: "I usually go to work ______ bus.",
+                options: ["with", "by", "in", "on"],
+                correct: 1,
+                explanation: "We use 'by' for modes of transportation when the focus is on the means: by bus, by car, by train, by plane.",
+                tag: "Transport",
+                rule: "By + transportation (general): by bus, by car, by train. But: on/in + specific: on the bus, in a car"
+            },
+            {
+                question: "Complete the sentence:",
+                sentence: "She apologized ______ being late.",
+                options: ["for", "about", "of", "with"],
+                correct: 0,
+                explanation: "The verb 'apologize' is followed by 'for' when stating the reason for the apology.",
+                tag: "Verb + Prep",
+                rule: "Apologize for + noun/gerund (reason), Apologize to + person"
+            },
+            {
+                question: "Choose the right preposition:",
+                sentence: "I'll see you ______ Monday morning.",
+                options: ["on", "in", "at", "by"],
+                correct: 0,
+                explanation: "We use 'on' for days and dates. 'On Monday', 'on July 4th', 'on Christmas Day'.",
+                tag: "Time",
+                rule: "On + days/dates: on Monday, on my birthday, on Christmas, on weekends (American English)"
+            },
+            {
+                question: "Which preposition correctly completes this sentence?",
+                sentence: "They're talking ______ the weather.",
+                options: ["about", "on", "for", "to"],
+                correct: 0,
+                explanation: "The verb 'talk' is followed by 'about' when indicating the topic of conversation.",
+                tag: "Verb + Prep",
+                rule: "Talk about + topic, Talk to/with + person, Talk + no preposition (talk business, talk politics)"
+            },
+            {
+                question: "Select the appropriate preposition:",
+                sentence: "I'm not very familiar ______ this software.",
+                options: ["with", "to", "about", "of"],
+                correct: 0,
+                explanation: "The adjective 'familiar' is followed by 'with' when you know something well.",
+                tag: "Adjective + Prep",
+                rule: "Familiar with (know well), Familiar to (known by someone): This place is familiar to me."
+            },
+            {
+                question: "Complete the sentence with the correct preposition:",
+                sentence: "He insisted ______ paying for dinner.",
+                options: ["on", "in", "at", "for"],
+                correct: 0,
+                explanation: "The verb 'insist' is followed by 'on' when it means to demand something firmly.",
+                tag: "Verb + Prep",
+                rule: "Insist on + noun/gerund: insist on payment, insist on going"
+            }
+        ];
+
+        // DOM elements
+        const quizContainer = document.getElementById('quiz-container');
+        const prevBtn = document.getElementById('prev-btn');
+        const nextBtn = document.getElementById('next-btn');
+        const submitBtn = document.getElementById('submit-btn');
+        const resultsContainer = document.getElementById('results-container');
+        const timerDisplay = document.getElementById('timer');
+        const progressBar = document.getElementById('progress');
+        const progressPercent = document.getElementById('progress-percent');
+
+        // Quiz state variables
+        let currentQuestion = 0;
+        let userAnswers = new Array(quizData.length).fill(null);
+        let score = 0;
+        let timer;
+        let timeLeft = 30 * 60; // 30 minutes in seconds
+        let quizStarted = false;
+        let quizSubmitted = false;
+
+        // Initialize the quiz
+        function initQuiz() {
+            // Create question elements
+            quizData.forEach((questionData, index) => {
+                const questionEl = document.createElement('div');
+                questionEl.className = `question ${index === 0 ? 'active' : ''}`;
+                questionEl.id = `question-${index}`;
+                
+                // Create sentence with gap
+                const sentenceWithGap = questionData.sentence ? 
+                    questionData.sentence.replace('______', '<span class="gap">______</span>') : '';
+                
+                questionEl.innerHTML = `
+                    <div class="question-header">
+                        <div class="question-number">Question ${index + 1} of ${quizData.length}</div>
+                        <div class="question-tag">${questionData.tag}</div>
+                    </div>
+                    <div class="question-text">${questionData.question}</div>
+                    ${questionData.sentence ? `<div class="sentence">${sentenceWithGap}</div>` : ''}
+                    <div class="options">
+                        ${questionData.options.map((option, optIndex) => `
+                            <div class="option" data-index="${optIndex}">
+                                <span class="option-label">${String.fromCharCode(65 + optIndex)}</span>
+                                <span class="option-text">${option}</span>
+                            </div>
+                        `).join('')}
+                    </div>
+                `;
+                
+                quizContainer.appendChild(questionEl);
+            });
+            
+            // Add event listeners to options
+            document.querySelectorAll('.option').forEach(option => {
+                option.addEventListener('click', handleOptionClick);
+            });
+            
+            // Update progress bar
+            updateProgressBar();
+        }
+
+        // Handle option selection
+        function handleOptionClick(e) {
+            if (quizSubmitted) return;
+            
+            const questionEl = e.target.closest('.question');
+            const questionId = parseInt(questionEl.id.split('-')[1]);
+            const selectedIndex = parseInt(e.target.closest('.option').dataset.index);
+            
+            // Start the timer on first answer
+            if (!quizStarted) {
+                startTimer();
+                quizStarted = true;
+            }
+            
+            // Update user's answer
+            userAnswers[questionId] = selectedIndex;
+            
+            // Remove selected class from all options in this question
+            questionEl.querySelectorAll('.option').forEach(opt => {
+                opt.classList.remove('selected');
+            });
+            
+            // Add selected class to clicked option
+            e.target.closest('.option').classList.add('selected');
+            
+            // Enable/disable navigation buttons
+            updateNavigationButtons();
+            
+            // Auto-advance to next question after selection (if not the last question)
+            if (questionId < quizData.length - 1) {
+                setTimeout(() => {
+                    showQuestion(questionId + 1);
+                }, 300);
+            }
+        }
+
+        // Show specific question
+        function showQuestion(questionIndex) {
+            // Hide all questions
+            document.querySelectorAll('.question').forEach(q => {
+                q.classList.remove('active');
+            });
+            
+            // Show the requested question
+            document.getElementById(`question-${questionIndex}`).classList.add('active');
+            
+            // Update current question
+            currentQuestion = questionIndex;
+            
+            // Update navigation buttons
+            updateNavigationButtons();
+            
+            // Update progress bar
+            updateProgressBar();
+            
+            // Scroll to question
+            document.getElementById(`question-${questionIndex}`).scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
+
+        // Update navigation buttons state
+        function updateNavigationButtons() {
+            prevBtn.disabled = currentQuestion === 0;
+            nextBtn.disabled = currentQuestion === quizData.length - 1;
+            
+            // Show selected answer in current question
+            const questionEl = document.getElementById(`question-${currentQuestion}`);
+            questionEl.querySelectorAll('.option').forEach((opt, index) => {
+                opt.classList.remove('selected');
+                if (userAnswers[currentQuestion] === index) {
+                    opt.classList.add('selected');
+                }
+            });
+        }
+
+        // Update progress bar
+        function updateProgressBar() {
+            const progress = ((currentQuestion + 1) / quizData.length) * 100;
+            progressBar.style.width = `${progress}%`;
+            
+            // Update progress percentage text
+            const answered = userAnswers.filter(answer => answer !== null).length;
+            progressPercent.textContent = `${Math.round(progress)}% (${answered}/${quizData.length} answered)`;
+        }
+
+        // Start the countdown timer
+        function startTimer() {
+            timer = setInterval(() => {
+                timeLeft--;
+                
+                // Update timer display
+                const minutes = Math.floor(timeLeft / 60);
+                const seconds = timeLeft % 60;
+                timerDisplay.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+                
+                // Change color when time is running out
+                if (timeLeft < 5 * 60) { // Less than 5 minutes
+                    timerDisplay.style.color = '#ff5722';
+                }
+                
+                if (timeLeft < 60) { // Less than 1 minute
+                    timerDisplay.style.color = '#dc3545';
+                    timerDisplay.style.animation = 'pulse 1s infinite';
+                }
+                
+                // Time's up - submit the quiz
+                if (timeLeft <= 0) {
+                    clearInterval(timer);
+                    timerDisplay.textContent = "00:00";
+                    submitQuiz();
+                }
+            }, 1000);
+        }
+
+        // Submit the quiz and show results
+        function submitQuiz() {
+            if (quizSubmitted) return;
+            
+            clearInterval(timer);
+            quizSubmitted = true;
+            
+            // Calculate score
+            score = 0;
+            quizData.forEach((question, index) => {
+                if (userAnswers[index] === question.correct) {
+                    score++;
+                }
+            });
+            
+            // Hide quiz and show results
+            document.querySelector('.quiz-container').style.display = 'none';
+            document.querySelector('.nav-buttons').style.display = 'none';
+            submitBtn.style.display = 'none';
+            document.querySelector('.timer-container').innerHTML = '<h3><i class="fas fa-flag-checkered"></i> Quiz Completed!</h3><p>Your results are ready</p>';
+            
+            // Show results
+            showResults();
+        }
+
+        // Display results
+        function showResults() {
+            const percentage = Math.round((score / quizData.length) * 100);
+            let performanceText = '';
+            let performanceColor = '';
+            let emoji = '';
+            
+            if (percentage >= 90) {
+                performanceText = 'Outstanding! You have mastered English prepositions.';
+                performanceColor = '#28a745';
+                emoji = '🏆';
+            } else if (percentage >= 75) {
+                performanceText = 'Great job! You have a strong understanding of preposition usage.';
+                performanceColor = '#17a2b8';
+                emoji = '👍';
+            } else if (percentage >= 60) {
+                performanceText = 'Good effort! You understand preposition basics but need more practice.';
+                performanceColor = '#ffc107';
+                emoji = '📚';
+            } else {
+                performanceText = 'Keep practicing! Prepositions are tricky—review the explanations to improve.';
+                performanceColor = '#dc3545';
+                emoji = '💪';
+            }
+            
+            // Calculate performance by category
+            const categories = {};
+            quizData.forEach((question, index) => {
+                const category = question.tag;
+                if (!categories[category]) {
+                    categories[category] = { total: 0, correct: 0 };
+                }
+                categories[category].total++;
+                if (userAnswers[index] === question.correct) {
+                    categories[category].correct++;
+                }
+            });
+            
+            let categoryAnalysis = '<div style="margin-top: 20px;"><h4>Performance by Category:</h4><div style="display: flex; flex-direction: column; gap: 10px; margin-top: 15px;">';
+            
+            for (const [category, data] of Object.entries(categories)) {
+                const categoryPercentage = Math.round((data.correct / data.total) * 100);
+                categoryAnalysis += `
+                    <div>
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                            <span>${category}</span>
+                            <span>${data.correct}/${data.total} (${categoryPercentage}%)</span>
+                        </div>
+                        <div style="height: 8px; background-color: #e9ecef; border-radius: 4px; overflow: hidden;">
+                            <div style="height: 100%; width: ${categoryPercentage}%; background-color: ${categoryPercentage >= 70 ? '#28a745' : categoryPercentage >= 50 ? '#ffc107' : '#dc3545'};"></div>
+                        </div>
+                    </div>
+                `;
+            }
+            
+            categoryAnalysis += '</div></div>';
+            
+            resultsContainer.innerHTML = `
+                <div class="score-card">
+                    <h2>Your Preposition Quiz Results ${emoji}</h2>
+                    <div class="score" style="color: ${performanceColor}">${score}/${quizData.length}</div>
+                    <div class="score-text">${percentage}% Correct</div>
+                    <div class="performance">${performanceText}</div>
+                </div>
+                
+                <div class="analysis">
+                    <h3><i class="fas fa-chart-pie"></i> Performance Analysis</h3>
+                    <p>You answered <strong>${score}</strong> out of <strong>${quizData.length}</strong> questions correctly.</p>
+                    <p>Time remaining: <strong>${Math.floor(timeLeft/60)}:${(timeLeft%60).toString().padStart(2, '0')}</strong></p>
+                    
+                    <div style="margin: 25px 0; display: flex; align-items: center; gap: 20px;">
+                        <div style="flex-grow: 1; height: 20px; background-color: #e9ecef; border-radius: 10px; overflow: hidden;">
+                            <div style="height: 100%; width: ${percentage}%; background: linear-gradient(90deg, #28a745, #17a2b8); transition: width 1.5s ease;"></div>
+                        </div>
+                        <div style="font-size: 1.5rem; font-weight: bold; color: ${performanceColor}">${percentage}%</div>
+                    </div>
+                    
+                    <div style="display: flex; gap: 15px; margin-top: 20px;">
+                        <div style="flex: 1; text-align: center; padding: 15px; background-color: #d4edda; border-radius: 10px;">
+                            <div style="font-size: 1.8rem; font-weight: bold; color: #155724;">${score}</div>
+                            <div>Correct Answers</div>
+                        </div>
+                        <div style="flex: 1; text-align: center; padding: 15px; background-color: #f8d7da; border-radius: 10px;">
+                            <div style="font-size: 1.8rem; font-weight: bold; color: #721c24;">${quizData.length - score}</div>
+                            <div>Incorrect Answers</div>
+                        </div>
+                    </div>
+                    
+                    ${categoryAnalysis}
+                    
+                    <h3 style="margin-top: 40px;"><i class="fas fa-question-circle"></i> Detailed Review</h3>
+            `;
+            
+            // Add review for each question
+            quizData.forEach((question, index) => {
+                const userAnswer = userAnswers[index];
+                const isCorrect = userAnswer === question.correct;
+                const userAnswerText = userAnswer !== null ? question.options[userAnswer] : "Not answered";
+                const correctAnswerText = question.options[question.correct];
+                
+                // Create completed sentence
+                const completedSentence = question.sentence ? 
+                    question.sentence.replace('______', `<strong>${correctAnswerText}</strong>`) : '';
+                
+                resultsContainer.innerHTML += `
+                    <div class="question-review ${isCorrect ? 'correct' : 'incorrect'}">
+                        <div class="review-question">${index + 1}. ${question.question}</div>
+                        <div class="review-sentence">${completedSentence}</div>
+                        <div class="review-answer user-answer ${isCorrect ? 'correct' : 'incorrect'}">
+                            <i class="fas ${isCorrect ? 'fa-check-circle' : 'fa-times-circle'}"></i>
+                            <div><strong>Your answer:</strong> ${userAnswerText}</div>
+                        </div>
+                        ${!isCorrect ? `
+                        <div class="correct-answer">
+                            <i class="fas fa-check-circle"></i>
+                            <div><strong>Correct answer:</strong> ${correctAnswerText}</div>
+                        </div>` : ''}
+                        <div class="explanation">
+                            <h4><i class="fas fa-lightbulb"></i> Explanation</h4>
+                            <p>${question.explanation}</p>
+                            ${question.rule ? `
+                            <div class="rule-box">
+                                <strong>Grammar Rule:</strong> ${question.rule}
+                            </div>` : ''}
+                            <div style="margin-top: 10px; padding: 8px 12px; background-color: #e0f7fa; border-radius: 5px; display: inline-block;">
+                                <strong>Category:</strong> ${question.tag}
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            resultsContainer.innerHTML += `
+                <div class="actions">
+                    <button id="retake-btn">
+                        <i class="fas fa-redo"></i> Retake Quiz
+                    </button>
+                </div>
+            `;
+            
+            resultsContainer.style.display = 'block';
+            
+            // Add event listener to retake button
+            document.getElementById('retake-btn').addEventListener('click', retakeQuiz);
+            
+            // Scroll to results
+            resultsContainer.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Retake the quiz
+        function retakeQuiz() {
+            // Reset all state
+            currentQuestion = 0;
+            userAnswers = new Array(quizData.length).fill(null);
+            score = 0;
+            timeLeft = 30 * 60;
+            quizStarted = false;
+            quizSubmitted = false;
+            
+            // Reset UI
+            document.querySelector('.quiz-container').style.display = 'block';
+            document.querySelector('.nav-buttons').style.display = 'flex';
+            submitBtn.style.display = 'block';
+            resultsContainer.style.display = 'none';
+            
+            // Reset timer display
+            timerDisplay.textContent = "30:00";
+            timerDisplay.style.color = '#1a2980';
+            timerDisplay.style.animation = '';
+            
+            // Reset all question displays
+            document.querySelectorAll('.question').forEach((q, index) => {
+                q.classList.remove('active');
+                if (index === 0) q.classList.add('active');
+                
+                // Clear selected options
+                q.querySelectorAll('.option').forEach(opt => {
+                    opt.classList.remove('selected', 'correct', 'incorrect');
+                });
+            });
+            
+            // Reset progress bar
+            updateProgressBar();
+            
+            // Reset timer container
+            document.querySelector('.timer-container').innerHTML = `
+                <h3><i class="fas fa-clock"></i> Time Remaining</h3>
+                <div class="timer" id="timer">30:00</div>
+                <p>Timer starts when you answer the first question</p>
+            `;
+            
+            // Re-attach timer element
+            timerDisplay = document.getElementById('timer');
+            
+            // Clear any existing timer
+            clearInterval(timer);
+            
+            // Update navigation buttons
+            updateNavigationButtons();
+            
+            // Scroll to top
+            window.scrollTo({top: 0, behavior: 'smooth'});
+        }
+
+        // Event listeners
+        prevBtn.addEventListener('click', () => {
+            if (currentQuestion > 0) {
+                showQuestion(currentQuestion - 1);
+            }
+        });
+        
+        nextBtn.addEventListener('click', () => {
+            if (currentQuestion < quizData.length - 1) {
+                showQuestion(currentQuestion + 1);
+            }
+        });
+        
+        submitBtn.addEventListener('click', submitQuiz);
+
+        // Initialize the quiz when page loads
+        document.addEventListener('DOMContentLoaded', initQuiz);
+    </script>
+</body>
+</html>
