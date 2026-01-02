@@ -1,0 +1,1424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complete English Grammar Quiz</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            line-height: 1.6;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23ffffff' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
+        }
+        
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .subtitle {
+            font-size: 1.4rem;
+            opacity: 0.9;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .parts-of-speech {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 25px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .part-tag {
+            background-color: rgba(255, 255, 255, 0.2);
+            padding: 10px 22px;
+            border-radius: 30px;
+            font-weight: 600;
+            backdrop-filter: blur(5px);
+            transition: all 0.3s ease;
+        }
+        
+        .part-tag:hover {
+            transform: translateY(-3px);
+            background-color: rgba(255, 255, 255, 0.3);
+        }
+        
+        .instructions {
+            background-color: #f0f7ff;
+            padding: 25px;
+            margin: 25px;
+            border-radius: 15px;
+            border-left: 5px solid #1e3c72;
+        }
+        
+        .instructions h3 {
+            color: #1e3c72;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .instructions ul {
+            padding-left: 20px;
+        }
+        
+        .instructions li {
+            margin-bottom: 10px;
+        }
+        
+        .quiz-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            padding: 0 25px 25px;
+        }
+        
+        .stat-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .stat-card:nth-child(2) {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+        
+        .stat-card:nth-child(3) {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        }
+        
+        .stat-value {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .stat-label {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+        
+        .timer-container {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            padding: 20px;
+            margin: 25px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .timer {
+            font-size: 2.8rem;
+            font-weight: bold;
+            color: #d43f00;
+            margin: 10px 0;
+            font-family: 'Courier New', monospace;
+        }
+        
+        .progress-container {
+            padding: 0 25px 15px;
+        }
+        
+        .progress-bar {
+            height: 12px;
+            background-color: #e9ecef;
+            border-radius: 6px;
+            overflow: hidden;
+            margin-bottom: 10px;
+        }
+        
+        .progress {
+            height: 100%;
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+            width: 3.33%;
+            transition: width 0.5s ease;
+            border-radius: 6px;
+        }
+        
+        .progress-text {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.9rem;
+            color: #6c757d;
+        }
+        
+        .quiz-container {
+            padding: 0 25px 30px;
+        }
+        
+        .question {
+            background-color: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 25px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            border: 1px solid #e9ecef;
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .question.active {
+            display: block;
+        }
+        
+        .question-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #f1f3f4;
+        }
+        
+        .question-number {
+            font-size: 1.2rem;
+            color: #1e3c72;
+            font-weight: bold;
+        }
+        
+        .question-tag {
+            background-color: #e0f7fa;
+            color: #006064;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+        
+        .question-text {
+            font-size: 1.4rem;
+            margin-bottom: 30px;
+            color: #2c3e50;
+            line-height: 1.5;
+        }
+        
+        .sentence {
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            border-left: 4px solid #667eea;
+            font-style: italic;
+            font-size: 1.2rem;
+        }
+        
+        .gap {
+            display: inline-block;
+            width: 60px;
+            border-bottom: 2px dashed #1e3c72;
+            text-align: center;
+            margin: 0 5px;
+            color: #1e3c72;
+            font-weight: bold;
+        }
+        
+        .options {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+        }
+        
+        .option {
+            background-color: #f8f9fa;
+            border: 2px solid #e9ecef;
+            border-radius: 10px;
+            padding: 18px 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .option:hover {
+            background-color: #e3f2fd;
+            border-color: #667eea;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 10px rgba(102, 126, 234, 0.1);
+        }
+        
+        .option.selected {
+            background-color: #e3f2fd;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.2);
+        }
+        
+        .option.correct {
+            background-color: #d4edda;
+            border-color: #28a745;
+            color: #155724;
+        }
+        
+        .option.incorrect {
+            background-color: #f8d7da;
+            border-color: #dc3545;
+            color: #721c24;
+        }
+        
+        .option-label {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            background-color: #e9ecef;
+            border-radius: 50%;
+            margin-right: 15px;
+            font-weight: bold;
+            flex-shrink: 0;
+            transition: all 0.3s ease;
+        }
+        
+        .option.selected .option-label {
+            background-color: #667eea;
+            color: white;
+        }
+        
+        .option.correct .option-label {
+            background-color: #28a745;
+            color: white;
+        }
+        
+        .option.incorrect .option-label {
+            background-color: #dc3545;
+            color: white;
+        }
+        
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+            padding: 0 25px 30px;
+        }
+        
+        button {
+            padding: 15px 35px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        #prev-btn, #next-btn {
+            background-color: #f8f9fa;
+            color: #1e3c72;
+            border: 2px solid #1e3c72;
+        }
+        
+        #prev-btn:hover:not(:disabled), #next-btn:hover:not(:disabled) {
+            background-color: #1e3c72;
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(30, 60, 114, 0.3);
+        }
+        
+        #prev-btn:disabled, #next-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            background-color: #f8f9fa;
+            color: #1e3c72;
+        }
+        
+        #submit-btn {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 18px 45px;
+            display: block;
+            margin: 0 auto 40px;
+            font-size: 1.2rem;
+            box-shadow: 0 5px 15px rgba(30, 60, 114, 0.3);
+        }
+        
+        #submit-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(30, 60, 114, 0.4);
+        }
+        
+        .results-container {
+            padding: 30px;
+            display: none;
+        }
+        
+        .score-card {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 30px rgba(30, 60, 114, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .score-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23ffffff' fill-opacity='0.1' fill-rule='evenodd'/%3E%3C/svg%3E");
+        }
+        
+        .score-card h2 {
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .score {
+            font-size: 5rem;
+            font-weight: bold;
+            margin: 20px 0;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .score-text {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .performance {
+            background-color: rgba(255, 255, 255, 0.2);
+            padding: 15px;
+            border-radius: 15px;
+            margin-top: 20px;
+            position: relative;
+            z-index: 1;
+            backdrop-filter: blur(5px);
+        }
+        
+        .analysis {
+            background-color: #f8f9fa;
+            padding: 30px;
+            border-radius: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .analysis h3 {
+            color: #2c3e50;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #e9ecef;
+            font-size: 1.8rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .category-chart {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .category-item {
+            background-color: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            text-align: center;
+        }
+        
+        .category-name {
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #2c3e50;
+        }
+        
+        .category-score {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #1e3c72;
+            margin-bottom: 10px;
+        }
+        
+        .category-bar {
+            height: 8px;
+            background-color: #e9ecef;
+            border-radius: 4px;
+            overflow: hidden;
+            margin-bottom: 10px;
+        }
+        
+        .category-fill {
+            height: 100%;
+            border-radius: 4px;
+        }
+        
+        .question-review {
+            background-color: white;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            border-left: 5px solid #e9ecef;
+        }
+        
+        .question-review.correct {
+            border-left-color: #28a745;
+        }
+        
+        .question-review.incorrect {
+            border-left-color: #dc3545;
+        }
+        
+        .review-question {
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #2c3e50;
+            font-size: 1.2rem;
+        }
+        
+        .review-sentence {
+            background-color: #f8f9fa;
+            padding: 12px 15px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            font-style: italic;
+            border-left: 4px solid #667eea;
+        }
+        
+        .review-answer {
+            margin: 10px 0;
+            padding: 12px 15px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .user-answer.correct {
+            background-color: #d4edda;
+            color: #155724;
+        }
+        
+        .user-answer.incorrect {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+        
+        .correct-answer {
+            background-color: #e7f7ef;
+            color: #155724;
+            padding: 12px 15px;
+            border-radius: 8px;
+            margin: 10px 0;
+        }
+        
+        .explanation {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+            border-left: 4px solid #ffc107;
+        }
+        
+        .explanation h4 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .actions {
+            text-align: center;
+            margin-top: 40px;
+        }
+        
+        #retake-btn {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            color: #1a2980;
+            font-weight: bold;
+            padding: 15px 40px;
+            margin: 0 10px;
+        }
+        
+        #retake-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255, 236, 210, 0.4);
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                border-radius: 15px;
+            }
+            
+            header {
+                padding: 25px 20px;
+            }
+            
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .subtitle {
+                font-size: 1.1rem;
+            }
+            
+            .quiz-stats {
+                grid-template-columns: 1fr;
+                gap: 15px;
+                padding: 0 20px 20px;
+            }
+            
+            .instructions {
+                margin: 15px;
+                padding: 20px;
+            }
+            
+            .question {
+                padding: 20px;
+            }
+            
+            .question-text {
+                font-size: 1.2rem;
+            }
+            
+            .sentence {
+                font-size: 1.1rem;
+            }
+            
+            .nav-buttons {
+                flex-direction: column;
+                gap: 15px;
+                padding: 0 20px 20px;
+            }
+            
+            button {
+                width: 100%;
+            }
+            
+            .score-card {
+                padding: 25px;
+            }
+            
+            .score {
+                font-size: 3.5rem;
+            }
+            
+            .category-chart {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Complete English Grammar Quiz</h1>
+            <div class="subtitle">Master All Parts of Speech in One Comprehensive Test</div>
+            <div class="parts-of-speech">
+                <div class="part-tag">Nouns</div>
+                <div class="part-tag">Pronouns</div>
+                <div class="part-tag">Verbs</div>
+                <div class="part-tag">Adjectives</div>
+                <div class="part-tag">Adverbs</div>
+                <div class="part-tag">Prepositions</div>
+            </div>
+        </header>
+        
+        <div class="instructions">
+            <h3><i class="fas fa-info-circle"></i> Quiz Instructions</h3>
+            <ul>
+                <li>This comprehensive quiz contains <strong>30 questions</strong> covering all major parts of speech.</li>
+                <li>You have <strong>45 minutes</strong> to complete the quiz. The timer starts when you answer the first question.</li>
+                <li>Read each question carefully and select the best answer from the options provided.</li>
+                <li>Use the <strong>Previous</strong> and <strong>Next</strong> buttons to navigate between questions.</li>
+                <li>Click <strong>Submit Quiz</strong> when you're done to see your score and detailed explanations.</li>
+                <li>Your progress is automatically saved as you go.</li>
+            </ul>
+        </div>
+        
+        <div class="quiz-stats">
+            <div class="stat-card">
+                <div class="stat-value">30</div>
+                <div class="stat-label">Total Questions</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">45</div>
+                <div class="stat-label">Minutes</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">6</div>
+                <div class="stat-label">Parts of Speech</div>
+            </div>
+        </div>
+        
+        <div class="timer-container">
+            <h3><i class="fas fa-clock"></i> Time Remaining</h3>
+            <div class="timer" id="timer">45:00</div>
+            <p>Timer starts when you answer the first question</p>
+        </div>
+        
+        <div class="progress-container">
+            <div class="progress-bar">
+                <div class="progress" id="progress"></div>
+            </div>
+            <div class="progress-text">
+                <span>Progress</span>
+                <span id="progress-percent">3%</span>
+            </div>
+        </div>
+        
+        <div class="quiz-container" id="quiz-container">
+            <!-- Questions will be dynamically inserted here -->
+        </div>
+        
+        <div class="nav-buttons">
+            <button id="prev-btn" disabled><i class="fas fa-arrow-left"></i> Previous</button>
+            <button id="next-btn">Next <i class="fas fa-arrow-right"></i></button>
+        </div>
+        
+        <button id="submit-btn"><i class="fas fa-paper-plane"></i> Submit Quiz</button>
+        
+        <div class="results-container" id="results-container">
+            <!-- Results will be dynamically inserted here -->
+        </div>
+    </div>
+
+    <script>
+        // Quiz questions data - All Parts of Speech
+        const quizData = [
+            // NOUNS (5 questions)
+            {
+                question: "Which of the following is a proper noun?",
+                options: ["mountain", "city", "Paris", "river"],
+                correct: 2,
+                explanation: "Proper nouns are specific names of people, places, or things and are always capitalized. 'Paris' is a proper noun because it's the name of a specific city.",
+                tag: "Nouns",
+                category: "Nouns"
+            },
+            {
+                question: "What type of noun is 'team' in the sentence: 'The team won the championship'?",
+                options: ["Proper noun", "Collective noun", "Abstract noun", "Material noun"],
+                correct: 1,
+                explanation: "'Team' is a collective noun because it refers to a group of individuals acting as a single unit. Collective nouns can be singular or plural depending on context.",
+                tag: "Nouns",
+                category: "Nouns"
+            },
+            {
+                question: "Identify the abstract noun in the following list:",
+                options: ["happiness", "book", "teacher", "water"],
+                correct: 0,
+                explanation: "Abstract nouns represent ideas, qualities, or states that cannot be seen or touched. 'Happiness' is an abstract noun representing an emotional state.",
+                tag: "Nouns",
+                category: "Nouns"
+            },
+            {
+                question: "Which word is a countable noun?",
+                options: ["water", "music", "information", "apple"],
+                correct: 3,
+                explanation: "Countable nouns can be counted and have plural forms. 'Apple' is countable (one apple, two apples). The other options are uncountable nouns.",
+                tag: "Nouns",
+                category: "Nouns"
+            },
+            {
+                question: "What is the plural form of 'child'?",
+                options: ["childs", "children", "childes", "child's"],
+                correct: 1,
+                explanation: "The plural of 'child' is 'children', which is an irregular plural form in English. Other irregular plurals include: man → men, woman → women, foot → feet.",
+                tag: "Nouns",
+                category: "Nouns"
+            },
+            
+            // PRONOUNS (5 questions)
+            {
+                question: "Which pronoun should complete this sentence: 'Each of the students brought ______ own books.'",
+                options: ["their", "her", "his or her", "its"],
+                correct: 2,
+                explanation: "'Each' is singular, so it takes a singular pronoun. Since 'students' could be male or female, 'his or her' is the most inclusive choice.",
+                tag: "Pronouns",
+                category: "Pronouns"
+            },
+            {
+                question: "In the sentence 'The cat chased its tail', what type of pronoun is 'its'?",
+                options: ["Personal pronoun", "Possessive pronoun", "Reflexive pronoun", "Demonstrative pronoun"],
+                correct: 1,
+                explanation: "'Its' is a possessive pronoun showing that the tail belongs to the cat. Possessive pronouns show ownership without using apostrophes.",
+                tag: "Pronouns",
+                category: "Pronouns"
+            },
+            {
+                question: "Which sentence uses a reflexive pronoun correctly?",
+                options: ["She saw herself in the mirror.", "That book is herself.", "Who is there herself?", "These are herself."],
+                correct: 0,
+                explanation: "Reflexive pronouns end in -self or -selves and refer back to the subject. 'Herself' correctly refers back to 'she'.",
+                tag: "Pronouns",
+                category: "Pronouns"
+            },
+            {
+                question: "What is the antecedent of the pronoun 'they' in: 'The dogs were barking because they saw a cat.'?",
+                options: ["barking", "because", "dogs", "cat"],
+                correct: 2,
+                explanation: "The antecedent is the noun that the pronoun replaces. 'They' refers back to 'dogs', which is the antecedent.",
+                tag: "Pronouns",
+                category: "Pronouns"
+            },
+            {
+                question: "Which pronoun is used for asking questions?",
+                options: ["Interrogative pronoun", "Relative pronoun", "Demonstrative pronoun", "Indefinite pronoun"],
+                correct: 0,
+                explanation: "Interrogative pronouns are used to ask questions (who, whom, whose, which, what). Relative pronouns connect clauses (who, which, that).",
+                tag: "Pronouns",
+                category: "Pronouns"
+            },
+            
+            // VERBS (5 questions)
+            {
+                question: "Which of the following is an action verb?",
+                options: ["beautiful", "quickly", "run", "under"],
+                correct: 2,
+                explanation: "Action verbs express physical or mental actions. 'Run' is an action verb because it describes a physical action. The other options are not verbs.",
+                tag: "Verbs",
+                category: "Verbs"
+            },
+            {
+                question: "Which sentence contains a linking verb?",
+                options: ["She sings beautifully.", "He appears tired.", "They built a house.", "We eat dinner."],
+                correct: 1,
+                explanation: "Linking verbs connect the subject to additional information about the subject. 'Appears' is a linking verb connecting 'he' to 'tired'.",
+                tag: "Verbs",
+                category: "Verbs"
+            },
+            {
+                question: "What is the past tense of the verb 'go'?",
+                options: ["goed", "went", "gone", "going"],
+                correct: 1,
+                explanation: "The past tense of 'go' is 'went'. This is an irregular past tense form. The past participle is 'gone' (I have gone).",
+                tag: "Verbs",
+                category: "Verbs"
+            },
+            {
+                question: "Identify the helping verb in: 'She has been studying for hours.'",
+                options: ["she", "has", "studying", "hours"],
+                correct: 1,
+                explanation: "Helping verbs assist the main verb. 'Has' and 'been' are both helping verbs that assist 'studying' to form the present perfect continuous tense.",
+                tag: "Verbs",
+                category: "Verbs"
+            },
+            {
+                question: "What is the present participle form of the verb 'write'?",
+                options: ["wrote", "written", "writing", "writed"],
+                correct: 2,
+                explanation: "The present participle of verbs is formed by adding '-ing'. 'Writing' is the present participle of 'write'. Present participles are used in continuous tenses.",
+                tag: "Verbs",
+                category: "Verbs"
+            },
+            
+            // ADJECTIVES (5 questions)
+            {
+                question: "Identify the adjective in this sentence: 'The enormous elephant gracefully walked through the jungle.'",
+                options: ["elephant", "gracefully", "enormous", "jungle"],
+                correct: 2,
+                explanation: "Adjectives describe or modify nouns. 'Enormous' describes the noun 'elephant' by telling us about its size.",
+                tag: "Adjectives",
+                category: "Adjectives"
+            },
+            {
+                question: "What is the comparative form of the adjective 'good'?",
+                options: ["gooder", "more good", "better", "best"],
+                correct: 2,
+                explanation: "The comparative form of 'good' is 'better'. This is an irregular comparative form. The superlative form is 'best'.",
+                tag: "Adjectives",
+                category: "Adjectives"
+            },
+            {
+                question: "Which sentence contains a predicate adjective?",
+                options: ["The sky is blue.", "She reads a book.", "They ran quickly.", "He built a house."],
+                correct: 0,
+                explanation: "Predicate adjectives follow linking verbs and describe the subject. 'Blue' is a predicate adjective describing 'sky' after the linking verb 'is'.",
+                tag: "Adjectives",
+                category: "Adjectives"
+            },
+            {
+                question: "What type of adjective is 'French' in 'French cuisine'?",
+                options: ["Descriptive adjective", "Proper adjective", "Demonstrative adjective", "Quantitative adjective"],
+                correct: 1,
+                explanation: "Proper adjectives are derived from proper nouns and are always capitalized. 'French' is a proper adjective derived from the proper noun 'France'.",
+                tag: "Adjectives",
+                category: "Adjectives"
+            },
+            {
+                question: "What is the correct order of adjectives in English?",
+                options: ["Opinion, size, age, shape, color, origin, material, purpose", "Size, opinion, age, shape, color, origin, material, purpose", "Opinion, age, size, shape, color, origin, material, purpose", "Age, opinion, size, shape, color, origin, material, purpose"],
+                correct: 0,
+                explanation: "The correct order is: opinion, size, age, shape, color, origin, material, purpose. Example: 'a beautiful small old round red Italian wooden dining table'.",
+                tag: "Adjectives",
+                category: "Adjectives"
+            },
+            
+            // ADVERBS (5 questions)
+            {
+                question: "Which of the following is an adverb of manner?",
+                options: ["quickly", "often", "here", "very"],
+                correct: 0,
+                explanation: "Adverbs of manner describe how an action is performed. 'Quickly' tells us how something is done. 'Often' is frequency, 'here' is place, 'very' is degree.",
+                tag: "Adverbs",
+                category: "Adverbs"
+            },
+            {
+                question: "What is the comparative form of the adverb 'carefully'?",
+                options: ["more carefully", "most carefully", "carefullier", "carefulliest"],
+                correct: 0,
+                explanation: "Most adverbs with two or more syllables form the comparative with 'more'. 'More carefully' is the comparative form. The superlative is 'most carefully'.",
+                tag: "Adverbs",
+                category: "Adverbs"
+            },
+            {
+                question: "Which adverb best completes: 'She ______ finishes her homework before dinner.'",
+                options: ["usually", "here", "quickly", "very"],
+                correct: 0,
+                explanation: "'Usually' is an adverb of frequency that fits logically, indicating a habitual action. The other options don't make sense in this context.",
+                tag: "Adverbs",
+                category: "Adverbs"
+            },
+            {
+                question: "What is the adverb form of the adjective 'gentle'?",
+                options: ["gentlely", "gently", "gentlily", "gentlefully"],
+                correct: 1,
+                explanation: "The adverb form of 'gentle' is 'gently'. Many adjectives ending in '-le' change to '-ly' for the adverb (simple → simply, terrible → terribly).",
+                tag: "Adverbs",
+                category: "Adverbs"
+            },
+            {
+                question: "Which sentence uses an adverb to modify another adverb?",
+                options: ["She sings beautifully.", "He runs very fast.", "They arrived early.", "We work hard."],
+                correct: 1,
+                explanation: "'Very' is an adverb of degree that modifies the adverb 'fast', intensifying its meaning. Adverbs can modify verbs, adjectives, and other adverbs.",
+                tag: "Adverbs",
+                category: "Adverbs"
+            },
+            
+            // PREPOSITIONS (5 questions)
+            {
+                question: "Choose the correct preposition to complete: 'I'll meet you ______ the cinema at 7 PM.'",
+                options: ["on", "at", "in", "by"],
+                correct: 1,
+                explanation: "'At' is used for specific points or locations. We use 'at' for specific places like cinemas, restaurants, or addresses.",
+                tag: "Prepositions",
+                category: "Prepositions"
+            },
+            {
+                question: "Which preposition correctly completes: 'My birthday is ______ June.'",
+                options: ["on", "at", "in", "by"],
+                correct: 2,
+                explanation: "'In' is used for months, years, seasons, and longer periods of time. We say 'in June', 'in 2023', 'in summer'.",
+                tag: "Prepositions",
+                category: "Prepositions"
+            },
+            {
+                question: "Complete the sentence: 'The book is ______ the table.'",
+                options: ["on", "at", "in", "by"],
+                correct: 0,
+                explanation: "'On' is used for surfaces. When something is resting on a horizontal surface like a table, we use 'on'.",
+                tag: "Prepositions",
+                category: "Prepositions"
+            },
+            {
+                question: "Which preposition completes: 'She's interested ______ learning French.'",
+                options: ["at", "in", "on", "by"],
+                correct: 1,
+                explanation: "The adjective 'interested' is always followed by 'in'. This is a fixed prepositional phrase (interested in, good at, afraid of).",
+                tag: "Prepositions",
+                category: "Prepositions"
+            },
+            {
+                question: "Choose the right preposition: 'We're going ______ vacation next month.'",
+                options: ["in", "on", "at", "by"],
+                correct: 1,
+                explanation: "We use 'on' with certain expressions like 'on vacation', 'on holiday', 'on business', 'on a trip'. These are fixed phrases.",
+                tag: "Prepositions",
+                category: "Prepositions"
+            }
+        ];
+
+        // DOM elements
+        const quizContainer = document.getElementById('quiz-container');
+        const prevBtn = document.getElementById('prev-btn');
+        const nextBtn = document.getElementById('next-btn');
+        const submitBtn = document.getElementById('submit-btn');
+        const resultsContainer = document.getElementById('results-container');
+        const timerDisplay = document.getElementById('timer');
+        const progressBar = document.getElementById('progress');
+        const progressPercent = document.getElementById('progress-percent');
+
+        // Quiz state variables
+        let currentQuestion = 0;
+        let userAnswers = new Array(quizData.length).fill(null);
+        let score = 0;
+        let timer;
+        let timeLeft = 45 * 60; // 45 minutes in seconds
+        let quizStarted = false;
+        let quizSubmitted = false;
+
+        // Initialize the quiz
+        function initQuiz() {
+            // Create question elements
+            quizData.forEach((questionData, index) => {
+                const questionEl = document.createElement('div');
+                questionEl.className = `question ${index === 0 ? 'active' : ''}`;
+                questionEl.id = `question-${index}`;
+                
+                questionEl.innerHTML = `
+                    <div class="question-header">
+                        <div class="question-number">Question ${index + 1} of ${quizData.length}</div>
+                        <div class="question-tag">${questionData.tag}</div>
+                    </div>
+                    <div class="question-text">${questionData.question}</div>
+                    <div class="options">
+                        ${questionData.options.map((option, optIndex) => `
+                            <div class="option" data-index="${optIndex}">
+                                <span class="option-label">${String.fromCharCode(65 + optIndex)}</span>
+                                <span class="option-text">${option}</span>
+                            </div>
+                        `).join('')}
+                    </div>
+                `;
+                
+                quizContainer.appendChild(questionEl);
+            });
+            
+            // Add event listeners to options
+            document.querySelectorAll('.option').forEach(option => {
+                option.addEventListener('click', handleOptionClick);
+            });
+            
+            // Update progress bar
+            updateProgressBar();
+        }
+
+        // Handle option selection
+        function handleOptionClick(e) {
+            if (quizSubmitted) return;
+            
+            const questionEl = e.target.closest('.question');
+            const questionId = parseInt(questionEl.id.split('-')[1]);
+            const selectedIndex = parseInt(e.target.closest('.option').dataset.index);
+            
+            // Start the timer on first answer
+            if (!quizStarted) {
+                startTimer();
+                quizStarted = true;
+            }
+            
+            // Update user's answer
+            userAnswers[questionId] = selectedIndex;
+            
+            // Remove selected class from all options in this question
+            questionEl.querySelectorAll('.option').forEach(opt => {
+                opt.classList.remove('selected');
+            });
+            
+            // Add selected class to clicked option
+            e.target.closest('.option').classList.add('selected');
+            
+            // Enable/disable navigation buttons
+            updateNavigationButtons();
+            
+            // Auto-advance to next question after selection (if not the last question)
+            if (questionId < quizData.length - 1) {
+                setTimeout(() => {
+                    showQuestion(questionId + 1);
+                }, 300);
+            }
+        }
+
+        // Show specific question
+        function showQuestion(questionIndex) {
+            // Hide all questions
+            document.querySelectorAll('.question').forEach(q => {
+                q.classList.remove('active');
+            });
+            
+            // Show the requested question
+            document.getElementById(`question-${questionIndex}`).classList.add('active');
+            
+            // Update current question
+            currentQuestion = questionIndex;
+            
+            // Update navigation buttons
+            updateNavigationButtons();
+            
+            // Update progress bar
+            updateProgressBar();
+            
+            // Scroll to question
+            document.getElementById(`question-${questionIndex}`).scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
+
+        // Update navigation buttons state
+        function updateNavigationButtons() {
+            prevBtn.disabled = currentQuestion === 0;
+            nextBtn.disabled = currentQuestion === quizData.length - 1;
+            
+            // Show selected answer in current question
+            const questionEl = document.getElementById(`question-${currentQuestion}`);
+            questionEl.querySelectorAll('.option').forEach((opt, index) => {
+                opt.classList.remove('selected');
+                if (userAnswers[currentQuestion] === index) {
+                    opt.classList.add('selected');
+                }
+            });
+        }
+
+        // Update progress bar
+        function updateProgressBar() {
+            const progress = ((currentQuestion + 1) / quizData.length) * 100;
+            progressBar.style.width = `${progress}%`;
+            
+            // Update progress percentage text
+            const answered = userAnswers.filter(answer => answer !== null).length;
+            progressPercent.textContent = `${Math.round(progress)}% (${answered}/${quizData.length} answered)`;
+        }
+
+        // Start the countdown timer
+        function startTimer() {
+            timer = setInterval(() => {
+                timeLeft--;
+                
+                // Update timer display
+                const minutes = Math.floor(timeLeft / 60);
+                const seconds = timeLeft % 60;
+                timerDisplay.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+                
+                // Change color when time is running out
+                if (timeLeft < 10 * 60) { // Less than 10 minutes
+                    timerDisplay.style.color = '#ff5722';
+                }
+                
+                if (timeLeft < 5 * 60) { // Less than 5 minutes
+                    timerDisplay.style.color = '#dc3545';
+                    timerDisplay.style.animation = 'pulse 1s infinite';
+                }
+                
+                // Time's up - submit the quiz
+                if (timeLeft <= 0) {
+                    clearInterval(timer);
+                    timerDisplay.textContent = "00:00";
+                    submitQuiz();
+                }
+            }, 1000);
+        }
+
+        // Submit the quiz and show results
+        function submitQuiz() {
+            if (quizSubmitted) return;
+            
+            clearInterval(timer);
+            quizSubmitted = true;
+            
+            // Calculate score
+            score = 0;
+            quizData.forEach((question, index) => {
+                if (userAnswers[index] === question.correct) {
+                    score++;
+                }
+            });
+            
+            // Hide quiz and show results
+            document.querySelector('.quiz-container').style.display = 'none';
+            document.querySelector('.nav-buttons').style.display = 'none';
+            submitBtn.style.display = 'none';
+            document.querySelector('.timer-container').innerHTML = '<h3><i class="fas fa-flag-checkered"></i> Quiz Completed!</h3><p>Your results are ready</p>';
+            
+            // Show results
+            showResults();
+        }
+
+        // Display results
+        function showResults() {
+            const percentage = Math.round((score / quizData.length) * 100);
+            let performanceText = '';
+            let performanceColor = '';
+            let emoji = '';
+            
+            if (percentage >= 90) {
+                performanceText = 'Outstanding! You have mastered English grammar fundamentals.';
+                performanceColor = '#28a745';
+                emoji = '🏆';
+            } else if (percentage >= 75) {
+                performanceText = 'Excellent! You have a strong command of English grammar.';
+                performanceColor = '#17a2b8';
+                emoji = '👍';
+            } else if (percentage >= 60) {
+                performanceText = 'Good job! You understand the basics but need more practice.';
+                performanceColor = '#ffc107';
+                emoji = '📚';
+            } else if (percentage >= 50) {
+                performanceText = 'Fair effort! Review the explanations to improve your understanding.';
+                performanceColor = '#fd7e14';
+                emoji = '💪';
+            } else {
+                performanceText = 'Keep practicing! Focus on the explanations to strengthen your grammar skills.';
+                performanceColor = '#dc3545';
+                emoji = '🧠';
+            }
+            
+            // Calculate performance by category
+            const categories = {
+                'Nouns': { total: 0, correct: 0, color: '#667eea' },
+                'Pronouns': { total: 0, correct: 0, color: '#f093fb' },
+                'Verbs': { total: 0, correct: 0, color: '#4facfe' },
+                'Adjectives': { total: 0, correct: 0, color: '#43e97b' },
+                'Adverbs': { total: 0, correct: 0, color: '#fa709a' },
+                'Prepositions': { total: 0, correct: 0, color: '#ffecd2' }
+            };
+            
+            quizData.forEach((question, index) => {
+                const category = question.category;
+                categories[category].total++;
+                if (userAnswers[index] === question.correct) {
+                    categories[category].correct++;
+                }
+            });
+            
+            let categoryChart = '<div class="category-chart">';
+            
+            for (const [categoryName, data] of Object.entries(categories)) {
+                if (data.total > 0) {
+                    const categoryPercentage = Math.round((data.correct / data.total) * 100);
+                    categoryChart += `
+                        <div class="category-item">
+                            <div class="category-name">${categoryName}</div>
+                            <div class="category-score">${data.correct}/${data.total}</div>
+                            <div class="category-bar">
+                                <div class="category-fill" style="width: ${categoryPercentage}%; background-color: ${data.color};"></div>
+                            </div>
+                            <div>${categoryPercentage}% correct</div>
+                        </div>
+                    `;
+                }
+            }
+            
+            categoryChart += '</div>';
+            
+            resultsContainer.innerHTML = `
+                <div class="score-card">
+                    <h2>Your Grammar Mastery Results ${emoji}</h2>
+                    <div class="score" style="color: ${performanceColor}">${score}/${quizData.length}</div>
+                    <div class="score-text">${percentage}% Correct</div>
+                    <div class="performance">${performanceText}</div>
+                </div>
+                
+                <div class="analysis">
+                    <h3><i class="fas fa-chart-pie"></i> Performance Analysis</h3>
+                    <p>You answered <strong>${score}</strong> out of <strong>${quizData.length}</strong> questions correctly.</p>
+                    <p>Time remaining: <strong>${Math.floor(timeLeft/60)}:${(timeLeft%60).toString().padStart(2, '0')}</strong></p>
+                    
+                    <div style="margin: 25px 0; display: flex; align-items: center; gap: 20px;">
+                        <div style="flex-grow: 1; height: 20px; background-color: #e9ecef; border-radius: 10px; overflow: hidden;">
+                            <div style="height: 100%; width: ${percentage}%; background: linear-gradient(90deg, #28a745, #17a2b8); transition: width 1.5s ease;"></div>
+                        </div>
+                        <div style="font-size: 1.5rem; font-weight: bold; color: ${performanceColor}">${percentage}%</div>
+                    </div>
+                    
+                    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; margin-top: 20px;">
+                        <div style="text-align: center; padding: 15px; background-color: #d4edda; border-radius: 10px;">
+                            <div style="font-size: 1.8rem; font-weight: bold; color: #155724;">${score}</div>
+                            <div>Correct Answers</div>
+                        </div>
+                        <div style="text-align: center; padding: 15px; background-color: #f8d7da; border-radius: 10px;">
+                            <div style="font-size: 1.8rem; font-weight: bold; color: #721c24;">${quizData.length - score}</div>
+                            <div>Incorrect Answers</div>
+                        </div>
+                    </div>
+                    
+                    <h3 style="margin-top: 40px;"><i class="fas fa-layer-group"></i> Performance by Part of Speech</h3>
+                    ${categoryChart}
+                    
+                    <h3 style="margin-top: 40px;"><i class="fas fa-question-circle"></i> Detailed Question Review</h3>
+            `;
+            
+            // Add review for each question
+            quizData.forEach((question, index) => {
+                const userAnswer = userAnswers[index];
+                const isCorrect = userAnswer === question.correct;
+                const userAnswerText = userAnswer !== null ? question.options[userAnswer] : "Not answered";
+                const correctAnswerText = question.options[question.correct];
+                
+                resultsContainer.innerHTML += `
+                    <div class="question-review ${isCorrect ? 'correct' : 'incorrect'}">
+                        <div class="review-question">${index + 1}. ${question.question} <span style="font-size: 0.9rem; color: #6c757d; margin-left: 10px;">(${question.tag})</span></div>
+                        <div class="review-answer user-answer ${isCorrect ? 'correct' : 'incorrect'}">
+                            <i class="fas ${isCorrect ? 'fa-check-circle' : 'fa-times-circle'}"></i>
+                            <div><strong>Your answer:</strong> ${userAnswerText}</div>
+                        </div>
+                        ${!isCorrect ? `
+                        <div class="correct-answer">
+                            <i class="fas fa-check-circle"></i>
+                            <div><strong>Correct answer:</strong> ${correctAnswerText}</div>
+                        </div>` : ''}
+                        <div class="explanation">
+                            <h4><i class="fas fa-lightbulb"></i> Explanation</h4>
+                            <p>${question.explanation}</p>
+                            <div style="margin-top: 10px; padding: 8px 12px; background-color: #e0f7fa; border-radius: 5px; display: inline-block;">
+                                <strong>Category:</strong> ${question.category}
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            resultsContainer.innerHTML += `
+                <div class="actions">
+                    <button id="retake-btn">
+                        <i class="fas fa-redo"></i> Retake Quiz
+                    </button>
+                </div>
+            `;
+            
+            resultsContainer.style.display = 'block';
+            
+            // Add event listener to retake button
+            document.getElementById('retake-btn').addEventListener('click', retakeQuiz);
+            
+            // Scroll to results
+            resultsContainer.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Retake the quiz
+        function retakeQuiz() {
+            // Reset all state
+            currentQuestion = 0;
+            userAnswers = new Array(quizData.length).fill(null);
+            score = 0;
+            timeLeft = 45 * 60;
+            quizStarted = false;
+            quizSubmitted = false;
+            
+            // Reset UI
+            document.querySelector('.quiz-container').style.display = 'block';
+            document.querySelector('.nav-buttons').style.display = 'flex';
+            submitBtn.style.display = 'block';
+            resultsContainer.style.display = 'none';
+            
+            // Reset timer display
+            timerDisplay.textContent = "45:00";
+            timerDisplay.style.color = '#d43f00';
+            timerDisplay.style.animation = '';
+            
+            // Reset all question displays
+            document.querySelectorAll('.question').forEach((q, index) => {
+                q.classList.remove('active');
+                if (index === 0) q.classList.add('active');
+                
+                // Clear selected options
+                q.querySelectorAll('.option').forEach(opt => {
+                    opt.classList.remove('selected', 'correct', 'incorrect');
+                });
+            });
+            
+            // Reset progress bar
+            updateProgressBar();
+            
+            // Reset timer container
+            document.querySelector('.timer-container').innerHTML = `
+                <h3><i class="fas fa-clock"></i> Time Remaining</h3>
+                <div class="timer" id="timer">45:00</div>
+                <p>Timer starts when you answer the first question</p>
+            `;
+            
+            // Re-attach timer element
+            timerDisplay = document.getElementById('timer');
+            
+            // Clear any existing timer
+            clearInterval(timer);
+            
+            // Update navigation buttons
+            updateNavigationButtons();
+            
+            // Scroll to top
+            window.scrollTo({top: 0, behavior: 'smooth'});
+        }
+
+        // Event listeners
+        prevBtn.addEventListener('click', () => {
+            if (currentQuestion > 0) {
+                showQuestion(currentQuestion - 1);
+            }
+        });
+        
+        nextBtn.addEventListener('click', () => {
+            if (currentQuestion < quizData.length - 1) {
+                showQuestion(currentQuestion + 1);
+            }
+        });
+        
+        submitBtn.addEventListener('click', submitQuiz);
+
+        // Initialize the quiz when page loads
+        document.addEventListener('DOMContentLoaded', initQuiz);
+    </script>
+</body>
+</html>
