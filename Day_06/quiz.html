@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 06 Quiz: Sentence Structure & Word Order</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        body {
+            background-color: #f5f9ff;
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 150, 0.1);
+            overflow: hidden;
+        }
+        header {
+            background: linear-gradient(135deg, #4a6bff, #6a11cb);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        h1 {
+            font-size: 2.3rem;
+            margin-bottom: 10px;
+        }
+        .subtitle {
+            font-size: 1.15rem;
+            opacity: 0.9;
+            margin-bottom: 15px;
+        }
+        .instructions {
+            background-color: #eef4ff;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px;
+            border-left: 5px solid #4a6bff;
+        }
+        .timer-container {
+            background-color: #fff8e6;
+            padding: 15px;
+            margin: 0 20px 20px;
+            border-radius: 10px;
+            text-align: center;
+            border: 2px dashed #ffc107;
+        }
+        .timer {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #ff5722;
+            margin: 5px 0;
+        }
+        .progress-bar {
+            height: 8px;
+            background-color: #e1e8ff;
+            border-radius: 4px;
+            margin: 0 20px 20px;
+            overflow: hidden;
+        }
+        .progress {
+            height: 100%;
+            background-color: #4a6bff;
+            width: 20%;
+            transition: width 0.4s ease;
+        }
+        .quiz-container {
+            padding: 0 20px 30px;
+        }
+        .question {
+            background-color: #f8fbff;
+            padding: 25px;
+            border-radius: 10px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            border-left: 4px solid #4a6bff;
+            display: none;
+        }
+        .question.active {
+            display: block;
+        }
+        .question-number {
+            font-size: 1.05rem;
+            color: #4a6bff;
+            font-weight: bold;
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+        }
+        .question-text {
+            font-size: 1.25rem;
+            margin-bottom: 20px;
+            color: #222;
+        }
+        .options {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 12px;
+        }
+        .option {
+            background-color: white;
+            border: 2px solid #e1e8ff;
+            border-radius: 8px;
+            padding: 14px 16px;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            font-size: 1.05rem;
+        }
+        .option:hover {
+            background-color: #f0f5ff;
+            border-color: #4a6bff;
+        }
+        .option.selected {
+            background-color: #e3eeff;
+            border-color: #4a6bff;
+        }
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 25px;
+        }
+        button {
+            padding: 12px 26px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.05rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        #prev-btn, #next-btn {
+            background-color: #f0f5ff;
+            color: #4a6bff;
+            border: 2px solid #4a6bff;
+        }
+        #prev-btn:hover, #next-btn:hover {
+            background-color: #4a6bff;
+            color: white;
+        }
+        #prev-btn:disabled, #next-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            background-color: #f0f5ff;
+            color: #4a6bff;
+        }
+        #submit-btn {
+            background-color: #28a745;
+            color: white;
+            padding: 14px 36px;
+            display: block;
+            margin: 25px auto;
+        }
+        #submit-btn:hover {
+            background-color: #218838;
+            transform: translateY(-2px);
+        }
+        .results-container {
+            padding: 30px;
+            display: none;
+        }
+        .score-card {
+            background: linear-gradient(135deg, #4a6bff, #6a11cb);
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            margin-bottom: 25px;
+        }
+        .score {
+            font-size: 3.5rem;
+            font-weight: bold;
+            margin: 15px 0;
+        }
+        .score-text {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+        }
+        .question-review {
+            background-color: white;
+            border-radius: 10px;
+            padding: 18px;
+            margin-bottom: 16px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+        }
+        .review-question {
+            font-weight: bold;
+            margin-bottom: 8px;
+            color: #222;
+        }
+        .user-answer, .correct-answer {
+            margin: 5px 0;
+            padding: 8px 12px;
+            border-radius: 5px;
+        }
+        .user-answer.correct {
+            background-color: #e7f7ef;
+            color: #155724;
+        }
+        .user-answer.incorrect {
+            background-color: #fde8e8;
+            color: #721c24;
+        }
+        .explanation {
+            background-color: #f8f9fa;
+            padding: 12px;
+            border-radius: 8px;
+            margin-top: 10px;
+            border-left: 4px solid #ffc107;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Day 06: Sentence Structure & Word Order</h1>
+            <div class="subtitle">100 Days of English Mastery</div>
+            <p>Test your knowledge of English sentence architecture and syntax patterns</p>
+        </header>
+
+        <div class="instructions">
+            <h3><i class="fas fa-info-circle"></i> Instructions</h3>
+            <p>Answer the 5 multiple-choice questions below. Instant evaluation and explanations will be shown upon submission.</p>
+        </div>
+
+        <div class="timer-container">
+            <div class="timer" id="timer">10:00</div>
+            <p>Time Remaining</p>
+        </div>
+
+        <div class="progress-bar">
+            <div class="progress" id="progress"></div>
+        </div>
+
+        <div class="quiz-container" id="quiz-container"></div>
+
+        <div class="nav-buttons" style="padding: 0 20px;">
+            <button id="prev-btn" disabled><i class="fas fa-arrow-left"></i> Previous</button>
+            <button id="next-btn">Next <i class="fas fa-arrow-right"></i></button>
+        </div>
+
+        <button id="submit-btn">Submit Quiz</button>
+
+        <div class="results-container" id="results-container"></div>
+    </div>
+
+    <script>
+        const quizData = [
+            {
+                question: "Which of the following sentences adheres to correct standard English SVO word order?",
+                options: [
+                    "Yesterday read Marcus the entire book in the library.",
+                    "Marcus read the entire book in the library yesterday.",
+                    "Marcus read yesterday the entire book in the library.",
+                    "In the library read Marcus yesterday the entire book."
+                ],
+                correct: 1,
+                explanation: "English sentences follow Subject (Marcus) + Verb (read) + Object (the entire book) + Place (in the library) + Time (yesterday)."
+            },
+            {
+                question: "In the sentence 'The university granted Dr. Alvarez a research grant', what is 'Dr. Alvarez'?",
+                options: [
+                    "Direct Object",
+                    "Indirect Object",
+                    "Subject Complement",
+                    "Object Complement"
+                ],
+                correct: 1,
+                explanation: "'Dr. Alvarez' is the Indirect Object receiving the Direct Object ('a research grant')."
+            },
+            {
+                question: "What is the structural pattern of 'The roasted coffee beans smell wonderful'?",
+                options: [
+                    "Subject + Verb + Direct Object (S-V-O)",
+                    "Subject + Verb + Complement (S-V-C)",
+                    "Subject + Verb + Adverbial (S-V-A)",
+                    "Subject + Verb (S-V)"
+                ],
+                correct: 1,
+                explanation: "'Smell' functions here as a linking verb connecting the subject to the adjective complement 'wonderful' (S-V-C)."
+            },
+            {
+                question: "Which sentence correctly places the adverb of manner according to standard English syntax?",
+                options: [
+                    "She closed carefully the fragile antique glass.",
+                    "She closed the fragile antique glass carefully.",
+                    "Carefully she closed during noon the glass antique.",
+                    "She closed during noon carefully the glass."
+                ],
+                correct: 1,
+                explanation: "An adverb of manner should not separate a transitive verb from its direct object. It belongs either after the object or directly before the verb."
+            },
+            {
+                question: "What is the primary error in: 'Always my brother arrives late to family gatherings'?",
+                options: [
+                    "The adverb of frequency 'Always' is positioned before the subject instead of before the main verb.",
+                    "The preposition 'to' must be replaced by 'at'.",
+                    "The verb 'arrives' is in the wrong tense.",
+                    "The subject 'brother' requires plural agreement."
+                ],
+                correct: 0,
+                explanation: "Adverbs of frequency typically precede the main verb in neutral declarative sentences: 'My brother always arrives late...'"
+            }
+        ];
+
+        const quizContainer = document.getElementById('quiz-container');
+        const prevBtn = document.getElementById('prev-btn');
+        const nextBtn = document.getElementById('next-btn');
+        const submitBtn = document.getElementById('submit-btn');
+        const resultsContainer = document.getElementById('results-container');
+        const timerDisplay = document.getElementById('timer');
+        const progressBar = document.getElementById('progress');
+
+        let currentQuestion = 0;
+        let userAnswers = new Array(quizData.length).fill(null);
+        let timeLeft = 600;
+        let timerStarted = false;
+        let timerInterval;
+
+        function initQuiz() {
+            quizData.forEach((q, idx) => {
+                const qDiv = document.createElement('div');
+                qDiv.className = `question ${idx === 0 ? 'active' : ''}`;
+                qDiv.id = `q-${idx}`;
+                qDiv.innerHTML = `
+                    <div class="question-number">Question ${idx + 1} of ${quizData.length}</div>
+                    <div class="question-text">${q.question}</div>
+                    <div class="options">
+                        ${q.options.map((opt, optIdx) => `
+                            <div class="option" data-opt="${optIdx}">
+                                <strong>${String.fromCharCode(65 + optIdx)}.</strong> ${opt}
+                            </div>
+                        `).join('')}
+                    </div>
+                `;
+                quizContainer.appendChild(qDiv);
+            });
+
+            document.querySelectorAll('.option').forEach(opt => {
+                opt.addEventListener('click', handleOptionClick);
+            });
+            updateProgress();
+        }
+
+        function startTimer() {
+            timerInterval = setInterval(() => {
+                timeLeft--;
+                const mins = Math.floor(timeLeft / 60);
+                const secs = timeLeft % 60;
+                timerDisplay.textContent = `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+                if (timeLeft <= 0) {
+                    clearInterval(timerInterval);
+                    submitQuiz();
+                }
+            }, 1000);
+        }
+
+        function handleOptionClick(e) {
+            if (!timerStarted) {
+                timerStarted = true;
+                startTimer();
+            }
+            const optEl = e.currentTarget;
+            const qEl = optEl.closest('.question');
+            const qIdx = parseInt(qEl.id.split('-')[1]);
+            const selectedOpt = parseInt(optEl.getAttribute('data-opt'));
+
+            userAnswers[qIdx] = selectedOpt;
+            qEl.querySelectorAll('.option').forEach(o => o.classList.remove('selected'));
+            optEl.classList.add('selected');
+        }
+
+        function showQuestion(idx) {
+            document.querySelectorAll('.question').forEach(q => q.classList.remove('active'));
+            document.getElementById(`q-${idx}`).classList.add('active');
+            currentQuestion = idx;
+            prevBtn.disabled = currentQuestion === 0;
+            nextBtn.disabled = currentQuestion === quizData.length - 1;
+            updateProgress();
+        }
+
+        function updateProgress() {
+            const pct = ((currentQuestion + 1) / quizData.length) * 100;
+            progressBar.style.width = `${pct}%`;
+        }
+
+        prevBtn.addEventListener('click', () => {
+            if (currentQuestion > 0) showQuestion(currentQuestion - 1);
+        });
+
+        nextBtn.addEventListener('click', () => {
+            if (currentQuestion < quizData.length - 1) showQuestion(currentQuestion + 1);
+        });
+
+        submitBtn.addEventListener('click', submitQuiz);
+
+        function submitQuiz() {
+            clearInterval(timerInterval);
+            let score = 0;
+            quizData.forEach((q, idx) => {
+                if (userAnswers[idx] === q.correct) score++;
+            });
+
+            quizContainer.style.display = 'none';
+            document.querySelector('.nav-buttons').style.display = 'none';
+            submitBtn.style.display = 'none';
+            document.querySelector('.timer-container').style.display = 'none';
+
+            const pct = Math.round((score / quizData.length) * 100);
+            let reviewHtml = `
+                <div class="score-card">
+                    <h2>Quiz Completed!</h2>
+                    <div class="score">${score}/${quizData.length}</div>
+                    <div class="score-text">${pct}% Correct</div>
+                    <p>${pct >= 80 ? 'Mastery demonstrated!' : 'Good effort, review the detailed breakdown below.'}</p>
+                </div>
+            `;
+
+            quizData.forEach((q, idx) => {
+                const userAns = userAnswers[idx];
+                const isCorrect = userAns === q.correct;
+                reviewHtml += `
+                    <div class="question-review">
+                        <div class="review-question">${idx + 1}. ${q.question}</div>
+                        <div class="user-answer ${isCorrect ? 'correct' : 'incorrect'}">
+                            <strong>Your Answer:</strong> ${userAns !== null ? q.options[userAns] : 'Not answered'} ${isCorrect ? '✓' : '✗'}
+                        </div>
+                        ${!isCorrect ? `<div class="correct-answer" style="background:#e7f7ef; color:#155724;"><strong>Correct Answer:</strong> ${q.options[q.correct]}</div>` : ''}
+                        <div class="explanation"><strong>Explanation:</strong> ${q.explanation}</div>
+                    </div>
+                `;
+            });
+
+            resultsContainer.innerHTML = reviewHtml;
+            resultsContainer.style.display = 'block';
+        }
+
+        document.addEventListener('DOMContentLoaded', initQuiz);
+    </script>
+</body>
+</html>
