@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Day 09 Quiz: Descriptive Adjectives & Sensory Language</title>
+  <style>
+    :root {
+      --primary: #4f46e5;
+      --primary-hover: #4338ca;
+      --bg: #0f172a;
+      --card-bg: #1e293b;
+      --text: #f8fafc;
+      --text-muted: #94a3b8;
+      --success: #10b981;
+      --error: #ef4444;
+      --border: #334155;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+    body { background-color: var(--bg); color: var(--text); min-height: 100vh; display: flex; justify-content: center; align-items: center; padding: 20px; }
+    .quiz-container { background: var(--card-bg); border: 1px solid var(--border); border-radius: 16px; width: 100%; max-width: 680px; padding: 32px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+    .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; border-bottom: 1px solid var(--border); padding-bottom: 16px; }
+    .badge { background: rgba(79, 70, 229, 0.2); color: #818cf8; padding: 6px 14px; border-radius: 999px; font-size: 0.85rem; font-weight: 600; }
+    .timer { font-family: monospace; font-size: 1.1rem; color: #fbbf24; background: rgba(251, 191, 36, 0.1); padding: 4px 10px; border-radius: 8px; }
+    .progress-bar { width: 100%; height: 8px; background: var(--border); border-radius: 4px; overflow: hidden; margin-bottom: 24px; }
+    .progress-fill { height: 100%; background: var(--primary); width: 0%; transition: width 0.3s ease; }
+    .question-title { font-size: 1.25rem; font-weight: 600; margin-bottom: 20px; line-height: 1.5; }
+    .options { display: flex; flex-direction: column; gap: 12px; margin-bottom: 24px; }
+    .option-btn { background: #243248; border: 1px solid var(--border); color: var(--text); padding: 14px 18px; border-radius: 10px; cursor: pointer; text-align: left; font-size: 1rem; transition: all 0.2s; display: flex; align-items: center; justify-content: space-between; }
+    .option-btn:hover:not(:disabled) { border-color: var(--primary); background: #2e3f5b; }
+    .option-btn.selected { border-color: var(--primary); background: rgba(79, 70, 229, 0.25); }
+    .option-btn.correct { background: rgba(16, 185, 129, 0.2); border-color: var(--success); color: #6ee7b7; }
+    .option-btn.incorrect { background: rgba(239, 68, 68, 0.2); border-color: var(--error); color: #fca5a5; }
+    .btn-action { background: var(--primary); color: white; border: none; padding: 12px 24px; border-radius: 10px; font-size: 1rem; font-weight: 600; cursor: pointer; width: 100%; transition: background 0.2s; }
+    .btn-action:hover { background: var(--primary-hover); }
+    .btn-action:disabled { opacity: 0.5; cursor: not-allowed; }
+    .explanation-box { background: rgba(15, 23, 42, 0.7); border: 1px solid var(--border); padding: 16px; border-radius: 10px; margin-bottom: 20px; font-size: 0.95rem; line-height: 1.5; display: none; }
+    .result-screen { text-align: center; display: none; }
+    .score-circle { width: 120px; height: 120px; border-radius: 50%; background: rgba(79, 70, 229, 0.2); border: 4px solid var(--primary); display: flex; align-items: center; justify-content: center; font-size: 2.2rem; font-weight: 700; margin: 0 auto 20px; color: #a5b4fc; }
+    .review-list { text-align: left; margin-top: 24px; max-height: 350px; overflow-y: auto; padding-right: 8px; }
+    .review-item { padding: 14px; border: 1px solid var(--border); border-radius: 8px; margin-bottom: 12px; background: #182234; }
+  </style>
+</head>
+<body>
+  <div class="quiz-container">
+    <div id="quiz-screen">
+      <div class="header">
+        <span class="badge" id="step-badge">Question 1/5</span>
+        <span class="timer" id="timer-display">00:00</span>
+      </div>
+      <div class="progress-bar">
+        <div class="progress-fill" id="progress-fill"></div>
+      </div>
+      <h2 class="question-title" id="question-text">Loading question...</h2>
+      <div class="options" id="options-container"></div>
+      <div class="explanation-box" id="explanation-box"></div>
+      <button class="btn-action" id="next-btn" disabled>Confirm Answer</button>
+    </div>
+
+    <div id="result-screen" class="result-screen">
+      <div class="score-circle" id="score-text">0/5</div>
+      <h2 style="margin-bottom: 10px;">Practice Completed!</h2>
+      <p class="text-muted" id="result-feedback" style="color: var(--text-muted); margin-bottom: 24px;"></p>
+      <button class="btn-action" onclick="restartQuiz()" style="margin-bottom: 20px;">Try Again</button>
+      <h3 style="text-align: left; margin-bottom: 12px; font-size: 1.1rem;">Review Explanations:</h3>
+      <div class="review-list" id="review-list"></div>
+    </div>
+  </div>
+
+  <script>
+    const questions = [
+      {
+        question: "According to the Royal Order of Adjectives (OSASCOMP), which phrase is ordered correctly?",
+        options: [
+          "A leather vintage handsome armchair",
+          "A handsome vintage leather armchair",
+          "A vintage handsome leather armchair",
+          "A leather handsome vintage armchair"
+        ],
+        answer: 1,
+        explanation: "The OSASCOMP hierarchy mandates: Opinion ('handsome') &rarr; Age ('vintage') &rarr; Material ('leather')."
+      },
+      {
+        question: "Which of the following modifiers is grammatically inappropriate when paired with the extreme adjective 'freezing'?",
+        options: [
+          "absolutely",
+          "completely",
+          "very",
+          "totally"
+        ],
+        answer: 2,
+        explanation: "Extreme / non-gradable adjectives such as 'freezing' already indicate the highest limit. They cannot be graded with 'very'; use 'absolutely' or 'completely'."
+      },
+      {
+        question: "Which sensory adjective evokes the sense of touch / texture?",
+        options: ["Pungent", "Coarse", "Melodic", "Zesty"],
+        answer: 1,
+        explanation: "'Coarse' describes a rough, abrasive surface texture (touch). Pungent is smell, melodic is sound, and zesty is taste."
+      },
+      {
+        question: "Choose the sentence that correctly sequences the descriptive adjectives:",
+        options: [
+          "She bought a modern Italian blue sports car.",
+          "She bought a blue Italian modern sports car.",
+          "She bought a modern blue Italian sports car.",
+          "She bought an Italian modern blue sports car."
+        ],
+        answer: 2,
+        explanation: "OSASCOMP order: Age ('modern') &rarr; Color ('blue') &rarr; Origin ('Italian') &rarr; Purpose ('sports') car."
+      },
+      {
+        question: "Identify the word that functions as an extreme (non-gradable) adjective equivalent to 'very angry':",
+        options: ["Irritated", "Furious", "Annoyed", "Upset"],
+        answer: 1,
+        explanation: "'Furious' is the non-gradable / extreme adjective meaning 'extremely / completely angry'."
+      }
+    ];
+
+    let currentIdx = 0;
+    let score = 0;
+    let selectedOption = null;
+    let answered = false;
+    let seconds = 0;
+    let timerInterval = null;
+    const userAnswers = [];
+
+    function startTimer() {
+      clearInterval(timerInterval);
+      seconds = 0;
+      timerInterval = setInterval(() => {
+        seconds++;
+        const mins = String(Math.floor(seconds / 60)).padStart(2, '0');
+        const secs = String(seconds % 60).padStart(2, '0');
+        document.getElementById('timer-display').innerText = `${mins}:${secs}`;
+      }, 1000);
+    }
+
+    function loadQuestion() {
+      answered = false;
+      selectedOption = null;
+      const q = questions[currentIdx];
+      document.getElementById('step-badge').innerText = `Question ${currentIdx + 1}/${questions.length}`;
+      document.getElementById('progress-fill').style.width = `${((currentIdx) / questions.length) * 100}%`;
+      document.getElementById('question-text').innerText = q.question;
+      
+      const optContainer = document.getElementById('options-container');
+      optContainer.innerHTML = '';
+      
+      q.options.forEach((opt, idx) => {
+        const btn = document.createElement('button');
+        btn.className = 'option-btn';
+        btn.innerText = opt;
+        btn.onclick = () => selectOption(idx);
+        optContainer.appendChild(btn);
+      });
+
+      const expBox = document.getElementById('explanation-box');
+      expBox.style.display = 'none';
+      expBox.innerText = '';
+      
+      const nextBtn = document.getElementById('next-btn');
+      nextBtn.innerText = 'Confirm Answer';
+      nextBtn.disabled = true;
+    }
+
+    function selectOption(index) {
+      if (answered) return;
+      selectedOption = index;
+      const btns = document.querySelectorAll('.option-btn');
+      btns.forEach((btn, idx) => {
+        btn.classList.toggle('selected', idx === index);
+      });
+      document.getElementById('next-btn').disabled = false;
+    }
+
+    document.getElementById('next-btn').addEventListener('click', () => {
+      const q = questions[currentIdx];
+      const nextBtn = document.getElementById('next-btn');
+      const expBox = document.getElementById('explanation-box');
+      
+      if (!answered) {
+        answered = true;
+        userAnswers.push({ selected: selectedOption, correct: q.answer, qIndex: currentIdx });
+        const btns = document.querySelectorAll('.option-btn');
+        btns.forEach((btn, idx) => {
+          btn.disabled = true;
+          if (idx === q.answer) {
+            btn.classList.add('correct');
+          } else if (idx === selectedOption) {
+            btn.classList.add('incorrect');
+          }
+        });
+
+        if (selectedOption === q.answer) {
+          score++;
+          expBox.innerHTML = `<strong>Correct!</strong> ${q.explanation}`;
+          expBox.style.borderColor = 'var(--success)';
+        } else {
+          expBox.innerHTML = `<strong>Incorrect.</strong> ${q.explanation}`;
+          expBox.style.borderColor = 'var(--error)';
+        }
+        expBox.style.display = 'block';
+
+        nextBtn.innerText = currentIdx + 1 === questions.length ? 'View Results' : 'Next Question';
+      } else {
+        currentIdx++;
+        if (currentIdx < questions.length) {
+          loadQuestion();
+        } else {
+          showResults();
+        }
+      }
+    });
+
+    function showResults() {
+      clearInterval(timerInterval);
+      document.getElementById('quiz-screen').style.display = 'none';
+      document.getElementById('result-screen').style.display = 'block';
+      
+      document.getElementById('score-text').innerText = `${score}/${questions.length}`;
+      const feedback = document.getElementById('result-feedback');
+      if (score === questions.length) {
+        feedback.innerText = "Superb! You understand adjective order and descriptive nuance deeply.";
+      } else if (score >= 3) {
+        feedback.innerText = "Well done! Keep practicing the OSASCOMP sequence to make ordering automatic.";
+      } else {
+        feedback.innerText = "Review the OSASCOMP order table in notes.md and test yourself again!";
+      }
+
+      const reviewContainer = document.getElementById('review-list');
+      reviewContainer.innerHTML = '';
+      userAnswers.forEach((item, idx) => {
+        const q = questions[item.qIndex];
+        const div = document.createElement('div');
+        div.className = 'review-item';
+        div.innerHTML = `
+          <p style="font-weight: 600; margin-bottom: 6px;">${idx + 1}. ${q.question}</p>
+          <p style="color: ${item.selected === q.answer ? '#6ee7b7' : '#fca5a5'}; font-size: 0.9rem;">
+            Your answer: ${q.options[item.selected]}
+          </p>
+          ${item.selected !== q.answer ? `<p style="color: #6ee7b7; font-size: 0.9rem;">Correct answer: ${q.options[q.answer]}</p>` : ''}
+          <p style="color: var(--text-muted); font-size: 0.85rem; margin-top: 6px;">${q.explanation}</p>
+        `;
+        reviewContainer.appendChild(div);
+      });
+    }
+
+    function restartQuiz() {
+      currentIdx = 0;
+      score = 0;
+      userAnswers.length = 0;
+      document.getElementById('quiz-screen').style.display = 'block';
+      document.getElementById('result-screen').style.display = 'none';
+      startTimer();
+      loadQuestion();
+    }
+
+    startTimer();
+    loadQuestion();
+  </script>
+</body>
+</html>
