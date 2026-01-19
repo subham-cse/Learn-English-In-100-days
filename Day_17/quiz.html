@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Day 17 Quiz: Asking Questions & Conversational Openers</title>
+  <style>
+    :root {
+      --primary: #4f46e5;
+      --primary-hover: #4338ca;
+      --primary-light: #eef2ff;
+      --success: #10b981;
+      --danger: #ef4444;
+      --text-main: #1f2937;
+      --text-muted: #6b7280;
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+      --border: #e2e8f0;
+      --radius: 12px;
+      --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+    body { background-color: var(--bg); color: var(--text-main); line-height: 1.6; padding: 24px 16px; min-height: 100vh; display: flex; justify-content: center; align-items: flex-start; }
+    .quiz-container { max-width: 680px; width: 100%; background: var(--card-bg); border-radius: var(--radius); box-shadow: var(--shadow); border: 1px solid var(--border); overflow: hidden; }
+    .quiz-header { background: linear-gradient(135deg, #4f46e5, #6366f1); color: white; padding: 24px; }
+    .badge { display: inline-block; padding: 4px 10px; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; background: rgba(255, 255, 255, 0.2); border-radius: 999px; margin-bottom: 8px; }
+    .quiz-header h1 { font-size: 1.4rem; font-weight: 700; margin-bottom: 6px; }
+    .quiz-header p { font-size: 0.95rem; opacity: 0.9; }
+    .quiz-toolbar { display: flex; justify-content: space-between; align-items: center; padding: 12px 24px; background: #f1f5f9; border-bottom: 1px solid var(--border); font-size: 0.85rem; font-weight: 600; color: var(--text-muted); }
+    .timer-badge { display: flex; align-items: center; gap: 6px; background: white; padding: 4px 10px; border-radius: 6px; border: 1px solid var(--border); color: var(--text-main); }
+    .progress-bar-container { height: 6px; width: 100%; background: #e2e8f0; }
+    .progress-bar { height: 100%; width: 0%; background: var(--primary); transition: width 0.3s ease; }
+    .quiz-body { padding: 28px 24px; }
+    .question-section { display: none; }
+    .question-section.active { display: block; animation: fadeIn 0.25s ease-in-out; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
+    .q-number { font-size: 0.85rem; font-weight: 700; color: var(--primary); text-transform: uppercase; margin-bottom: 6px; }
+    .q-text { font-size: 1.15rem; font-weight: 600; margin-bottom: 20px; color: var(--text-main); }
+    .options-list { display: flex; flex-direction: column; gap: 12px; }
+    .option-item { display: flex; align-items: center; padding: 14px 16px; border: 2px solid var(--border); border-radius: 8px; cursor: pointer; transition: all 0.2s ease; background: white; user-select: none; }
+    .option-item:hover { border-color: #cbd5e1; background: #f8fafc; }
+    .option-item.selected { border-color: var(--primary); background: var(--primary-light); color: var(--primary); font-weight: 600; }
+    .option-marker { width: 28px; height: 28px; border-radius: 50%; border: 2px solid #cbd5e1; display: flex; align-items: center; justify-content: center; margin-right: 14px; font-size: 0.85rem; font-weight: 700; flex-shrink: 0; }
+    .option-item.selected .option-marker { border-color: var(--primary); background: var(--primary); color: white; }
+    .quiz-footer { display: flex; justify-content: space-between; align-items: center; padding: 18px 24px; border-top: 1px solid var(--border); background: #fbfcfe; }
+    .btn { padding: 10px 20px; border-radius: 8px; font-weight: 600; font-size: 0.9rem; cursor: pointer; border: 1px solid transparent; transition: all 0.2s ease; }
+    .btn-secondary { background: white; border-color: var(--border); color: var(--text-main); }
+    .btn-secondary:hover { background: #f1f5f9; }
+    .btn-primary { background: var(--primary); color: white; }
+    .btn-primary:hover { background: var(--primary-hover); }
+    .btn:disabled { opacity: 0.5; cursor: not-allowed; }
+    /* Results View */
+    .results-section { display: none; padding: 32px 24px; text-align: center; }
+    .results-section.active { display: block; }
+    .score-circle { width: 110px; height: 110px; border-radius: 50%; background: var(--primary-light); color: var(--primary); font-size: 2rem; font-weight: 800; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; border: 4px solid var(--primary); }
+    .results-title { font-size: 1.5rem; font-weight: 700; margin-bottom: 8px; }
+    .results-feedback { font-size: 1rem; color: var(--text-muted); margin-bottom: 24px; }
+    .review-list { text-align: left; margin-top: 28px; display: flex; flex-direction: column; gap: 16px; }
+    .review-card { padding: 16px; border-radius: 8px; border: 1px solid var(--border); background: #fafafa; }
+    .review-card.correct { border-left: 5px solid var(--success); }
+    .review-card.incorrect { border-left: 5px solid var(--danger); }
+    .review-q-title { font-weight: 700; font-size: 0.95rem; margin-bottom: 6px; }
+    .review-choice { font-size: 0.88rem; margin-bottom: 4px; }
+    .review-explanation { font-size: 0.85rem; color: #475569; background: #f1f5f9; padding: 8px 12px; border-radius: 6px; margin-top: 8px; }
+  </style>
+</head>
+<body>
+<div class="quiz-container">
+  <div class="quiz-header">
+    <span class="badge">Day 17 Assessment</span>
+    <h1>Asking Questions & Conversational Openers</h1>
+    <p>Test your mastery of WH- structures, subject vs. object questions, and tag questions.</p>
+  </div>
+  
+  <div class="quiz-toolbar">
+    <span id="question-progress">Question 1 of 5</span>
+    <div class="timer-badge">⏱ <span id="timer">00:00</span></div>
+  </div>
+  <div class="progress-bar-container">
+    <div class="progress-bar" id="progress-bar"></div>
+  </div>
+
+  <div class="quiz-body" id="quiz-body"></div>
+
+  <div class="quiz-footer" id="quiz-footer">
+    <button class="btn btn-secondary" id="prev-btn" onclick="prevQuestion()" disabled>Previous</button>
+    <button class="btn btn-primary" id="next-btn" onclick="nextQuestion()">Next</button>
+  </div>
+
+  <div class="results-section" id="results-section">
+    <div class="score-circle" id="score-circle">0%</div>
+    <h2 class="results-title" id="results-title">Quiz Completed!</h2>
+    <p class="results-feedback" id="results-feedback"></p>
+    <button class="btn btn-primary" onclick="restartQuiz()">Retake Quiz</button>
+    <div class="review-list" id="review-list"></div>
+  </div>
+</div>
+
+<script>
+const quizData = [
+  {
+    question: "You want to know who performed the action in this sentence: 'Someone left an umbrella in the lobby.' Which is the grammatically correct subject question?",
+    options: [
+      "Who did leave an umbrella in the lobby?",
+      "Who left an umbrella in the lobby?",
+      "Who does leave an umbrella in the lobby?",
+      "Whom did leave an umbrella in the lobby?"
+    ],
+    answer: 1,
+    explanation: "In subject questions, the question word ('Who') directly takes the place of the subject; no auxiliary 'do/did' is added, so 'Who left...' is correct."
+  },
+  {
+    question: "Complete the sentence with the correct question tag: 'I am invited to the team dinner tonight, ________?'",
+    options: [
+      "amn't I?",
+      "am not I?",
+      "aren't I?",
+      "don't I?"
+    ],
+    answer: 2,
+    explanation: "In standard modern English, the conversational tag for 'I am' in the negative tag form is universally 'aren't I?'."
+  },
+  {
+    question: "Which of the following follows the QUASM rule (Question word + Auxiliary + Subject + Main verb)?",
+    options: [
+      "Why you didn't finish the report yesterday?",
+      "Why did you finish not the report yesterday?",
+      "Why didn't you finish the report yesterday?",
+      "Why you finished the report yesterday?"
+    ],
+    answer: 2,
+    explanation: "'Why' (QU) + 'didn't' (Auxiliary) + 'you' (Subject) + 'finish' (Main verb) properly follows the QUASM sequence."
+  },
+  {
+    question: "Choose the correct tag question: 'Let's take a quick coffee break, ________?'",
+    options: [
+      "will we?",
+      "shall we?",
+      "don't we?",
+      "are we?"
+    ],
+    answer: 1,
+    explanation: "Suggestions beginning with 'Let's' take the standard fixed tag 'shall we?'."
+  },
+  {
+    question: "What does falling intonation (pitch dropping at the end) on a tag question typically mean?",
+    options: [
+      "The speaker is genuinely uncertain and asking for new factual data.",
+      "The speaker is annoyed and demanding an apology.",
+      "The speaker expects the listener to agree with something already obvious.",
+      "The speaker cannot hear what the other person is saying."
+    ],
+    answer: 2,
+    explanation: "Falling intonation indicates that the speaker is confident in the statement and expects agreement (e.g., 'Nice day, isn't it? ↘'). Rising intonation signals a genuine inquiry."
+  }
+];
+
+let currentQuestion = 0;
+let userAnswers = new Array(quizData.length).fill(null);
+let timerSeconds = 0;
+let timerInterval = null;
+
+function startTimer() {
+  clearInterval(timerInterval);
+  timerSeconds = 0;
+  timerInterval = setInterval(() => {
+    timerSeconds++;
+    const mins = String(Math.floor(timerSeconds / 60)).padStart(2, '0');
+    const secs = String(timerSeconds % 60).padStart(2, '0');
+    document.getElementById('timer').textContent = `${mins}:${secs}`;
+  }, 1000);
+}
+
+function renderQuestion() {
+  const container = document.getElementById('quiz-body');
+  const q = quizData[currentQuestion];
+  const progressPercent = ((currentQuestion + 1) / quizData.length) * 100;
+  
+  document.getElementById('progress-bar').style.width = `${progressPercent}%`;
+  document.getElementById('question-progress').textContent = `Question ${currentQuestion + 1} of ${quizData.length}`;
+
+  const optionsHtml = q.options.map((opt, i) => {
+    const isSelected = userAnswers[currentQuestion] === i ? 'selected' : '';
+    const letters = ['A', 'B', 'C', 'D'];
+    return `
+      <div class="option-item ${isSelected}" onclick="selectOption(${i})">
+        <div class="option-marker">${letters[i]}</div>
+        <div class="option-text">${opt}</div>
+      </div>
+    `;
+  }).join('');
+
+  container.innerHTML = `
+    <div class="question-section active">
+      <div class="q-number">Question ${currentQuestion + 1}</div>
+      <div class="q-text">${q.question}</div>
+      <div class="options-list">${optionsHtml}</div>
+    </div>
+  `;
+
+  document.getElementById('prev-btn').disabled = currentQuestion === 0;
+  document.getElementById('next-btn').textContent = currentQuestion === quizData.length - 1 ? 'Finish & Submit' : 'Next';
+}
+
+function selectOption(index) {
+  userAnswers[currentQuestion] = index;
+  renderQuestion();
+}
+
+function nextQuestion() {
+  if (userAnswers[currentQuestion] === null) {
+    alert("Please select an answer before continuing.");
+    return;
+  }
+  if (currentQuestion < quizData.length - 1) {
+    currentQuestion++;
+    renderQuestion();
+  } else {
+    finishQuiz();
+  }
+}
+
+function prevQuestion() {
+  if (currentQuestion > 0) {
+    currentQuestion--;
+    renderQuestion();
+  }
+}
+
+function finishQuiz() {
+  clearInterval(timerInterval);
+  document.getElementById('quiz-body').style.display = 'none';
+  document.getElementById('quiz-footer').style.display = 'none';
+  document.getElementById('results-section').classList.add('active');
+
+  let score = 0;
+  quizData.forEach((q, idx) => {
+    if (userAnswers[idx] === q.answer) score++;
+  });
+
+  const percentage = Math.round((score / quizData.length) * 100);
+  document.getElementById('score-circle').textContent = `${percentage}%`;
+
+  let feedback = "";
+  if (percentage === 100) feedback = "Masterful! You have unlocked complete precision with English question formation!";
+  else if (percentage >= 80) feedback = "Great work! You have strong control over question tags and WH- structures.";
+  else if (percentage >= 60) feedback = "Solid progress. Review subject questions vs. object questions to avoid unnecessary auxiliary verbs.";
+  else feedback = "Revisit the QUASM rules and question tag patterns in the lesson notes and try again!";
+
+  document.getElementById('results-feedback').textContent = `${score} out of ${quizData.length} correct. ${feedback}`;
+
+  const reviewList = document.getElementById('review-list');
+  reviewList.innerHTML = quizData.map((q, idx) => {
+    const isCorrect = userAnswers[idx] === q.answer;
+    const chosenText = userAnswers[idx] !== null ? q.options[userAnswers[idx]] : "None selected";
+    const correctText = q.options[q.answer];
+    return `
+      <div class="review-card ${isCorrect ? 'correct' : 'incorrect'}">
+        <div class="review-q-title">Q${idx + 1}: ${q.question}</div>
+        <div class="review-choice"><strong>Your choice:</strong> ${chosenText} ${isCorrect ? '✅' : '❌'}</div>
+        ${!isCorrect ? `<div class="review-choice"><strong>Correct answer:</strong> ${correctText}</div>` : ''}
+        <div class="review-explanation"><strong>Explanation:</strong> ${q.explanation}</div>
+      </div>
+    `;
+  }).join('');
+}
+
+function restartQuiz() {
+  currentQuestion = 0;
+  userAnswers = new Array(quizData.length).fill(null);
+  document.getElementById('results-section').classList.remove('active');
+  document.getElementById('quiz-body').style.display = 'block';
+  document.getElementById('quiz-footer').style.display = 'flex';
+  startTimer();
+  renderQuestion();
+}
+
+window.onload = () => {
+  startTimer();
+  renderQuestion();
+};
+</script>
+</body>
+</html>
