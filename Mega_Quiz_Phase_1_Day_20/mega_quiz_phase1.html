@@ -1,0 +1,1991 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phase 1 Milestone Mega Quiz (Days 01–20) | Learn English in 100 Days</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #4338ca;
+            --primary-hover: #3730a3;
+            --primary-light: #eef2ff;
+            --primary-border: #c7d2fe;
+            --secondary: #06b6d4;
+            --accent: #f59e0b;
+            --accent-light: #fef3c7;
+            --success: #10b981;
+            --success-light: #ecfdf5;
+            --success-border: #a7f3d0;
+            --danger: #ef4444;
+            --danger-light: #fef2f2;
+            --danger-border: #fecaca;
+            --gray-50: #f8fafc;
+            --gray-100: #f1f5f9;
+            --gray-200: #e2e8f0;
+            --gray-300: #cbd5e1;
+            --gray-400: #94a3b8;
+            --gray-600: #475569;
+            --gray-700: #334155;
+            --gray-800: #1e293b;
+            --gray-900: #0f172a;
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+            --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+            --radius-md: 10px;
+            --radius-lg: 16px;
+            --radius-xl: 24px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f0f4ff 0%, #f8fafc 50%, #eef2ff 100%);
+            color: var(--gray-800);
+            line-height: 1.6;
+            min-height: 100vh;
+            padding: 24px 16px;
+        }
+
+        .main-wrapper {
+            max-width: 1240px;
+            margin: 0 auto;
+        }
+
+        /* HEADER */
+        .quiz-header {
+            background: linear-gradient(135deg, #1e1b4b 0%, #312e81 60%, #4338ca 100%);
+            color: white;
+            border-radius: var(--radius-xl);
+            padding: 36px 32px;
+            margin-bottom: 24px;
+            box-shadow: var(--shadow-xl);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .quiz-header::after {
+            content: '';
+            position: absolute;
+            top: -50px;
+            right: -50px;
+            width: 220px;
+            height: 220px;
+            background: radial-gradient(circle, rgba(99, 102, 241, 0.3) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .badge-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(8px);
+            padding: 6px 14px;
+            border-radius: 999px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 0.03em;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .quiz-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2.25rem;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 8px;
+        }
+
+        .quiz-subtitle {
+            font-size: 1.05rem;
+            color: #c7d2fe;
+            max-width: 800px;
+            margin-bottom: 20px;
+        }
+
+        .meta-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .meta-tag {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(15, 23, 42, 0.4);
+            padding: 6px 14px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: #e0e7ff;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* TOP STATUS BAR */
+        .status-bar {
+            background: white;
+            border-radius: var(--radius-lg);
+            padding: 16px 24px;
+            margin-bottom: 24px;
+            box-shadow: var(--shadow-md);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            flex-wrap: wrap;
+            border: 1px solid var(--gray-200);
+        }
+
+        .progress-info {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            flex: 1;
+            min-width: 260px;
+        }
+
+        .progress-labels {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+            min-width: 140px;
+        }
+
+        .current-question-indicator {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--gray-900);
+        }
+
+        .answered-count {
+            font-size: 0.85rem;
+            color: var(--gray-600);
+            font-weight: 500;
+        }
+
+        .progress-track {
+            flex: 1;
+            height: 10px;
+            background: var(--gray-200);
+            border-radius: 999px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #4338ca, #06b6d4);
+            width: 0%;
+            transition: width 0.3s ease;
+            border-radius: 999px;
+        }
+
+        .timer-badge {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--gray-100);
+            padding: 10px 18px;
+            border-radius: var(--radius-md);
+            border: 2px solid var(--gray-200);
+            font-family: 'Space Grotesk', monospace;
+            font-weight: 700;
+            font-size: 1.35rem;
+            color: var(--gray-800);
+            letter-spacing: 0.05em;
+            transition: all 0.3s ease;
+        }
+
+        .timer-badge.warning {
+            background: var(--accent-light);
+            border-color: var(--accent);
+            color: #b45309;
+        }
+
+        .timer-badge.danger {
+            background: var(--danger-light);
+            border-color: var(--danger);
+            color: var(--danger);
+            animation: pulse 1s infinite alternate;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.03); }
+        }
+
+        /* QUIZ LAYOUT GRID */
+        .quiz-grid {
+            display: grid;
+            grid-template-columns: 1fr 340px;
+            gap: 24px;
+            align-items: start;
+        }
+
+        @media (max-width: 1024px) {
+            .quiz-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* QUESTION CARD */
+        .question-card {
+            background: white;
+            border-radius: var(--radius-xl);
+            padding: 32px;
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--gray-200);
+            position: relative;
+        }
+
+        .question-meta {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 18px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .topic-pill {
+            background: var(--primary-light);
+            color: var(--primary);
+            padding: 6px 14px;
+            border-radius: 999px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            border: 1px solid var(--primary-border);
+        }
+
+        .flag-btn {
+            background: transparent;
+            border: 1px solid var(--gray-300);
+            padding: 6px 12px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--gray-600);
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.2s ease;
+        }
+
+        .flag-btn:hover {
+            background: var(--gray-100);
+            color: var(--gray-800);
+        }
+
+        .flag-btn.flagged {
+            background: var(--accent-light);
+            border-color: var(--accent);
+            color: #b45309;
+        }
+
+        .question-text {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--gray-900);
+            line-height: 1.5;
+            margin-bottom: 28px;
+        }
+
+        .options-list {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            margin-bottom: 32px;
+        }
+
+        .option-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            padding: 16px 20px;
+            border-radius: var(--radius-lg);
+            border: 2px solid var(--gray-200);
+            background: white;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            user-select: none;
+        }
+
+        .option-item:hover {
+            border-color: var(--primary-border);
+            background: #fafbff;
+            transform: translateY(-1px);
+        }
+
+        .option-item.selected {
+            border-color: var(--primary);
+            background: var(--primary-light);
+            box-shadow: 0 0 0 1px var(--primary);
+        }
+
+        .option-key {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: var(--gray-100);
+            border: 1px solid var(--gray-300);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.95rem;
+            color: var(--gray-700);
+            flex-shrink: 0;
+            transition: all 0.2s ease;
+        }
+
+        .option-item.selected .option-key {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        .option-content {
+            font-size: 1.05rem;
+            color: var(--gray-800);
+            padding-top: 3px;
+            flex: 1;
+        }
+
+        /* NAVIGATION BUTTONS */
+        .card-actions {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            border-top: 1px solid var(--gray-200);
+            padding-top: 24px;
+            flex-wrap: wrap;
+        }
+
+        .action-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 12px 22px;
+            border-radius: var(--radius-md);
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border: none;
+            text-decoration: none;
+        }
+
+        .btn-outline {
+            background: white;
+            border: 1.5px solid var(--gray-300);
+            color: var(--gray-700);
+        }
+
+        .btn-outline:hover:not(:disabled) {
+            background: var(--gray-100);
+            border-color: var(--gray-400);
+            color: var(--gray-900);
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .btn-primary:hover:not(:disabled) {
+            background: var(--primary-hover);
+            transform: translateY(-1px);
+        }
+
+        .btn-submit {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+            font-weight: 700;
+            padding: 12px 26px;
+            box-shadow: var(--shadow-md);
+        }
+
+        .btn-submit:hover {
+            opacity: 0.95;
+            transform: translateY(-1px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .btn:disabled {
+            opacity: 0.45;
+            cursor: not-allowed;
+            transform: none !important;
+        }
+
+        /* SIDEBAR PALETTE */
+        .palette-card {
+            background: white;
+            border-radius: var(--radius-xl);
+            padding: 24px;
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--gray-200);
+            position: sticky;
+            top: 24px;
+        }
+
+        .palette-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--gray-900);
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .palette-grid {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .palette-btn {
+            aspect-ratio: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            border: 1.5px solid var(--gray-200);
+            background: var(--gray-50);
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--gray-700);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            position: relative;
+        }
+
+        .palette-btn:hover {
+            border-color: var(--primary);
+            background: #f5f8ff;
+        }
+
+        .palette-btn.active {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 2px var(--primary);
+            font-weight: 800;
+        }
+
+        .palette-btn.answered {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        .palette-btn.flagged::after {
+            content: '';
+            position: absolute;
+            top: 3px;
+            right: 3px;
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: var(--accent);
+        }
+
+        .palette-legend {
+            border-top: 1px solid var(--gray-200);
+            padding-top: 16px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            font-size: 0.8rem;
+            color: var(--gray-600);
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .legend-dot {
+            width: 14px;
+            height: 14px;
+            border-radius: 4px;
+            border: 1px solid var(--gray-300);
+            background: var(--gray-50);
+        }
+
+        .legend-dot.current {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 2px var(--primary);
+        }
+
+        .legend-dot.ans {
+            background: var(--primary);
+            border-color: var(--primary);
+        }
+
+        .legend-dot.flg {
+            background: var(--accent-light);
+            border-color: var(--accent);
+            position: relative;
+        }
+
+        .legend-dot.flg::after {
+            content: '';
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--accent);
+        }
+
+        /* MODAL */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(4px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            z-index: 1000;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.2s ease;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .modal-box {
+            background: white;
+            border-radius: var(--radius-xl);
+            max-width: 480px;
+            width: 100%;
+            padding: 32px;
+            box-shadow: var(--shadow-xl);
+            transform: scale(0.95);
+            transition: transform 0.2s ease;
+        }
+
+        .modal-overlay.active .modal-box {
+            transform: scale(1);
+        }
+
+        .modal-icon {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: var(--accent-light);
+            color: #b45309;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.75rem;
+            margin-bottom: 20px;
+        }
+
+        .modal-title {
+            font-size: 1.35rem;
+            font-weight: 700;
+            color: var(--gray-900);
+            margin-bottom: 10px;
+        }
+
+        .modal-desc {
+            font-size: 0.95rem;
+            color: var(--gray-600);
+            line-height: 1.6;
+            margin-bottom: 24px;
+        }
+
+        .modal-actions {
+            display: flex;
+            gap: 12px;
+            justify-content: flex-end;
+        }
+
+        /* RESULTS SCREEN */
+        .results-container {
+            display: none;
+        }
+
+        .results-hero {
+            background: linear-gradient(135deg, #1e1b4b 0%, #312e81 60%, #4338ca 100%);
+            border-radius: var(--radius-xl);
+            color: white;
+            padding: 40px;
+            text-align: center;
+            margin-bottom: 32px;
+            box-shadow: var(--shadow-xl);
+        }
+
+        .score-circle-wrapper {
+            margin: 20px auto;
+            position: relative;
+            width: 180px;
+            height: 180px;
+        }
+
+        .score-svg {
+            transform: rotate(-90deg);
+        }
+
+        .score-bg-circle {
+            fill: none;
+            stroke: rgba(255, 255, 255, 0.15);
+            stroke-width: 12;
+        }
+
+        .score-fg-circle {
+            fill: none;
+            stroke: #10b981;
+            stroke-width: 12;
+            stroke-linecap: round;
+            transition: stroke-dashoffset 1s ease;
+        }
+
+        .score-inner-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .score-big {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2.8rem;
+            font-weight: 800;
+            line-height: 1;
+        }
+
+        .score-total {
+            font-size: 1rem;
+            color: #c7d2fe;
+            margin-top: 4px;
+        }
+
+        .perf-badge {
+            display: inline-block;
+            padding: 8px 20px;
+            border-radius: 999px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+            background: rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            margin-bottom: 32px;
+        }
+
+        @media (max-width: 768px) {
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .stat-card {
+            background: white;
+            border-radius: var(--radius-lg);
+            padding: 20px;
+            text-align: center;
+            border: 1px solid var(--gray-200);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .stat-val {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .stat-label {
+            font-size: 0.85rem;
+            color: var(--gray-600);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        /* REVIEW SECTION */
+        .review-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 24px;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .review-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--gray-900);
+        }
+
+        .filter-tabs {
+            display: flex;
+            gap: 8px;
+            background: white;
+            padding: 4px;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--gray-200);
+        }
+
+        .tab-btn {
+            border: none;
+            background: transparent;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--gray-600);
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .tab-btn.active {
+            background: var(--primary);
+            color: white;
+        }
+
+        .review-card {
+            background: white;
+            border-radius: var(--radius-lg);
+            padding: 28px;
+            margin-bottom: 20px;
+            border: 1px solid var(--gray-200);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .review-card.correct-card {
+            border-left: 6px solid var(--success);
+        }
+
+        .review-card.incorrect-card {
+            border-left: 6px solid var(--danger);
+        }
+
+        .review-q-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 12px;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .status-tag {
+            font-size: 0.8rem;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 999px;
+            text-transform: uppercase;
+        }
+
+        .status-tag.correct {
+            background: var(--success-light);
+            color: #065f46;
+            border: 1px solid var(--success-border);
+        }
+
+        .status-tag.incorrect {
+            background: var(--danger-light);
+            color: #991b1b;
+            border: 1px solid var(--danger-border);
+        }
+
+        .review-q-text {
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: var(--gray-900);
+            margin-bottom: 18px;
+            line-height: 1.5;
+        }
+
+        .review-options {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .review-opt {
+            padding: 12px 16px;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border: 1px solid var(--gray-200);
+            background: var(--gray-50);
+        }
+
+        .review-opt.is-correct {
+            background: var(--success-light);
+            border-color: var(--success);
+            font-weight: 600;
+            color: #065f46;
+        }
+
+        .review-opt.is-user-incorrect {
+            background: var(--danger-light);
+            border-color: var(--danger);
+            color: #991b1b;
+            font-weight: 600;
+        }
+
+        .explanation-box {
+            background: #f8fafc;
+            border-radius: var(--radius-md);
+            padding: 18px 20px;
+            border: 1px solid var(--gray-200);
+            border-left: 4px solid var(--primary);
+        }
+
+        .explanation-heading {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .explanation-content {
+            font-size: 0.95rem;
+            color: var(--gray-700);
+            line-height: 1.6;
+        }
+
+        .review-footer-actions {
+            margin-top: 36px;
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        /* PRINT STYLES */
+        @media print {
+            body {
+                background: white;
+                color: black;
+                padding: 0;
+            }
+            .quiz-header, .status-bar, .palette-card, .card-actions, .review-header .filter-tabs, .review-footer-actions {
+                display: none !important;
+            }
+            .results-container {
+                display: block !important;
+            }
+            .review-card {
+                page-break-inside: avoid;
+                border: 1px solid #ccc;
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="main-wrapper">
+    <!-- QUIZ INTRO HEADER -->
+    <header class="quiz-header">
+        <div class="badge-pill">
+            <span>📚 Phase 1 Milestone Assessment</span>
+        </div>
+        <h1 class="quiz-title">English Foundations & Vocabulary Mega Quiz</h1>
+        <p class="quiz-subtitle">
+            A comprehensive, rigorous diagnostic covering Days 01 through 20: Nouns, Pronouns, Verbs, Adverbs, Prepositions, Sentence Structure (SVOO/SVOC), Regular/Irregular Forms, OSASCOMP Adjective Order, Conjunctions, and Survival Fluency.
+        </p>
+        <div class="meta-badges">
+            <div class="meta-tag">
+                <span>⏱️ Time Limit: 45 Minutes</span>
+            </div>
+            <div class="meta-tag">
+                <span>📝 30 In-Depth MCQs</span>
+            </div>
+            <div class="meta-tag">
+                <span>🎯 Passing Score: 80% (24/30)</span>
+            </div>
+            <div class="meta-tag">
+                <span>💡 Detailed Grammatical Explanations</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- LIVE STATUS BAR -->
+    <section class="status-bar" id="statusBar">
+        <div class="progress-info">
+            <div class="progress-labels">
+                <span class="current-question-indicator" id="currentIndicator">Question 1 of 30</span>
+                <span class="answered-count" id="answeredCounter">0 of 30 answered</span>
+            </div>
+            <div class="progress-track">
+                <div class="progress-fill" id="progressBar"></div>
+            </div>
+        </div>
+
+        <div class="timer-badge" id="timerBadge">
+            <span>⏰</span>
+            <span id="timerDisplay">45:00</span>
+        </div>
+    </section>
+
+    <!-- MAIN INTERACTIVE QUIZ AREA -->
+    <main class="quiz-grid" id="quizContainer">
+        <!-- LEFT: QUESTION CARD -->
+        <article class="question-card" id="questionCard">
+            <div class="question-meta">
+                <span class="topic-pill" id="questionTopic">Day 01 • Noun Classification</span>
+                <button type="button" class="flag-btn" id="flagBtn" onclick="toggleFlag()">
+                    <span id="flagIcon">⚑</span> <span id="flagText">Flag for Review</span>
+                </button>
+            </div>
+
+            <div class="question-text" id="questionPrompt">
+                Loading question...
+            </div>
+
+            <div class="options-list" id="optionsContainer">
+                <!-- Injected via JS -->
+            </div>
+
+            <footer class="card-actions">
+                <div class="action-group">
+                    <button type="button" class="btn btn-outline" id="prevBtn" onclick="navigateQuestion(-1)">
+                        ← Previous
+                    </button>
+                    <button type="button" class="btn btn-outline" id="clearBtn" onclick="clearCurrentAnswer()">
+                        Clear Selection
+                    </button>
+                </div>
+                <div class="action-group">
+                    <button type="button" class="btn btn-primary" id="nextBtn" onclick="navigateQuestion(1)">
+                        Next Question →
+                    </button>
+                    <button type="button" class="btn btn-submit" id="submitBtn" onclick="attemptSubmit()">
+                        Submit Quiz ✓
+                    </button>
+                </div>
+            </footer>
+        </article>
+
+        <!-- RIGHT: 30-QUESTION PALETTE -->
+        <aside class="palette-card">
+            <div class="palette-title">
+                <span>Question Palette</span>
+                <span style="font-size: 0.85rem; font-weight: normal; color: var(--gray-600);" id="paletteCount">1/30</span>
+            </div>
+
+            <div class="palette-grid" id="paletteGrid">
+                <!-- 30 buttons generated by JS -->
+            </div>
+
+            <div class="palette-legend">
+                <div class="legend-item">
+                    <div class="legend-dot current"></div>
+                    <span>Current</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-dot ans"></div>
+                    <span>Answered</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-dot"></div>
+                    <span>Unanswered</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-dot flg"></div>
+                    <span>Flagged</span>
+                </div>
+            </div>
+        </aside>
+    </main>
+
+    <!-- CONFIRMATION MODAL -->
+    <div class="modal-overlay" id="confirmModal">
+        <div class="modal-box">
+            <div class="modal-icon">⚠️</div>
+            <h3 class="modal-title">Unanswered Questions Remaining</h3>
+            <p class="modal-desc" id="modalWarningText">
+                You still have unanswered questions. Are you sure you want to finish your test now?
+            </p>
+            <div class="modal-actions">
+                <button type="button" class="btn btn-outline" onclick="closeModal()">
+                    Keep Working
+                </button>
+                <button type="button" class="btn btn-submit" onclick="finalizeSubmission()">
+                    Submit Anyway
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- EVALUATION / RESULTS VIEW -->
+    <section class="results-container" id="resultsContainer">
+        <div class="results-hero">
+            <div class="badge-pill">
+                <span>Official Evaluation Report</span>
+            </div>
+            <h2 style="font-size: 2.2rem; margin-bottom: 8px;">Phase 1 Mastery Assessment Results</h2>
+            <p style="color: #c7d2fe; margin-bottom: 24px;">Cumulative Evaluation: Days 01 to 20</p>
+
+            <div class="score-circle-wrapper">
+                <svg class="score-svg" width="180" height="180">
+                    <circle class="score-bg-circle" cx="90" cy="90" r="76"></circle>
+                    <circle class="score-fg-circle" id="scoreCircle" cx="90" cy="90" r="76" stroke-dasharray="477.5" stroke-dashoffset="477.5"></circle>
+                </svg>
+                <div class="score-inner-text">
+                    <span class="score-big" id="scorePercent">0%</span>
+                    <span class="score-total" id="scoreFraction">0 / 30</span>
+                </div>
+            </div>
+
+            <div class="perf-badge" id="performanceBadge">Evaluating...</div>
+            <p id="performanceFeedback" style="max-width: 650px; margin: 0 auto; line-height: 1.6; font-size: 1.05rem;"></p>
+        </div>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-val" style="color: var(--success);" id="statCorrect">0</div>
+                <div class="stat-label">Correct Answers</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-val" style="color: var(--danger);" id="statIncorrect">0</div>
+                <div class="stat-label">Incorrect Answers</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-val" style="color: var(--accent);" id="statUnanswered">0</div>
+                <div class="stat-label">Unanswered</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-val" style="color: var(--primary);" id="statTimeSpent">00:00</div>
+                <div class="stat-label">Time Taken</div>
+            </div>
+        </div>
+
+        <div class="review-header">
+            <h3 class="review-title">Detailed Question Review & Pedagogical Notes</h3>
+            <div class="filter-tabs">
+                <button type="button" class="tab-btn active" onclick="filterReview('all', this)">All (30)</button>
+                <button type="button" class="tab-btn" onclick="filterReview('incorrect', this)">Incorrect</button>
+                <button type="button" class="tab-btn" onclick="filterReview('correct', this)">Correct</button>
+            </div>
+        </div>
+
+        <div id="reviewContainer">
+            <!-- Injected by JS -->
+        </div>
+
+        <div class="review-footer-actions">
+            <button type="button" class="btn btn-primary" onclick="retakeQuiz()">
+                🔄 Retake Phase 1 Quiz
+            </button>
+            <button type="button" class="btn btn-outline" onclick="window.print()">
+                🖨️ Print / Save Report
+            </button>
+        </div>
+    </section>
+</div>
+
+<script>
+/* ==========================================================================
+   30 HIGH-QUALITY COMPREHENSIVE PHASE 1 QUESTIONS (DAYS 01 - 20)
+   ========================================================================== */
+const QUIZ_DATA = [
+    {
+        id: 1,
+        day: "Day 01",
+        category: "Noun Classification",
+        question: "In the sentence: 'The committee admired the young artist's unwavering integrity during the annual gallery exhibition,' which word functions as an **abstract noun**?",
+        options: [
+            "integrity",
+            "committee",
+            "exhibition",
+            "artist"
+        ],
+        correct: 0,
+        explanation: "An abstract noun denotes an intangible quality, concept, virtue, or emotional state that cannot be perceived directly by the five physical senses. 'Integrity' represents an intangible moral quality. In contrast, 'committee' is a collective noun designating a body of persons, 'artist' is a common concrete noun, and 'exhibition' is a concrete event/noun."
+    },
+    {
+        id: 2,
+        day: "Day 01",
+        category: "Pronoun Case & Reflexives",
+        question: "Select the sentence that uses pronouns correctly according to standard formal English grammar:",
+        options: [
+            "The project manager requested that Sarah and myself submit the financial forecasts by noon.",
+            "Him and his colleagues completed the safety training earlier this morning.",
+            "The director invited both Michael and me to represent the department at the symposium.",
+            "Everyone in the conference room congratulated theirselves on the successful product rollout."
+        ],
+        correct: 2,
+        explanation: "In option C, 'Michael and me' are the compound direct objects of the transitive verb 'invited'. Dropping 'Michael' reveals the correct objective pronoun: 'The director invited me' (objective case). In A, 'myself' is incorrectly used as an object; reflexives must refer back to a subject in the same clause ('I saw myself'). In B, 'Him' is an objective pronoun erroneously used as a compound subject ('He and his colleagues'). In D, 'theirselves' is non-standard; the correct reflexive pronoun is 'themselves'."
+    },
+    {
+        id: 3,
+        day: "Day 02",
+        category: "Action vs. Linking Verbs",
+        question: "In which of the following sentences does the underlined verb function as a **linking verb** rather than an action verb?",
+        options: [
+            "The fresh sourdough bread smelled heavenly as it cooled on the marble counter.",
+            "The forensic investigator looked closely at the fingerprints on the glass door.",
+            "The pastry chef smelled the vanilla extract before measuring the ingredients.",
+            "The doctor felt the patient's swollen wrist to check for bone fractures."
+        ],
+        correct: 0,
+        explanation: "A linking verb connects the subject to a subject complement (an adjective or noun renaming or describing the subject) rather than expressing an action performed by an agent. In option A, 'smelled' links 'sourdough bread' to the predicate adjective 'heavenly' (test: 'The bread WAS heavenly'). In options B, C, and D, 'looked', 'smelled', and 'felt' express deliberate physical actions performed upon objects or with an instrument."
+    },
+    {
+        id: 4,
+        day: "Day 02",
+        category: "Causative Verbs & Bare Infinitives",
+        question: "Complete the sentence with the correct verb form: 'The strict workshop supervisor made every apprentice _______ the safety regulations before operating the heavy machinery.'",
+        options: [
+            "to memorize",
+            "memorize",
+            "memorizing",
+            "memorized"
+        ],
+        correct: 1,
+        explanation: "The causative verb 'make' in the active voice follows the pattern: Subject + make + object + bare infinitive (infinitive without 'to'). Therefore, 'made every apprentice memorize' is correct. Option A ('to memorize') incorrectly inserts 'to' (which is used after verbs like 'require' or 'force'). Options C and D use participles that violate causative syntax."
+    },
+    {
+        id: 5,
+        day: "Day 03",
+        category: "Adverbs of Frequency Placement",
+        question: "Choose the sentence that displays the grammatically correct word order for adverbs of frequency:",
+        options: [
+            "Our senior software engineer rarely is late for the morning stand-up briefing.",
+            "Rarely our senior software engineer is late for the morning stand-up briefing.",
+            "Our senior software engineer is late rarely for the morning stand-up briefing.",
+            "Our senior software engineer is rarely late for the morning stand-up briefing."
+        ],
+        correct: 3,
+        explanation: "Adverbs of frequency (always, usually, often, rarely, seldom, never) follow a strict placement rule: they precede main action verbs ('He rarely arrives late'), but they MUST follow primary forms of the linking/auxiliary verb 'to be' (am, is, are, was, were). Hence, 'is rarely late' is grammatically standard. Placing 'rarely' at the start of a sentence (option B) requires negative inversion ('Rarely is our senior engineer late...')."
+    },
+    {
+        id: 6,
+        day: "Day 03",
+        category: "Royal Order of Adverbs",
+        question: "According to the royal order of adverbs (Manner, Place, Time: M-P-T), which sentence is ordered correctly?",
+        options: [
+            "The pianist played last night passionately in the concert hall.",
+            "The pianist played passionately in the concert hall last night.",
+            "The pianist played in the concert hall passionately last night.",
+            "The pianist played passionately last night in the concert hall."
+        ],
+        correct: 1,
+        explanation: "When a sentence contains multiple adverbs modifying the same verb, standard English syntax adheres to the sequence: Manner (how) → Place (where) → Time (when). 'Passionately' (manner) + 'in the concert hall' (place) + 'last night' (time) satisfies M-P-T perfectly."
+    },
+    {
+        id: 7,
+        day: "Day 04 & 14",
+        category: "Prepositions of Time",
+        question: "Fill in the blanks: 'The company's annual keynote address will take place _______ Friday morning, _______ exactly 9:30 AM, _______ October.'",
+        options: [
+            "in; at; on",
+            "at; on; in",
+            "on; in; at",
+            "on; at; in"
+        ],
+        correct: 3,
+        explanation: "Prepositions of time adhere to strict conventions: (1) Use 'on' for specific days and parts of specific days ('on Friday morning'); (2) Use 'at' for precise clock times ('at exactly 9:30 AM'); (3) Use 'in' for months, years, and non-specific long periods ('in October'). Thus, 'on; at; in' is the only correct sequence."
+    },
+    {
+        id: 8,
+        day: "Day 04 & 13",
+        category: "Prepositions of Movement",
+        question: "Choose the correct prepositions to fill the blanks: 'The hikers walked _______ the dense bamboo forest and then carefully paddled their kayak _______ the wide river.'",
+        options: [
+            "through; across",
+            "across; through",
+            "into; along",
+            "over; through"
+        ],
+        correct: 0,
+        explanation: "Use 'through' when moving inside a 3-dimensional volume or surrounding environment (trees, tunnels, crowds). Use 'across' when moving from one boundary side of a flat or surface area to the opposite side (a river, road, field). Thus, walking 'through' the dense forest and paddling 'across' the wide river is the correct pairing."
+    },
+    {
+        id: 9,
+        day: "Day 05",
+        category: "Parts of Speech Identification",
+        question: "Examine the word 'round' in this sentence: 'The security officer completed his nightly **round** before locking the facility.' What part of speech is 'round' in this context?",
+        options: [
+            "Adjective",
+            "Preposition",
+            "Adverb",
+            "Noun"
+        ],
+        correct: 3,
+        explanation: "In this sentence, 'round' is preceded by the possessive determiner 'his' and the descriptive adjective 'nightly', and serves as the direct object of the verb 'completed'. It denotes a scheduled circuit or inspection tour, functioning unambiguously as a count noun."
+    },
+    {
+        id: 10,
+        day: "Day 06",
+        category: "Sentence Structure & Patterns",
+        question: "Analyze the structural pattern of the following sentence: 'The generous patron donated the museum five ancient manuscripts.'",
+        options: [
+            "Subject + Verb + Subject Complement (SVC)",
+            "Subject + Verb + Direct Object + Object Complement (SVOC)",
+            "Subject + Verb + Adverbial (SVA)",
+            "Subject + Verb + Indirect Object + Direct Object (SVOO)"
+        ],
+        correct: 3,
+        explanation: "The sentence consists of: Subject ('The generous patron') + Transitive Verb ('donated') + Indirect Object / recipient ('the museum') + Direct Object / thing transferred ('five ancient manuscripts'). This is the ditransitive SVOO pattern (also known as S-V-IO-DO)."
+    },
+    {
+        id: 11,
+        day: "Day 07",
+        category: "Regular Verb Past Endings",
+        question: "In which of the following lists do ALL three past-tense regular verbs have their '-ed' suffix pronounced as an extra syllable **/ɪd/**?",
+        options: [
+            "walked, jumped, missed",
+            "decided, painted, contacted",
+            "cleaned, opened, arrived",
+            "watched, laughed, ended"
+        ],
+        correct: 1,
+        explanation: "The '-ed' ending adds an extra vowel syllable pronounced /ɪd/ (or /əd/) ONLY when the base verb ends in the alveolar plosive sounds /t/ or /d/. In 'decide' (ends in /d/), 'paint' (ends in /t/), and 'contact' (ends in /t/), the past form gains a syllable. In A, voiceless endings yield /t/. In C, voiced consonants yield /d/. In D, only 'ended' has /ɪd/ while 'watched' and 'laughed' have /t/."
+    },
+    {
+        id: 12,
+        day: "Day 08",
+        category: "Irregular Verbs in Context",
+        question: "Choose the sentence that uses the correct past tense (V2) or past participle (V3) form:",
+        options: [
+            "The heavy wool blanket had shrank noticeably after being washed in scalding water.",
+            "The injured marathoner laid down on the grass to rest his aching hamstring.",
+            "The majestic bald eagle has flown over the mountain ridge every morning this week.",
+            "She chose the blue dress yesterday, but she has not wore it to any social events yet."
+        ],
+        correct: 2,
+        explanation: "The principal parts of 'fly' are fly (V1), flew (V2), and flown (V3). With the auxiliary 'has', the past participle 'flown' is correct. In A, the past participle of 'shrink' is 'shrunk' (shrink-shrank-shrunk), not 'shrank'. In B, the past tense of the intransitive verb 'lie' (to recline) is 'lay', not 'laid' ('laid' is the past form of transitive 'lay', to place an object). In D, the past participle of 'wear' is 'worn', not 'wore'."
+    },
+    {
+        id: 13,
+        day: "Day 09",
+        category: "Descriptive & Sensory Language",
+        question: "Which sentence demonstrates the most precise and vivid sensory adjective to convey tactile texture?",
+        options: [
+            "The antique book had a very nice cover made of leather.",
+            "The antique book featured a rough and somewhat old binding.",
+            "The antique book featured a weathered, coarsely grained calfskin binding.",
+            "The antique book was made with a bad, worn-down surface."
+        ],
+        correct: 2,
+        explanation: "Precise descriptive writing replaces vague, generic adjectives ('very nice', 'bad', 'somewhat old') with specific, evocative sensory descriptors. 'Weathered' and 'coarsely grained' provide vivid tactile texture that paints an immediate mental picture for the reader."
+    },
+    {
+        id: 14,
+        day: "Day 09",
+        category: "OSASCOMP Adjective Order",
+        question: "According to standard English adjective order (**OSASCOMP**: Opinion, Size, Age, Shape, Color, Origin, Material, Purpose), which sequence is correct?",
+        options: [
+            "A charming small square brown Italian wooden dining table",
+            "An Italian charming small square wooden dining table",
+            "A wooden small charming square brown Italian dining table",
+            "A small charming brown square Italian wooden dining table"
+        ],
+        correct: 0,
+        explanation: "The OSASCOMP hierarchy dictates: Opinion ('charming') → Size ('small') → Shape ('square') → Color ('brown') → Origin ('Italian') → Material ('wooden') → Purpose ('dining'). Option A is the only sequence that strictly follows this universal syntactic order."
+    },
+    {
+        id: 15,
+        day: "Day 10",
+        category: "Comparatives vs. Superlatives",
+        question: "Select the sentence that uses comparative or superlative degree modifiers correctly:",
+        options: [
+            "Between the two competing proposals, Elena's is by far the most cost-effective.",
+            "Between the two candidate architectures, the microservices framework is the more scalable.",
+            "This year's marketing budget is substantially lesser than last year's allocation.",
+            "Mount Everest is much more higher than any other peak in the Himalayan range."
+        ],
+        correct: 1,
+        explanation: "When comparing exactly two entities, prescriptive English grammar requires the comparative form ('the more scalable'), not the superlative. In A, comparing two proposals requires 'the more cost-effective', not 'most'. In C, 'lesser' cannot serve as a predicate comparative of quantity (it should be 'substantially smaller' or 'substantially less'). In D, 'more higher' is an erroneous double comparative."
+    },
+    {
+        id: 16,
+        day: "Day 10",
+        category: "Degree Modifiers & Extreme Adjectives",
+        question: "Non-gradable (absolute/extreme) adjectives cannot typically be modified by 'very'. Which sentence correctly pairs a degree modifier with an ungradable adjective?",
+        options: [
+            "The research team was very fascinated by the preliminary laboratory results.",
+            "The exhausted runner was extremely dead after completing the ultramarathon.",
+            "The ancient cathedral was completely destroyed by the sudden inferno.",
+            "Our team leader was slightly furious when she discovered the data breach."
+        ],
+        correct: 2,
+        explanation: "'Destroyed' is an ungradable, absolute adjective (something cannot be partially destroyed on a gradual spectrum; it is either destroyed or intact). Absolute adjectives take totalizing intensifiers like 'completely', 'entirely', or 'absolutely'. In A, 'fascinated' is an extreme adjective that pairs with 'absolutely', not 'very'. In B, 'dead' is absolute and cannot be 'extremely dead'. In D, 'furious' means extremely angry and cannot be modified by 'slightly'."
+    },
+    {
+        id: 17,
+        day: "Day 11",
+        category: "Easily Confused Adverb Pairs",
+        question: "Choose the sentence that uses the adverb correctly according to its intended meaning:",
+        options: [
+            "She studied hardly all weekend, so she scored the top mark on the calculus exam.",
+            "The new intern works very hard and has lately taken on extra administrative duties.",
+            "Dr. Jenkins has arrived lately to every morning staff meeting this month.",
+            "The hot air balloon ascended highly into the clear morning sky."
+        ],
+        correct: 1,
+        explanation: "'Hard' functions as both an adjective and an adverb of manner ('works hard' = exerts effort). 'Hardly' is an adverb of degree meaning 'barely / scarcely' (in A, 'studied hardly' implies she barely studied at all). 'Lately' is a temporal adverb meaning 'recently' (in C, arriving tardy requires 'late', not 'lately'). 'High' is the spatial directional adverb ('ascended high'), while 'highly' means 'very much' or 'with great esteem' ('highly commended'). Option B uses both words with grammatical precision."
+    },
+    {
+        id: 18,
+        day: "Day 12",
+        category: "Quantifiers with Countable/Uncountable Nouns",
+        question: "Complete the sentence: 'Because there was _______ rainfall during the summer, the reservoir held very _______ water, causing severe agricultural distress.'",
+        options: [
+            "few; few",
+            "a few; a little",
+            "many; much",
+            "little; little"
+        ],
+        correct: 3,
+        explanation: "'Rainfall' and 'water' are non-count (uncountable) nouns, which require 'much' or 'little' (not 'few', which modifies countable plural nouns). Furthermore, 'little' without an article conveys a negative, deficient meaning ('almost none / an inadequate amount'), perfectly matching the context of agricultural crisis."
+    },
+    {
+        id: 19,
+        day: "Day 13",
+        category: "Spatial Reasoning & Directions",
+        question: "Complete the navigation sentence: 'To reach the archive room, walk _______ the corridor, turn left _______ the reception desk, and the door is directly _______ the elevator bank.'",
+        options: [
+            "along; at; opposite",
+            "through; on; across to",
+            "past; in; between",
+            "across; by; behind of"
+        ],
+        correct: 0,
+        explanation: "In standard spatial navigation: (1) One moves 'along' a linear corridor; (2) A pivot point landmark is designated by 'at' ('turn left at the desk'); (3) A destination facing another structure across a walkway is 'opposite' (not 'behind of'). Option A provides natural, idiomatically accurate prepositions."
+    },
+    {
+        id: 20,
+        day: "Day 14",
+        category: "Prepositions of Duration & Time",
+        question: "Identify the sentence that correctly distinguishes between 'during', 'for', and 'while':",
+        options: [
+            "The engineers monitored the telemetry data while two consecutive hours.",
+            "Nobody was permitted to speak during the supervisor was presenting the financial results.",
+            "The power grid failed for the storm, plunging the city into complete darkness.",
+            "We conducted four thorough inspections during the construction phase."
+        ],
+        correct: 3,
+        explanation: "'During' is a preposition followed by a noun phrase referring to a period or event ('during the construction phase'). 'For' requires a specified duration of time ('for two hours', not 'while two hours' as in A). 'While' is a conjunction followed by a subject-verb clause ('while the supervisor was presenting', not 'during' as in B). In C, 'during the storm' is required rather than 'for the storm'."
+    },
+    {
+        id: 21,
+        day: "Day 15",
+        category: "Coordinating Conjunctions & Inversion",
+        question: "Select the sentence that correctly applies coordinating conjunction rules and word order:",
+        options: [
+            "The software audit revealed no critical bugs, nor did it uncover any performance bottlenecks.",
+            "The software audit revealed no critical bugs, nor it uncovered any performance bottlenecks.",
+            "The software audit revealed no critical bugs, but neither it did uncover any performance bottlenecks.",
+            "The software audit revealed no critical bugs nor did uncovered any performance bottlenecks."
+        ],
+        correct: 0,
+        explanation: "When the coordinating conjunction 'nor' joins an independent clause after a negative statement, it triggers subject-auxiliary inversion: auxiliary + subject + bare infinitive ('nor did it uncover'). In B, no inversion occurs ('nor it uncovered'). In C, 'neither it did' is scrambled. In D, 'did uncovered' incorrectly duplicates past tense on the lexical verb."
+    },
+    {
+        id: 22,
+        day: "Day 15",
+        category: "Subordinating Conjunctions of Concession",
+        question: "Choose the sentence that uses subordinating conjunctions and prepositional contrast phrases correctly:",
+        options: [
+            "Despite he lacked formal qualifications in finance, he was appointed head of investment strategy.",
+            "Although the torrential downpour and howling winds, the rescue flight took off on schedule.",
+            "Despite the heavy traffic congestion on the highway, the delivery courier arrived promptly.",
+            "In spite of the manager was severely ill, she attended the annual board meeting."
+        ],
+        correct: 2,
+        explanation: "'Despite' and 'in spite of' are prepositions and must be followed by a noun, noun phrase, or gerund ('Despite the heavy traffic congestion'). In contrast, 'although' and 'even though' are subordinating conjunctions followed by a full clause with subject and finite verb ('Although he lacked formal qualifications'). A, B, and D confuse prepositional complements with clausal complements."
+    },
+    {
+        id: 23,
+        day: "Day 16",
+        category: "Workplace Social Pleasantries & Diplomacy",
+        question: "In a formal customer service or workplace setting, what is the most diplomatic and professional way to ask a client to wait briefly while you retrieve their file?",
+        options: [
+            "Hold on, I must find your file right now.",
+            "Wait a minute because I am searching your document.",
+            "Would you mind holding for just a moment while I pull up your account details?",
+            "You should stop talking so I can get your information."
+        ],
+        correct: 2,
+        explanation: "Professional diplomatic English relies on indirect polite inquiry frames like 'Would you mind + gerund...?' and softening temporal markers ('for just a moment'). Direct imperatives like 'Hold on' (A) and 'Wait a minute' (B) sound peremptory or dismissive, and D is unprofessional."
+    },
+    {
+        id: 24,
+        day: "Day 17",
+        category: "Interrogative Syntax (QUASM Rule)",
+        question: "Apply the **QUASM** rule (Question Word + Auxiliary + Subject + Main Verb). Which interrogative sentence is formed correctly?",
+        options: [
+            "Why your department postponed the product launch until next quarter?",
+            "Why did your department postponed the product launch until next quarter?",
+            "Why does your department postponed the product launch until next quarter?",
+            "Why did your department postpone the product launch until next quarter?"
+        ],
+        correct: 3,
+        explanation: "The QUASM framework requires: Question word ('Why') + Auxiliary ('did') + Subject ('your department') + Main verb in base form ('postpone'). Option A omits the auxiliary verb entirely. Options B and C commit the common error of double past-marking ('did ... postponed'), failing to return the lexical verb to its bare infinitive."
+    },
+    {
+        id: 25,
+        day: "Day 17",
+        category: "Question Tags & Irregularities",
+        question: "Complete the tag question correctly: 'Let's review the revised contractual clauses before the client meeting begins, _______?'",
+        options: [
+            "won't we",
+            "will we",
+            "shall we",
+            "don't we"
+        ],
+        correct: 2,
+        explanation: "Suggestions initiated by 'Let's' (let us) take the unique question tag **'shall we?'**. In contrast, simple imperatives take 'will you?' ('Close the window, will you?'), and 'I am' takes 'aren't I?'."
+    },
+    {
+        id: 26,
+        day: "Day 18",
+        category: "Preferences (Would Rather vs. Prefer)",
+        question: "Select the sentence that uses standard grammatical structures for expressing preference:",
+        options: [
+            "She prefers studying in the quiet library rather than to study in a crowded coffee shop.",
+            "She would rather to study in the quiet library than studying in a crowded coffee shop.",
+            "She prefers study in the quiet library to study in a crowded coffee shop.",
+            "She would rather study in the quiet library than study in a crowded coffee shop."
+        ],
+        correct: 3,
+        explanation: "The modal idiom 'would rather' is followed by a bare infinitive and contrasted using 'than' + bare infinitive: **would rather do X than do Y**. Option D follows this structure. When using 'prefer', the standard patterns are: 'prefer [gerund] to [gerund]' or 'prefer to [verb] rather than [bare verb]'."
+    },
+    {
+        id: 27,
+        day: "Day 19",
+        category: "Navigational Instructions & Imperatives",
+        question: "A pedestrian asks for directions to the central library. Which set of instructions is grammatically coherent and uses standard imperative navigational phrases?",
+        options: [
+            "You are going straight until the traffic light, then making a right and walking past the pharmacy.",
+            "Go straight ahead for two blocks, turn right at the traffic lights, and walk past the pharmacy; the library is on your left.",
+            "To go straight for two blocks, turning right at the lights, and pass the pharmacy until library is at left.",
+            "Going straight two blocks, you must turn right and after you pass the pharmacy seeing the library."
+        ],
+        correct: 1,
+        explanation: "Navigational directions in English are conveyed using clear, direct imperative base verbs: 'Go straight...', 'turn right...', 'walk past...', concluded by the destination's spatial orientation: 'the library is on your left'. Option B is concise, natural, and grammatically standard."
+    },
+    {
+        id: 28,
+        day: "Day 19",
+        category: "Workplace Notices & Negative Imperatives",
+        question: "Which of the following is a polite negative imperative instruction appropriate for an office notices board?",
+        options: [
+            "Please do not leave confidential documents unattended on the shared printer.",
+            "Don't you leave any confidential documents on the printer!",
+            "You must not never leave confidential documents on the printer.",
+            "Not to leave confidential documents on the printer, please."
+        ],
+        correct: 0,
+        explanation: "A professional negative imperative begins with 'Please do not' followed by the bare infinitive ('leave'). Option B uses an accusatory, aggressive colloquial tag ('Don't you...'). Option C contains an ungrammatical double negative ('must not never'). Option D incorrectly uses an infinitive marker ('Not to leave')."
+    },
+    {
+        id: 29,
+        day: "Day 20",
+        category: "Subject-Verb Agreement with Indefinites",
+        question: "Choose the sentence that complies strictly with subject-verb agreement rules:",
+        options: [
+            "Each of the thirty engineering candidates have submitted their portfolio for review.",
+            "Neither of the proposed architectural solutions was deemed feasible by the senior committee.",
+            "A collection of rare historical artifacts were stolen from the municipal archive last night.",
+            "Everyone in the regional offices were invited to participate in the strategic survey."
+        ],
+        correct: 1,
+        explanation: "'Neither' is a singular indefinite pronoun when referring to two items, requiring a singular verb: 'Neither of the solutions WAS deemed feasible'. In A, 'Each' is singular and requires 'has submitted', not 'have'. In C, the subject is the singular collective head noun 'collection', which requires 'was stolen'. In D, 'Everyone' is grammatically singular and requires 'was invited'."
+    },
+    {
+        id: 30,
+        day: "Day 20",
+        category: "Cumulative Synthesis & Mastery",
+        question: "Review the four sentences below. Only ONE sentence is completely free of grammatical, prepositional, and word order errors across Phase 1 topics. Which one is it?",
+        options: [
+            "The team gave him a luxurious new Italian leather briefcase on his promotion yesterday.",
+            "She has drank very few water during the intense training session in the stadium yesterday.",
+            "Neither the CEO nor the board members was satisfied by the results of the audit.",
+            "Look at that small wooden beautiful desk; it was crafted careful by a local artisan."
+        ],
+        correct: 0,
+        explanation: "Option A is flawless: it executes the ditransitive SVOO pattern ('gave [V] him [IO] a briefcase [DO]'), follows exact OSASCOMP adjective order (Opinion: luxurious, Age: new, Origin: Italian, Material: leather), and uses correct prepositions and adverbial time placement. In B, 'has drank' is wrong (V3 is 'drunk'), 'few' cannot modify non-count 'water' (use 'little'), and present perfect cannot pair with past time 'yesterday'. In C, proximity agreement requires plural 'were satisfied' after 'board members'. In D, adjective order is wrong ('beautiful small wooden') and adverb of manner 'carefully' is required."
+    }
+];
+
+/* ==========================================================================
+   STATE MANAGEMENT & APPLICATION LOGIC
+   ========================================================================== */
+let currentIndex = 0;
+let userAnswers = new Array(QUIZ_DATA.length).fill(null);
+let flaggedQuestions = new Set();
+let timerSeconds = 45 * 60; // 45:00 minutes
+let timerInterval = null;
+let quizSubmitted = false;
+let timeSpentSeconds = 0;
+
+// DOM Elements
+const currentIndicator = document.getElementById('currentIndicator');
+const answeredCounter = document.getElementById('answeredCounter');
+const progressBar = document.getElementById('progressBar');
+const timerDisplay = document.getElementById('timerDisplay');
+const timerBadge = document.getElementById('timerBadge');
+const questionTopic = document.getElementById('questionTopic');
+const flagBtn = document.getElementById('flagBtn');
+const flagIcon = document.getElementById('flagIcon');
+const questionPrompt = document.getElementById('questionPrompt');
+const optionsContainer = document.getElementById('optionsContainer');
+const prevBtn = document.getElementById('prevBtn');
+const nextBtn = document.getElementById('nextBtn');
+const paletteGrid = document.getElementById('paletteGrid');
+const paletteCount = document.getElementById('paletteCount');
+const confirmModal = document.getElementById('confirmModal');
+const modalWarningText = document.getElementById('modalWarningText');
+const quizContainer = document.getElementById('quizContainer');
+const statusBar = document.getElementById('statusBar');
+const resultsContainer = document.getElementById('resultsContainer');
+const reviewContainer = document.getElementById('reviewContainer');
+
+// Initialize
+function initQuiz() {
+    buildPalette();
+    renderQuestion(currentIndex);
+    startTimer();
+    updateProgressUI();
+
+    // Keyboard support
+    document.addEventListener('keydown', handleKeyNavigation);
+}
+
+// Build 30-button palette
+function buildPalette() {
+    paletteGrid.innerHTML = '';
+    for (let i = 0; i < QUIZ_DATA.length; i++) {
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'palette-btn';
+        btn.id = `palette-btn-${i}`;
+        btn.innerText = i + 1;
+        btn.onclick = () => jumpToQuestion(i);
+        paletteGrid.appendChild(btn);
+    }
+}
+
+// Render active question
+function renderQuestion(index) {
+    currentIndex = index;
+    const q = QUIZ_DATA[index];
+
+    // Meta & Topic
+    questionTopic.innerText = `${q.day} • ${q.category}`;
+    currentIndicator.innerText = `Question ${index + 1} of ${QUIZ_DATA.length}`;
+    paletteCount.innerText = `${index + 1}/${QUIZ_DATA.length}`;
+
+    // Prompt
+    questionPrompt.innerHTML = q.question;
+
+    // Flag status
+    const isFlagged = flaggedQuestions.has(index);
+    if (isFlagged) {
+        flagBtn.classList.add('flagged');
+        flagIcon.innerText = '★';
+    } else {
+        flagBtn.classList.remove('flagged');
+        flagIcon.innerText = '⚑';
+    }
+
+    // Render Options
+    const letters = ['A', 'B', 'C', 'D'];
+    optionsContainer.innerHTML = '';
+
+    q.options.forEach((optText, optIdx) => {
+        const item = document.createElement('div');
+        item.className = 'option-item';
+        if (userAnswers[index] === optIdx) {
+            item.classList.add('selected');
+        }
+        item.onclick = () => selectOption(optIdx);
+
+        item.innerHTML = `
+            <div class="option-key">${letters[optIdx]}</div>
+            <div class="option-content">${optText}</div>
+        `;
+        optionsContainer.appendChild(item);
+    });
+
+    // Navigation buttons state
+    prevBtn.disabled = index === 0;
+    if (index === QUIZ_DATA.length - 1) {
+        nextBtn.style.display = 'none';
+    } else {
+        nextBtn.style.display = 'inline-flex';
+    }
+
+    updatePaletteUI();
+}
+
+// Select an option
+function selectOption(optIdx) {
+    userAnswers[currentIndex] = optIdx;
+    renderQuestion(currentIndex);
+    updateProgressUI();
+}
+
+// Clear answer for current question
+function clearCurrentAnswer() {
+    userAnswers[currentIndex] = null;
+    renderQuestion(currentIndex);
+    updateProgressUI();
+}
+
+// Toggle Flag
+function toggleFlag() {
+    if (flaggedQuestions.has(currentIndex)) {
+        flaggedQuestions.delete(currentIndex);
+    } else {
+        flaggedQuestions.add(currentIndex);
+    }
+    renderQuestion(currentIndex);
+}
+
+// Jump to specific question
+function jumpToQuestion(index) {
+    if (index >= 0 && index < QUIZ_DATA.length) {
+        renderQuestion(index);
+    }
+}
+
+// Previous / Next Navigation
+function navigateQuestion(delta) {
+    const target = currentIndex + delta;
+    if (target >= 0 && target < QUIZ_DATA.length) {
+        renderQuestion(target);
+    }
+}
+
+// Update Palette UI styling
+function updatePaletteUI() {
+    for (let i = 0; i < QUIZ_DATA.length; i++) {
+        const btn = document.getElementById(`palette-btn-${i}`);
+        if (!btn) continue;
+
+        btn.className = 'palette-btn';
+        if (i === currentIndex) {
+            btn.classList.add('active');
+        }
+        if (userAnswers[i] !== null) {
+            btn.classList.add('answered');
+        }
+        if (flaggedQuestions.has(i)) {
+            btn.classList.add('flagged');
+        }
+    }
+}
+
+// Update top progress indicators
+function updateProgressUI() {
+    const answeredCount = userAnswers.filter(a => a !== null).length;
+    answeredCounter.innerText = `${answeredCount} of ${QUIZ_DATA.length} answered`;
+    const pct = (answeredCount / QUIZ_DATA.length) * 100;
+    progressBar.style.width = `${pct}%`;
+}
+
+// Live Countdown Timer
+function startTimer() {
+    timerInterval = setInterval(() => {
+        timerSeconds--;
+        timeSpentSeconds++;
+
+        if (timerSeconds <= 0) {
+            clearInterval(timerInterval);
+            timerSeconds = 0;
+            timerDisplay.innerText = "00:00";
+            alert("Time limit reached! Submitting your quiz automatically.");
+            finalizeSubmission();
+            return;
+        }
+
+        const mins = Math.floor(timerSeconds / 60);
+        const secs = timerSeconds % 60;
+        timerDisplay.innerText = `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+
+        if (timerSeconds <= 180) { // 3 min
+            timerBadge.className = 'timer-badge danger';
+        } else if (timerSeconds <= 600) { // 10 min
+            timerBadge.className = 'timer-badge warning';
+        } else {
+            timerBadge.className = 'timer-badge';
+        }
+    }, 1000);
+}
+
+// Keyboard shortcuts (A-D, 1-4, Left, Right)
+function handleKeyNavigation(e) {
+    if (quizSubmitted) return;
+
+    // Arrow keys
+    if (e.key === 'ArrowLeft' && currentIndex > 0) {
+        navigateQuestion(-1);
+    } else if (e.key === 'ArrowRight' && currentIndex < QUIZ_DATA.length - 1) {
+        navigateQuestion(1);
+    }
+
+    // Number keys 1-4
+    if (e.key === '1') selectOption(0);
+    if (e.key === '2') selectOption(1);
+    if (e.key === '3') selectOption(2);
+    if (e.key === '4') selectOption(3);
+
+    // Letter keys A-D
+    const keyUpper = e.key.toUpperCase();
+    if (keyUpper === 'A') selectOption(0);
+    if (keyUpper === 'B') selectOption(1);
+    if (keyUpper === 'C') selectOption(2);
+    if (keyUpper === 'D') selectOption(3);
+}
+
+// Submission Handling
+function attemptSubmit() {
+    const unanswered = [];
+    userAnswers.forEach((ans, idx) => {
+        if (ans === null) unanswered.push(idx + 1);
+    });
+
+    if (unanswered.length > 0) {
+        modalWarningText.innerHTML = `You have <strong>${unanswered.length} unanswered question(s)</strong> (${unanswered.slice(0, 8).join(', ')}${unanswered.length > 8 ? '...' : ''}). We recommend answering all questions to achieve maximum scoring.`;
+        confirmModal.classList.add('active');
+    } else {
+        finalizeSubmission();
+    }
+}
+
+function closeModal() {
+    confirmModal.classList.remove('active');
+}
+
+// Final Evaluation & Results Rendering
+function finalizeSubmission() {
+    closeModal();
+    clearInterval(timerInterval);
+    quizSubmitted = true;
+
+    // Calculate Scores
+    let correctCount = 0;
+    let incorrectCount = 0;
+    let unansweredCount = 0;
+
+    userAnswers.forEach((ans, idx) => {
+        if (ans === null) {
+            unansweredCount++;
+        } else if (ans === QUIZ_DATA[idx].correct) {
+            correctCount++;
+        } else {
+            incorrectCount++;
+        }
+    });
+
+    const percent = Math.round((correctCount / QUIZ_DATA.length) * 100);
+
+    // Hide Quiz, Show Results
+    quizContainer.style.display = 'none';
+    statusBar.style.display = 'none';
+    resultsContainer.style.display = 'block';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    // Populate Stats
+    document.getElementById('statCorrect').innerText = correctCount;
+    document.getElementById('statIncorrect').innerText = incorrectCount;
+    document.getElementById('statUnanswered').innerText = unansweredCount;
+
+    const spentMin = Math.floor(timeSpentSeconds / 60);
+    const spentSec = timeSpentSeconds % 60;
+    document.getElementById('statTimeSpent').innerText = `${spentMin}m ${spentSec}s`;
+
+    document.getElementById('scorePercent').innerText = `${percent}%`;
+    document.getElementById('scoreFraction').innerText = `${correctCount} / ${QUIZ_DATA.length}`;
+
+    // SVG Circle Animation
+    const circle = document.getElementById('scoreCircle');
+    const circumference = 2 * Math.PI * 76; // ~477.5
+    const offset = circumference - (percent / 100) * circumference;
+    setTimeout(() => {
+        circle.style.strokeDashoffset = offset;
+    }, 150);
+
+    // Performance Feedback & Tier Badge
+    const badge = document.getElementById('performanceBadge');
+    const feedback = document.getElementById('performanceFeedback');
+
+    if (percent >= 90) {
+        badge.innerText = "🌟 Phase 1 Master (Distinction • 90–100%)";
+        badge.style.background = "rgba(16, 185, 129, 0.25)";
+        badge.style.color = "#a7f3d0";
+        circle.style.stroke = "#10b981";
+        feedback.innerHTML = "Outstanding achievement! You possess a robust, nuanced command over core English syntax, irregular conjugations, adjective hierarchy (OSASCOMP), and idiomatic conventions. You are fully equipped to excel in Phase 2 (Advanced Grammar & Tenses).";
+    } else if (percent >= 80) {
+        badge.innerText = "🎯 Proficient Foundation (80–89%)";
+        badge.style.background = "rgba(6, 182, 212, 0.25)";
+        badge.style.color = "#a5f3fc";
+        circle.style.stroke = "#06b6d4";
+        feedback.innerHTML = "Solid performance! You have passed the Phase 1 milestone. Review the detailed pedagogical notes below for any missed questions, specifically observing delicate distinctions in prepositional usage and subtle irregular verb forms before proceeding to Phase 2.";
+    } else if (percent >= 65) {
+        badge.innerText = "📚 Competent (Needs Consolidation • 65–79%)";
+        badge.style.background = "rgba(245, 158, 11, 0.25)";
+        badge.style.color = "#fde68a";
+        circle.style.stroke = "#f59e0b";
+        feedback.innerHTML = "You have demonstrated a working knowledge of foundational concepts, but several key areas—such as question tags, linking verbs, and adverb placement—require consolidation. Study the review notes thoroughly.";
+    } else {
+        badge.innerText = "⚠️ Targeted Review Recommended (Under 65%)";
+        badge.style.background = "rgba(239, 68, 68, 0.25)";
+        badge.style.color = "#fecaca";
+        circle.style.stroke = "#ef4444";
+        feedback.innerHTML = "Foundational grammar patterns require reinforcement. We strongly encourage revisiting Days 01 through 20 notes, repeating the daily drills, and retaking this mega quiz to solidify your understanding.";
+    }
+
+    renderReview('all');
+}
+
+// Render Review Cards
+function renderReview(filter = 'all') {
+    reviewContainer.innerHTML = '';
+    const letters = ['A', 'B', 'C', 'D'];
+
+    QUIZ_DATA.forEach((q, idx) => {
+        const userChoice = userAnswers[idx];
+        const isCorrect = userChoice === q.correct;
+        const isUnanswered = userChoice === null;
+
+        if (filter === 'correct' && !isCorrect) return;
+        if (filter === 'incorrect' && isCorrect) return;
+
+        const card = document.createElement('article');
+        card.className = `review-card ${isCorrect ? 'correct-card' : 'incorrect-card'}`;
+
+        let statusBadge = '';
+        if (isCorrect) {
+            statusBadge = `<span class="status-tag correct">✓ Correct</span>`;
+        } else if (isUnanswered) {
+            statusBadge = `<span class="status-tag incorrect">⚠️ Unanswered</span>`;
+        } else {
+            statusBadge = `<span class="status-tag incorrect">✗ Incorrect</span>`;
+        }
+
+        let optionsHtml = '';
+        q.options.forEach((opt, optIdx) => {
+            let optClass = 'review-opt';
+            let mark = letters[optIdx];
+
+            if (optIdx === q.correct) {
+                optClass += ' is-correct';
+                mark += ' ✓ (Correct Answer)';
+            } else if (optIdx === userChoice && !isCorrect) {
+                optClass += ' is-user-incorrect';
+                mark += ' ✗ (Your Answer)';
+            }
+
+            optionsHtml += `
+                <div class="${optClass}">
+                    <span><strong>${mark}:</strong> ${opt}</span>
+                </div>
+            `;
+        });
+
+        card.innerHTML = `
+            <div class="review-q-header">
+                <div>
+                    <span style="font-weight: 700; color: var(--gray-900);">Question ${idx + 1}</span>
+                    <span style="color: var(--gray-600); margin-left: 8px;">• ${q.day} (${q.category})</span>
+                </div>
+                ${statusBadge}
+            </div>
+            <div class="review-q-text">${q.question}</div>
+            <div class="review-options">${optionsHtml}</div>
+            <div class="explanation-box">
+                <div class="explanation-heading">
+                    <span>💡 In-Depth Linguistic Breakdown</span>
+                </div>
+                <div class="explanation-content">${q.explanation}</div>
+            </div>
+        `;
+
+        reviewContainer.appendChild(card);
+    });
+}
+
+// Filter Review Tab Switch
+function filterReview(type, btnElem) {
+    document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+    if (btnElem) btnElem.classList.add('active');
+    renderReview(type);
+}
+
+// Retake Quiz Function
+function retakeQuiz() {
+    currentIndex = 0;
+    userAnswers = new Array(QUIZ_DATA.length).fill(null);
+    flaggedQuestions.clear();
+    timerSeconds = 45 * 60;
+    timeSpentSeconds = 0;
+    quizSubmitted = false;
+
+    // Reset Views
+    resultsContainer.style.display = 'none';
+    quizContainer.style.display = 'grid';
+    statusBar.style.display = 'flex';
+
+    initQuiz();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// Start application
+window.addEventListener('DOMContentLoaded', initQuiz);
+</script>
+
+</body>
+</html>
