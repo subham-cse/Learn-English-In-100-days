@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Day 28 Quiz: Definite and Indefinite Articles</title>
+  <style>
+    :root {
+      --primary: #4f46e5;
+      --primary-hover: #4338ca;
+      --success: #16a34a;
+      --danger: #dc2626;
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+      --text: #0f172a;
+      --text-muted: #64748b;
+      --border: #e2e8f0;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+    body { background-color: var(--bg); color: var(--text); min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 20px; }
+    .quiz-container { background: var(--card-bg); max-width: 680px; width: 100%; border-radius: 16px; box-shadow: 0 10px 25px -5px rgba(0,0,0,0.1), 0 8px 10px -6px rgba(0,0,0,0.1); padding: 32px; border: 1px solid var(--border); }
+    .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; padding-bottom: 16px; border-bottom: 1px solid var(--border); }
+    .badge { background: #e0e7ff; color: var(--primary); padding: 6px 14px; border-radius: 9999px; font-weight: 600; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; }
+    .timer { font-size: 0.95rem; font-weight: 600; color: var(--text-muted); display: flex; align-items: center; gap: 6px; }
+    .progress-bar-container { width: 100%; height: 8px; background: #e2e8f0; border-radius: 9999px; overflow: hidden; margin-bottom: 24px; }
+    .progress-bar { height: 100%; width: 0%; background: var(--primary); transition: width 0.3s ease; }
+    .question-tracker { font-size: 0.875rem; color: var(--text-muted); font-weight: 600; margin-bottom: 8px; }
+    .question-text { font-size: 1.25rem; font-weight: 700; margin-bottom: 20px; line-height: 1.4; color: var(--text); }
+    .options-grid { display: flex; flex-direction: column; gap: 12px; margin-bottom: 24px; }
+    .option-btn { display: flex; align-items: center; padding: 14px 18px; border: 2px solid var(--border); border-radius: 12px; background: white; font-size: 1rem; cursor: pointer; transition: all 0.2s ease; text-align: left; line-height: 1.4; color: var(--text); }
+    .option-btn:hover:not(:disabled) { border-color: var(--primary); background: #f5f3ff; }
+    .option-btn.selected { border-color: var(--primary); background: #eef2ff; font-weight: 600; }
+    .option-btn.correct { border-color: var(--success); background: #f0fdf4; color: #14532d; }
+    .option-btn.incorrect { border-color: var(--danger); background: #fef2f2; color: #7f1d1d; }
+    .option-btn:disabled { cursor: default; }
+    .explanation-card { display: none; background: #f8fafc; border-left: 4px solid var(--primary); padding: 16px; border-radius: 8px; margin-bottom: 24px; font-size: 0.95rem; line-height: 1.5; color: #334155; }
+    .explanation-card.show { display: block; }
+    .footer { display: flex; justify-content: space-between; align-items: center; }
+    .btn { padding: 12px 24px; border-radius: 8px; font-weight: 600; font-size: 1rem; cursor: pointer; border: none; transition: background 0.2s; }
+    .btn-primary { background: var(--primary); color: white; }
+    .btn-primary:hover { background: var(--primary-hover); }
+    .btn-primary:disabled { opacity: 0.5; cursor: not-allowed; }
+    .results-container { display: none; text-align: center; padding: 20px 0; }
+    .results-container.show { display: block; }
+    .score-circle { width: 120px; height: 120px; border-radius: 50%; background: #eef2ff; border: 4px solid var(--primary); display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; font-size: 2rem; font-weight: 800; color: var(--primary); }
+    .summary-text { font-size: 1.1rem; color: var(--text-muted); margin-bottom: 24px; }
+    .review-list { text-align: left; margin: 24px 0; display: flex; flex-direction: column; gap: 16px; }
+    .review-item { padding: 16px; border-radius: 8px; border: 1px solid var(--border); background: #fafafa; }
+  </style>
+</head>
+<body>
+
+<div class="quiz-container">
+  <div id="quiz-screen">
+    <div class="header">
+      <span class="badge">Day 28 • Articles Quiz</span>
+      <div class="timer">⏱️ <span id="time-display">00:00</span></div>
+    </div>
+    <div class="progress-bar-container">
+      <div class="progress-bar" id="progress-bar"></div>
+    </div>
+    <div class="question-tracker" id="question-tracker">Question 1 of 5</div>
+    <h2 class="question-text" id="question-text">Question Prompt</h2>
+    <div class="options-grid" id="options-grid"></div>
+    <div class="explanation-card" id="explanation-card"></div>
+    <div class="footer">
+      <span id="score-counter" style="color: var(--text-muted); font-size: 0.9rem;">Score: 0</span>
+      <button class="btn btn-primary" id="action-btn" disabled>Submit Answer</button>
+    </div>
+  </div>
+
+  <div class="results-container" id="results-screen">
+    <div class="score-circle" id="final-score">0/5</div>
+    <h2 id="feedback-headline" style="margin-bottom: 8px;">Quiz Completed!</h2>
+    <p class="summary-text" id="feedback-subtext">You've completed the Day 28 Articles assessment.</p>
+    <div class="review-list" id="review-list"></div>
+    <button class="btn btn-primary" onclick="restartQuiz()">Retake Quiz</button>
+  </div>
+</div>
+
+<script>
+  const questions = [
+    {
+      question: "Which of the following phrases correctly uses the indefinite article based on phonetic pronunciation?",
+      options: [
+        "an university",
+        "a European country",
+        "a honest person",
+        "an one-way street"
+      ],
+      correct: 1,
+      explanation: "'European' begins with the consonant glide sound /j/ (like 'yellow'), so it requires 'a', not 'an'. Similarly, university takes 'a', whereas honest takes 'an' and one-way takes 'a'."
+    },
+    {
+      question: "Complete the sentence with correct articles: \"We took a boat cruise down ________ Danube before driving into ________ Alps.\"",
+      options: [
+        "the / the",
+        "Ø / the",
+        "the / Ø",
+        "a / the"
+      ],
+      correct: 0,
+      explanation: "Rivers (the Danube) and mountain chains (the Alps) both require the definite article 'the'."
+    },
+    {
+      question: "Which sentence accurately employs the zero article (Ø) for generalizations?",
+      options: [
+        "The doctors usually work very long hours.",
+        "Doctors usually work very long hours.",
+        "A doctors usually work very long hours.",
+        "The all doctors usually work very long hours."
+      ],
+      correct: 1,
+      explanation: "When making general claims about an entire class of people or things in the plural, standard English uses the zero article: 'Doctors usually work very long hours.'"
+    },
+    {
+      question: "Select the sentence with correct article usage regarding geographical proper nouns:",
+      options: [
+        "She visited the Mount Everest during her trip to Nepal.",
+        "We spent our summer vacation at the Lake Geneva.",
+        "He lives in the Netherlands and frequently travels to the United Kingdom.",
+        "They moved to the France to study art in the Paris."
+      ],
+      correct: 2,
+      explanation: "'The Netherlands' and 'the United Kingdom' take 'the' because of plural and political terms ('Kingdom'). Individual mountains (Mount Everest), lakes (Lake Geneva), and countries (France) take the zero article."
+    },
+    {
+      question: "\"He was seriously injured in a car crash and was rushed to ________ hospital.\"",
+      options: [
+        "the",
+        "a",
+        "Ø (no article)",
+        "an"
+      ],
+      correct: 2,
+      explanation: "In British English and general grammatical rule, institutional places used for their primary functional purpose (a patient receiving care) take the zero article: 'in/to hospital' (likewise: 'in bed', 'at school', 'in prison')."
+    }
+  ];
+
+  let currentIdx = 0;
+  let selectedOption = null;
+  let score = 0;
+  let timerSeconds = 0;
+  let timerInterval = null;
+  let userAnswers = [];
+
+  const timeDisplay = document.getElementById("time-display");
+  const progressBar = document.getElementById("progress-bar");
+  const questionTracker = document.getElementById("question-tracker");
+  const questionText = document.getElementById("question-text");
+  const optionsGrid = document.getElementById("options-grid");
+  const explanationCard = document.getElementById("explanation-card");
+  const actionBtn = document.getElementById("action-btn");
+  const scoreCounter = document.getElementById("score-counter");
+
+  function startTimer() {
+    clearInterval(timerInterval);
+    timerSeconds = 0;
+    timerInterval = setInterval(() => {
+      timerSeconds++;
+      const mins = String(Math.floor(timerSeconds / 60)).padStart(2, '0');
+      const secs = String(timerSeconds % 60).padStart(2, '0');
+      timeDisplay.textContent = `${mins}:${secs}`;
+    }, 1000);
+  }
+
+  function loadQuestion(idx) {
+    selectedOption = null;
+    actionBtn.disabled = true;
+    actionBtn.textContent = "Submit Answer";
+    explanationCard.classList.remove("show");
+    explanationCard.innerHTML = "";
+
+    const q = questions[idx];
+    questionTracker.textContent = `Question ${idx + 1} of ${questions.length}`;
+    questionText.textContent = q.question;
+    progressBar.style.width = `${((idx) / questions.length) * 100}%`;
+    optionsGrid.innerHTML = "";
+
+    q.options.forEach((opt, i) => {
+      const btn = document.createElement("button");
+      btn.className = "option-btn";
+      btn.textContent = opt;
+      btn.onclick = () => selectOption(i, btn);
+      optionsGrid.appendChild(btn);
+    });
+  }
+
+  function selectOption(index, button) {
+    if (actionBtn.textContent === "Next Question" || actionBtn.textContent === "View Results") return;
+    const buttons = optionsGrid.querySelectorAll(".option-btn");
+    buttons.forEach(b => b.classList.remove("selected"));
+    button.classList.add("selected");
+    selectedOption = index;
+    actionBtn.disabled = false;
+  }
+
+  actionBtn.onclick = () => {
+    if (actionBtn.textContent === "Submit Answer") {
+      const q = questions[currentIdx];
+      const buttons = optionsGrid.querySelectorAll(".option-btn");
+      const isCorrect = selectedOption === q.correct;
+      userAnswers.push({ qIndex: currentIdx, selected: selectedOption, isCorrect });
+
+      if (isCorrect) score++;
+      scoreCounter.textContent = `Score: ${score}`;
+
+      buttons.forEach((b, i) => {
+        b.disabled = true;
+        if (i === q.correct) b.classList.add("correct");
+        if (i === selectedOption && !isCorrect) b.classList.add("incorrect");
+      });
+
+      explanationCard.innerHTML = `<strong>${isCorrect ? '✅ Correct!' : '❌ Incorrect.'}</strong> ${q.explanation}`;
+      explanationCard.classList.add("show");
+
+      if (currentIdx === questions.length - 1) {
+        actionBtn.textContent = "View Results";
+      } else {
+        actionBtn.textContent = "Next Question";
+      }
+    } else if (actionBtn.textContent === "Next Question") {
+      currentIdx++;
+      loadQuestion(currentIdx);
+    } else if (actionBtn.textContent === "View Results") {
+      showResults();
+    }
+  };
+
+  function showResults() {
+    clearInterval(timerInterval);
+    document.getElementById("quiz-screen").style.display = "none";
+    const resultsScreen = document.getElementById("results-screen");
+    resultsScreen.classList.add("show");
+    
+    document.getElementById("final-score").textContent = `${score}/${questions.length}`;
+    const pct = (score / questions.length) * 100;
+    const headline = document.getElementById("feedback-headline");
+    const subtext = document.getElementById("feedback-subtext");
+
+    if (pct === 100) {
+      headline.textContent = "🌟 Article Master!";
+      subtext.textContent = "Flawless performance on definite, indefinite, and zero articles!";
+    } else if (pct >= 80) {
+      headline.textContent = "🎉 Great Knowledge!";
+      subtext.textContent = "You understand article nuances well across various categories.";
+    } else {
+      headline.textContent = "📚 Keep Reviewing!";
+      subtext.textContent = "Review the phonetic pronunciation and geographical rules in Day 28 notes.";
+    }
+
+    const reviewList = document.getElementById("review-list");
+    reviewList.innerHTML = "";
+    userAnswers.forEach((ans, i) => {
+      const q = questions[ans.qIndex];
+      const item = document.createElement("div");
+      item.className = "review-item";
+      item.innerHTML = `
+        <p><strong>Q${i+1}: ${q.question}</strong></p>
+        <p style="margin: 6px 0; color: ${ans.isCorrect ? 'var(--success)' : 'var(--danger)'}">
+          Your Answer: <em>${q.options[ans.selected]}</em> ${ans.isCorrect ? '✓' : '✗'}
+        </p>
+        ${!ans.isCorrect ? `<p style="color: var(--success); margin-bottom: 6px;">Correct Answer: <em>${q.options[q.correct]}</em></p>` : ''}
+        <p style="font-size: 0.85rem; color: var(--text-muted);">${q.explanation}</p>
+      `;
+      reviewList.appendChild(item);
+    });
+  }
+
+  function restartQuiz() {
+    currentIdx = 0;
+    score = 0;
+    userAnswers = [];
+    scoreCounter.textContent = "Score: 0";
+    document.getElementById("results-screen").classList.remove("show");
+    document.getElementById("quiz-screen").style.display = "block";
+    startTimer();
+    loadQuestion(0);
+  }
+
+  startTimer();
+  loadQuestion(0);
+</script>
+</body>
+</html>
