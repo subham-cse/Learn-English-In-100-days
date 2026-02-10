@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Day 39 Quiz: Reported Questions, Orders, and Requests</title>
+  <style>
+    :root {
+      --primary: #0284c7;
+      --primary-dark: #0369a1;
+      --success: #10b981;
+      --danger: #ef4444;
+      --bg: #f8fafc;
+      --card: #ffffff;
+      --text: #1e293b;
+      --muted: #64748b;
+      --border: #e2e8f0;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+    body { background: var(--bg); color: var(--text); padding: 2rem 1rem; line-height: 1.6; }
+    .quiz-container { max-width: 760px; margin: 0 auto; background: var(--card); border-radius: 1rem; box-shadow: 0 10px 25px rgba(0,0,0,0.05); overflow: hidden; border: 1px solid var(--border); }
+    .quiz-header { background: linear-gradient(135deg, #0369a1, #0284c7); color: #fff; padding: 2rem; }
+    .quiz-header h1 { font-size: 1.6rem; margin-bottom: 0.5rem; font-weight: 700; }
+    .quiz-header p { opacity: 0.9; font-size: 0.95rem; }
+    .quiz-toolbar { display: flex; justify-content: space-between; align-items: center; padding: 1rem 2rem; background: #f1f5f9; border-bottom: 1px solid var(--border); font-size: 0.9rem; font-weight: 600; color: var(--muted); }
+    .timer-badge { background: #e0f2fe; color: #0369a1; padding: 0.35rem 0.8rem; border-radius: 999px; display: inline-flex; align-items: center; gap: 0.4rem; }
+    .progress-bar-container { width: 100%; height: 6px; background: #e2e8f0; }
+    .progress-bar { height: 100%; width: 0%; background: var(--primary); transition: width 0.3s ease; }
+    .quiz-body { padding: 2rem; }
+    .question-card { display: none; }
+    .question-card.active { display: block; animation: fadeIn 0.3s ease; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+    .question-title { font-size: 1.15rem; font-weight: 600; margin-bottom: 1.25rem; color: var(--text); }
+    .options-grid { display: grid; gap: 0.85rem; margin-bottom: 1.75rem; }
+    .option-btn { display: flex; align-items: center; text-align: left; width: 100%; padding: 0.9rem 1.1rem; border: 2px solid var(--border); border-radius: 0.65rem; background: #fff; color: var(--text); cursor: pointer; transition: all 0.2s ease; font-size: 0.98rem; }
+    .option-btn:hover { border-color: var(--primary); background: #f0f9ff; }
+    .option-btn.selected { border-color: var(--primary); background: #e0f2fe; font-weight: 600; }
+    .option-letter { width: 28px; height: 28px; border-radius: 50%; background: #e2e8f0; display: inline-flex; align-items: center; justify-content: center; margin-right: 0.85rem; font-weight: 700; font-size: 0.85rem; flex-shrink: 0; }
+    .option-btn.selected .option-letter { background: var(--primary); color: #fff; }
+    .controls { display: flex; justify-content: space-between; align-items: center; margin-top: 1.5rem; }
+    .btn { padding: 0.65rem 1.4rem; border-radius: 0.5rem; font-weight: 600; cursor: pointer; border: none; font-size: 0.95rem; transition: background 0.2s ease; }
+    .btn-secondary { background: #e2e8f0; color: #334155; }
+    .btn-secondary:hover { background: #cbd5e1; }
+    .btn-primary { background: var(--primary); color: #fff; }
+    .btn-primary:hover { background: var(--primary-dark); }
+    .btn-submit { background: var(--success); color: #fff; }
+    .btn-submit:hover { background: #059669; }
+    .results-view { display: none; padding: 2rem; text-align: center; }
+    .score-circle { width: 110px; height: 110px; border-radius: 50%; background: #e0f2fe; border: 4px solid var(--primary); display: flex; flex-direction: column; align-items: center; justify-content: center; margin: 1rem auto; }
+    .score-number { font-size: 2rem; font-weight: 800; color: var(--primary-dark); }
+    .score-label { font-size: 0.8rem; text-transform: uppercase; color: var(--muted); font-weight: 700; }
+    .review-list { margin-top: 2rem; text-align: left; display: grid; gap: 1.25rem; }
+    .review-item { padding: 1.2rem; border-radius: 0.65rem; border: 1px solid var(--border); }
+    .review-item.correct { border-left: 5px solid var(--success); background: #f0fdf4; }
+    .review-item.incorrect { border-left: 5px solid var(--danger); background: #fef2f2; }
+    .review-explanation { margin-top: 0.5rem; font-size: 0.9rem; color: #334155; }
+  </style>
+</head>
+<body>
+  <div class="quiz-container">
+    <div class="quiz-header">
+      <h1>Day 39 Quiz: Reported Questions, Orders, and Requests</h1>
+      <p>Test your mastery of statement word order, connector particles (if/whether), and infinitive structures.</p>
+    </div>
+    
+    <div class="quiz-toolbar">
+      <span id="question-counter">Question 1 of 5</span>
+      <div class="timer-badge">⏱️ <span id="timer-display">03:00</span></div>
+    </div>
+    <div class="progress-bar-container">
+      <div class="progress-bar" id="progress-bar"></div>
+    </div>
+
+    <div class="quiz-body" id="quiz-body">
+      <!-- Question 1 -->
+      <div class="question-card active" data-index="0">
+        <h2 class="question-title">1. Which sentence correctly reports the direct question: <em>"Where did you store the backup files?"</em>?</h2>
+        <div class="options-grid">
+          <button class="option-btn" onclick="selectOption(0, 0)"><span class="option-letter">A</span>He asked me where had I stored the backup files?</button>
+          <button class="option-btn" onclick="selectOption(0, 1)"><span class="option-letter">B</span>He asked me where I had stored the backup files.</button>
+          <button class="option-btn" onclick="selectOption(0, 2)"><span class="option-letter">C</span>He asked me where did I store the backup files.</button>
+          <button class="option-btn" onclick="selectOption(0, 3)"><span class="option-letter">D</span>He asked me if where I stored the backup files.</button>
+        </div>
+      </div>
+
+      <!-- Question 2 -->
+      <div class="question-card" data-index="1">
+        <h2 class="question-title">2. Convert this Yes/No question into reported speech: <em>"Do you know the password?" Sarah inquired.</em></h2>
+        <div class="options-grid">
+          <button class="option-btn" onclick="selectOption(1, 0)"><span class="option-letter">A</span>Sarah inquired that if I knew the password.</button>
+          <button class="option-btn" onclick="selectOption(1, 1)"><span class="option-letter">B</span>Sarah inquired whether I knew the password.</button>
+          <button class="option-btn" onclick="selectOption(1, 2)"><span class="option-letter">C</span>Sarah inquired did I know the password.</button>
+          <button class="option-btn" onclick="selectOption(1, 3)"><span class="option-letter">D</span>Sarah inquired whether knew I the password.</button>
+        </div>
+      </div>
+
+      <!-- Question 3 -->
+      <div class="question-card" data-index="2">
+        <h2 class="question-title">3. How is the negative command <em>"Do not touch the electrical wiring!"</em> properly reported?</h2>
+        <div class="options-grid">
+          <button class="option-btn" onclick="selectOption(2, 0)"><span class="option-letter">A</span>The technician warned us to not touch the electrical wiring.</button>
+          <button class="option-btn" onclick="selectOption(2, 1)"><span class="option-letter">B</span>The technician warned us not to touch the electrical wiring.</button>
+          <button class="option-btn" onclick="selectOption(2, 2)"><span class="option-letter">C</span>The technician warned us that we didn't touch the electrical wiring.</button>
+          <button class="option-btn" onclick="selectOption(2, 3)"><span class="option-letter">D</span>The technician warned us to don't touch the electrical wiring.</button>
+        </div>
+      </div>
+
+      <!-- Question 4 -->
+      <div class="question-card" data-index="3">
+        <h2 class="question-title">4. Convert the polite request: <em>"Could you please review my article before 5 PM?"</em> into reported speech:</h2>
+        <div class="options-grid">
+          <button class="option-btn" onclick="selectOption(3, 0)"><span class="option-letter">A</span>She asked me to review her article before 5 PM.</button>
+          <button class="option-btn" onclick="selectOption(3, 1)"><span class="option-letter">B</span>She asked me if could I please review her article before 5 PM.</button>
+          <button class="option-btn" onclick="selectOption(3, 2)"><span class="option-letter">C</span>She told me that I reviewed her article before 5 PM.</button>
+          <button class="option-btn" onclick="selectOption(3, 3)"><span class="option-letter">D</span>She questioned me to please review her article before 5 PM.</button>
+        </div>
+      </div>
+
+      <!-- Question 5 -->
+      <div class="question-card" data-index="4">
+        <h2 class="question-title">5. Which of the following sentences contains a word order error in reported speech?</h2>
+        <div class="options-grid">
+          <button class="option-btn" onclick="selectOption(4, 0)"><span class="option-letter">A</span>The customer wanted to know how much the software cost.</button>
+          <button class="option-btn" onclick="selectOption(4, 1)"><span class="option-letter">B</span>The inspector inquired why was the fire alarm disabled.</button>
+          <button class="option-btn" onclick="selectOption(4, 2)"><span class="option-letter">C</span>She asked whether the flight had departed on schedule.</button>
+          <button class="option-btn" onclick="selectOption(4, 3)"><span class="option-letter">D</span>He asked when the seminar would conclude.</button>
+        </div>
+      </div>
+
+      <div class="controls">
+        <button class="btn btn-secondary" id="prev-btn" onclick="prevQuestion()" disabled>Previous</button>
+        <button class="btn btn-primary" id="next-btn" onclick="nextQuestion()">Next</button>
+        <button class="btn btn-submit" id="submit-btn" onclick="submitQuiz()" style="display: none;">Submit Quiz</button>
+      </div>
+    </div>
+
+    <!-- Results View -->
+    <div class="results-view" id="results-view">
+      <h2>Quiz Complete!</h2>
+      <div class="score-circle">
+        <div class="score-number" id="score-text">0/5</div>
+        <div class="score-label">Score</div>
+      </div>
+      <p id="feedback-msg" style="margin-bottom: 1.5rem; font-weight: 500;"></p>
+      <div class="review-list" id="review-list"></div>
+      <button class="btn btn-primary" style="margin-top: 2rem;" onclick="resetQuiz()">Retake Quiz</button>
+    </div>
+  </div>
+
+  <script>
+    const questions = [
+      {
+        question: "Which sentence correctly reports the direct question: 'Where did you store the backup files?'?",
+        options: [
+          "He asked me where had I stored the backup files?",
+          "He asked me where I had stored the backup files.",
+          "He asked me where did I store the backup files.",
+          "He asked me if where I stored the backup files."
+        ],
+        answer: 1,
+        explanation: "Reported questions must use normal statement word order (Subject 'I' + Verb 'had stored'). Auxiliary inversion ('had I') and question marks are strictly omitted."
+      },
+      {
+        question: "Convert this Yes/No question into reported speech: 'Do you know the password?' Sarah inquired.",
+        options: [
+          "Sarah inquired that if I knew the password.",
+          "Sarah inquired whether I knew the password.",
+          "Sarah inquired did I know the password.",
+          "Sarah inquired whether knew I the password."
+        ],
+        answer: 1,
+        explanation: "Yes/No questions are joined by 'if' or 'whether', the auxiliary 'do' is removed, and the verb shifts to past tense ('knew') in statement word order."
+      },
+      {
+        question: "How is the negative command 'Do not touch the electrical wiring!' properly reported?",
+        options: [
+          "The technician warned us to not touch the electrical wiring.",
+          "The technician warned us not to touch the electrical wiring.",
+          "The technician warned us that we didn't touch the electrical wiring.",
+          "The technician warned us to don't touch the electrical wiring."
+        ],
+        answer: 1,
+        explanation: "Negative orders take the structure: verb + object + 'not to' + base verb ('warned us not to touch')."
+      },
+      {
+        question: "Convert the polite request: 'Could you please review my article before 5 PM?' into reported speech:",
+        options: [
+          "She asked me to review her article before 5 PM.",
+          "She asked me if could I please review her article before 5 PM.",
+          "She told me that I reviewed her article before 5 PM.",
+          "She questioned me to please review her article before 5 PM."
+        ],
+        answer: 0,
+        explanation: "Polite requests transform cleanly into 'asked + object + to-infinitive' ('asked me to review'). The polite phrase 'could you please' is omitted."
+      },
+      {
+        question: "Which of the following sentences contains a word order error in reported speech?",
+        options: [
+          "The customer wanted to know how much the software cost.",
+          "The inspector inquired why was the fire alarm disabled.",
+          "She asked whether the flight had departed on schedule.",
+          "He asked when the seminar would conclude."
+        ],
+        answer: 1,
+        explanation: "Option B commits inverted word order ('why was the fire alarm disabled'). It must be statement order: 'why the fire alarm was disabled'."
+      }
+    ];
+
+    let currentQuestion = 0;
+    let userAnswers = Array(questions.length).fill(null);
+    let timeLeft = 180;
+    let timerInterval = null;
+
+    function startTimer() {
+      clearInterval(timerInterval);
+      timerInterval = setInterval(() => {
+        if (timeLeft <= 0) {
+          clearInterval(timerInterval);
+          submitQuiz();
+          return;
+        }
+        timeLeft--;
+        const min = String(Math.floor(timeLeft / 60)).padStart(2, '0');
+        const sec = String(timeLeft % 60).padStart(2, '0');
+        document.getElementById('timer-display').textContent = `${min}:${sec}`;
+      }, 1000);
+    }
+
+    function selectOption(qIdx, optIdx) {
+      userAnswers[qIdx] = optIdx;
+      const card = document.querySelectorAll('.question-card')[qIdx];
+      const buttons = card.querySelectorAll('.option-btn');
+      buttons.forEach((btn, idx) => {
+        btn.classList.toggle('selected', idx === optIdx);
+      });
+    }
+
+    function updateCardVisibility() {
+      const cards = document.querySelectorAll('.question-card');
+      cards.forEach((card, idx) => {
+        card.classList.toggle('active', idx === currentQuestion);
+      });
+      document.getElementById('question-counter').textContent = `Question ${currentQuestion + 1} of ${questions.length}`;
+      document.getElementById('progress-bar').style.width = `${((currentQuestion + 1) / questions.length) * 100}%`;
+      
+      document.getElementById('prev-btn').disabled = currentQuestion === 0;
+      if (currentQuestion === questions.length - 1) {
+        document.getElementById('next-btn').style.display = 'none';
+        document.getElementById('submit-btn').style.display = 'inline-block';
+      } else {
+        document.getElementById('next-btn').style.display = 'inline-block';
+        document.getElementById('submit-btn').style.display = 'none';
+      }
+    }
+
+    function nextQuestion() {
+      if (currentQuestion < questions.length - 1) {
+        currentQuestion++;
+        updateCardVisibility();
+      }
+    }
+
+    function prevQuestion() {
+      if (currentQuestion > 0) {
+        currentQuestion--;
+        updateCardVisibility();
+      }
+    }
+
+    function submitQuiz() {
+      clearInterval(timerInterval);
+      document.getElementById('quiz-body').style.display = 'none';
+      const resultsView = document.getElementById('results-view');
+      resultsView.style.display = 'block';
+
+      let score = 0;
+      const reviewContainer = document.getElementById('review-list');
+      reviewContainer.innerHTML = '';
+
+      questions.forEach((q, idx) => {
+        const isCorrect = userAnswers[idx] === q.answer;
+        if (isCorrect) score++;
+
+        const item = document.createElement('div');
+        item.className = `review-item ${isCorrect ? 'correct' : 'incorrect'}`;
+        const selectedText = userAnswers[idx] !== null ? q.options[userAnswers[idx]] : "No answer selected";
+        const correctText = q.options[q.answer];
+
+        item.innerHTML = `
+          <strong>Q${idx + 1}: ${q.question}</strong>
+          <p style="margin-top:0.4rem; font-size: 0.95rem;">
+            <strong>Your answer:</strong> ${selectedText} ${isCorrect ? '✅' : '❌'}
+          </p>
+          ${!isCorrect ? `<p style="font-size:0.95rem; color: #166534;"><strong>Correct answer:</strong> ${correctText}</p>` : ''}
+          <div class="review-explanation"><strong>Explanation:</strong> ${q.explanation}</div>
+        `;
+        reviewContainer.appendChild(item);
+      });
+
+      document.getElementById('score-text').textContent = `${score}/${questions.length}`;
+      const percentage = (score / questions.length) * 100;
+      let msg = "Keep practicing indirect questions and imperative reported speech!";
+      if (percentage === 100) msg = "Superb! Flawless grasp of indirect questions, orders, and requests.";
+      else if (percentage >= 80) msg = "Great score! Solid understanding of statement word order in reported questions.";
+      else if (percentage >= 60) msg = "Good effort! Remember to avoid auxiliary inversion in Wh- reported questions.";
+      document.getElementById('feedback-msg').textContent = msg;
+    }
+
+    function resetQuiz() {
+      userAnswers = Array(questions.length).fill(null);
+      currentQuestion = 0;
+      timeLeft = 180;
+      document.getElementById('timer-display').textContent = '03:00';
+      document.querySelectorAll('.option-btn').forEach(b => b.classList.remove('selected'));
+      document.getElementById('quiz-body').style.display = 'block';
+      document.getElementById('results-view').style.display = 'none';
+      updateCardVisibility();
+      startTimer();
+    }
+
+    // Initialize
+    updateCardVisibility();
+    startTimer();
+  </script>
+</body>
+</html>
