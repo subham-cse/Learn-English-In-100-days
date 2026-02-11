@@ -1,0 +1,1996 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phase 2 Milestone Mega Quiz | Days 21–40 Grammar & Sentence Structure</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #4361ee;
+            --primary-dark: #3a0ca3;
+            --primary-light: #4895ef;
+            --secondary: #7209b7;
+            --accent: #4cc9f0;
+            --success: #10b981;
+            --success-light: #ecfdf5;
+            --error: #ef4444;
+            --error-light: #fef2f2;
+            --warning: #f59e0b;
+            --warning-light: #fffbeb;
+            --bg-main: #f8fafc;
+            --surface: #ffffff;
+            --text-primary: #0f172a;
+            --text-secondary: #475569;
+            --text-muted: #94a3b8;
+            --border: #e2e8f0;
+            --border-hover: #cbd5e1;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.08);
+            --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -2px rgba(0,0,0,0.06);
+            --shadow-lg: 0 10px 25px -5px rgba(0,0,0,0.1), 0 8px 10px -6px rgba(0,0,0,0.04);
+            --shadow-xl: 0 20px 30px -10px rgba(67, 97, 238, 0.15);
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 16px;
+            --radius-xl: 24px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-main);
+            color: var(--text-primary);
+            min-height: 100vh;
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Top Header Navigation */
+        .quiz-navbar {
+            background: linear-gradient(135deg, #1e1b4b 0%, #312e81 50%, #4338ca 100%);
+            color: white;
+            padding: 1.25rem 2rem;
+            box-shadow: var(--shadow-md);
+            position: sticky;
+            top: 0;
+            z-index: 50;
+        }
+
+        .navbar-container {
+            max-width: 1300px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .quiz-branding {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .quiz-badge {
+            background: rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            padding: 0.35rem 0.85rem;
+            border-radius: 999px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            color: var(--accent);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .quiz-title-group h1 {
+            font-size: 1.35rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+        }
+
+        .quiz-title-group p {
+            font-size: 0.85rem;
+            color: #c7d2fe;
+            margin-top: 0.15rem;
+        }
+
+        .navbar-widgets {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .timer-badge {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 0.55rem 1.1rem;
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 600;
+            font-size: 1.1rem;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+        }
+
+        .timer-badge.warning {
+            background: rgba(239, 68, 68, 0.25);
+            border-color: #ef4444;
+            color: #fca5a5;
+            animation: pulse 1s infinite alternate;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.04); }
+        }
+
+        .timer-icon {
+            color: var(--accent);
+        }
+
+        .timer-badge.warning .timer-icon {
+            color: #ef4444;
+        }
+
+        /* Layout Container */
+        .main-layout {
+            max-width: 1300px;
+            margin: 2rem auto;
+            padding: 0 1.5rem;
+            flex: 1;
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr 340px;
+            gap: 2rem;
+            align-items: start;
+        }
+
+        /* Question Content Area */
+        .quiz-card {
+            background: var(--surface);
+            border-radius: var(--radius-xl);
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow-md);
+            padding: 2.25rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.75rem;
+            position: relative;
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 1rem;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 1.25rem;
+        }
+
+        .question-meta {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+        }
+
+        .q-number-pill {
+            background: #e0e7ff;
+            color: var(--primary-dark);
+            font-weight: 700;
+            font-size: 0.85rem;
+            padding: 0.35rem 0.85rem;
+            border-radius: 999px;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .q-topic-pill {
+            background: #f1f5f9;
+            color: var(--text-secondary);
+            font-size: 0.8rem;
+            font-weight: 600;
+            padding: 0.35rem 0.75rem;
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border);
+        }
+
+        .btn-flag {
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--text-secondary);
+            padding: 0.4rem 0.85rem;
+            border-radius: var(--radius-md);
+            font-size: 0.825rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.45rem;
+            transition: all 0.2s ease;
+        }
+
+        .btn-flag:hover {
+            border-color: var(--warning);
+            color: var(--warning);
+            background: var(--warning-light);
+        }
+
+        .btn-flag.active {
+            background: var(--warning-light);
+            border-color: var(--warning);
+            color: #d97706;
+        }
+
+        .question-text {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            line-height: 1.6;
+            white-space: pre-line;
+        }
+
+        /* Options List */
+        .options-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.9rem;
+        }
+
+        .option-item {
+            display: flex;
+            align-items: center;
+            padding: 1rem 1.25rem;
+            background: var(--surface);
+            border: 2px solid var(--border);
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            position: relative;
+            user-select: none;
+        }
+
+        .option-item:hover {
+            border-color: #a5b4fc;
+            background: #f8faff;
+            transform: translateY(-1px);
+        }
+
+        .option-item.selected {
+            border-color: var(--primary);
+            background: #eef2ff;
+            box-shadow: 0 0 0 1px var(--primary);
+        }
+
+        .option-letter {
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            background: #f1f5f9;
+            color: var(--text-secondary);
+            font-weight: 700;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1.1rem;
+            flex-shrink: 0;
+            transition: all 0.2s ease;
+        }
+
+        .option-item.selected .option-letter {
+            background: var(--primary);
+            color: white;
+        }
+
+        .option-text {
+            font-size: 1rem;
+            color: var(--text-primary);
+            font-weight: 500;
+            flex: 1;
+        }
+
+        /* Card Controls */
+        .card-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid var(--border);
+            padding-top: 1.5rem;
+            margin-top: 0.5rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .nav-btn-group {
+            display: flex;
+            gap: 0.75rem;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            font-size: 0.925rem;
+            font-weight: 600;
+            padding: 0.7rem 1.4rem;
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border: none;
+            outline: none;
+            text-decoration: none;
+        }
+
+        .btn-secondary {
+            background: #f1f5f9;
+            color: var(--text-secondary);
+            border: 1px solid var(--border);
+        }
+
+        .btn-secondary:hover:not(:disabled) {
+            background: #e2e8f0;
+            color: var(--text-primary);
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+            box-shadow: 0 4px 12px rgba(67, 97, 238, 0.25);
+        }
+
+        .btn-primary:hover:not(:disabled) {
+            background: var(--primary-dark);
+            transform: translateY(-1px);
+        }
+
+        .btn-submit {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+        }
+
+        .btn-submit:hover {
+            background: linear-gradient(135deg, #059669 0%, #047857 100%);
+            transform: translateY(-1px);
+        }
+
+        .btn:disabled {
+            opacity: 0.45;
+            cursor: not-allowed;
+            transform: none !important;
+            box-shadow: none !important;
+        }
+
+        /* Sidebar Palette & Stats */
+        .quiz-sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            position: sticky;
+            top: 6rem;
+        }
+
+        .sidebar-card {
+            background: var(--surface);
+            border-radius: var(--radius-xl);
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow-md);
+            padding: 1.5rem;
+        }
+
+        .sidebar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.25rem;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 0.75rem;
+        }
+
+        .sidebar-header h2 {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .answered-count-badge {
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            background: #e0e7ff;
+            padding: 0.25rem 0.6rem;
+            border-radius: 999px;
+        }
+
+        /* Progress Bar */
+        .progress-container {
+            margin-bottom: 1.25rem;
+        }
+
+        .progress-meta {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            margin-bottom: 0.4rem;
+        }
+
+        .progress-track {
+            height: 8px;
+            background: #e2e8f0;
+            border-radius: 999px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent), var(--primary));
+            border-radius: 999px;
+            transition: width 0.3s ease;
+        }
+
+        /* 30-Question Grid Palette */
+        .question-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 0.55rem;
+        }
+
+        .grid-btn {
+            aspect-ratio: 1;
+            border: 1px solid var(--border);
+            background: #f8fafc;
+            color: var(--text-secondary);
+            border-radius: var(--radius-sm);
+            font-weight: 700;
+            font-size: 0.85rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            transition: all 0.2s ease;
+        }
+
+        .grid-btn:hover {
+            border-color: var(--primary-light);
+            background: #eff6ff;
+            color: var(--primary);
+        }
+
+        .grid-btn.active {
+            border: 2px solid var(--primary);
+            color: var(--primary-dark);
+            background: #e0e7ff;
+            box-shadow: 0 0 0 2px rgba(67, 97, 238, 0.2);
+            font-weight: 800;
+        }
+
+        .grid-btn.answered {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        .grid-btn.answered.active {
+            border-color: var(--primary-dark);
+            box-shadow: 0 0 0 2px #c7d2fe;
+        }
+
+        .grid-btn.flagged::after {
+            content: '';
+            position: absolute;
+            top: 2px;
+            right: 2px;
+            width: 7px;
+            height: 7px;
+            background-color: var(--warning);
+            border-radius: 50%;
+            border: 1px solid white;
+        }
+
+        /* Legend */
+        .palette-legend {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.6rem;
+            margin-top: 1.25rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--border);
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .legend-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 3px;
+        }
+
+        .legend-dot.answered { background: var(--primary); }
+        .legend-dot.unanswered { background: #f8fafc; border: 1px solid var(--border); }
+        .legend-dot.current { border: 2px solid var(--primary); background: #e0e7ff; }
+        .legend-dot.flagged { background: var(--warning); }
+
+        /* Modal Styles */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(15, 23, 42, 0.65);
+            backdrop-filter: blur(4px);
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.2s ease;
+        }
+
+        .modal-overlay.open {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .modal-box {
+            background: var(--surface);
+            border-radius: var(--radius-xl);
+            max-width: 480px;
+            width: 100%;
+            padding: 2rem;
+            box-shadow: var(--shadow-xl);
+            transform: scale(0.95);
+            transition: transform 0.2s ease;
+            text-align: center;
+        }
+
+        .modal-overlay.open .modal-box {
+            transform: scale(1);
+        }
+
+        .modal-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: #fef3c7;
+            color: #d97706;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.75rem;
+            margin: 0 auto 1.25rem;
+        }
+
+        .modal-box h3 {
+            font-size: 1.35rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .modal-box p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.5;
+            margin-bottom: 1.5rem;
+        }
+
+        .modal-stats {
+            background: #f8fafc;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            padding: 1rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.75rem;
+            margin-bottom: 1.5rem;
+            text-align: left;
+        }
+
+        .modal-stat-val {
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--text-primary);
+        }
+
+        .modal-stat-label {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+        }
+
+        .modal-actions {
+            display: flex;
+            gap: 0.75rem;
+            justify-content: center;
+        }
+
+        /* Review / Results View */
+        .results-view {
+            display: none;
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1.5rem;
+            flex-direction: column;
+            gap: 2rem;
+            width: 100%;
+        }
+
+        .score-hero-card {
+            background: linear-gradient(135deg, #1e1b4b 0%, #312e81 60%, #4338ca 100%);
+            color: white;
+            border-radius: var(--radius-xl);
+            padding: 2.5rem;
+            box-shadow: var(--shadow-xl);
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 2rem;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .score-hero-card::after {
+            content: '';
+            position: absolute;
+            right: -80px;
+            bottom: -80px;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(76, 201, 240, 0.15) 0%, rgba(255, 255, 255, 0) 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .score-info h2 {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.02em;
+        }
+
+        .score-info p {
+            color: #c7d2fe;
+            font-size: 1rem;
+            max-width: 600px;
+            margin-bottom: 1.5rem;
+        }
+
+        .badge-verdict {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            padding: 0.4rem 1rem;
+            border-radius: 999px;
+            font-weight: 700;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .badge-verdict.mastery { background: #10b981; color: white; }
+        .badge-verdict.proficient { background: #3b82f6; color: white; }
+        .badge-verdict.developing { background: #f59e0b; color: white; }
+        .badge-verdict.review { background: #ef4444; color: white; }
+
+        .score-stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+        }
+
+        .stat-card-pill {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            padding: 1rem;
+            border-radius: var(--radius-md);
+            text-align: center;
+        }
+
+        .stat-card-val {
+            font-size: 1.65rem;
+            font-weight: 800;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .stat-card-lbl {
+            font-size: 0.75rem;
+            color: #cbd5e1;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-top: 0.2rem;
+        }
+
+        .score-circle-box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: rgba(15, 23, 42, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 1.75rem;
+            border-radius: var(--radius-xl);
+            min-width: 220px;
+            text-align: center;
+        }
+
+        .score-pct {
+            font-size: 3.5rem;
+            font-weight: 800;
+            font-family: 'JetBrains Mono', monospace;
+            line-height: 1;
+            color: var(--accent);
+        }
+
+        .score-sub {
+            font-size: 0.9rem;
+            color: #e2e8f0;
+            margin-top: 0.5rem;
+        }
+
+        .results-action-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-tabs {
+            display: flex;
+            gap: 0.5rem;
+            background: var(--surface);
+            padding: 0.35rem;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border);
+        }
+
+        .filter-tab {
+            padding: 0.45rem 0.9rem;
+            border-radius: var(--radius-sm);
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            border: none;
+            background: transparent;
+            color: var(--text-secondary);
+            transition: all 0.2s ease;
+        }
+
+        .filter-tab.active {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* Detailed Question Breakdown */
+        .review-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .review-item {
+            background: var(--surface);
+            border-radius: var(--radius-xl);
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow-sm);
+            padding: 1.75rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+            position: relative;
+        }
+
+        .review-item.is-correct {
+            border-left: 6px solid var(--success);
+        }
+
+        .review-item.is-incorrect {
+            border-left: 6px solid var(--error);
+        }
+
+        .review-item.is-skipped {
+            border-left: 6px solid var(--warning);
+        }
+
+        .review-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+
+        .review-status-tag {
+            font-size: 0.8rem;
+            font-weight: 700;
+            padding: 0.35rem 0.75rem;
+            border-radius: 999px;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            text-transform: uppercase;
+        }
+
+        .review-status-tag.correct {
+            background: var(--success-light);
+            color: var(--success);
+        }
+
+        .review-status-tag.incorrect {
+            background: var(--error-light);
+            color: var(--error);
+        }
+
+        .review-status-tag.skipped {
+            background: var(--warning-light);
+            color: #d97706;
+        }
+
+        .review-question-stem {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            line-height: 1.5;
+        }
+
+        .review-options {
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+        }
+
+        .review-opt {
+            padding: 0.75rem 1rem;
+            border-radius: var(--radius-md);
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            border: 1px solid var(--border);
+            background: #fafafa;
+        }
+
+        .review-opt.user-correct {
+            background: var(--success-light);
+            border-color: var(--success);
+            color: #065f46;
+            font-weight: 600;
+        }
+
+        .review-opt.user-wrong {
+            background: var(--error-light);
+            border-color: var(--error);
+            color: #991b1b;
+            font-weight: 600;
+        }
+
+        .review-opt.key-answer {
+            background: #f0fdf4;
+            border-color: #86efac;
+            color: #166534;
+            font-weight: 600;
+        }
+
+        .explanation-box {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: var(--radius-md);
+            padding: 1.1rem;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .explanation-title {
+            font-weight: 700;
+            color: var(--primary-dark);
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            margin-bottom: 0.4rem;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .footer {
+            margin-top: 3rem;
+            background: #0f172a;
+            color: #94a3b8;
+            padding: 2rem;
+            text-align: center;
+            font-size: 0.875rem;
+        }
+
+        @media (max-width: 992px) {
+            .main-layout {
+                grid-template-columns: 1fr;
+            }
+            .quiz-sidebar {
+                position: static;
+            }
+            .score-hero-card {
+                grid-template-columns: 1fr;
+            }
+            .score-stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 640px) {
+            .quiz-navbar {
+                padding: 1rem;
+            }
+            .quiz-card {
+                padding: 1.5rem;
+            }
+            .question-text {
+                font-size: 1.05rem;
+            }
+            .score-stats-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Top Navigation Bar -->
+    <header class="quiz-navbar">
+        <div class="navbar-container">
+            <div class="quiz-branding">
+                <div class="quiz-title-group">
+                    <div class="quiz-badge">
+                        <i class="fa-solid fa-graduation-cap"></i> Milestone Assessment
+                    </div>
+                    <h1>Phase 2 Mega Quiz: Grammar & Sentence Structure</h1>
+                    <p>Days 21–40 Mastery Examination &bull; 30 Advanced MCQs</p>
+                </div>
+            </div>
+
+            <div class="navbar-widgets">
+                <div class="timer-badge" id="quizTimer">
+                    <i class="fa-regular fa-clock timer-icon"></i>
+                    <span id="timerDisplay">45:00</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Quiz Active Container -->
+    <main class="main-layout" id="quizContainer">
+        <!-- Question Screen -->
+        <section class="quiz-card" aria-label="Question Card">
+            <div class="card-header">
+                <div class="question-meta">
+                    <span class="q-number-pill" id="qNumberBadge">
+                        <i class="fa-solid fa-hashtag"></i> Question 1 of 30
+                    </span>
+                    <span class="q-topic-pill" id="qTopicBadge">Topic Focus</span>
+                </div>
+                <button type="button" class="btn-flag" id="btnFlag" title="Flag this question to review later">
+                    <i class="fa-regular fa-bookmark"></i> Flag
+                </button>
+            </div>
+
+            <div class="question-text" id="questionStem">Loading Question...</div>
+
+            <div class="options-list" id="optionsContainer">
+                <!-- Dynamically generated options A, B, C, D -->
+            </div>
+
+            <div class="card-controls">
+                <div class="nav-btn-group">
+                    <button type="button" class="btn btn-secondary" id="btnPrev" disabled>
+                        <i class="fa-solid fa-arrow-left"></i> Previous
+                    </button>
+                    <button type="button" class="btn btn-primary" id="btnNext">
+                        Next <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                </div>
+                <button type="button" class="btn btn-submit" id="btnOpenSubmit">
+                    <i class="fa-solid fa-circle-check"></i> Submit Exam
+                </button>
+            </div>
+        </section>
+
+        <!-- Sidebar Palette Navigation -->
+        <aside class="quiz-sidebar" aria-label="Quiz Navigation Sidebar">
+            <div class="sidebar-card">
+                <div class="sidebar-header">
+                    <h2><i class="fa-solid fa-grip"></i> Question Palette</h2>
+                    <span class="answered-count-badge" id="answeredCounter">0 / 30 Answered</span>
+                </div>
+
+                <div class="progress-container">
+                    <div class="progress-meta">
+                        <span>Completion</span>
+                        <span id="progressPercentage">0%</span>
+                    </div>
+                    <div class="progress-track">
+                        <div class="progress-fill" id="progressBar" style="width: 0%;"></div>
+                    </div>
+                </div>
+
+                <div class="question-grid" id="questionGrid">
+                    <!-- 30 Buttons generated here -->
+                </div>
+
+                <div class="palette-legend">
+                    <div class="legend-item">
+                        <div class="legend-dot answered"></div> Answered
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-dot unanswered"></div> Unanswered
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-dot current"></div> Current
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-dot flagged"></div> Flagged
+                    </div>
+                </div>
+            </div>
+        </aside>
+    </main>
+
+    <!-- Results / Evaluation Screen -->
+    <section class="results-view" id="resultsView">
+        <div class="score-hero-card">
+            <div class="score-info">
+                <div id="verdictBadgeContainer">
+                    <span class="badge-verdict mastery" id="verdictBadge">Excellent Performance</span>
+                </div>
+                <h2 id="scoreHeading">Phase 2 Milestone Assessment Results</h2>
+                <p id="scoreSummaryText">Detailed diagnostic report for Days 21–40 (Grammar, Verb Aspects, Conditionals, Modals, Passive Voice, Reported Speech, and Relative Clauses).</p>
+
+                <div class="score-stats-grid">
+                    <div class="stat-card-pill">
+                        <div class="stat-card-val" id="statCorrect">0</div>
+                        <div class="stat-card-lbl">Correct</div>
+                    </div>
+                    <div class="stat-card-pill">
+                        <div class="stat-card-val" id="statIncorrect">0</div>
+                        <div class="stat-card-lbl">Incorrect</div>
+                    </div>
+                    <div class="stat-card-pill">
+                        <div class="stat-card-val" id="statUnanswered">0</div>
+                        <div class="stat-card-lbl">Skipped</div>
+                    </div>
+                    <div class="stat-card-pill">
+                        <div class="stat-card-val" id="statTimeSpent">00:00</div>
+                        <div class="stat-card-lbl">Time Taken</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="score-circle-box">
+                <div class="score-pct" id="scorePctDisplay">0%</div>
+                <div class="score-sub" id="scoreFraction">0 of 30 Correct</div>
+            </div>
+        </div>
+
+        <div class="results-action-bar">
+            <div class="filter-tabs">
+                <button type="button" class="filter-tab active" data-filter="all">All (30)</button>
+                <button type="button" class="filter-tab" data-filter="incorrect">Incorrect Only</button>
+                <button type="button" class="filter-tab" data-filter="correct">Correct Only</button>
+            </div>
+            <button type="button" class="btn btn-primary" id="btnRetakeQuiz">
+                <i class="fa-solid fa-rotate-left"></i> Retake Mega Quiz
+            </button>
+        </div>
+
+        <div class="review-list" id="reviewContainer">
+            <!-- Review items injected here -->
+        </div>
+    </section>
+
+    <!-- Submission Confirmation Modal -->
+    <div class="modal-overlay" id="confirmModal">
+        <div class="modal-box">
+            <div class="modal-icon">
+                <i class="fa-solid fa-triangle-exclamation"></i>
+            </div>
+            <h3>Submit Phase 2 Exam?</h3>
+            <p id="modalPromptText">You are about to finalize your answers. Once submitted, your score and in-depth pedagogical analysis will be generated.</p>
+
+            <div class="modal-stats">
+                <div>
+                    <div class="modal-stat-val" id="modalAnsweredCount">0</div>
+                    <div class="modal-stat-label">Answered Questions</div>
+                </div>
+                <div>
+                    <div class="modal-stat-val" id="modalRemainingCount">30</div>
+                    <div class="modal-stat-label">Unanswered Questions</div>
+                </div>
+            </div>
+
+            <div class="modal-actions">
+                <button type="button" class="btn btn-secondary" id="btnCancelModal">Continue Test</button>
+                <button type="button" class="btn btn-submit" id="btnConfirmSubmit">Confirm & Evaluate</button>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>&copy; Learn English in 100 Days &bull; Phase 2 Milestone Mega Quiz &bull; Days 21–40 (Grammar & Sentence Structure)</p>
+    </footer>
+
+    <script>
+        /* =====================================================================
+           QUIZ DATA: 30 COMPREHENSIVE MCQs COVERING DAYS 21 TO 40
+           ===================================================================== */
+        const quizQuestions = [
+            {
+                id: 1,
+                day: "Day 21",
+                topic: "Stative vs Dynamic Verbs",
+                stem: "Which of the following sentences correctly demonstrates the distinction between stative and dynamic meanings of a verb?",
+                options: [
+                    "I am understanding the complex financial formula right now.",
+                    "She is having three older brothers living in Toronto.",
+                    "This stew tastes delicious, but the chef is currently tasting the soup to adjust the seasoning.",
+                    "We are believing that honest communication is paramount."
+                ],
+                correct: 2,
+                explanation: "Stative verbs (understand, possessive have, believe) describe permanent mental states, conditions, or relations and cannot be used in continuous aspects. However, sensory verbs like 'taste' function statively when describing an inherent quality ('stew tastes delicious') and dynamically when describing a physical deliberate action ('the chef is tasting the soup')."
+            },
+            {
+                id: 2,
+                day: "Day 21",
+                topic: "Present Continuous for Irritating Habits",
+                stem: "Why does the speaker employ the present continuous in: 'Marcus is always leaving his dirty coffee mugs on the boardroom table'?",
+                options: [
+                    "To express a formal future calendar appointment.",
+                    "To describe a temporary neutral action occurring right at this instant.",
+                    "To express annoyance, frustration, or criticism regarding a persistent, repetitive habit.",
+                    "To convey an immutable universal scientific fact."
+                ],
+                correct: 2,
+                explanation: "When the Present Continuous is paired with frequency adverbs such as 'always', 'constantly', or 'forever', it carries pragmatic meaning: expressing irritation, exaggeration, or critical evaluation of an annoying repeated habit."
+            },
+            {
+                id: 3,
+                day: "Day 22",
+                topic: "Narrative Interruption (Past Cont. vs Simple Past)",
+                stem: "Identify the sentence that accurately models background context and sudden narrative interruption:",
+                options: [
+                    "While we discussed the quarterly forecast, the power was suddenly failing.",
+                    "While we were discussing the quarterly forecast, the power suddenly failed.",
+                    "When we were discussing the quarterly forecast, the power had been suddenly failing.",
+                    "The power failed while we discussed the quarterly forecast yesterday."
+                ],
+                correct: 1,
+                explanation: "The past continuous ('were discussing') establishes the longer background activity in progress, while the simple past ('suddenly failed') introduces the shorter, punctual event that interrupts it."
+            },
+            {
+                id: 4,
+                day: "Day 22",
+                topic: "Simultaneous Past Actions with 'While'",
+                stem: "Choose the sentence that correctly portrays two continuous actions occurring simultaneously in the past without interruption:",
+                options: [
+                    "While Elena was analyzing the laboratory specimens, David prepared the slides.",
+                    "While Elena was analyzing the laboratory specimens, David was preparing the slides.",
+                    "While Elena analyzed the laboratory specimens, David had prepared the slides.",
+                    "Elena was analyzing the laboratory specimens when David has prepared the slides."
+                ],
+                correct: 1,
+                explanation: "When two prolonged activities unfolded in parallel throughout the same time frame in the past, the past continuous is used in both clauses connected by 'while' ('was analyzing ... was preparing')."
+            },
+            {
+                id: 5,
+                day: "Day 23",
+                topic: "Present Perfect vs Simple Past (Time Horizons)",
+                stem: "Which statement correctly illustrates the rule of finished vs. unfinished time periods?",
+                options: [
+                    "Dr. Albright called three patients this morning, and it is currently 10:30 AM.",
+                    "I have seen Dr. Albright yesterday afternoon to review the biopsy report.",
+                    "Dr. Albright has called three patients this morning, and it is currently 10:30 AM.",
+                    "Dr. Albright has called three patients this morning, and it is now 4:00 PM."
+                ],
+                correct: 2,
+                explanation: "The Present Perfect ('has called') is used with unfinished time intervals (10:30 AM is still part of the current morning). Once the morning has completely ended (e.g., at 4:00 PM), the Simple Past ('called') is mandatory because the time frame is closed."
+            },
+            {
+                id: 6,
+                day: "Day 23",
+                topic: "Present Perfect ('Been to' vs 'Gone to')",
+                stem: "'Where is Liam?' — 'He has _______ the distribution warehouse; he will return to headquarters before lunch.' Which form completes the sentence?",
+                options: [
+                    "been to",
+                    "gone to",
+                    "visited at",
+                    "been in"
+                ],
+                correct: 1,
+                explanation: "'Has gone to' signifies that the subject has traveled to the location and is currently there or en route (has not returned). 'Has been to' indicates a completed round trip where the subject has already returned."
+            },
+            {
+                id: 7,
+                day: "Day 24",
+                topic: "Present Perfect Continuous (Duration vs Quantity)",
+                stem: "Select the sentence that properly observes the grammatical boundary between duration (continuous) and quantity/completion (simple):",
+                options: [
+                    "She has been writing six investigative reports this week.",
+                    "She has written investigative reports since 8:00 AM without pausing.",
+                    "She has been writing since 8:00 AM, and she has written six comprehensive drafts so far.",
+                    "She has been writing six comprehensive drafts since 8:00 AM."
+                ],
+                correct: 2,
+                explanation: "The Present Perfect Continuous ('has been writing') emphasizes ongoing duration ('since 8:00 AM'). When stating exact quantities or completed units ('six comprehensive drafts'), English requires the Present Perfect Simple ('has written'), not the continuous."
+            },
+            {
+                id: 8,
+                day: "Day 24",
+                topic: "Present Perfect Continuous (Tangible Physical Evidence)",
+                stem: "'Why are your overalls stained with grease and motor oil?' — 'Because I ____________ on the hydraulic pump for three hours.'",
+                options: [
+                    "have been working",
+                    "had worked",
+                    "was worked",
+                    "am work"
+                ],
+                correct: 0,
+                explanation: "Present Perfect Continuous ('have been working') links a recently concluded or ongoing duration of activity to visible, tangible present physical evidence ('overalls stained with grease')."
+            },
+            {
+                id: 9,
+                day: "Day 25",
+                topic: "Past Perfect (Past-of-the-Past Sequencing)",
+                stem: "Which sentence demonstrates the correct sequential relationship using the Past Perfect?",
+                options: [
+                    "When the inspector arrived, the factory manager already shredded the non-compliant audit logs.",
+                    "By the time the fire brigade reached the commercial dock, the cargo vessel had already sunk.",
+                    "The cargo vessel sank before the fire brigade had reached the commercial dock.",
+                    "By the time the fire brigade had reached the dock, the vessel sank."
+                ],
+                correct: 1,
+                explanation: "The Past Perfect ('had already sunk') indicates an event completed prior to a designated past reference point or past event ('reached'). The standard sequence is: 'By the time + simple past, past perfect'."
+            },
+            {
+                id: 10,
+                day: "Day 25",
+                topic: "Past Perfect Continuous (Cause of Past Condition)",
+                stem: "The lead surgeon looked completely exhausted during the debrief because she ___________ in the operating theater for nine consecutive hours before relief arrived.",
+                options: [
+                    "has operated",
+                    "was operating",
+                    "had been operating",
+                    "had been operated"
+                ],
+                correct: 2,
+                explanation: "Past Perfect Continuous ('had been operating') emphasizes the extended duration of an ongoing action that led directly to a past result or state ('looked completely exhausted')."
+            },
+            {
+                id: 11,
+                day: "Day 26",
+                topic: "Future Forms (Spontaneous Decision vs Prior Plan)",
+                stem: "Consider the dialogue: 'The printer has run completely out of cyan toner!' — 'Don't worry, ________ a replacement cartridge from the supply depot immediately.'",
+                options: [
+                    "I will fetch",
+                    "I am fetching",
+                    "I am going to fetch",
+                    "I fetch"
+                ],
+                correct: 0,
+                explanation: "'Will' ('I will fetch') is required for spontaneous, on-the-spot decisions made at the exact instant of speaking. 'Be going to' implies a prior intention formed before speaking, and Present Continuous requires arranged logistics."
+            },
+            {
+                id: 12,
+                day: "Day 26",
+                topic: "Future Forms ('Be going to' for Present Evidence)",
+                stem: "Look at those dark, swirling thunderclouds and hear the automated sirens. It ________ severe rainfall within minutes.",
+                options: [
+                    "will have been",
+                    "is going to be",
+                    "shall be",
+                    "is being"
+                ],
+                correct: 1,
+                explanation: "'Be going to' is strictly used when making a prediction grounded in immediate, observable physical evidence in the present moment (swirling clouds, sirens), rather than a personal speculation."
+            },
+            {
+                id: 13,
+                day: "Day 27",
+                topic: "Future Continuous (Action in Progress at Specified Time)",
+                stem: "'Please avoid calling Dr. Vance between 2:00 PM and 4:00 PM tomorrow afternoon because he ________ a keynote lecture to international delegates.'",
+                options: [
+                    "will deliver",
+                    "will be delivering",
+                    "will have delivered",
+                    "delivers"
+                ],
+                correct: 1,
+                explanation: "Future Continuous ('will be delivering') describes an action that will be actively in progress during a specified future time window."
+            },
+            {
+                id: 14,
+                day: "Day 27",
+                topic: "Future Perfect (Milestones & Projections with 'By')",
+                stem: "By November of next year, the civil engineering consortium ________ the cross-bay suspension bridge.",
+                options: [
+                    "will complete",
+                    "will be completing",
+                    "will have completed",
+                    "is completing"
+                ],
+                correct: 2,
+                explanation: "The Future Perfect ('will have completed') is paired with 'by [future point in time]' to project that an action will be accomplished and concluded before or by that deadline."
+            },
+            {
+                id: 15,
+                day: "Day 28",
+                topic: "Articles (Geographical Names & Mountain Chains)",
+                stem: "Select the sentence with completely flawless article usage:",
+                options: [
+                    "The Mount Everest is the highest mountain peak in Himalayas.",
+                    "Mount Everest is the highest mountain peak in the Himalayas.",
+                    "A Mount Everest is the highest mountain peak in a Himalayas.",
+                    "The Mount Everest is highest mountain peak in the Himalayas."
+                ],
+                correct: 1,
+                explanation: "Single mountain peaks take zero article ('Mount Everest'), whereas mountain ranges take the definite article 'the' ('the Himalayas'). Superlative adjectives also take 'the' ('the highest')."
+            },
+            {
+                id: 16,
+                day: "Day 28",
+                topic: "Articles (General Substance vs Specific Instance)",
+                stem: "Which sentence correctly illustrates zero article for generalizations vs. the definite article for specific referents?",
+                options: [
+                    "The water boils at 100 degrees Celsius, but water in this beaker is contaminated.",
+                    "Water boils at 100 degrees Celsius, but the water in this beaker is contaminated.",
+                    "A water boils at 100 degrees Celsius, but water in this beaker is contaminated.",
+                    "Water boils at 100 degrees Celsius, but a water in this beaker is contaminated."
+                ],
+                correct: 1,
+                explanation: "Uncountable nouns in general scientific statements require zero article ('Water boils at 100 degrees'). When referring to a specific, uniquely identified specimen bounded by context, 'the' is mandatory ('the water in this beaker')."
+            },
+            {
+                id: 17,
+                day: "Day 29",
+                topic: "Countable vs Uncountable Nouns & Partitives",
+                stem: "Identify the sentence that uses correct nouns, quantifiers, and partitives:",
+                options: [
+                    "The consultant gave us many valuable advices regarding our operational equipments.",
+                    "The consultant provided three pieces of advice regarding our operational equipment.",
+                    "The consultant gave us a few equipment and several advices for our expansion.",
+                    "The consultant provided three advices and many pieces of equipments."
+                ],
+                correct: 1,
+                explanation: "'Advice' and 'equipment' are strictly uncountable nouns in English. They cannot take plural '-s' ('advices', 'equipments' are non-standard) and cannot take direct numbers. Partitives like 'pieces of advice' and uncountable forms ('equipment') must be used."
+            },
+            {
+                id: 18,
+                day: "Day 29",
+                topic: "Quantifiers (Little vs A Little / Scarcity Nuance)",
+                stem: "'We must halt this expansion program immediately; we have ________ liquid capital remaining, which is barely enough to cover monthly payroll.'",
+                options: [
+                    "a little",
+                    "little",
+                    "a few",
+                    "few"
+                ],
+                correct: 1,
+                explanation: "'Capital' is uncountable, requiring 'little' or 'a little'. 'Little' without an article carries a negative meaning ('hardly any / dangerously scarce'), matching the urgent warning to halt expansion. 'A little' conveys a positive, sufficient amount."
+            },
+            {
+                id: 19,
+                day: "Day 30",
+                topic: "Modals of Ability (Past General vs Specific Achievement)",
+                stem: "Although the storm severed all primary communication cables, our field technician ________ restore satellite connectivity after four hours of intense troubleshooting.",
+                options: [
+                    "could",
+                    "was able to",
+                    "could have",
+                    "can"
+                ],
+                correct: 1,
+                explanation: "For a specific past achievement requiring effort and overcoming obstacles on a single occasion, English requires 'was/were able to' or 'managed to'. 'Could' is restricted to general past ability (e.g. 'She could read at age three')."
+            },
+            {
+                id: 20,
+                day: "Day 31",
+                topic: "Obligation & Prohibition (Mustn't vs Don't have to)",
+                stem: "Which pair correctly contrasts strict prohibition with absence of obligation?",
+                options: [
+                    "You mustn't wear formal attire (it's forbidden); you don't have to enter the sterile lab (it's optional).",
+                    "You don't have to smoke in the laboratory (forbidden); you mustn't bring a notepad (optional).",
+                    "You mustn't smoke inside the cleanroom (strictly prohibited); you don't have to wear a tie to the dinner (optional/not required).",
+                    "You have to not touch the wires (optional); you needn't ignore the emergency protocols (strictly prohibited)."
+                ],
+                correct: 2,
+                explanation: "'Mustn't' signals prohibition (it is forbidden / disallowed). 'Don't have to' (or 'needn't') indicates lack of necessity (you may do it if you choose, but it is not compulsory)."
+            },
+            {
+                id: 21,
+                day: "Day 32",
+                topic: "Modals of Past Deduction (Must have / Can't have)",
+                stem: "'The laboratory vault was secured with dual biometric authentication and no alarms triggered, yet the prototype vanished.' — 'Then the perpetrator ________ an insider with authorized credentials.'",
+                options: [
+                    "can't have been",
+                    "must have been",
+                    "should have been",
+                    "might not be"
+                ],
+                correct: 1,
+                explanation: "'Must have + past participle' expresses high certainty deduction in the past based on compelling circumstantial evidence (logical necessity)."
+            },
+            {
+                id: 22,
+                day: "Day 33",
+                topic: "Conditionals (First Conditional with 'Unless')",
+                stem: "Which sentence accurately utilizes the first conditional with 'unless'?",
+                options: [
+                    "Unless the regulatory committee will approve the budget, construction won't begin.",
+                    "Unless the regulatory committee approves the budget, construction will not begin.",
+                    "Unless the regulatory committee doesn't approve the budget, construction will begin.",
+                    "Unless the regulatory committee approves the budget, construction doesn't begin."
+                ],
+                correct: 1,
+                explanation: "'Unless' means 'if ... not' and introduces a condition in the simple present tense in the First Conditional ('unless the committee approves'). Future modals ('will') are prohibited inside conditional time clauses, and using a double negative ('doesn't approve') corrupts the logic."
+            },
+            {
+                id: 23,
+                day: "Day 34",
+                topic: "Second Conditional & Subjunctive 'Were'",
+                stem: "Choose the grammatically accurate Second Conditional sentence in formal English:",
+                options: [
+                    "If the lead architect was here today, she would explain the structural load calculations.",
+                    "If the lead architect were here today, she would explain the structural load calculations.",
+                    "If the lead architect would be here today, she explained the structural load calculations.",
+                    "If the lead architect is here today, she would have explained the structural load calculations."
+                ],
+                correct: 1,
+                explanation: "In formal and standard English, the subjunctive 'were' is used for all persons (including singular third person 'she were') in hypothetical Second Conditional 'if' clauses, paired with 'would + base verb' in the main clause."
+            },
+            {
+                id: 24,
+                day: "Day 35",
+                topic: "Third Conditional (Unreal Past Regret)",
+                stem: "Identify the correct Third Conditional construction expressing an unreal past scenario and outcome:",
+                options: [
+                    "If the quality assurance team tested the firmware thoroughly, the server wouldn't crash.",
+                    "If the quality assurance team had tested the firmware thoroughly, the server wouldn't have crashed.",
+                    "If the quality assurance team would have tested the firmware, the server hadn't crashed.",
+                    "Had the quality assurance team tested the firmware, the server didn't crash."
+                ],
+                correct: 1,
+                explanation: "The Third Conditional formula is: 'If + past perfect (had tested), would have + past participle (wouldn't have crashed)'. It refers to counterfactual past events that did not occur."
+            },
+            {
+                id: 25,
+                day: "Day 35",
+                topic: "Mixed Conditionals (Past Cause, Present Consequence)",
+                stem: "Select the Mixed Conditional sentence that correctly couples a past condition with a present result:",
+                options: [
+                    "If I didn't lose my passport yesterday, I would board the plane right now.",
+                    "If I hadn't taken the promotion last year, I wouldn't be living in Tokyo today.",
+                    "If I hadn't taken the promotion last year, I wouldn't have lived in Tokyo today.",
+                    "If I wouldn't have taken the promotion last year, I weren't living in Tokyo."
+                ],
+                correct: 1,
+                explanation: "This mixed conditional connects an unreal past condition ('If I hadn't taken' - Past Perfect) with an ongoing present result ('I wouldn't be living in Tokyo today' - would + continuous/bare infinitive)."
+            },
+            {
+                id: 26,
+                day: "Day 36",
+                topic: "Active vs Passive Voice (Present Continuous Passive)",
+                stem: "Transform the active sentence into the correct passive voice: 'The cyber security unit is currently investigating the unauthorized database intrusion.'",
+                options: [
+                    "The unauthorized database intrusion is investigated currently by the cyber security unit.",
+                    "The unauthorized database intrusion has been investigated by the cyber security unit.",
+                    "The unauthorized database intrusion is currently being investigated by the cyber security unit.",
+                    "The unauthorized database intrusion was being investigated by the cyber security unit."
+                ],
+                correct: 2,
+                explanation: "Present continuous passive requires: Subject + is/are/am + being + past participle ('is currently being investigated'). Omitting 'being' loses the continuous aspect."
+            },
+            {
+                id: 27,
+                day: "Day 37",
+                topic: "Impersonal Passive in Formal/Academic Discourse",
+                stem: "Which sentence exemplifies the impersonal passive structure commonly utilized for academic and corporate objectivity?",
+                options: [
+                    "People say that the semiconductor shortage will persist into Q4.",
+                    "It is widely believed that the semiconductor shortage will persist into Q4.",
+                    "They believe the semiconductor shortage will persist into Q4.",
+                    "Everyone is believing that the semiconductor shortage will persist."
+                ],
+                correct: 1,
+                explanation: "The impersonal passive ('It is widely believed/reported/expected that...') provides academic objectivity and institutional distance by removing subjective conversational pronouns like 'people' or 'they'."
+            },
+            {
+                id: 28,
+                day: "Day 38",
+                topic: "Reported Speech (Tense Backshift & Time Shift)",
+                stem: "Direct Speech: 'We signed the merger agreement yesterday,' the CEO stated.\nWhat is the correct reported speech transformation?",
+                options: [
+                    "The CEO stated that they signed the merger agreement yesterday.",
+                    "The CEO stated that they had signed the merger agreement the day before.",
+                    "The CEO stated that they would sign the merger agreement the previous day.",
+                    "The CEO stated that they have signed the merger agreement that day."
+                ],
+                correct: 1,
+                explanation: "With a past reporting verb ('stated'), Simple Past ('signed') backshifts to Past Perfect ('had signed'), and the time adverbial 'yesterday' shifts to 'the day before' or 'the previous day'."
+            },
+            {
+                id: 29,
+                day: "Day 39",
+                topic: "Reported Questions (Word Order & Backshift)",
+                stem: "Direct Speech: 'Where did you store the encrypted backup keys?' the auditor asked Marcus.\nSelect the correct reported question:",
+                options: [
+                    "The auditor asked Marcus where did he store the encrypted backup keys.",
+                    "The auditor asked Marcus where had he stored the encrypted backup keys.",
+                    "The auditor asked Marcus where he had stored the encrypted backup keys.",
+                    "The auditor asked Marcus whether he stored the encrypted backup keys."
+                ],
+                correct: 2,
+                explanation: "In reported Wh-questions: (1) inverted auxiliary order reverts to affirmative subject + verb word order ('where he had stored', not 'where had he stored'); (2) simple past ('did store') backshifts to past perfect ('had stored'); (3) question marks are omitted."
+            },
+            {
+                id: 30,
+                day: "Day 40",
+                topic: "Relative Clauses (Defining vs Non-Defining Rules)",
+                stem: "Which sentence correctly applies punctuation and relative pronoun rules for a non-defining relative clause?",
+                options: [
+                    "Dr. Thorne that spearheaded the clinical vaccine trials received the Nobel Prize.",
+                    "Dr. Thorne, that spearheaded the clinical vaccine trials, received the Nobel Prize.",
+                    "Dr. Thorne, who spearheaded the clinical vaccine trials, received the Nobel Prize.",
+                    "Dr. Thorne who spearheaded the clinical vaccine trials received the Nobel Prize."
+                ],
+                correct: 2,
+                explanation: "'Dr. Thorne' is a unique proper noun, making the relative clause non-defining (extra non-essential detail). Non-defining clauses MUST be set off by commas, and the relative pronoun 'that' can NEVER be used; 'who' is required for people."
+            }
+        ];
+
+        /* =====================================================================
+           QUIZ ENGINE & STATE MANAGEMENT
+           ===================================================================== */
+        const TOTAL_QUESTIONS = quizQuestions.length;
+        let currentQuestionIndex = 0;
+        let userAnswers = {}; // { questionId: selectedOptionIndex }
+        let flaggedQuestions = new Set();
+        let timerSeconds = 45 * 60; // 45 minutes
+        let timerInterval = null;
+        let quizSubmitted = false;
+        let timeElapsed = 0;
+
+        // DOM Elements
+        const timerDisplay = document.getElementById('timerDisplay');
+        const quizTimerBadge = document.getElementById('quizTimer');
+        const qNumberBadge = document.getElementById('qNumberBadge');
+        const qTopicBadge = document.getElementById('qTopicBadge');
+        const questionStem = document.getElementById('questionStem');
+        const optionsContainer = document.getElementById('optionsContainer');
+        const btnFlag = document.getElementById('btnFlag');
+        const btnPrev = document.getElementById('btnPrev');
+        const btnNext = document.getElementById('btnNext');
+        const btnOpenSubmit = document.getElementById('btnOpenSubmit');
+        const questionGrid = document.getElementById('questionGrid');
+        const answeredCounter = document.getElementById('answeredCounter');
+        const progressBar = document.getElementById('progressBar');
+        const progressPercentage = document.getElementById('progressPercentage');
+
+        // Modal Elements
+        const confirmModal = document.getElementById('confirmModal');
+        const btnCancelModal = document.getElementById('btnCancelModal');
+        const btnConfirmSubmit = document.getElementById('btnConfirmSubmit');
+        const modalAnsweredCount = document.getElementById('modalAnsweredCount');
+        const modalRemainingCount = document.getElementById('modalRemainingCount');
+
+        // Results View Elements
+        const quizContainer = document.getElementById('quizContainer');
+        const resultsView = document.getElementById('resultsView');
+        const scorePctDisplay = document.getElementById('scorePctDisplay');
+        const scoreFraction = document.getElementById('scoreFraction');
+        const verdictBadge = document.getElementById('verdictBadge');
+        const statCorrect = document.getElementById('statCorrect');
+        const statIncorrect = document.getElementById('statIncorrect');
+        const statUnanswered = document.getElementById('statUnanswered');
+        const statTimeSpent = document.getElementById('statTimeSpent');
+        const reviewContainer = document.getElementById('reviewContainer');
+        const btnRetakeQuiz = document.getElementById('btnRetakeQuiz');
+
+        /* Initialize Quiz */
+        function initQuiz() {
+            startTimer();
+            buildQuestionGrid();
+            renderQuestion(0);
+            updateProgress();
+        }
+
+        /* Timer Handler */
+        function startTimer() {
+            if (timerInterval) clearInterval(timerInterval);
+            timerInterval = setInterval(() => {
+                if (timerSeconds > 0) {
+                    timerSeconds--;
+                    timeElapsed++;
+                    updateTimerDisplay();
+
+                    if (timerSeconds <= 300) { // Under 5 minutes
+                        quizTimerBadge.classList.add('warning');
+                    }
+                } else {
+                    clearInterval(timerInterval);
+                    autoSubmitQuiz();
+                }
+            }, 1000);
+        }
+
+        function updateTimerDisplay() {
+            const minutes = Math.floor(timerSeconds / 60);
+            const seconds = timerSeconds % 60;
+            timerDisplay.textContent = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+        }
+
+        function formatDuration(totalSeconds) {
+            const m = Math.floor(totalSeconds / 60);
+            const s = totalSeconds % 60;
+            return `${m}m ${s}s`;
+        }
+
+        /* Build 30-Question Grid Palette */
+        function buildQuestionGrid() {
+            questionGrid.innerHTML = '';
+            for (let i = 0; i < TOTAL_QUESTIONS; i++) {
+                const btn = document.createElement('button');
+                btn.type = 'button';
+                btn.className = 'grid-btn';
+                btn.textContent = i + 1;
+                btn.id = `grid-btn-${i}`;
+                btn.title = `Jump to Question ${i + 1} (${quizQuestions[i].topic})`;
+                btn.addEventListener('click', () => jumpToQuestion(i));
+                questionGrid.appendChild(btn);
+            }
+        }
+
+        /* Render Current Question */
+        function renderQuestion(index) {
+            currentQuestionIndex = index;
+            const q = quizQuestions[index];
+
+            qNumberBadge.innerHTML = `<i class="fa-solid fa-hashtag"></i> Question ${index + 1} of ${TOTAL_QUESTIONS}`;
+            qTopicBadge.textContent = `${q.day}: ${q.topic}`;
+            questionStem.textContent = q.stem;
+
+            // Flag status
+            if (flaggedQuestions.has(q.id)) {
+                btnFlag.classList.add('active');
+                btnFlag.innerHTML = `<i class="fa-solid fa-bookmark"></i> Flagged`;
+            } else {
+                btnFlag.classList.remove('active');
+                btnFlag.innerHTML = `<i class="fa-regular fa-bookmark"></i> Flag`;
+            }
+
+            // Options
+            optionsContainer.innerHTML = '';
+            const letters = ['A', 'B', 'C', 'D'];
+            q.options.forEach((optText, optIndex) => {
+                const optEl = document.createElement('div');
+                optEl.className = 'option-item';
+                if (userAnswers[q.id] === optIndex) {
+                    optEl.classList.add('selected');
+                }
+
+                optEl.innerHTML = `
+                    <div class="option-letter">${letters[optIndex]}</div>
+                    <div class="option-text">${optText}</div>
+                `;
+
+                optEl.addEventListener('click', () => selectOption(q.id, optIndex));
+                optionsContainer.appendChild(optEl);
+            });
+
+            // Nav buttons
+            btnPrev.disabled = (index === 0);
+            btnNext.disabled = (index === TOTAL_QUESTIONS - 1);
+
+            updateGridStyles();
+        }
+
+        /* Selection Handler */
+        function selectOption(questionId, optionIndex) {
+            if (quizSubmitted) return;
+
+            userAnswers[questionId] = optionIndex;
+            renderQuestion(currentQuestionIndex);
+            updateProgress();
+        }
+
+        /* Toggle Flag */
+        btnFlag.addEventListener('click', () => {
+            const currentQ = quizQuestions[currentQuestionIndex];
+            if (flaggedQuestions.has(currentQ.id)) {
+                flaggedQuestions.delete(currentQ.id);
+            } else {
+                flaggedQuestions.add(currentQ.id);
+            }
+            renderQuestion(currentQuestionIndex);
+        });
+
+        /* Jump / Navigation */
+        function jumpToQuestion(index) {
+            renderQuestion(index);
+        }
+
+        btnPrev.addEventListener('click', () => {
+            if (currentQuestionIndex > 0) {
+                renderQuestion(currentQuestionIndex - 1);
+            }
+        });
+
+        btnNext.addEventListener('click', () => {
+            if (currentQuestionIndex < TOTAL_QUESTIONS - 1) {
+                renderQuestion(currentQuestionIndex + 1);
+            }
+        });
+
+        /* Update Palette Styles & Progress */
+        function updateGridStyles() {
+            for (let i = 0; i < TOTAL_QUESTIONS; i++) {
+                const q = quizQuestions[i];
+                const btn = document.getElementById(`grid-btn-${i}`);
+                if (!btn) continue;
+
+                btn.className = 'grid-btn';
+
+                if (i === currentQuestionIndex) {
+                    btn.classList.add('active');
+                }
+                if (userAnswers[q.id] !== undefined) {
+                    btn.classList.add('answered');
+                }
+                if (flaggedQuestions.has(q.id)) {
+                    btn.classList.add('flagged');
+                }
+            }
+        }
+
+        function updateProgress() {
+            const answeredCount = Object.keys(userAnswers).length;
+            const pct = Math.round((answeredCount / TOTAL_QUESTIONS) * 100);
+
+            answeredCounter.textContent = `${answeredCount} / ${TOTAL_QUESTIONS} Answered`;
+            progressBar.style.width = `${pct}%`;
+            progressPercentage.textContent = `${pct}%`;
+        }
+
+        /* Modal Submissions */
+        btnOpenSubmit.addEventListener('click', () => {
+            const answeredCount = Object.keys(userAnswers).length;
+            const remainingCount = TOTAL_QUESTIONS - answeredCount;
+
+            modalAnsweredCount.textContent = answeredCount;
+            modalRemainingCount.textContent = remainingCount;
+            confirmModal.classList.add('open');
+        });
+
+        btnCancelModal.addEventListener('click', () => {
+            confirmModal.classList.remove('open');
+        });
+
+        confirmModal.addEventListener('click', (e) => {
+            if (e.target === confirmModal) {
+                confirmModal.classList.remove('open');
+            }
+        });
+
+        btnConfirmSubmit.addEventListener('click', () => {
+            confirmModal.classList.remove('open');
+            submitQuiz();
+        });
+
+        function autoSubmitQuiz() {
+            alert("Time has expired! Submitting your answers for evaluation.");
+            submitQuiz();
+        }
+
+        /* Evaluation & Submission Logic */
+        function submitQuiz() {
+            quizSubmitted = true;
+            if (timerInterval) clearInterval(timerInterval);
+
+            let correctCount = 0;
+            let incorrectCount = 0;
+            let unansweredCount = 0;
+
+            quizQuestions.forEach(q => {
+                const ans = userAnswers[q.id];
+                if (ans === undefined) {
+                    unansweredCount++;
+                } else if (ans === q.correct) {
+                    correctCount++;
+                } else {
+                    incorrectCount++;
+                }
+            });
+
+            const scorePercent = Math.round((correctCount / TOTAL_QUESTIONS) * 100);
+
+            // Populate Score Hero
+            scorePctDisplay.textContent = `${scorePercent}%`;
+            scoreFraction.textContent = `${correctCount} of ${TOTAL_QUESTIONS} Correct`;
+            statCorrect.textContent = correctCount;
+            statIncorrect.textContent = incorrectCount;
+            statUnanswered.textContent = unansweredCount;
+            statTimeSpent.textContent = formatDuration(timeElapsed);
+
+            // Verdict Badge
+            verdictBadge.className = 'badge-verdict';
+            if (scorePercent >= 90) {
+                verdictBadge.classList.add('mastery');
+                verdictBadge.innerHTML = `<i class="fa-solid fa-trophy"></i> Phase 2 Mastery Achieved`;
+            } else if (scorePercent >= 75) {
+                verdictBadge.classList.add('proficient');
+                verdictBadge.innerHTML = `<i class="fa-solid fa-medal"></i> Advanced Fluency`;
+            } else if (scorePercent >= 60) {
+                verdictBadge.classList.add('developing');
+                verdictBadge.innerHTML = `<i class="fa-solid fa-chart-line"></i> Competent - Revision Recommended`;
+            } else {
+                verdictBadge.classList.add('review');
+                verdictBadge.innerHTML = `<i class="fa-solid fa-triangle-exclamation"></i> Action Required - Needs Comprehensive Review`;
+            }
+
+            // Build Review List
+            buildReviewList('all');
+
+            // Switch Views
+            quizContainer.style.display = 'none';
+            resultsView.style.display = 'flex';
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        /* Build Detailed Pedagogical Review */
+        function buildReviewList(filter) {
+            reviewContainer.innerHTML = '';
+            const letters = ['A', 'B', 'C', 'D'];
+
+            quizQuestions.forEach((q, idx) => {
+                const userAns = userAnswers[q.id];
+                const isAnswered = (userAns !== undefined);
+                const isCorrect = (userAns === q.correct);
+
+                // Filter check
+                if (filter === 'correct' && !isCorrect) return;
+                if (filter === 'incorrect' && (isCorrect || !isAnswered)) return;
+
+                const card = document.createElement('div');
+                card.className = 'review-item';
+
+                let statusClass = 'is-skipped';
+                let tagMarkup = `<span class="review-status-tag skipped"><i class="fa-solid fa-circle-question"></i> Skipped</span>`;
+
+                if (isAnswered) {
+                    if (isCorrect) {
+                        statusClass = 'is-correct';
+                        tagMarkup = `<span class="review-status-tag correct"><i class="fa-solid fa-circle-check"></i> Correct</span>`;
+                    } else {
+                        statusClass = 'is-incorrect';
+                        tagMarkup = `<span class="review-status-tag incorrect"><i class="fa-solid fa-circle-xmark"></i> Incorrect</span>`;
+                    }
+                }
+
+                card.classList.add(statusClass);
+
+                // Build Options markup
+                let optionsMarkup = '';
+                q.options.forEach((optText, optIdx) => {
+                    let optClass = 'review-opt';
+                    let icon = '';
+
+                    if (optIdx === q.correct) {
+                        optClass += ' key-answer';
+                        icon = `<i class="fa-solid fa-check text-success" style="color:#10b981; margin-left:auto;"></i>`;
+                    }
+
+                    if (isAnswered && userAns === optIdx) {
+                        if (isCorrect) {
+                            optClass = 'review-opt user-correct';
+                            icon = `<i class="fa-solid fa-check" style="color:#10b981; margin-left:auto;"></i> (Your Choice)`;
+                        } else {
+                            optClass = 'review-opt user-wrong';
+                            icon = `<i class="fa-solid fa-xmark" style="color:#ef4444; margin-left:auto;"></i> (Your Choice)`;
+                        }
+                    }
+
+                    optionsMarkup += `
+                        <div class="${optClass}">
+                            <strong>${letters[optIdx]}.</strong> ${optText} ${icon}
+                        </div>
+                    `;
+                });
+
+                card.innerHTML = `
+                    <div class="review-header">
+                        <div class="question-meta">
+                            <span class="q-number-pill"><i class="fa-solid fa-hashtag"></i> Question ${idx + 1}</span>
+                            <span class="q-topic-pill">${q.day}: ${q.topic}</span>
+                        </div>
+                        ${tagMarkup}
+                    </div>
+
+                    <div class="review-question-stem">${q.stem}</div>
+
+                    <div class="review-options">
+                        ${optionsMarkup}
+                    </div>
+
+                    <div class="explanation-box">
+                        <div class="explanation-title">
+                            <i class="fa-solid fa-book-open"></i> Pedagogical Rationale & Grammar Rules
+                        </div>
+                        <div>${q.explanation}</div>
+                    </div>
+                `;
+
+                reviewContainer.appendChild(card);
+            });
+        }
+
+        /* Review Filter Tabs */
+        document.querySelectorAll('.filter-tab').forEach(tab => {
+            tab.addEventListener('click', function() {
+                document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+                buildReviewList(this.getAttribute('data-filter'));
+            });
+        });
+
+        /* Retake Quiz Handler */
+        btnRetakeQuiz.addEventListener('click', () => {
+            if (confirm("Are you sure you want to retake the Mega Quiz? All answers and time history will be reset.")) {
+                userAnswers = {};
+                flaggedQuestions.clear();
+                currentQuestionIndex = 0;
+                quizSubmitted = false;
+                timerSeconds = 45 * 60;
+                timeElapsed = 0;
+
+                quizTimerBadge.classList.remove('warning');
+                resultsView.style.display = 'none';
+                quizContainer.style.display = 'grid';
+
+                initQuiz();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        });
+
+        // Initialize on load
+        window.addEventListener('DOMContentLoaded', initQuiz);
+    </script>
+</body>
+</html>
