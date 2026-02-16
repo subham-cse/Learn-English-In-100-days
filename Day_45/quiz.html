@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Day 45 Quiz: Three-Word Phrasal Verbs</title>
+  <style>
+    :root {
+      --primary: #be185d;
+      --primary-dark: #9d174d;
+      --success: #10b981;
+      --danger: #ef4444;
+      --bg: #f8fafc;
+      --card: #ffffff;
+      --text: #1e293b;
+      --muted: #64748b;
+      --border: #e2e8f0;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+    body { background: var(--bg); color: var(--text); padding: 2rem 1rem; line-height: 1.6; }
+    .quiz-container { max-width: 760px; margin: 0 auto; background: var(--card); border-radius: 1rem; box-shadow: 0 10px 25px rgba(0,0,0,0.05); overflow: hidden; border: 1px solid var(--border); }
+    .quiz-header { background: linear-gradient(135deg, #831843, #be185d); color: #fff; padding: 2rem; }
+    .quiz-header h1 { font-size: 1.6rem; margin-bottom: 0.5rem; font-weight: 700; }
+    .quiz-header p { opacity: 0.9; font-size: 0.95rem; }
+    .quiz-toolbar { display: flex; justify-content: space-between; align-items: center; padding: 1rem 2rem; background: #f1f5f9; border-bottom: 1px solid var(--border); font-size: 0.9rem; font-weight: 600; color: var(--muted); }
+    .timer-badge { background: #fce7f3; color: #831843; padding: 0.35rem 0.8rem; border-radius: 999px; display: inline-flex; align-items: center; gap: 0.4rem; }
+    .progress-bar-container { width: 100%; height: 6px; background: #e2e8f0; }
+    .progress-bar { height: 100%; width: 0%; background: var(--primary); transition: width 0.3s ease; }
+    .quiz-body { padding: 2rem; }
+    .question-card { display: none; }
+    .question-card.active { display: block; animation: fadeIn 0.3s ease; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+    .question-title { font-size: 1.15rem; font-weight: 600; margin-bottom: 1.25rem; color: var(--text); }
+    .options-grid { display: grid; gap: 0.85rem; margin-bottom: 1.75rem; }
+    .option-btn { display: flex; align-items: center; text-align: left; width: 100%; padding: 0.9rem 1.1rem; border: 2px solid var(--border); border-radius: 0.65rem; background: #fff; color: var(--text); cursor: pointer; transition: all 0.2s ease; font-size: 0.98rem; }
+    .option-btn:hover { border-color: var(--primary); background: #fdf2f8; }
+    .option-btn.selected { border-color: var(--primary); background: #fce7f3; font-weight: 600; }
+    .option-letter { width: 28px; height: 28px; border-radius: 50%; background: #e2e8f0; display: inline-flex; align-items: center; justify-content: center; margin-right: 0.85rem; font-weight: 700; font-size: 0.85rem; flex-shrink: 0; }
+    .option-btn.selected .option-letter { background: var(--primary); color: #fff; }
+    .controls { display: flex; justify-content: space-between; align-items: center; margin-top: 1.5rem; }
+    .btn { padding: 0.65rem 1.4rem; border-radius: 0.5rem; font-weight: 600; cursor: pointer; border: none; font-size: 0.95rem; transition: background 0.2s ease; }
+    .btn-secondary { background: #e2e8f0; color: #334155; }
+    .btn-secondary:hover { background: #cbd5e1; }
+    .btn-primary { background: var(--primary); color: #fff; }
+    .btn-primary:hover { background: var(--primary-dark); }
+    .btn-submit { background: var(--success); color: #fff; }
+    .btn-submit:hover { background: #059669; }
+    .results-view { display: none; padding: 2rem; text-align: center; }
+    .score-circle { width: 110px; height: 110px; border-radius: 50%; background: #fdf2f8; border: 4px solid var(--primary); display: flex; flex-direction: column; align-items: center; justify-content: center; margin: 1rem auto; }
+    .score-number { font-size: 2rem; font-weight: 800; color: var(--primary-dark); }
+    .score-label { font-size: 0.8rem; text-transform: uppercase; color: var(--muted); font-weight: 700; }
+    .review-list { margin-top: 2rem; text-align: left; display: grid; gap: 1.25rem; }
+    .review-item { padding: 1.2rem; border-radius: 0.65rem; border: 1px solid var(--border); }
+    .review-item.correct { border-left: 5px solid var(--success); background: #f0fdf4; }
+    .review-item.incorrect { border-left: 5px solid var(--danger); background: #fef2f2; }
+    .review-explanation { margin-top: 0.5rem; font-size: 0.9rem; color: #334155; }
+  </style>
+</head>
+<body>
+  <div class="quiz-container">
+    <div class="quiz-header">
+      <h1>Day 45 Quiz: Phrasal Verbs with Three Words</h1>
+      <p>Evaluate your mastery of phrasal-prepositional verbs, inseparability rules, and the gerund pattern.</p>
+    </div>
+    
+    <div class="quiz-toolbar">
+      <span id="question-counter">Question 1 of 5</span>
+      <div class="timer-badge">⏱️ <span id="timer-display">03:00</span></div>
+    </div>
+    <div class="progress-bar-container">
+      <div class="progress-bar" id="progress-bar"></div>
+    </div>
+
+    <div class="quiz-body" id="quiz-body">
+      <!-- Question 1 -->
+      <div class="question-card active" data-index="0">
+        <h2 class="question-title">1. Which grammatical option correctly completes the email closing: <em>"I really look forward to ______ you at tomorrow's convention"</em>?</h2>
+        <div class="options-grid">
+          <button class="option-btn" onclick="selectOption(0, 0)"><span class="option-letter">A</span>meet</button>
+          <button class="option-btn" onclick="selectOption(0, 1)"><span class="option-letter">B</span>meeting</button>
+          <button class="option-btn" onclick="selectOption(0, 2)"><span class="option-letter">C</span>to meet</button>
+          <button class="option-btn" onclick="selectOption(0, 3)"><span class="option-letter">D</span>have met</button>
+        </div>
+      </div>
+
+      <!-- Question 2 -->
+      <div class="question-card" data-index="1">
+        <h2 class="question-title">2. Three-word phrasal verbs are always inseparable. Which sentence demonstrates the correct word order?</h2>
+        <div class="options-grid">
+          <button class="option-btn" onclick="selectOption(1, 0)"><span class="option-letter">A</span>I refuse to put that disrespect up with anymore.</button>
+          <button class="option-btn" onclick="selectOption(1, 1)"><span class="option-letter">B</span>I refuse to put up that disrespect with anymore.</button>
+          <button class="option-btn" onclick="selectOption(1, 2)"><span class="option-letter">C</span>I refuse to put up with that disrespect anymore.</button>
+          <button class="option-btn" onclick="selectOption(1, 3)"><span class="option-letter">D</span>I refuse to put up it with anymore.</button>
+        </div>
+      </div>
+
+      <!-- Question 3 -->
+      <div class="question-card" data-index="2">
+        <h2 class="question-title">3. What does <em>"come up with"</em> mean in: <em>"The engineering team came up with an ingenious solution"</em>?</h2>
+        <div class="options-grid">
+          <button class="option-btn" onclick="selectOption(2, 0)"><span class="option-letter">A</span>Tolerated an uncomfortable burden.</button>
+          <button class="option-btn" onclick="selectOption(2, 1)"><span class="option-letter">B</span>Devised, created, or innovated an idea or plan.</button>
+          <button class="option-btn" onclick="selectOption(2, 2)"><span class="option-letter">C</span>Ran out of vital raw materials.</button>
+          <button class="option-btn" onclick="selectOption(2, 3)"><span class="option-letter">D</span>Escaped legal punishment for negligence.</button>
+        </div>
+      </div>
+
+      <!-- Question 4 -->
+      <div class="question-card" data-index="3">
+        <h2 class="question-title">4. Which verb correctly means to deplete or completely exhaust your supply of an item?</h2>
+        <div class="options-grid">
+          <button class="option-btn" onclick="selectOption(3, 0)"><span class="option-letter">A</span>Cut down on</button>
+          <button class="option-btn" onclick="selectOption(3, 1)"><span class="option-letter">B</span>Run out of</button>
+          <button class="option-btn" onclick="selectOption(3, 2)"><span class="option-letter">C</span>Get away with</button>
+          <button class="option-btn" onclick="selectOption(3, 3)"><span class="option-letter">D</span>Stand up for</button>
+        </div>
+      </div>
+
+      <!-- Question 5 -->
+      <div class="question-card" data-index="4">
+        <h2 class="question-title">5. In the sentence <em>"The corrupt executive thought he could get away with tax evasion,"</em> what does <em>"get away with"</em> signify?</h2>
+        <div class="options-grid">
+          <button class="option-btn" onclick="selectOption(4, 0)"><span class="option-letter">A</span>Escape detection, reprimand, or legal penalty for wrongdoing.</button>
+          <button class="option-btn" onclick="selectOption(4, 1)"><span class="option-letter">B</span>Travel on an exotic holiday abroad.</button>
+          <button class="option-btn" onclick="selectOption(4, 2)"><span class="option-letter">C</span>Reduce the intake of harmful substances.</button>
+          <button class="option-btn" onclick="selectOption(4, 3)"><span class="option-letter">D</span>Anticipate something with great enthusiasm.</button>
+        </div>
+      </div>
+
+      <div class="controls">
+        <button class="btn btn-secondary" id="prev-btn" onclick="prevQuestion()" disabled>Previous</button>
+        <button class="btn btn-primary" id="next-btn" onclick="nextQuestion()">Next</button>
+        <button class="btn btn-submit" id="submit-btn" onclick="submitQuiz()" style="display: none;">Submit Quiz</button>
+      </div>
+    </div>
+
+    <!-- Results View -->
+    <div class="results-view" id="results-view">
+      <h2>Quiz Complete!</h2>
+      <div class="score-circle">
+        <div class="score-number" id="score-text">0/5</div>
+        <div class="score-label">Score</div>
+      </div>
+      <p id="feedback-msg" style="margin-bottom: 1.5rem; font-weight: 500;"></p>
+      <div class="review-list" id="review-list"></div>
+      <button class="btn btn-primary" style="margin-top: 2rem;" onclick="resetQuiz()">Retake Quiz</button>
+    </div>
+  </div>
+
+  <script>
+    const questions = [
+      {
+        question: "Which grammatical option correctly completes the email closing: 'I really look forward to ______ you at tomorrow's convention'?",
+        options: [
+          "meet",
+          "meeting",
+          "to meet",
+          "have met"
+        ],
+        answer: 1,
+        explanation: "In 'look forward to', 'to' is a preposition. Prepositions must be followed by a noun or gerund (-ing form): 'look forward to meeting'."
+      },
+      {
+        question: "Three-word phrasal verbs are always inseparable. Which sentence demonstrates the correct word order?",
+        options: [
+          "I refuse to put that disrespect up with anymore.",
+          "I refuse to put up that disrespect with anymore.",
+          "I refuse to put up with that disrespect anymore.",
+          "I refuse to put up it with anymore."
+        ],
+        answer: 2,
+        explanation: "Three-word phrasal verbs can never be separated. The direct object must follow all three components: 'put up with [object]'."
+      },
+      {
+        question: "What does 'come up with' mean in: 'The engineering team came up with an ingenious solution'?",
+        options: [
+          "Tolerated an uncomfortable burden.",
+          "Devised, created, or innovated an idea or plan.",
+          "Ran out of vital raw materials.",
+          "Escaped legal punishment for negligence."
+        ],
+        answer: 1,
+        explanation: "'Come up with' means to originate, invent, or devise a strategy, concept, or solution."
+      },
+      {
+        question: "Which verb correctly means to deplete or completely exhaust your supply of an item?",
+        options: [
+          "Cut down on",
+          "Run out of",
+          "Get away with",
+          "Stand up for"
+        ],
+        answer: 1,
+        explanation: "'Run out of' means you have consumed or exhausted your existing stock or supply of something."
+      },
+      {
+        question: "In the sentence 'The corrupt executive thought he could get away with tax evasion,' what does 'get away with' signify?",
+        options: [
+          "Escape detection, reprimand, or legal penalty for wrongdoing.",
+          "Travel on an exotic holiday abroad.",
+          "Reduce the intake of harmful substances.",
+          "Anticipate something with great enthusiasm."
+        ],
+        answer: 0,
+        explanation: "'Get away with' means to commit an error or crime without receiving the deserved punishment or consequence."
+      }
+    ];
+
+    let currentQuestion = 0;
+    let userAnswers = Array(questions.length).fill(null);
+    let timeLeft = 180;
+    let timerInterval = null;
+
+    function startTimer() {
+      clearInterval(timerInterval);
+      timerInterval = setInterval(() => {
+        if (timeLeft <= 0) {
+          clearInterval(timerInterval);
+          submitQuiz();
+          return;
+        }
+        timeLeft--;
+        const min = String(Math.floor(timeLeft / 60)).padStart(2, '0');
+        const sec = String(timeLeft % 60).padStart(2, '0');
+        document.getElementById('timer-display').textContent = `${min}:${sec}`;
+      }, 1000);
+    }
+
+    function selectOption(qIdx, optIdx) {
+      userAnswers[qIdx] = optIdx;
+      const card = document.querySelectorAll('.question-card')[qIdx];
+      const buttons = card.querySelectorAll('.option-btn');
+      buttons.forEach((btn, idx) => {
+        btn.classList.toggle('selected', idx === optIdx);
+      });
+    }
+
+    function updateCardVisibility() {
+      const cards = document.querySelectorAll('.question-card');
+      cards.forEach((card, idx) => {
+        card.classList.toggle('active', idx === currentQuestion);
+      });
+      document.getElementById('question-counter').textContent = `Question ${currentQuestion + 1} of ${questions.length}`;
+      document.getElementById('progress-bar').style.width = `${((currentQuestion + 1) / questions.length) * 100}%`;
+      
+      document.getElementById('prev-btn').disabled = currentQuestion === 0;
+      if (currentQuestion === questions.length - 1) {
+        document.getElementById('next-btn').style.display = 'none';
+        document.getElementById('submit-btn').style.display = 'inline-block';
+      } else {
+        document.getElementById('next-btn').style.display = 'inline-block';
+        document.getElementById('submit-btn').style.display = 'none';
+      }
+    }
+
+    function nextQuestion() {
+      if (currentQuestion < questions.length - 1) {
+        currentQuestion++;
+        updateCardVisibility();
+      }
+    }
+
+    function prevQuestion() {
+      if (currentQuestion > 0) {
+        currentQuestion--;
+        updateCardVisibility();
+      }
+    }
+
+    function submitQuiz() {
+      clearInterval(timerInterval);
+      document.getElementById('quiz-body').style.display = 'none';
+      const resultsView = document.getElementById('results-view');
+      resultsView.style.display = 'block';
+
+      let score = 0;
+      const reviewContainer = document.getElementById('review-list');
+      reviewContainer.innerHTML = '';
+
+      questions.forEach((q, idx) => {
+        const isCorrect = userAnswers[idx] === q.answer;
+        if (isCorrect) score++;
+
+        const item = document.createElement('div');
+        item.className = `review-item ${isCorrect ? 'correct' : 'incorrect'}`;
+        const selectedText = userAnswers[idx] !== null ? q.options[userAnswers[idx]] : "No answer selected";
+        const correctText = q.options[q.answer];
+
+        item.innerHTML = `
+          <strong>Q${idx + 1}: ${q.question}</strong>
+          <p style="margin-top:0.4rem; font-size: 0.95rem;">
+            <strong>Your answer:</strong> ${selectedText} ${isCorrect ? '✅' : '❌'}
+          </p>
+          ${!isCorrect ? `<p style="font-size:0.95rem; color: #166534;"><strong>Correct answer:</strong> ${correctText}</p>` : ''}
+          <div class="review-explanation"><strong>Explanation:</strong> ${q.explanation}</div>
+        `;
+        reviewContainer.appendChild(item);
+      });
+
+      document.getElementById('score-text').textContent = `${score}/${questions.length}`;
+      const percentage = (score / questions.length) * 100;
+      let msg = "Keep practicing three-word phrasal verbs and inseparability rules!";
+      if (percentage === 100) msg = "Flawless! Perfect mastery of three-word phrasal verbs and prepositional patterns.";
+      else if (percentage >= 80) msg = "Great job! Strong command of multi-word phrasal idioms.";
+      else if (percentage >= 60) msg = "Good effort! Remember: 'look forward to' requires a gerund (-ing).";
+      document.getElementById('feedback-msg').textContent = msg;
+    }
+
+    function resetQuiz() {
+      userAnswers = Array(questions.length).fill(null);
+      currentQuestion = 0;
+      timeLeft = 180;
+      document.getElementById('timer-display').textContent = '03:00';
+      document.querySelectorAll('.option-btn').forEach(b => b.classList.remove('selected'));
+      document.getElementById('quiz-body').style.display = 'block';
+      document.getElementById('results-view').style.display = 'none';
+      updateCardVisibility();
+      startTimer();
+    }
+
+    // Initialize
+    updateCardVisibility();
+    startTimer();
+  </script>
+</body>
+</html>
