@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Day 52 Quiz: Common Collocations (Adjective + Noun)</title>
+  <style>
+    :root {
+      --primary: #4f46e5;
+      --primary-hover: #4338ca;
+      --secondary: #06b6d4;
+      --success: #10b981;
+      --error: #ef4444;
+      --warning: #f59e0b;
+      --background: #f8fafc;
+      --card-bg: #ffffff;
+      --text: #1e293b;
+      --text-muted: #64748b;
+      --border: #e2e8f0;
+      --radius: 12px;
+      --shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.03);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    body {
+      background-color: var(--background);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 2rem 1rem;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 680px;
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 2rem;
+      border: 1px solid var(--border);
+    }
+
+    .header {
+      border-bottom: 2px solid var(--border);
+      padding-bottom: 1.25rem;
+      margin-bottom: 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .title-group h1 {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--primary);
+    }
+
+    .title-group p {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-top: 0.25rem;
+    }
+
+    .timer-badge {
+      background: #eff6ff;
+      color: var(--primary);
+      border: 1px solid #bfdbfe;
+      padding: 0.4rem 0.8rem;
+      border-radius: 999px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .progress-bar-container {
+      width: 100%;
+      height: 8px;
+      background: var(--border);
+      border-radius: 999px;
+      overflow: hidden;
+      margin-bottom: 1.5rem;
+    }
+
+    .progress-bar {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      transition: width 0.3s ease;
+    }
+
+    .question-count {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.5rem;
+    }
+
+    .question-title {
+      font-size: 1.15rem;
+      font-weight: 600;
+      margin-bottom: 1.25rem;
+      line-height: 1.5;
+    }
+
+    .options-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .option-btn {
+      background: #ffffff;
+      border: 1.5px solid var(--border);
+      padding: 0.9rem 1.2rem;
+      border-radius: var(--radius);
+      text-align: left;
+      font-size: 0.95rem;
+      cursor: pointer;
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      transition: all 0.2s ease;
+      color: var(--text);
+    }
+
+    .option-btn:hover {
+      border-color: var(--primary);
+      background: #f5f3ff;
+    }
+
+    .option-btn.selected {
+      border-color: var(--primary);
+      background: #ede9fe;
+      font-weight: 600;
+    }
+
+    .option-btn .letter-indicator {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: #e2e8f0;
+      color: #475569;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .option-btn.selected .letter-indicator {
+      background: var(--primary);
+      color: #ffffff;
+    }
+
+    .nav-actions {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 1rem;
+      border-top: 1px solid var(--border);
+      padding-top: 1.25rem;
+    }
+
+    .btn {
+      padding: 0.65rem 1.4rem;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      border: none;
+      transition: all 0.2s;
+    }
+
+    .btn-secondary {
+      background: #f1f5f9;
+      color: var(--text);
+    }
+
+    .btn-secondary:hover:not(:disabled) {
+      background: #e2e8f0;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: white;
+    }
+
+    .btn-primary:hover:not(:disabled) {
+      background: var(--primary-hover);
+    }
+
+    .btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    /* Score card */
+    .score-card {
+      display: none;
+      text-align: center;
+      padding: 1rem 0;
+    }
+
+    .score-circle {
+      width: 110px;
+      height: 110px;
+      border-radius: 50%;
+      background: #ede9fe;
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      font-weight: 800;
+      margin: 0 auto 1.25rem;
+      border: 4px solid var(--primary);
+    }
+
+    .score-card h2 {
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .score-card p {
+      color: var(--text-muted);
+      margin-bottom: 1.5rem;
+    }
+
+    .review-container {
+      margin-top: 2rem;
+      text-align: left;
+      border-top: 1px solid var(--border);
+      padding-top: 1.5rem;
+    }
+
+    .review-item {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.2rem;
+      margin-bottom: 1rem;
+    }
+
+    .review-item.correct {
+      border-left: 5px solid var(--success);
+    }
+
+    .review-item.incorrect {
+      border-left: 5px solid var(--error);
+    }
+
+    .review-q-title {
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      font-size: 0.95rem;
+    }
+
+    .review-detail {
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+      margin-top: 0.4rem;
+    }
+
+    .review-detail strong {
+      color: var(--text);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container" id="quizContainer">
+    <!-- Header -->
+    <div class="header">
+      <div class="title-group">
+        <h1>Day 52 Quiz</h1>
+        <p>Common Collocations: Adjective + Noun Pairings</p>
+      </div>
+      <div class="timer-badge">
+        ⏱️ <span id="timerText">00:00</span>
+      </div>
+    </div>
+
+    <!-- Active Question View -->
+    <div id="activeView">
+      <div class="progress-bar-container">
+        <div class="progress-bar" id="progressBar"></div>
+      </div>
+
+      <div class="question-count" id="questionIndicator">Question 1 of 5</div>
+      <div class="question-title" id="questionText">Question goes here</div>
+
+      <div class="options-grid" id="optionsContainer">
+        <!-- Injected via JavaScript -->
+      </div>
+
+      <div class="nav-actions">
+        <button class="btn btn-secondary" id="prevBtn" onclick="prevQuestion()" disabled>Previous</button>
+        <button class="btn btn-primary" id="nextBtn" onclick="nextQuestion()">Next</button>
+      </div>
+    </div>
+
+    <!-- Score Card View -->
+    <div class="score-card" id="scoreCard">
+      <div class="score-circle" id="scorePercentage">0%</div>
+      <h2 id="feedbackHeading">Great Job!</h2>
+      <p id="scoreSummary">You scored 0 out of 5.</p>
+      <button class="btn btn-primary" onclick="restartQuiz()">Retake Quiz</button>
+
+      <div class="review-container">
+        <h3 style="margin-bottom: 1rem; font-size: 1.1rem;">Detailed Answers & Explanations</h3>
+        <div id="reviewItems"></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const questions = [
+      {
+        question: "Which adjective correctly describes intense atmospheric precipitation in English?",
+        options: [
+          "Strong rain",
+          "Big rain",
+          "Heavy rain",
+          "Thick rain"
+        ],
+        answer: 2,
+        explanation: "In English weather collocations, intense rainfall is termed 'heavy rain'. 'Strong' pairs with wind, not rain."
+      },
+      {
+        question: "Select the natural collocation to complete: 'He was so exhausted that he sank into a _______ sleep.'",
+        options: [
+          "heavy",
+          "deep",
+          "hard",
+          "wide"
+        ],
+        answer: 1,
+        explanation: "Unconscious, profound sleep is idiomatically described as 'deep sleep' or 'sound sleep'."
+      },
+      {
+        question: "To describe dark, rich, highly concentrated coffee, native speakers use:",
+        options: [
+          "Heavy coffee",
+          "Solid coffee",
+          "Hard coffee",
+          "Strong coffee"
+        ],
+        answer: 3,
+        explanation: "Concentration and potency of flavors, drinks, and aromas collocate with 'strong' (strong tea, strong coffee, strong smell)."
+      },
+      {
+        question: "What is an exceptionally advantageous and rare circumstance called?",
+        options: [
+          "A platinum chance",
+          "A golden opportunity",
+          "A silver possibility",
+          "A diamond opening"
+        ],
+        answer: 1,
+        explanation: "'A golden opportunity' is the standard fixed collocation denoting a superb, unmissable chance."
+      },
+      {
+        question: "Which pairing is unnatural and non-standard?",
+        options: [
+          "Harsh reality",
+          "Vicious circle",
+          "Pressing issue",
+          "Quick food (meaning McDonald's style dining)"
+        ],
+        answer: 3,
+        explanation: "Fast service dining is universally collocated as 'fast food', never 'quick food'."
+      }
+    ];
+
+    let currentQuestion = 0;
+    let selectedAnswers = new Array(questions.length).fill(null);
+    let timerSeconds = 0;
+    let timerInterval = null;
+
+    function startTimer() {
+      clearInterval(timerInterval);
+      timerSeconds = 0;
+      timerInterval = setInterval(() => {
+        timerSeconds++;
+        const mins = String(Math.floor(timerSeconds / 60)).padStart(2, '0');
+        const secs = String(timerSeconds % 60).padStart(2, '0');
+        document.getElementById('timerText').textContent = `${mins}:${secs}`;
+      }, 1000);
+    }
+
+    function renderQuestion() {
+      const q = questions[currentQuestion];
+      document.getElementById('questionIndicator').textContent = `Question ${currentQuestion + 1} of ${questions.length}`;
+      document.getElementById('questionText').textContent = q.question;
+
+      const progressPercent = ((currentQuestion + 1) / questions.length) * 100;
+      document.getElementById('progressBar').style.width = `${progressPercent}%`;
+
+      const optionsContainer = document.getElementById('optionsContainer');
+      optionsContainer.innerHTML = '';
+
+      const letters = ['A', 'B', 'C', 'D'];
+      q.options.forEach((opt, idx) => {
+        const btn = document.createElement('button');
+        btn.className = 'option-btn' + (selectedAnswers[currentQuestion] === idx ? ' selected' : '');
+        btn.innerHTML = `<span class="letter-indicator">${letters[idx]}</span><span>${opt}</span>`;
+        btn.onclick = () => selectOption(idx);
+        optionsContainer.appendChild(btn);
+      });
+
+      document.getElementById('prevBtn').disabled = currentQuestion === 0;
+      document.getElementById('nextBtn').textContent = currentQuestion === questions.length - 1 ? 'Submit Quiz' : 'Next';
+    }
+
+    function selectOption(index) {
+      selectedAnswers[currentQuestion] = index;
+      renderQuestion();
+    }
+
+    function prevQuestion() {
+      if (currentQuestion > 0) {
+        currentQuestion--;
+        renderQuestion();
+      }
+    }
+
+    function nextQuestion() {
+      if (selectedAnswers[currentQuestion] === null) {
+        alert("Please select an answer before continuing.");
+        return;
+      }
+      if (currentQuestion < questions.length - 1) {
+        currentQuestion++;
+        renderQuestion();
+      } else {
+        finishQuiz();
+      }
+    }
+
+    function finishQuiz() {
+      clearInterval(timerInterval);
+      document.getElementById('activeView').style.display = 'none';
+      document.getElementById('scoreCard').style.display = 'block';
+
+      let score = 0;
+      questions.forEach((q, idx) => {
+        if (selectedAnswers[idx] === q.answer) score++;
+      });
+
+      const percentage = Math.round((score / questions.length) * 100);
+      document.getElementById('scorePercentage').textContent = `${percentage}%`;
+      document.getElementById('scoreSummary').textContent = `You scored ${score} out of ${questions.length} in ${document.getElementById('timerText').textContent}.`;
+
+      const heading = document.getElementById('feedbackHeading');
+      if (percentage === 100) heading.textContent = "Superb Precision! 🌟";
+      else if (percentage >= 70) heading.textContent = "Strong Command of Pairings 👍";
+      else heading.textContent = "Review Collocations & Retake 💪";
+
+      const reviewContainer = document.getElementById('reviewItems');
+      reviewContainer.innerHTML = '';
+      const letters = ['A', 'B', 'C', 'D'];
+
+      questions.forEach((q, idx) => {
+        const isCorrect = selectedAnswers[idx] === q.answer;
+        const item = document.createElement('div');
+        item.className = `review-item ${isCorrect ? 'correct' : 'incorrect'}`;
+        item.innerHTML = `
+          <div class="review-q-title">${idx + 1}. ${q.question}</div>
+          <div class="review-detail"><strong>Your answer:</strong> ${letters[selectedAnswers[idx]]}: ${q.options[selectedAnswers[idx]]} ${isCorrect ? '✅' : '❌'}</div>
+          ${!isCorrect ? `<div class="review-detail"><strong>Correct answer:</strong> ${letters[q.answer]}: ${q.options[q.answer]}</div>` : ''}
+          <div class="review-detail"><strong>Explanation:</strong> ${q.explanation}</div>
+        `;
+        reviewContainer.appendChild(item);
+      });
+    }
+
+    function restartQuiz() {
+      selectedAnswers.fill(null);
+      currentQuestion = 0;
+      document.getElementById('activeView').style.display = 'block';
+      document.getElementById('scoreCard').style.display = 'none';
+      startTimer();
+      renderQuestion();
+    }
+
+    startTimer();
+    renderQuestion();
+  </script>
+</body>
+</html>
