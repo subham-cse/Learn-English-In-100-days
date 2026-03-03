@@ -1,0 +1,1871 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Phase 3 Milestone Mega Quiz: Days 41–60 (Idioms, Phrasal Verbs & Expressions)</title>
+  <style>
+    :root {
+      --primary: #4f46e5;
+      --primary-hover: #4338ca;
+      --primary-light: #e0e7ff;
+      --primary-subtle: #eef2ff;
+      --accent: #f59e0b;
+      --accent-light: #fef3c7;
+      --success: #10b981;
+      --success-dark: #047857;
+      --success-subtle: #d1fae5;
+      --danger: #ef4444;
+      --danger-dark: #b91c1c;
+      --danger-subtle: #fee2e2;
+      --text: #0f172a;
+      --text-muted: #64748b;
+      --bg: #f8fafc;
+      --card: #ffffff;
+      --border: #e2e8f0;
+      --border-focus: #818cf8;
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 18px;
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.06);
+      --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.07), 0 2px 4px -2px rgba(0,0,0,0.05);
+      --shadow-lg: 0 10px 25px -5px rgba(0,0,0,0.1), 0 8px 10px -6px rgba(0,0,0,0.05);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      line-height: 1.5;
+    }
+
+    /* Top Navigation Header */
+    .header {
+      background: linear-gradient(135deg, #1e1b4b 0%, #312e81 50%, #4338ca 100%);
+      color: white;
+      padding: 20px 30px;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      box-shadow: 0 4px 12px rgba(15, 23, 42, 0.15);
+    }
+
+    .header-content {
+      max-width: 1280px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .header-title-box {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .milestone-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(255, 255, 255, 0.15);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      padding: 4px 12px;
+      border-radius: 9999px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      width: fit-content;
+    }
+
+    .header-title-box h1 {
+      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+
+    .header-title-box p {
+      font-size: 13.5px;
+      color: #cbd5e1;
+    }
+
+    .header-meta {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .timer-pill {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(15, 23, 42, 0.5);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      padding: 8px 16px;
+      border-radius: 10px;
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .timer-pill.warning {
+      background: rgba(239, 68, 68, 0.3);
+      border-color: #ef4444;
+      color: #fca5a5;
+      animation: pulse 1s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.75; }
+    }
+
+    /* Overall Layout */
+    .main-wrapper {
+      max-width: 1280px;
+      width: 100%;
+      margin: 24px auto;
+      padding: 0 20px;
+      display: grid;
+      grid-template-columns: 1fr 340px;
+      gap: 24px;
+      flex: 1;
+    }
+
+    @media (max-width: 992px) {
+      .main-wrapper {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Left: Quiz Stage */
+    .quiz-stage {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .card {
+      background: var(--card);
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-sm);
+      overflow: hidden;
+    }
+
+    /* Progress Bar */
+    .progress-bar-container {
+      width: 100%;
+      height: 6px;
+      background: #e2e8f0;
+      position: relative;
+    }
+
+    .progress-bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #4f46e5, #06b6d4);
+      width: 0%;
+      transition: width 0.3s ease;
+    }
+
+    /* Question Header */
+    .question-card-header {
+      padding: 20px 26px 14px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--border);
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .q-number-box {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .q-badge {
+      background: var(--primary-subtle);
+      color: var(--primary);
+      font-weight: 700;
+      font-size: 13px;
+      padding: 4px 12px;
+      border-radius: 6px;
+      border: 1px solid var(--primary-light);
+    }
+
+    .q-category-tag {
+      font-size: 13px;
+      color: var(--text-muted);
+      font-weight: 600;
+      background: #f1f5f9;
+      padding: 4px 10px;
+      border-radius: 6px;
+    }
+
+    .flag-btn {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      padding: 6px 12px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s;
+    }
+
+    .flag-btn:hover {
+      background: #f8fafc;
+      border-color: #cbd5e1;
+    }
+
+    .flag-btn.flagged {
+      background: var(--accent-light);
+      border-color: var(--accent);
+      color: #b45309;
+    }
+
+    /* Question Body */
+    .question-card-body {
+      padding: 26px;
+    }
+
+    .question-stem {
+      font-size: 18px;
+      font-weight: 600;
+      line-height: 1.6;
+      color: var(--text);
+      margin-bottom: 24px;
+    }
+
+    /* Options List */
+    .options-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .option-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 16px 18px;
+      border-radius: var(--radius-sm);
+      border: 1.5px solid var(--border);
+      background: #ffffff;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      position: relative;
+    }
+
+    .option-item:hover {
+      border-color: var(--border-focus);
+      background: var(--primary-subtle);
+      transform: translateY(-1px);
+    }
+
+    .option-item.selected {
+      border-color: var(--primary);
+      background: #f5f3ff;
+      box-shadow: 0 0 0 1px var(--primary);
+    }
+
+    .option-letter {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 28px;
+      height: 28px;
+      border-radius: 6px;
+      background: #f1f5f9;
+      color: var(--text);
+      font-weight: 700;
+      font-size: 14px;
+      flex-shrink: 0;
+      transition: all 0.2s;
+    }
+
+    .option-item.selected .option-letter {
+      background: var(--primary);
+      color: #ffffff;
+    }
+
+    .option-text {
+      font-size: 15px;
+      color: var(--text);
+      line-height: 1.5;
+      font-weight: 500;
+      padding-top: 2px;
+      flex: 1;
+    }
+
+    /* Footer & Controls */
+    .stage-footer {
+      padding: 20px 26px;
+      background: #f8fafc;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      border: none;
+      transition: all 0.2s ease;
+      text-decoration: none;
+    }
+
+    .btn-outline {
+      background: white;
+      border: 1px solid var(--border);
+      color: var(--text);
+    }
+
+    .btn-outline:hover:not(:disabled) {
+      background: #f1f5f9;
+      border-color: #cbd5e1;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: white;
+    }
+
+    .btn-primary:hover:not(:disabled) {
+      background: var(--primary-hover);
+    }
+
+    .btn-success {
+      background: var(--success);
+      color: white;
+    }
+
+    .btn-success:hover:not(:disabled) {
+      background: var(--success-dark);
+    }
+
+    .btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    /* Right: Navigation Drawer / Palette */
+    .sidebar-panel {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .palette-card {
+      padding: 20px;
+    }
+
+    .palette-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 14px;
+    }
+
+    .palette-header h3 {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .palette-counter {
+      font-size: 12.5px;
+      font-weight: 600;
+      color: var(--primary);
+      background: var(--primary-subtle);
+      padding: 2px 8px;
+      border-radius: 6px;
+    }
+
+    /* Grid of 30 questions */
+    .palette-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 8px;
+      margin-bottom: 18px;
+    }
+
+    .palette-btn {
+      aspect-ratio: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-weight: 700;
+      border-radius: 8px;
+      border: 1.5px solid var(--border);
+      background: white;
+      color: var(--text-muted);
+      cursor: pointer;
+      position: relative;
+      transition: all 0.2s;
+    }
+
+    .palette-btn:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+      background: var(--primary-subtle);
+    }
+
+    .palette-btn.current {
+      border-color: var(--primary);
+      outline: 2px solid var(--primary);
+      outline-offset: 1px;
+      color: var(--primary);
+      font-weight: 800;
+    }
+
+    .palette-btn.answered {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: white;
+    }
+
+    .palette-btn.flagged::after {
+      content: "";
+      position: absolute;
+      top: 3px;
+      right: 3px;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+
+    .palette-legend {
+      border-top: 1px solid var(--border);
+      padding-top: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .legend-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 3px;
+      border: 1px solid var(--border);
+    }
+
+    .legend-dot.answered { background: var(--primary); border-color: var(--primary); }
+    .legend-dot.unanswered { background: white; border-color: var(--border); }
+    .legend-dot.flagged { background: var(--accent-light); border-color: var(--accent); }
+    .legend-dot.current { border-color: var(--primary); outline: 2px solid var(--primary); }
+
+    .submit-cta-box {
+      margin-top: 10px;
+    }
+
+    .btn-submit-full {
+      width: 100%;
+      padding: 12px;
+      font-size: 15px;
+    }
+
+    /* Modal Dialog for Confirmation */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(15, 23, 42, 0.6);
+      backdrop-filter: blur(4px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      z-index: 100;
+    }
+
+    .modal-overlay.active {
+      display: flex;
+    }
+
+    .modal-card {
+      background: white;
+      border-radius: var(--radius-lg);
+      max-width: 480px;
+      width: 100%;
+      padding: 28px;
+      box-shadow: var(--shadow-lg);
+      text-align: center;
+    }
+
+    .modal-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: var(--primary-subtle);
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 16px;
+      font-size: 26px;
+    }
+
+    .modal-title {
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .modal-text {
+      font-size: 14.5px;
+      color: var(--text-muted);
+      margin-bottom: 24px;
+      line-height: 1.5;
+    }
+
+    .modal-stats {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 14px;
+      margin-bottom: 24px;
+      display: flex;
+      justify-content: space-around;
+      font-size: 14px;
+    }
+
+    .modal-stat-val {
+      font-weight: 700;
+      font-size: 18px;
+      display: block;
+      color: var(--text);
+    }
+
+    .modal-actions {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+    }
+
+    /* Score & Results View */
+    .results-view {
+      display: none;
+      flex-direction: column;
+      gap: 24px;
+      width: 100%;
+    }
+
+    .results-hero {
+      background: linear-gradient(135deg, #1e1b4b 0%, #312e81 60%, #4338ca 100%);
+      color: white;
+      border-radius: var(--radius-lg);
+      padding: 40px 30px;
+      text-align: center;
+      box-shadow: var(--shadow-lg);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .score-circle-wrapper {
+      position: relative;
+      width: 140px;
+      height: 140px;
+      margin: 0 auto 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255, 255, 255, 0.1);
+      border: 4px solid rgba(255, 255, 255, 0.3);
+      border-radius: 50%;
+    }
+
+    .score-big-num {
+      font-size: 38px;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+    }
+
+    .score-denom {
+      font-size: 16px;
+      font-weight: 600;
+      opacity: 0.8;
+    }
+
+    .results-title {
+      font-size: 26px;
+      font-weight: 800;
+      margin-bottom: 6px;
+    }
+
+    .results-subtitle {
+      font-size: 15px;
+      color: #cbd5e1;
+      max-width: 600px;
+      margin: 0 auto 20px;
+    }
+
+    .badge-tier {
+      display: inline-block;
+      padding: 6px 18px;
+      border-radius: 9999px;
+      font-weight: 700;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 24px;
+    }
+
+    .badge-tier.distinction { background: #10b981; color: white; }
+    .badge-tier.proficient { background: #3b82f6; color: white; }
+    .badge-tier.intermediate { background: #f59e0b; color: white; }
+    .badge-tier.needs-review { background: #ef4444; color: white; }
+
+    .metrics-summary-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .metric-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 18px;
+      text-align: center;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .metric-title {
+      font-size: 13px;
+      color: var(--text-muted);
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .metric-value {
+      font-size: 24px;
+      font-weight: 800;
+      color: var(--text);
+    }
+
+    .results-action-bar {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin: 20px 0;
+    }
+
+    /* Review Filter Section */
+    .review-filter-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      background: white;
+      padding: 16px 20px;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border);
+    }
+
+    .filter-btn-group {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .filter-btn {
+      padding: 6px 14px;
+      font-size: 13px;
+      font-weight: 600;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      background: white;
+      cursor: pointer;
+      color: var(--text);
+      transition: all 0.2s;
+    }
+
+    .filter-btn.active {
+      background: var(--primary);
+      color: white;
+      border-color: var(--primary);
+    }
+
+    /* Detailed Review Cards */
+    .review-list {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .review-card {
+      background: white;
+      border-radius: var(--radius-md);
+      border: 1.5px solid var(--border);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .review-card.correct {
+      border-left: 6px solid var(--success);
+    }
+
+    .review-card.incorrect {
+      border-left: 6px solid var(--danger);
+    }
+
+    .review-card-header {
+      padding: 16px 22px;
+      background: #f8fafc;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .review-card-body {
+      padding: 22px;
+    }
+
+    .review-q-stem {
+      font-size: 16.5px;
+      font-weight: 600;
+      line-height: 1.55;
+      margin-bottom: 16px;
+      color: var(--text);
+    }
+
+    .review-answers-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 8px;
+      margin-bottom: 18px;
+    }
+
+    .review-opt-item {
+      padding: 10px 14px;
+      border-radius: 6px;
+      font-size: 14px;
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .review-opt-item.user-wrong {
+      background: var(--danger-subtle);
+      border-color: var(--danger);
+      color: var(--danger-dark);
+      font-weight: 600;
+    }
+
+    .review-opt-item.is-correct {
+      background: var(--success-subtle);
+      border-color: var(--success);
+      color: var(--success-dark);
+      font-weight: 700;
+    }
+
+    .pedagogical-box {
+      background: #f1f5f9;
+      border-left: 4px solid var(--primary);
+      padding: 14px 18px;
+      border-radius: 6px;
+      font-size: 14px;
+      line-height: 1.6;
+      color: #334155;
+    }
+
+    .pedagogical-box strong {
+      color: var(--text);
+      display: block;
+      margin-bottom: 4px;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    /* Print / Utility */
+    @media (max-width: 600px) {
+      .header {
+        padding: 16px 20px;
+      }
+      .question-stem {
+        font-size: 16px;
+      }
+      .palette-grid {
+        grid-template-columns: repeat(6, 1fr);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Global Header -->
+  <header class="header">
+    <div class="header-content">
+      <div class="header-title-box">
+        <div class="milestone-badge">
+          <span>⚡ Phase 3 Milestone Assessment</span>
+        </div>
+        <h1>Days 41–60 Mega Quiz: Idioms, Phrasal Verbs & Expressions</h1>
+        <p>Comprehensive 30-Question Evaluative Exam • Official Course Benchmark</p>
+      </div>
+      <div class="header-meta">
+        <div class="timer-pill" id="timerPill">
+          <span>⏳ Time Remaining:</span>
+          <span id="timerDisplay">45:00</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content Stage -->
+  <main class="main-wrapper" id="mainContainer">
+    <!-- Left Stage: Active Question Card -->
+    <div class="quiz-stage" id="quizStage">
+      <div class="card">
+        <!-- Progress Bar -->
+        <div class="progress-bar-container">
+          <div class="progress-bar-fill" id="progressBar"></div>
+        </div>
+
+        <!-- Question Header -->
+        <div class="question-card-header">
+          <div class="q-number-box">
+            <span class="q-badge" id="questionBadge">Question 1 of 30</span>
+            <span class="q-category-tag" id="categoryTag">Everyday Phrasal Verbs</span>
+          </div>
+          <button class="flag-btn" id="flagBtn" title="Flag this question to review later">
+            <span id="flagIcon">⚐</span> <span id="flagText">Bookmark / Flag</span>
+          </button>
+        </div>
+
+        <!-- Question Body -->
+        <div class="question-card-body">
+          <div class="question-stem" id="questionStem">Loading question content...</div>
+          <div class="options-grid" id="optionsContainer">
+            <!-- Dynamic 4 options -->
+          </div>
+        </div>
+
+        <!-- Question Footer Controls -->
+        <div class="stage-footer">
+          <button class="btn btn-outline" id="prevBtn" disabled>
+            ← Previous
+          </button>
+          <div style="display: flex; gap: 10px;">
+            <button class="btn btn-outline" id="clearBtn">
+              Clear Choice
+            </button>
+            <button class="btn btn-primary" id="nextBtn">
+              Next Question →
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right Stage: Sidebar Grid Palette -->
+    <aside class="sidebar-panel" id="sidebarPanel">
+      <div class="card palette-card">
+        <div class="palette-header">
+          <h3>Question Palette</h3>
+          <span class="palette-counter" id="paletteCounter">0 / 30 Answered</span>
+        </div>
+
+        <!-- 30-Question Grid (1 to 30) -->
+        <div class="palette-grid" id="paletteGrid">
+          <!-- Populated dynamically via JS -->
+        </div>
+
+        <div class="palette-legend">
+          <div class="legend-item">
+            <span class="legend-dot current"></span>
+            <span>Current Question</span>
+          </div>
+          <div class="legend-item">
+            <span class="legend-dot answered"></span>
+            <span>Answered Question</span>
+          </div>
+          <div class="legend-item">
+            <span class="legend-dot unanswered"></span>
+            <span>Unanswered Question</span>
+          </div>
+          <div class="legend-item">
+            <span class="legend-dot flagged"></span>
+            <span>Flagged for Review</span>
+          </div>
+        </div>
+
+        <div class="submit-cta-box">
+          <button class="btn btn-success btn-submit-full" id="openSubmitModalBtn">
+            Finish & Submit Quiz
+          </button>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Results / Review Stage (Hidden initially) -->
+    <section class="results-view" id="resultsView">
+      <div class="results-hero">
+        <div class="score-circle-wrapper">
+          <div class="score-big-num" id="resScoreNum">27</div>
+          <div class="score-denom">/30</div>
+        </div>
+        <h2 class="results-title" id="resHeadline">Assessment Completed!</h2>
+        <p class="results-subtitle" id="resSubHeadline">Here is your comprehensive evaluation across all Phase 3 linguistic proficiencies.</p>
+        <span class="badge-tier distinction" id="resTierBadge">Mastery: Distinction</span>
+      </div>
+
+      <!-- Quick Metrics Summary -->
+      <div class="metrics-summary-grid">
+        <div class="metric-card">
+          <div class="metric-title">Accuracy Rate</div>
+          <div class="metric-value" id="resAccuracy">90.0%</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-title">Correct Answers</div>
+          <div class="metric-value" style="color: var(--success);" id="resCorrectCount">27</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-title">Incorrect Answers</div>
+          <div class="metric-value" style="color: var(--danger);" id="resWrongCount">3</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-title">Time Elapsed</div>
+          <div class="metric-value" id="resTimeElapsed">18:42</div>
+        </div>
+      </div>
+
+      <!-- Actions -->
+      <div class="results-action-bar">
+        <button class="btn btn-primary" id="retakeQuizBtn">
+          ↻ Retake Quiz
+        </button>
+        <button class="btn btn-outline" id="scrollReviewBtn">
+          ↓ View Question Explanations
+        </button>
+      </div>
+
+      <!-- Review Section Header & Filters -->
+      <div class="review-filter-bar">
+        <h3 style="font-size: 17px; font-weight: 700;">Detailed Question Analysis</h3>
+        <div class="filter-btn-group">
+          <button class="filter-btn active" data-filter="all" id="filterAll">All (30)</button>
+          <button class="filter-btn" data-filter="incorrect" id="filterWrong">Incorrect Only</button>
+          <button class="filter-btn" data-filter="correct" id="filterCorrect">Correct Only</button>
+        </div>
+      </div>
+
+      <!-- Review Questions List -->
+      <div class="review-list" id="reviewContainer">
+        <!-- Rendered by JS -->
+      </div>
+    </section>
+  </main>
+
+  <!-- Submission Confirmation Modal -->
+  <div class="modal-overlay" id="confirmModal">
+    <div class="modal-card">
+      <div class="modal-icon">📋</div>
+      <h3 class="modal-title">Ready to Submit?</h3>
+      <p class="modal-text">Please review your exam completion statistics before final scoring.</p>
+      
+      <div class="modal-stats">
+        <div>
+          <span class="modal-stat-val" id="modalAnsweredCount" style="color: var(--primary);">0</span>
+          <span>Answered</span>
+        </div>
+        <div>
+          <span class="modal-stat-val" id="modalUnansweredCount" style="color: var(--danger);">30</span>
+          <span>Unanswered</span>
+        </div>
+        <div>
+          <span class="modal-stat-val" id="modalFlaggedCount" style="color: var(--accent);">0</span>
+          <span>Flagged</span>
+        </div>
+      </div>
+
+      <div class="modal-actions">
+        <button class="btn btn-outline" id="cancelModalBtn">
+          Return to Quiz
+        </button>
+        <button class="btn btn-success" id="confirmSubmitBtn">
+          Yes, Submit Now
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- JavaScript Application Logic -->
+  <script>
+    // 30 High-Quality Questions Covering Days 41-60 Syllabus
+    const quizData = [
+      {
+        id: 1,
+        category: "Everyday Phrasal Verbs (Separability)",
+        stem: "Which of the following sentences correctly adheres to the rules of pronoun placement with separable phrasal verbs?",
+        options: [
+          "I couldn't recall the technical definition of the term, so I looked up it in the glossary.",
+          "The volume on the amplifier was far too loud, so my roommate asked me to turn down it.",
+          "When you encounter unfamiliar idiomatic expressions, be sure to look them up in your course guide.",
+          "The manager asked the assistant to throw away them before the inspection began."
+        ],
+        correct: 2,
+        explanation: "In English separable phrasal verbs ('look up', 'turn down', 'throw away'), when the direct object is a personal pronoun ('it', 'them', 'him', 'her'), the pronoun MUST be placed between the verb and the particle ('look them up', 'turn it down', 'throw them away'). Placing an unstressed object pronoun after the particle (*'look up it', *'turn down it') is ungrammatical."
+      },
+      {
+        id: 2,
+        category: "Phrasal Verbs (Inseparable Prepositional Verbs)",
+        stem: "Which sentence is grammatically INCORRECT regarding verb-particle inseparability?",
+        options: [
+          "While strolling through the international conference hall, I ran into an old colleague from London.",
+          "The senior auditor promised to look thoroughly into the questionable accounting ledger.",
+          "While walking through the international conference hall, I ran an old colleague into.",
+          "Our research team had to get off the bus right outside the botanical pavilion."
+        ],
+        correct: 2,
+        explanation: "'Run into' (meaning to encounter someone unexpectedly) is an inseparable phrasal verb. Its direct object cannot split the verb and preposition. Thus, 'ran an old colleague into' is ungrammatical. The object must follow the particle: 'ran into an old colleague'."
+      },
+      {
+        id: 3,
+        category: "Everyday Phrasal Verbs (Travel & Routine)",
+        stem: "Complete the sentence with the most appropriate and natural pair of phrasal verbs:\n\"Before boarding an international flight, passengers must __________ at the departure counter, and upon return, family members can __________ them __________ at the terminal.\"",
+        options: [
+          "check in / pick ... up",
+          "check out / drop ... off",
+          "sign off / take ... down",
+          "log on / pull ... over"
+        ],
+        correct: 0,
+        explanation: "'Check in' means to register one's arrival at an airport counter or hotel. 'Pick (someone) up' means to collect someone by vehicle. Conversely, 'check out' applies to departing a hotel, and 'drop off' refers to delivering someone to a destination."
+      },
+      {
+        id: 4,
+        category: "Workplace Phrasal Verbs (Call off vs Put off)",
+        stem: "Due to an emergency server maintenance window, today's executive review has been rescheduled for next Thursday, but the management team definitely still plans to hold it. Which sentence expresses this precisely?",
+        options: [
+          "The executive review was called off until next Thursday morning.",
+          "The executive review was put off until next Thursday, rather than being called off.",
+          "The executive review was backed down permanently until next week.",
+          "The executive review was broken off until next Thursday by the leadership team."
+        ],
+        correct: 1,
+        explanation: "'Put off' means to postpone or delay an activity to a later time or date. 'Call off' means to cancel an event entirely. Since the review is merely postponed to next Thursday and will still occur, it was 'put off', not 'called off'."
+      },
+      {
+        id: 5,
+        category: "Workplace & Productivity Phrasal Verbs",
+        stem: "Select the phrasal verb that best completes the sentence:\n\"The regulatory compliance division is scheduled to __________ a comprehensive security audit of all payment gateways next month.\"",
+        options: [
+          "carry out",
+          "take over",
+          "make off",
+          "pencil out"
+        ],
+        correct: 0,
+        explanation: "'Carry out' means to execute, perform, or conduct a task, investigation, or audit. 'Take over' means to assume control or ownership; 'make off' means to escape; 'pencil out' is an informal financial estimation term."
+      },
+      {
+        id: 6,
+        category: "Social & Communication Phrasal Verbs",
+        stem: "During the department retrospective, Elena wanted to address the issue of unequal overtime distribution, but she was unsure how to initiate it. Which phrasal verb means 'to mention or introduce a topic for discussion'?",
+        options: [
+          "Bring up",
+          "Bring about",
+          "Call upon",
+          "Back out"
+        ],
+        correct: 0,
+        explanation: "'Bring up' means to introduce, mention, or broach a topic in conversation or a meeting. 'Bring about' means to cause something to happen; 'call upon' means to invite or demand formally; 'back out' means to withdraw from an agreement."
+      },
+      {
+        id: 7,
+        category: "Social & Conflict Phrasal Verbs",
+        stem: "Identify the sentence where the phrasal verb 'back down' is used with its exact idiomatic meaning:",
+        options: [
+          "I haven't talked to Priya in months, so I decided to back down to her on LinkedIn.",
+          "Faced with undeniable empirical data and unanimous opposition, the director finally backed down and accepted the revisions.",
+          "Our tech help desk will back down your service ticket within three business hours.",
+          "Please remember to back down all sensitive attachments before sending the email."
+        ],
+        correct: 1,
+        explanation: "'Back down' means to withdraw a claim, concession, or adversarial stance in a debate or dispute. In Option A, the correct verb would be 'reach out'; in Option C, 'follow up on'; in Option D, 'strip' or 'back up'."
+      },
+      {
+        id: 8,
+        category: "Three-Word Phrasal Verbs (Ideation)",
+        stem: "Which three-word phrasal verb means 'to conceive, invent, or produce an idea, proposal, or solution'?",
+        options: [
+          "Put up with",
+          "Come up with",
+          "Look down on",
+          "Run out of"
+        ],
+        correct: 1,
+        explanation: "'Come up with' means to devise, originate, or suggest an idea or plan (e.g., 'She came up with a brilliant campaign concept'). 'Put up with' means to tolerate; 'look down on' means to view with condescension; 'run out of' means to exhaust a supply."
+      },
+      {
+        id: 9,
+        category: "Three-Word Phrasal Verbs (Grammatical Structure)",
+        stem: "Which sentence adheres strictly to standard English grammar following the phrasal verb 'look forward to'?",
+        options: [
+          "I look forward to receive your official response regarding our partnership.",
+          "Our regional sales team looks forward to meet with your representatives in Madrid.",
+          "We sincerely look forward to hearing your insights during the keynote panel.",
+          "The engineers look forward to test the newly configured pipeline tomorrow."
+        ],
+        correct: 2,
+        explanation: "In the three-word phrasal verb 'look forward to', the particle 'to' is a preposition, NOT the infinitive marker. Prepositions must take a noun or gerund (-ing form). Therefore, 'look forward to hearing' is grammatically correct. Using the base infinitive (*'look forward to receive/meet/test') is a very common grammatical mistake."
+      },
+      {
+        id: 10,
+        category: "Three-Word Phrasal Verbs (Tolerance & Depletion)",
+        stem: "Fill in the blanks with the correct pair:\n\"The team lead refused to __________ chronic absenteeism, especially since the department had virtually __________ billable hours.\"",
+        options: [
+          "get along with / fallen behind with",
+          "put up with / run out of",
+          "catch up on / cut back on",
+          "stand up to / looked down upon"
+        ],
+        correct: 1,
+        explanation: "'Put up with' means to endure or tolerate an unpleasant situation or behavior. 'Run out of' means to completely deplete or exhaust the available supply of a resource."
+      },
+      {
+        id: 11,
+        category: "Essential Daily Idioms (Courage Under Pressure)",
+        stem: "\"The surgical operation will require a lengthy rehabilitation, but Marcus decided to __________ and schedule it immediately.\"\nWhich idiom correctly expresses facing an inevitable, difficult situation with courage?",
+        options: [
+          "bite the bullet",
+          "beat around the bush",
+          "throw in the towel",
+          "jump the gun"
+        ],
+        correct: 0,
+        explanation: "'Bite the bullet' means to face a difficult, inevitable, or grim situation with determination and fortitude. 'Beat around the bush' means speaking evasively; 'throw in the towel' means giving up; 'jump the gun' means acting too early."
+      },
+      {
+        id: 12,
+        category: "Essential Daily Idioms (Health & Physical State)",
+        stem: "Which idiomatic expression is commonly used to politely describe feeling slightly ill, indisposed, or experiencing low energy without severe hospitalization?",
+        options: [
+          "Under the weather",
+          "Break a leg",
+          "In the hot seat",
+          "Fit as a fiddle"
+        ],
+        correct: 0,
+        explanation: "'Under the weather' describes feeling slightly sick, run-down, or catching a cold. 'Break a leg' is a theatrical expression wishing good luck; 'in the hot seat' means being under intense pressure or scrutiny; 'fit as a fiddle' means being in peak physical condition."
+      },
+      {
+        id: 13,
+        category: "Essential Daily Idioms (Concluding Work)",
+        stem: "After reviewing forty-two candidate resumes over nine grueling hours, the hiring committee chairperson stated: \"We have accomplished enough for today; let's __________.\"",
+        options: [
+          "burn the midnight oil",
+          "call it a day",
+          "spill the beans",
+          "hit the ground running"
+        ],
+        correct: 1,
+        explanation: "'Call it a day' means to stop what you are doing and conclude work for the day. 'Burn the midnight oil' means working late into the night; 'spill the beans' means revealing a secret; 'hit the ground running' means starting an initiative with immediate high energy."
+      },
+      {
+        id: 14,
+        category: "Idioms of Success & Effort (Excellence)",
+        stem: "Which idiom means 'to make exceptional effort and do considerably more than what is strictly required or expected'?",
+        options: [
+          "Go the extra mile",
+          "Cut corners",
+          "Bark up the wrong tree",
+          "Play devil's advocate"
+        ],
+        correct: 0,
+        explanation: "'Go the extra mile' means making a significant extra effort beyond standard obligations to ensure exceptional results. 'Cut corners' means doing something cheaply or carelessly; 'bark up the wrong tree' means pursuing a mistaken hypothesis."
+      },
+      {
+        id: 15,
+        category: "Idioms of Accuracy & Precision",
+        stem: "When Maya remarked that the software bug was caused by an unhandled timezone conversion rather than database latency, the lead architect nodded and said: \"You __________.\"",
+        options: [
+          "hit the nail on the head",
+          "pulled my leg",
+          "opened Pandora's box",
+          "let sleeping dogs lie"
+        ],
+        correct: 0,
+        explanation: "'Hit the nail on the head' means to describe exactly what is causing a problem or situation, or to say something with absolute precision and truth."
+      },
+      {
+        id: 16,
+        category: "Idioms of Maximum Resource Deployment",
+        stem: "\"To commemorate our organization's 25th anniversary, the planning committee decided to __________ and book the metropolitan symphony hall.\"\nWhich idiom signifies deploying all available resources with zero restraint?",
+        options: [
+          "pull out all the stops",
+          "take it with a pinch of salt",
+          "skate on thin ice",
+          "throw caution to the wind"
+        ],
+        correct: 0,
+        explanation: "'Pull out all the stops' originates from pipe organ stops being fully drawn to produce maximum sound; idiomatically, it means utilizing all resources and sparing no effort or expense."
+      },
+      {
+        id: 17,
+        category: "Workplace & Business Idioms (Connecting)",
+        stem: "\"Let's __________ on Friday afternoon once both of us have reviewed the financial forecast, just to ensure our targets are aligned.\"\nWhich professional idiom best fills the blank?",
+        options: [
+          "touch base",
+          "cross that bridge",
+          "shoot the breeze",
+          "face the music"
+        ],
+        correct: 0,
+        explanation: "'Touch base' is a standard corporate idiom meaning to briefly make contact, confer, or check in with someone. 'Shoot the breeze' means engaging in casual, non-business chatter."
+      },
+      {
+        id: 18,
+        category: "Workplace & Business Idioms (Estimation)",
+        stem: "\"We do not require a certified itemized quote at this preliminary stage; just provide a __________ so we can assess feasibility.\"",
+        options: [
+          "silver bullet",
+          "ballpark figure",
+          "clean slate",
+          "stumbling block"
+        ],
+        correct: 1,
+        explanation: "A 'ballpark figure' is an acceptable, rough numerical estimate or broad approximation within a reasonable range. A 'silver bullet' is an easy miraculous solution; a 'clean slate' is a fresh start."
+      },
+      {
+        id: 19,
+        category: "Workplace Idioms (Integrity & Alignment)",
+        stem: "Which of the following sentences correctly utilizes BOTH 'cut corners' and 'on the same page'?",
+        options: [
+          "The project managers ensured everyone was on the same page so that no contractor felt tempted to cut corners on structural reinforcement.",
+          "Because they were cut corners during the briefing, the whole team remained on the same page.",
+          "Whenever we cut corners on documentation, the team is always on the same page with regulatory inspectors.",
+          "Being on the same page implies that our organization must constantly cut corners to reduce overhead."
+        ],
+        correct: 0,
+        explanation: "'On the same page' means sharing identical understanding, awareness, and alignment. 'Cut corners' means taking shortcuts that sacrifice quality, safety, or thoroughness. Option A uses both idioms with complete contextual and semantic propriety."
+      },
+      {
+        id: 20,
+        category: "Time & Punctuality Idioms",
+        stem: "\"The boarding gate was about to be locked, but Carlos sprinted across the concourse and reached the gate __________.\"",
+        options: [
+          "in the nick of time",
+          "at the drop of a hat",
+          "once in a blue moon",
+          "around the clock"
+        ],
+        correct: 0,
+        explanation: "'In the nick of time' means just in time, at the final critical second before it is too late. 'At the drop of a hat' means instantly without prior preparation; 'once in a blue moon' means exceedingly rarely."
+      },
+      {
+        id: 21,
+        category: "Money & Financial Idioms",
+        stem: "Which pair of financial idioms accurately fits both sentences?\n(1) \"Purchasing a reliable used sedan won't __________.\"\n(2) \"With inflation driving up grocery bills, many families are finding it challenging to __________.\"",
+        options: [
+          "break the bank / make ends meet",
+          "foot the bill / break the ice",
+          "cost an arm and a leg / pinch pennies together",
+          "cash in / make a killing"
+        ],
+        correct: 0,
+        explanation: "'Break the bank' means to cost more than one can afford. 'Make ends meet' means to earn just enough income to cover basic living expenses."
+      },
+      {
+        id: 22,
+        category: "Emotion & Attitude Idioms (Euphoria)",
+        stem: "Upon learning that her doctoral dissertation had been awarded the faculty prize, Ananya was __________ for the entire weekend.",
+        options: [
+          "down in the dumps",
+          "bent out of shape",
+          "on cloud nine",
+          "beside herself with rage"
+        ],
+        correct: 2,
+        explanation: "'On cloud nine' signifies a state of euphoric happiness or elation. 'Down in the dumps' means depressed; 'bent out of shape' means unnecessarily irritated or upset."
+      },
+      {
+        id: 23,
+        category: "Interpersonal & Agreement Idioms",
+        stem: "\"Although the two co-founders share a deep mutual respect, they rarely __________ when discussing product pricing tiers.\"",
+        options: [
+          "see eye to eye",
+          "turn a deaf ear",
+          "cry over spilled milk",
+          "keep an eye out"
+        ],
+        correct: 0,
+        explanation: "'See eye to eye' means to agree with someone or share the same view (frequently used negatively: 'rarely see eye to eye'). 'Turn a deaf ear' means intentionally ignoring advice or pleas."
+      },
+      {
+        id: 24,
+        category: "Communication & Emotional Outlets",
+        stem: "Match the idiomatic definitions:\n(1) To reveal confidential information or spoil a surprise prematurely.\n(2) To release accumulated tension, stress, or anger through venting or exercise.",
+        options: [
+          "(1) Spill the beans / (2) Blow off steam",
+          "(1) Blow the whistle / (2) Bite the bullet",
+          "(1) Clear the air / (2) Hit the roof",
+          "(1) Let sleeping dogs lie / (2) Vent the air"
+        ],
+        correct: 0,
+        explanation: "'Spill the beans' means disclosing confidential information prematurely. 'Blow off steam' means releasing pent-up frustration or emotional energy in a harmless way."
+      },
+      {
+        id: 25,
+        category: "Collocations (Make vs Do)",
+        stem: "Which sentence features standard English collocations for 'make' and 'do'?",
+        options: [
+          "I will do a brief phone call before we make the homework assignment.",
+          "She made a favorable impression during the panel interview because she always does her best.",
+          "We must do an effort to make business with certified regional distributors.",
+          "Could you make me a favor and do a reservation for the client dinner?"
+        ],
+        correct: 1,
+        explanation: "Correct collocations: 'make an impression' and 'do one's best'. Incorrect pairings in other options: *'do a phone call' (make a phone call), *'make homework' (do homework), *'do an effort' (make an effort), *'make business' (do business), *'make a favor' (do a favor), *'do a reservation' (make a reservation)."
+      },
+      {
+        id: 26,
+        category: "Collocations (Adjective-Noun & Verb-Noun)",
+        stem: "Identify the sentence that contains an UNNATURAL or INCORRECT collocation:",
+        options: [
+          "The outdoor festival was postponed due to torrential heavy rain.",
+          "Every morning before trading starts, Julian prepares strong coffee.",
+          "After four consecutive hours of coding, the team decided to make a break.",
+          "The committee reached a consensus following an insightful discussion."
+        ],
+        correct: 2,
+        explanation: "In English, the natural collocation is 'take a break' or 'have a break', NOT *'make a break' (unless used in the specific idiom 'make a break for it' meaning to attempt an escape). 'Heavy rain', 'strong coffee', and 'reached a consensus' are all flawless, natural collocations."
+      },
+      {
+        id: 27,
+        category: "Advanced Collocations (Adverb + Adjective)",
+        stem: "Select the most natural adverb-adjective collocations to complete both sentences:\n(1) \"During the January blizzard, the northern slopes were __________ cold.\"\n(2) \"Based on current market momentum, it is __________ likely that sales will surge.\"",
+        options: [
+          "bitterly / highly",
+          "sharply / deeply",
+          "heavily / strictly",
+          "richly / greatly"
+        ],
+        correct: 0,
+        explanation: "'Bitterly cold' is the established, natural collocation for piercing, extreme cold. 'Highly likely' is the standard collocation for expressing strong probability. Combinations such as *'deeply likely' or *'heavily cold' sound awkward and non-native."
+      },
+      {
+        id: 28,
+        category: "Easily Confused Words (Affect vs Effect / Complement vs Compliment)",
+        stem: "Which sentence uses all target words with semantic and grammatical precision?",
+        options: [
+          "The tax policy will effect our quarterly profits, but the minister's speech was a nice complement.",
+          "The tax policy will affect our quarterly profits, and the minister's kind remarks were a gracious compliment.",
+          "The tax reform will have no affect on small firms, while vintage port is a fine compliment to artisan cheese.",
+          "Rising fuel prices effect consumer spending, even though economic commentators compliment the supply chains."
+        ],
+        correct: 1,
+        explanation: "'Affect' (verb) means to influence or alter. 'Effect' (noun) is the result or consequence. 'Compliment' (with 'i') means praise or admiration. 'Complement' (with 'e') means something that completes or enhances. Option B correctly uses 'affect' as a verb and 'compliment' as an expression of praise."
+      },
+      {
+        id: 29,
+        category: "Easily Confused Words (Principal vs Principle / Loose vs Lose)",
+        stem: "Select the sentence that correctly distinguishes 'principal' vs 'principle' and 'loose' vs 'lose':",
+        options: [
+          "Our school principal refuses to abandon her ethical principles, reminding students not to lose their focus.",
+          "Our school principle refuses to abandon her ethical principals, reminding students not to loose their focus.",
+          "The principal reason for the audit was that the staff had compromised their loose principles.",
+          "If safety cables become lose, you risk principle losing the construction license."
+        ],
+        correct: 0,
+        explanation: "'Principal' (noun/adj) refers to the head of an institution or the primary/most important element. 'Principle' (noun) means a fundamental moral rule or doctrine. 'Lose' (verb) means to misplace or suffer loss (opposite of win/retain). 'Loose' (adj) means unfastened or not tight. Option A is the only sentence that uses all four forms correctly."
+      },
+      {
+        id: 30,
+        category: "Conversational Pragmatics (Diplomatic Softening)",
+        stem: "You are in a stakeholder alignment meeting and disagree with a proposed reduction in product testing time. Which statement demonstrates professional, diplomatic disagreement and constructive softening?",
+        options: [
+          "That proposal is completely reckless and we refuse to implement it.",
+          "I appreciate the desire to meet the launch date; up to a point that makes sense, but perhaps we might consider the liability risks of truncating QA.",
+          "You clearly do not understand software quality assurance protocols.",
+          "I completely agree with shortening testing, but it will certainly ruin the product."
+        ],
+        correct: 1,
+        explanation: "Diplomatic communication employs positive validation ('I appreciate the desire...'), partial concession ('up to a point that makes sense'), and softening hedges ('perhaps we might consider...') to disagree constructively without provoking personal conflict or appearing obstructionist."
+      }
+    ];
+
+    // Application State
+    let currentQuestionIndex = 0;
+    const userAnswers = new Array(quizData.length).fill(null);
+    const flaggedQuestions = new Array(quizData.length).fill(false);
+    let quizSubmitted = false;
+
+    // Timer Variables (45 minutes = 2700 seconds)
+    const TOTAL_SECONDS = 45 * 60;
+    let secondsRemaining = TOTAL_SECONDS;
+    let timerInterval = null;
+
+    // DOM References
+    const timerDisplay = document.getElementById("timerDisplay");
+    const timerPill = document.getElementById("timerPill");
+    const progressBar = document.getElementById("progressBar");
+    const questionBadge = document.getElementById("questionBadge");
+    const categoryTag = document.getElementById("categoryTag");
+    const questionStem = document.getElementById("questionStem");
+    const optionsContainer = document.getElementById("optionsContainer");
+    const prevBtn = document.getElementById("prevBtn");
+    const nextBtn = document.getElementById("nextBtn");
+    const clearBtn = document.getElementById("clearBtn");
+    const flagBtn = document.getElementById("flagBtn");
+    const flagText = document.getElementById("flagText");
+    const paletteGrid = document.getElementById("paletteGrid");
+    const paletteCounter = document.getElementById("paletteCounter");
+    const openSubmitModalBtn = document.getElementById("openSubmitModalBtn");
+
+    // Modal DOM
+    const confirmModal = document.getElementById("confirmModal");
+    const cancelModalBtn = document.getElementById("cancelModalBtn");
+    const confirmSubmitBtn = document.getElementById("confirmSubmitBtn");
+    const modalAnsweredCount = document.getElementById("modalAnsweredCount");
+    const modalUnansweredCount = document.getElementById("modalUnansweredCount");
+    const modalFlaggedCount = document.getElementById("modalFlaggedCount");
+
+    // Results DOM
+    const quizStage = document.getElementById("quizStage");
+    const sidebarPanel = document.getElementById("sidebarPanel");
+    const resultsView = document.getElementById("resultsView");
+    const resScoreNum = document.getElementById("resScoreNum");
+    const resHeadline = document.getElementById("resHeadline");
+    const resSubHeadline = document.getElementById("resSubHeadline");
+    const resTierBadge = document.getElementById("resTierBadge");
+    const resAccuracy = document.getElementById("resAccuracy");
+    const resCorrectCount = document.getElementById("resCorrectCount");
+    const resWrongCount = document.getElementById("resWrongCount");
+    const resTimeElapsed = document.getElementById("resTimeElapsed");
+    const retakeQuizBtn = document.getElementById("retakeQuizBtn");
+    const scrollReviewBtn = document.getElementById("scrollReviewBtn");
+    const reviewContainer = document.getElementById("reviewContainer");
+
+    // Filter Buttons
+    const filterAll = document.getElementById("filterAll");
+    const filterWrong = document.getElementById("filterWrong");
+    const filterCorrect = document.getElementById("filterCorrect");
+
+    // Initialize Quiz
+    function initQuiz() {
+      renderPalette();
+      loadQuestion(0);
+      startTimer();
+      setupEventListeners();
+    }
+
+    // Timer Implementation
+    function startTimer() {
+      if (timerInterval) clearInterval(timerInterval);
+      timerInterval = setInterval(() => {
+        if (secondsRemaining <= 0) {
+          clearInterval(timerInterval);
+          autoSubmitQuiz();
+          return;
+        }
+        secondsRemaining--;
+        updateTimerDisplay();
+      }, 1000);
+      updateTimerDisplay();
+    }
+
+    function updateTimerDisplay() {
+      const minutes = Math.floor(secondsRemaining / 60);
+      const seconds = secondsRemaining % 60;
+      const formatted = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+      timerDisplay.textContent = formatted;
+
+      if (secondsRemaining <= 300) { // under 5 minutes
+        timerPill.classList.add("warning");
+      } else {
+        timerPill.classList.remove("warning");
+      }
+    }
+
+    function autoSubmitQuiz() {
+      alert("Time has expired! Submitting your answers automatically for evaluation.");
+      submitQuiz();
+    }
+
+    // Render Question Palette Grid
+    function renderPalette() {
+      paletteGrid.innerHTML = "";
+      quizData.forEach((q, idx) => {
+        const btn = document.createElement("button");
+        btn.className = "palette-btn";
+        btn.textContent = idx + 1;
+        btn.title = `Jump to Question ${idx + 1}`;
+        btn.dataset.index = idx;
+
+        if (idx === currentQuestionIndex) {
+          btn.classList.add("current");
+        }
+        if (userAnswers[idx] !== null) {
+          btn.classList.add("answered");
+        }
+        if (flaggedQuestions[idx]) {
+          btn.classList.add("flagged");
+        }
+
+        btn.addEventListener("click", () => {
+          loadQuestion(idx);
+        });
+
+        paletteGrid.appendChild(btn);
+      });
+
+      // Update palette counter
+      const answeredCount = userAnswers.filter(ans => ans !== null).length;
+      paletteCounter.textContent = `${answeredCount} / ${quizData.length} Answered`;
+
+      // Update Progress Bar
+      const progressPercent = (answeredCount / quizData.length) * 100;
+      progressBar.style.width = `${progressPercent}%`;
+    }
+
+    // Load Single Question View
+    function loadQuestion(index) {
+      currentQuestionIndex = index;
+      const q = quizData[index];
+
+      // Update Header info
+      questionBadge.textContent = `Question ${index + 1} of ${quizData.length}`;
+      categoryTag.textContent = q.category;
+      questionStem.textContent = q.stem;
+
+      // Update Flag status
+      updateFlagButtonUI();
+
+      // Render Options
+      optionsContainer.innerHTML = "";
+      const letters = ["A", "B", "C", "D"];
+
+      q.options.forEach((optText, optIdx) => {
+        const optDiv = document.createElement("div");
+        optDiv.className = "option-item";
+        if (userAnswers[index] === optIdx) {
+          optDiv.classList.add("selected");
+        }
+
+        optDiv.innerHTML = `
+          <div class="option-letter">${letters[optIdx]}</div>
+          <div class="option-text">${optText}</div>
+        `;
+
+        optDiv.addEventListener("click", () => {
+          selectOption(optIdx);
+        });
+
+        optionsContainer.appendChild(optDiv);
+      });
+
+      // Update Nav Buttons
+      prevBtn.disabled = (index === 0);
+      if (index === quizData.length - 1) {
+        nextBtn.textContent = "Review Palette →";
+      } else {
+        nextBtn.textContent = "Next Question →";
+      }
+
+      // Update Palette Active State
+      renderPalette();
+    }
+
+    function selectOption(optionIndex) {
+      userAnswers[currentQuestionIndex] = optionIndex;
+      loadQuestion(currentQuestionIndex);
+    }
+
+    function clearSelection() {
+      userAnswers[currentQuestionIndex] = null;
+      loadQuestion(currentQuestionIndex);
+    }
+
+    function toggleFlag() {
+      flaggedQuestions[currentQuestionIndex] = !flaggedQuestions[currentQuestionIndex];
+      updateFlagButtonUI();
+      renderPalette();
+    }
+
+    function updateFlagButtonUI() {
+      if (flaggedQuestions[currentQuestionIndex]) {
+        flagBtn.classList.add("flagged");
+        flagText.textContent = "Bookmarked";
+      } else {
+        flagBtn.classList.remove("flagged");
+        flagText.textContent = "Bookmark / Flag";
+      }
+    }
+
+    // Modal Handling
+    function openSubmitModal() {
+      const answeredCount = userAnswers.filter(ans => ans !== null).length;
+      const unansweredCount = quizData.length - answeredCount;
+      const flaggedCount = flaggedQuestions.filter(f => f).length;
+
+      modalAnsweredCount.textContent = answeredCount;
+      modalUnansweredCount.textContent = unansweredCount;
+      modalFlaggedCount.textContent = flaggedCount;
+
+      confirmModal.classList.add("active");
+    }
+
+    function closeSubmitModal() {
+      confirmModal.classList.remove("active");
+    }
+
+    // Submit and Evaluate
+    function submitQuiz() {
+      if (timerInterval) clearInterval(timerInterval);
+      quizSubmitted = true;
+      closeSubmitModal();
+
+      // Calculate Scores
+      let correctAnswers = 0;
+      quizData.forEach((q, idx) => {
+        if (userAnswers[idx] === q.correct) {
+          correctAnswers++;
+        }
+      });
+
+      const total = quizData.length;
+      const wrongAnswers = total - correctAnswers;
+      const percentage = ((correctAnswers / total) * 100).toFixed(1);
+      const timeSpentSec = TOTAL_SECONDS - secondsRemaining;
+      const spentMin = Math.floor(timeSpentSec / 60);
+      const spentSec = timeSpentSec % 60;
+      const formattedTimeSpent = `${spentMin}m ${spentSec}s`;
+
+      // Populate Hero Results
+      resScoreNum.textContent = correctAnswers;
+      resAccuracy.textContent = `${percentage}%`;
+      resCorrectCount.textContent = correctAnswers;
+      resWrongCount.textContent = wrongAnswers;
+      resTimeElapsed.textContent = formattedTimeSpent;
+
+      // Grade Tier Classification
+      resTierBadge.className = "badge-tier";
+      if (percentage >= 90) {
+        resTierBadge.classList.add("distinction");
+        resTierBadge.textContent = "Mastery: Distinction (Level C1/C2)";
+        resHeadline.textContent = "Outstanding Milestone Achievement!";
+        resSubHeadline.textContent = "You have demonstrated exceptional command of English idioms, nuanced collocations, and phrasal verbs.";
+      } else if (percentage >= 75) {
+        resTierBadge.classList.add("proficient");
+        resTierBadge.textContent = "Proficient Fluency (Level B2/C1)";
+        resHeadline.textContent = "Strong Competency Demonstrated!";
+        resSubHeadline.textContent = "Solid intuitive grasp of figurative phrasing, separable phrasal verbs, and workplace expressions.";
+      } else if (percentage >= 60) {
+        resTierBadge.classList.add("intermediate");
+        resTierBadge.textContent = "Intermediate Progress (Level B1/B2)";
+        resHeadline.textContent = "Good Progress — Solid Foundation";
+        resSubHeadline.textContent = "You've captured core idioms, but review prepositional verbs, separable pronouns, and easily confused pairs.";
+      } else {
+        resTierBadge.classList.add("needs-review");
+        resTierBadge.textContent = "Reinforcement Needed (Under 60%)";
+        resHeadline.textContent = "Targeted Review Recommended";
+        resSubHeadline.textContent = "Focus on Days 41–60 lessons to solidify phrasal verb separability, particle collocations, and business idioms.";
+      }
+
+      // Switch Views
+      quizStage.style.display = "none";
+      sidebarPanel.style.display = "none";
+      resultsView.style.display = "flex";
+
+      // Render Detailed Reviews
+      renderDetailedReview("all");
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    // Render Review Questions
+    function renderDetailedReview(filter = "all") {
+      reviewContainer.innerHTML = "";
+      const letters = ["A", "B", "C", "D"];
+
+      quizData.forEach((q, idx) => {
+        const userChoice = userAnswers[idx];
+        const isCorrect = (userChoice === q.correct);
+
+        if (filter === "correct" && !isCorrect) return;
+        if (filter === "incorrect" && isCorrect) return;
+
+        const card = document.createElement("div");
+        card.className = `review-card ${isCorrect ? 'correct' : 'incorrect'}`;
+
+        let statusText = isCorrect
+          ? `<span style="color: var(--success); font-weight: 700;">✓ Correct</span>`
+          : `<span style="color: var(--danger); font-weight: 700;">✗ Incorrect / Missed</span>`;
+
+        let optionsMarkup = "";
+        q.options.forEach((optText, optIdx) => {
+          let itemClass = "review-opt-item";
+          let marker = "";
+
+          if (optIdx === q.correct) {
+            itemClass += " is-correct";
+            marker = " (Correct Answer)";
+          } else if (optIdx === userChoice && !isCorrect) {
+            itemClass += " user-wrong";
+            marker = " (Your Choice)";
+          }
+
+          optionsMarkup += `
+            <div class="${itemClass}">
+              <strong>${letters[optIdx]}.</strong> ${optText} ${marker}
+            </div>
+          `;
+        });
+
+        card.innerHTML = `
+          <div class="review-card-header">
+            <div>
+              <span class="q-badge">Question ${idx + 1}</span>
+              <span class="q-category-tag" style="margin-left: 8px;">${q.category}</span>
+            </div>
+            <div>${statusText}</div>
+          </div>
+          <div class="review-card-body">
+            <div class="review-q-stem">${q.stem}</div>
+            <div class="review-answers-grid">
+              ${optionsMarkup}
+            </div>
+            <div class="pedagogical-box">
+              <strong>Pedagogical Analysis & Linguistic Rule:</strong>
+              ${q.explanation}
+            </div>
+          </div>
+        `;
+
+        reviewContainer.appendChild(card);
+      });
+    }
+
+    // Reset Quiz
+    function retakeQuiz() {
+      if (!confirm("Are you sure you want to retake the quiz? All current answers will be reset.")) return;
+
+      userAnswers.fill(null);
+      flaggedQuestions.fill(false);
+      currentQuestionIndex = 0;
+      secondsRemaining = TOTAL_SECONDS;
+      quizSubmitted = false;
+
+      resultsView.style.display = "none";
+      quizStage.style.display = "flex";
+      sidebarPanel.style.display = "flex";
+
+      initQuiz();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    // Filter Buttons Handlers
+    function setFilter(filterType) {
+      [filterAll, filterWrong, filterCorrect].forEach(btn => btn.classList.remove("active"));
+      if (filterType === "all") filterAll.classList.add("active");
+      if (filterType === "incorrect") filterWrong.classList.add("active");
+      if (filterType === "correct") filterCorrect.classList.add("active");
+
+      renderDetailedReview(filterType);
+    }
+
+    // Setup Global Event Listeners
+    function setupEventListeners() {
+      prevBtn.addEventListener("click", () => {
+        if (currentQuestionIndex > 0) {
+          loadQuestion(currentQuestionIndex - 1);
+        }
+      });
+
+      nextBtn.addEventListener("click", () => {
+        if (currentQuestionIndex < quizData.length - 1) {
+          loadQuestion(currentQuestionIndex + 1);
+        } else {
+          // Reached end, open confirmation modal
+          openSubmitModal();
+        }
+      });
+
+      clearBtn.addEventListener("click", clearSelection);
+      flagBtn.addEventListener("click", toggleFlag);
+
+      openSubmitModalBtn.addEventListener("click", openSubmitModal);
+      cancelModalBtn.addEventListener("click", closeSubmitModal);
+      confirmSubmitBtn.addEventListener("click", submitQuiz);
+
+      retakeQuizBtn.addEventListener("click", retakeQuiz);
+      scrollReviewBtn.addEventListener("click", () => {
+        reviewContainer.scrollIntoView({ behavior: "smooth" });
+      });
+
+      filterAll.addEventListener("click", () => setFilter("all"));
+      filterWrong.addEventListener("click", () => setFilter("incorrect"));
+      filterCorrect.addEventListener("click", () => setFilter("correct"));
+
+      // Keyboard shortcuts
+      document.addEventListener("keydown", (e) => {
+        if (quizSubmitted) return;
+        if (e.key === "ArrowRight") {
+          if (currentQuestionIndex < quizData.length - 1) loadQuestion(currentQuestionIndex + 1);
+        } else if (e.key === "ArrowLeft") {
+          if (currentQuestionIndex > 0) loadQuestion(currentQuestionIndex - 1);
+        } else if (["1", "2", "3", "4"].includes(e.key)) {
+          selectOption(parseInt(e.key, 10) - 1);
+        } else if (["a", "b", "c", "d", "A", "B", "C", "D"].includes(e.key)) {
+          const map = { a: 0, b: 1, c: 2, d: 3 };
+          selectOption(map[e.key.toLowerCase()]);
+        }
+      });
+    }
+
+    // Start on Page Load
+    window.addEventListener("DOMContentLoaded", initQuiz);
+  </script>
+</body>
+</html>
