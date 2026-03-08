@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Day 65 Quiz: Business Case Study - Fintech & AI</title>
+  <style>
+    :root {
+      --primary: #4338ca;
+      --primary-hover: #3730a3;
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+      --text: #1e293b;
+      --text-muted: #64748b;
+      --success: #16a34a;
+      --success-bg: #dcfce7;
+      --danger: #dc2626;
+      --danger-bg: #fee2e2;
+      --border: #e2e8f0;
+      --radius: 12px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .quiz-container {
+      background: var(--card-bg);
+      max-width: 720px;
+      width: 100%;
+      border-radius: var(--radius);
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.08), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
+      overflow: hidden;
+      border: 1px solid var(--border);
+    }
+
+    .quiz-header {
+      background: linear-gradient(135deg, #4338ca, #312e81);
+      color: white;
+      padding: 24px 30px;
+    }
+
+    .badge {
+      display: inline-block;
+      background: rgba(255, 255, 255, 0.2);
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 8px;
+    }
+
+    .quiz-header h1 {
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .quiz-header p {
+      font-size: 14px;
+      opacity: 0.9;
+    }
+
+    .status-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 14px 30px;
+      background: #f1f5f9;
+      border-bottom: 1px solid var(--border);
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-muted);
+    }
+
+    .timer {
+      font-family: monospace;
+      font-weight: 700;
+      color: #b91c1c;
+    }
+
+    .progress-bar-container {
+      width: 100%;
+      height: 6px;
+      background: #e2e8f0;
+    }
+
+    .progress-bar {
+      height: 100%;
+      background: var(--primary);
+      width: 0%;
+      transition: width 0.3s ease;
+    }
+
+    .quiz-body {
+      padding: 28px 30px;
+    }
+
+    .question-title {
+      font-size: 17px;
+      font-weight: 600;
+      line-height: 1.5;
+      margin-bottom: 20px;
+    }
+
+    .options {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .option-btn {
+      padding: 14px 18px;
+      border: 1.5px solid var(--border);
+      background: white;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 15px;
+      text-align: left;
+      transition: all 0.2s ease;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+    }
+
+    .option-btn:hover:not(:disabled) {
+      border-color: var(--primary);
+      background: #f8fafc;
+    }
+
+    .option-btn.selected {
+      border-color: var(--primary);
+      background: #eef2ff;
+    }
+
+    .option-btn.correct {
+      border-color: var(--success);
+      background: var(--success-bg);
+      color: #14532d;
+      font-weight: 600;
+    }
+
+    .option-btn.incorrect {
+      border-color: var(--danger);
+      background: var(--danger-bg);
+      color: #7f1d1d;
+    }
+
+    .explanation {
+      margin-top: 18px;
+      padding: 14px 18px;
+      border-radius: 8px;
+      font-size: 14px;
+      line-height: 1.5;
+      display: none;
+    }
+
+    .explanation.show {
+      display: block;
+    }
+
+    .explanation.correct-exp {
+      background: var(--success-bg);
+      border-left: 4px solid var(--success);
+      color: #14532d;
+    }
+
+    .explanation.incorrect-exp {
+      background: var(--danger-bg);
+      border-left: 4px solid var(--danger);
+      color: #7f1d1d;
+    }
+
+    .quiz-footer {
+      padding: 18px 30px;
+      background: #f8fafc;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: flex-end;
+      gap: 12px;
+    }
+
+    .btn {
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      border: none;
+      transition: all 0.2s;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: white;
+    }
+
+    .btn-primary:hover:not(:disabled) {
+      background: var(--primary-hover);
+    }
+
+    .btn-primary:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    .score-view {
+      padding: 40px 30px;
+      text-align: center;
+      display: none;
+    }
+
+    .score-circle {
+      width: 110px;
+      height: 110px;
+      border-radius: 50%;
+      background: #eef2ff;
+      border: 4px solid var(--primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--primary);
+    }
+
+    .score-view h2 {
+      font-size: 22px;
+      margin-bottom: 8px;
+    }
+
+    .score-view p {
+      color: var(--text-muted);
+      margin-bottom: 24px;
+      font-size: 15px;
+    }
+
+    .review-list {
+      text-align: left;
+      margin-top: 24px;
+      border-top: 1px solid var(--border);
+      padding-top: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .review-item {
+      padding: 12px 16px;
+      background: #f8fafc;
+      border-radius: 8px;
+      border-left: 4px solid var(--border);
+      font-size: 13.5px;
+    }
+
+    .review-item.pass {
+      border-left-color: var(--success);
+    }
+
+    .review-item.fail {
+      border-left-color: var(--danger);
+    }
+  </style>
+</head>
+<body>
+
+<div class="quiz-container">
+  <div class="quiz-header">
+    <div class="badge">Day 65 • Case Study Comprehension</div>
+    <h1>Fintech Transformation & AI Adoption</h1>
+    <p>Test your executive case comprehension based on OmniBank Group's AI turnaround.</p>
+  </div>
+
+  <div class="progress-bar-container">
+    <div class="progress-bar" id="progressBar"></div>
+  </div>
+
+  <div class="status-bar" id="statusBar">
+    <span id="questionCounter">Question 1 of 5</span>
+    <span class="timer" id="timer">Time: 00:00</span>
+  </div>
+
+  <div class="quiz-body" id="quizBody">
+    <div class="question-title" id="questionTitle">Loading question...</div>
+    <div class="options" id="optionsContainer"></div>
+    <div class="explanation" id="explanationBox"></div>
+  </div>
+
+  <div class="quiz-footer" id="quizFooter">
+    <button class="btn btn-primary" id="nextBtn" disabled>Check Answer</button>
+  </div>
+
+  <div class="score-view" id="scoreView">
+    <div class="score-circle" id="scoreValue">0/5</div>
+    <h2 id="scoreTitle">Well Done!</h2>
+    <p id="scoreSubtitle">You have completed the Business Case Study comprehension quiz.</p>
+    <button class="btn btn-primary" id="restartBtn">Try Again</button>
+
+    <div class="review-list" id="reviewContainer"></div>
+  </div>
+</div>
+
+<script>
+  const questions = [
+    {
+      question: "What primary operational bottlenecks triggered OmniBank's retail lending crisis in Paragraph 1?",
+      options: [
+        "Excessive marketing spending on television commercials.",
+        "A 9.2-day loan turnaround time, 42% application abandonment, and high $420 manual origination costs.",
+        "A complete failure of ATM hardware across Europe.",
+        "An intentional decision to eliminate all retail checking accounts."
+      ],
+      correct: 1,
+      explanation: "Paragraph 1 explicitly outlines the operational crisis: a 9.2-day loan turnaround, a 42% abandonment rate, and $420 per micro-loan in manual processing expenses."
+    },
+    {
+      question: "What were the two strategic initiatives included in 'Project Archimedes' (Paragraph 2)?",
+      options: [
+        "Opening 500 new brick-and-mortar branches and increasing fees.",
+        "Migrating legacy COBOL mainframes to hybrid cloud and integrating an ensemble machine-learning credit model.",
+        "Replacing all employees with human-like physical androids.",
+        "Exclusively offering cryptocurrency trading services."
+      ],
+      correct: 1,
+      explanation: "Paragraph 2 states that Project Archimedes dismantled siloed COBOL mainframes for hybrid cloud infrastructure and deployed an ensemble ML underwriting model."
+    },
+    {
+      question: "By how much did the loan origination cost drop after deploying the algorithmic pipeline?",
+      options: [
+        "From $420 down to $28 per micro-loan.",
+        "From $1,000 down to $500.",
+        "From $42 down to $6.",
+        "Costs did not decrease; they increased by 15%."
+      ],
+      correct: 0,
+      explanation: "Paragraph 3 notes: 'Cost-to-originate per micro-loan shrank from $420 down to $28, generating an annualized operational savings of $84 million.'"
+    },
+    {
+      question: "What critical unintended consequence or compliance risk was uncovered during the Q2 2024 independent audit?",
+      options: [
+        "The servers consumed too much electricity during winter.",
+        "The model had a 4.8% disparate impact against gig-economy applicants, prompting an inquiry from the CFPB.",
+        "The cloud provider suffered a catastrophic data loss.",
+        "Customers preferred waiting 9 days for loan approvals."
+      ],
+      correct: 1,
+      explanation: "Paragraph 3 states that an independent algorithmic audit found a statistically significant 4.8% disparate impact against gig-economy workers, triggering regulatory scrutiny from the CFPB."
+    },
+    {
+      question: "What is the primary executive lesson illustrated by OmniBank's case study?",
+      options: [
+        "Banks should avoid digital transformation entirely to prevent regulatory audits.",
+        "Technological velocity and operational savings must be coupled with explainable governance and ethical compliance.",
+        "Machine learning models never make errors when trained on ten years of data.",
+        "Manual loan auditing is superior in speed to artificial intelligence."
+      ],
+      correct: 1,
+      explanation: "The case illustrates that while AI yields colossal efficiency gains (latency cut to 4 seconds, $84M saved), velocity must never outpace ethical compliance and model explainability (XAI)."
+    }
+  ];
+
+  let currentIndex = 0;
+  let selectedOption = null;
+  let answered = false;
+  let score = 0;
+  let timerSeconds = 0;
+  let timerInterval = null;
+  const userAnswers = [];
+
+  const progressBar = document.getElementById('progressBar');
+  const questionCounter = document.getElementById('questionCounter');
+  const timerEl = document.getElementById('timer');
+  const questionTitle = document.getElementById('questionTitle');
+  const optionsContainer = document.getElementById('optionsContainer');
+  const explanationBox = document.getElementById('explanationBox');
+  const nextBtn = document.getElementById('nextBtn');
+  const quizBody = document.getElementById('quizBody');
+  const quizFooter = document.getElementById('quizFooter');
+  const statusBar = document.getElementById('statusBar');
+  const scoreView = document.getElementById('scoreView');
+  const scoreValue = document.getElementById('scoreValue');
+  const scoreTitle = document.getElementById('scoreTitle');
+  const scoreSubtitle = document.getElementById('scoreSubtitle');
+  const reviewContainer = document.getElementById('reviewContainer');
+  const restartBtn = document.getElementById('restartBtn');
+
+  function startTimer() {
+    clearInterval(timerInterval);
+    timerSeconds = 0;
+    timerInterval = setInterval(() => {
+      timerSeconds++;
+      const mins = String(Math.floor(timerSeconds / 60)).padStart(2, '0');
+      const secs = String(timerSeconds % 60).padStart(2, '0');
+      timerEl.textContent = `Time: ${mins}:${secs}`;
+    }, 1000);
+  }
+
+  function renderQuestion() {
+    answered = false;
+    selectedOption = null;
+    nextBtn.disabled = true;
+    nextBtn.textContent = "Check Answer";
+    explanationBox.className = "explanation";
+    explanationBox.style.display = "none";
+    explanationBox.textContent = "";
+
+    const q = questions[currentIndex];
+    questionTitle.textContent = `${currentIndex + 1}. ${q.question}`;
+    questionCounter.textContent = `Question ${currentIndex + 1} of ${questions.length}`;
+    progressBar.style.width = `${((currentIndex) / questions.length) * 100}%`;
+
+    optionsContainer.innerHTML = "";
+    q.options.forEach((optText, i) => {
+      const btn = document.createElement('button');
+      btn.className = "option-btn";
+      btn.textContent = optText;
+      btn.addEventListener('click', () => selectOption(i, btn));
+      optionsContainer.appendChild(btn);
+    });
+  }
+
+  function selectOption(index, btn) {
+    if (answered) return;
+    selectedOption = index;
+    const allBtns = optionsContainer.querySelectorAll('.option-btn');
+    allBtns.forEach(b => b.classList.remove('selected'));
+    btn.classList.add('selected');
+    nextBtn.disabled = false;
+  }
+
+  nextBtn.addEventListener('click', () => {
+    if (!answered) {
+      answered = true;
+      const q = questions[currentIndex];
+      const isCorrect = (selectedOption === q.correct);
+      if (isCorrect) score++;
+      userAnswers.push({
+        question: q.question,
+        selected: selectedOption,
+        correct: q.correct,
+        options: q.options,
+        explanation: q.explanation,
+        isCorrect: isCorrect
+      });
+
+      const allBtns = optionsContainer.querySelectorAll('.option-btn');
+      allBtns.forEach((btn, i) => {
+        btn.disabled = true;
+        if (i === q.correct) btn.classList.add('correct');
+        else if (i === selectedOption) btn.classList.add('incorrect');
+      });
+
+      explanationBox.style.display = "block";
+      explanationBox.className = `explanation ${isCorrect ? 'correct-exp' : 'incorrect-exp'} show`;
+      explanationBox.innerHTML = `<strong>${isCorrect ? 'Correct!' : 'Incorrect.'}</strong> ${q.explanation}`;
+
+      if (currentIndex === questions.length - 1) {
+        nextBtn.textContent = "See Final Results";
+      } else {
+        nextBtn.textContent = "Next Question";
+      }
+    } else {
+      if (currentIndex < questions.length - 1) {
+        currentIndex++;
+        renderQuestion();
+      } else {
+        showResults();
+      }
+    }
+  });
+
+  function showResults() {
+    clearInterval(timerInterval);
+    progressBar.style.width = "100%";
+    quizBody.style.display = "none";
+    quizFooter.style.display = "none";
+    statusBar.style.display = "none";
+    scoreView.style.display = "block";
+
+    scoreValue.textContent = `${score}/${questions.length}`;
+
+    if (score === questions.length) {
+      scoreTitle.textContent = "Executive Strategist (100%)!";
+      scoreSubtitle.textContent = "Outstanding business analysis! You synthesize metrics, technical trade-offs, and governance effortlessly.";
+    } else if (score >= 3) {
+      scoreTitle.textContent = "Strong Strategic Acumen!";
+      scoreSubtitle.textContent = "Great job! A quick review of quantitative data points will sharpen your case evaluations.";
+    } else {
+      scoreTitle.textContent = "Review Case Notes";
+      scoreSubtitle.textContent = "Take another look at Day 65 notes on the 4-quadrant case study analysis matrix and metrics extraction.";
+    }
+
+    reviewContainer.innerHTML = "";
+    userAnswers.forEach((ans, i) => {
+      const item = document.createElement('div');
+      item.className = `review-item ${ans.isCorrect ? 'pass' : 'fail'}`;
+      item.innerHTML = `
+        <strong>Q${i + 1}: ${ans.question}</strong><br>
+        <span style="color: ${ans.isCorrect ? '#16a34a' : '#dc2626'}">
+          Your Answer: ${ans.options[ans.selected]}
+        </span><br>
+        ${!ans.isCorrect ? `<span style="color: #16a34a">Correct: ${ans.options[ans.correct]}</span><br>` : ''}
+        <em>Explanation: ${ans.explanation}</em>
+      `;
+      reviewContainer.appendChild(item);
+    });
+  }
+
+  restartBtn.addEventListener('click', () => {
+    currentIndex = 0;
+    score = 0;
+    userAnswers.length = 0;
+    quizBody.style.display = "block";
+    quizFooter.style.display = "flex";
+    statusBar.style.display = "flex";
+    scoreView.style.display = "none";
+    startTimer();
+    renderQuestion();
+  });
+
+  startTimer();
+  renderQuestion();
+</script>
+
+</body>
+</html>
