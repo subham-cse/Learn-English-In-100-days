@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Day 69 Quiz: Scientific Abstracts & Findings</title>
+  <style>
+    :root {
+      --bg: #0f172a;
+      --card-bg: #1e293b;
+      --card-border: #334155;
+      --text: #f8fafc;
+      --text-muted: #94a3b8;
+      --primary: #06b6d4;
+      --primary-hover: #0891b2;
+      --success: #10b981;
+      --danger: #ef4444;
+      --accent: #3b82f6;
+      --option-bg: #334155;
+      --option-hover: #475569;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 24px 16px;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 720px;
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 32px;
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
+    }
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 24px;
+      border-bottom: 1px solid var(--card-border);
+      padding-bottom: 16px;
+    }
+
+    .badge {
+      background: rgba(6, 182, 212, 0.15);
+      color: var(--primary);
+      padding: 6px 14px;
+      border-radius: 9999px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .timer {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--accent);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .progress-bar-container {
+      width: 100%;
+      height: 6px;
+      background: #334155;
+      border-radius: 9999px;
+      margin-bottom: 28px;
+      overflow: hidden;
+    }
+
+    .progress-bar {
+      height: 100%;
+      background: linear-gradient(90deg, var(--primary), var(--accent));
+      width: 0%;
+      transition: width 0.3s ease;
+    }
+
+    .question-count {
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+
+    .question-text {
+      font-size: 1.25rem;
+      font-weight: 600;
+      line-height: 1.5;
+      margin-bottom: 24px;
+      color: #ffffff;
+    }
+
+    .abstract-excerpt {
+      background: #0f2027;
+      border-left: 4px solid var(--primary);
+      padding: 12px 18px;
+      border-radius: 0 8px 8px 0;
+      font-size: 0.95rem;
+      color: #e2e8f0;
+      margin-bottom: 20px;
+      line-height: 1.5;
+      font-family: ui-serif, Georgia, Cambria, Times, serif;
+    }
+
+    .options {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 28px;
+    }
+
+    .option {
+      background: var(--option-bg);
+      border: 2px solid transparent;
+      padding: 14px 18px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      color: var(--text);
+    }
+
+    .option:hover {
+      background: var(--option-hover);
+      border-color: #475569;
+    }
+
+    .option.selected {
+      border-color: var(--primary);
+      background: rgba(6, 182, 212, 0.12);
+    }
+
+    .option-letter {
+      background: rgba(255, 255, 255, 0.1);
+      width: 26px;
+      height: 26px;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.85rem;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .option.selected .option-letter {
+      background: var(--primary);
+      color: #0f172a;
+    }
+
+    .footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .btn {
+      padding: 10px 22px;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      cursor: pointer;
+      border: none;
+      transition: all 0.2s ease;
+    }
+
+    .btn-prev {
+      background: transparent;
+      color: var(--text-muted);
+      border: 1px solid var(--card-border);
+    }
+
+    .btn-prev:hover:not(:disabled) {
+      background: #334155;
+      color: var(--text);
+    }
+
+    .btn-next {
+      background: var(--primary);
+      color: #0f172a;
+    }
+
+    .btn-next:hover:not(:disabled) {
+      background: var(--primary-hover);
+    }
+
+    .btn:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+
+    /* Score & Review Page */
+    .result-container {
+      text-align: center;
+      padding: 10px 0;
+    }
+
+    .score-circle {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: conic-gradient(var(--primary) calc(var(--percent) * 1%), #334155 0);
+      margin: 0 auto 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .score-circle-inner {
+      width: 96px;
+      height: 96px;
+      border-radius: 50%;
+      background: var(--card-bg);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.6rem;
+      font-weight: 700;
+    }
+
+    .score-total {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      font-weight: normal;
+    }
+
+    .result-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .result-desc {
+      color: var(--text-muted);
+      margin-bottom: 24px;
+      line-height: 1.5;
+    }
+
+    .review-list {
+      text-align: left;
+      margin-top: 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .review-item {
+      background: #151e2e;
+      border: 1px solid var(--card-border);
+      border-radius: 10px;
+      padding: 16px;
+    }
+
+    .review-question {
+      font-weight: 600;
+      margin-bottom: 12px;
+      font-size: 1rem;
+    }
+
+    .review-status {
+      display: inline-block;
+      padding: 3px 10px;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+      text-transform: uppercase;
+    }
+
+    .status-correct {
+      background: rgba(16, 185, 129, 0.2);
+      color: var(--success);
+    }
+
+    .status-incorrect {
+      background: rgba(239, 68, 68, 0.2);
+      color: var(--danger);
+    }
+
+    .review-ans {
+      font-size: 0.9rem;
+      margin-bottom: 6px;
+      color: var(--text-muted);
+    }
+
+    .review-ans span {
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .review-explanation {
+      margin-top: 10px;
+      padding-top: 10px;
+      border-top: 1px dashed #334155;
+      font-size: 0.85rem;
+      color: #67e8f9;
+      line-height: 1.4;
+    }
+
+    .btn-restart {
+      margin-top: 24px;
+      background: var(--primary);
+      color: #0f172a;
+      padding: 12px 28px;
+    }
+
+    .btn-restart:hover {
+      background: var(--primary-hover);
+    }
+  </style>
+</head>
+<body>
+
+<div class="container" id="quiz-card">
+  <div class="header">
+    <span class="badge">Day 69 • Scientific Literacy</span>
+    <span class="timer" id="timer-display">⏱ 00:00</span>
+  </div>
+
+  <div class="progress-bar-container">
+    <div class="progress-bar" id="progress-bar"></div>
+  </div>
+
+  <div id="quiz-body">
+    <div class="question-count" id="q-counter">Question 1 of 5</div>
+    <div class="question-text" id="q-text">Loading question...</div>
+    <div id="q-excerpt" class="abstract-excerpt" style="display: none;"></div>
+
+    <div class="options" id="options-container">
+      <!-- Options injected by JS -->
+    </div>
+
+    <div class="footer">
+      <button class="btn btn-prev" id="prev-btn" onclick="prevQuestion()" disabled>Previous</button>
+      <button class="btn btn-next" id="next-btn" onclick="nextQuestion()">Next</button>
+    </div>
+  </div>
+
+  <div id="result-view" style="display: none;">
+    <!-- Injected after submission -->
+  </div>
+</div>
+
+<script>
+  const questions = [
+    {
+      question: "In scientific research reporting, what does the abbreviation IMRaD represent?",
+      options: [
+        "Inquiry, Measurement, Rationalization, and Data",
+        "Introduction, Methods, Results, and Discussion",
+        "Investigation, Meta-analysis, Redundancy, and Delivery",
+        "Index, Morphology, Reliability, and Documentation"
+      ],
+      answer: 1,
+      explanation: "IMRaD stands for Introduction, Methods, Results, and Discussion—the universal structural schema for empirical scientific papers."
+    },
+    {
+      question: "In the neuroplasticity study, what did the 12-month structural MRI measurements show for the dual-task intervention group?",
+      excerpt: "\"Participants in the dual-task intervention demonstrated a statistically significant 2.4% increase in bilateral hippocampal gray matter volume (p = 0.003)...\"",
+      options: [
+        "A non-significant 0.2% increase in brain volume.",
+        "A 1.6% age-expected atrophy rate.",
+        "A statistically significant 2.4% expansion in bilateral hippocampal gray matter volume.",
+        "Complete reversal of all white matter lesions across the cerebral cortex."
+      ],
+      answer: 2,
+      explanation: "The Results section explicitly reports a statistically significant 2.4% increase in bilateral hippocampal volume (p = 0.003) for the dual-task group."
+    },
+    {
+      question: "Why do academic authors incorporate epistemic hedging verbs such as 'suggests', 'may', and 'indicates' rather than 'proves'?",
+      excerpt: "\"These preliminary data indicate that synergistic aerobic and cognitive load can mitigate normative senescent neural atrophy...\"",
+      options: [
+        "To conceal flawed mathematics from peer reviewers.",
+        "Because empirical science operates on probabilistic degrees of certainty and recognizes methodological boundaries.",
+        "To satisfy legal copyright requirements set by academic publishers.",
+        "Because scientists are forbidden from drawing any conclusions in an abstract."
+      ],
+      answer: 1,
+      explanation: "Science relies on probabilistic induction. Authors use epistemic hedging to accurately represent the boundaries of their data without making unverified universal claims."
+    },
+    {
+      question: "What does the statistical notation 'p = 0.003' indicate regarding the dual-task group's volume increase?",
+      options: [
+        "There is only a 0.3% probability that the observed results occurred purely due to random chance.",
+        "30% of the experimental subjects dropped out of the study.",
+        "The MRI resolution had an error margin of 3 millimeters.",
+        "The results are statistically insignificant because p is less than 1.0."
+      ],
+      answer: 0,
+      explanation: "A p-value measures the probability of obtaining test results at least as extreme as the observed results under the null hypothesis. p = 0.003 means there is a 0.3% chance (well below the standard 5% / 0.05 threshold) that the results were a random fluke."
+    },
+    {
+      question: "What critical research caveat did the authors highlight in their concluding remarks?",
+      excerpt: "\"...future multi-center investigations are necessary to determine whether these morphological adaptations persist post-intervention cessation.\"",
+      options: [
+        "Aerobic training causes chronic knee inflammation in all participants.",
+        "The trial must be repeated using feline subjects.",
+        "It remains unknown whether the neural structural gains endure after the training program stops.",
+        "Cognitive training is ineffective without pharmaceutical supplements."
+      ],
+      answer: 2,
+      explanation: "The conclusion acknowledges that further research is required to evaluate whether the neuroplastic adaptations persist post-intervention cessation."
+    }
+  ];
+
+  let currentIdx = 0;
+  let userAnswers = new Array(questions.length).fill(null);
+  let secondsElapsed = 0;
+  let timerInterval = null;
+
+  function startTimer() {
+    timerInterval = setInterval(() => {
+      secondsElapsed++;
+      const mins = String(Math.floor(secondsElapsed / 60)).padStart(2, '0');
+      const secs = String(secondsElapsed % 60).padStart(2, '0');
+      document.getElementById('timer-display').textContent = `⏱ ${mins}:${secs}`;
+    }, 1000);
+  }
+
+  function renderQuestion() {
+    const q = questions[currentIdx];
+    document.getElementById('q-counter').textContent = `Question ${currentIdx + 1} of ${questions.length}`;
+    document.getElementById('q-text').textContent = q.question;
+
+    const excerptEl = document.getElementById('q-excerpt');
+    if (q.excerpt) {
+      excerptEl.style.display = 'block';
+      excerptEl.textContent = q.excerpt;
+    } else {
+      excerptEl.style.display = 'none';
+    }
+
+    const optionsContainer = document.getElementById('options-container');
+    optionsContainer.innerHTML = '';
+
+    const letters = ['A', 'B', 'C', 'D'];
+    q.options.forEach((optText, index) => {
+      const optDiv = document.createElement('div');
+      optDiv.className = `option ${userAnswers[currentIdx] === index ? 'selected' : ''}`;
+      optDiv.onclick = () => selectOption(index);
+
+      optDiv.innerHTML = `
+        <div class="option-letter">${letters[index]}</div>
+        <div>${optText}</div>
+      `;
+      optionsContainer.appendChild(optDiv);
+    });
+
+    const progress = ((currentIdx + 1) / questions.length) * 100;
+    document.getElementById('progress-bar').style.width = `${progress}%`;
+
+    document.getElementById('prev-btn').disabled = currentIdx === 0;
+    const nextBtn = document.getElementById('next-btn');
+    if (currentIdx === questions.length - 1) {
+      nextBtn.textContent = 'Submit Quiz';
+      nextBtn.style.background = 'var(--success)';
+      nextBtn.style.color = '#ffffff';
+    } else {
+      nextBtn.textContent = 'Next';
+      nextBtn.style.background = 'var(--primary)';
+      nextBtn.style.color = '#0f172a';
+    }
+  }
+
+  function selectOption(index) {
+    userAnswers[currentIdx] = index;
+    renderQuestion();
+  }
+
+  function prevQuestion() {
+    if (currentIdx > 0) {
+      currentIdx--;
+      renderQuestion();
+    }
+  }
+
+  function nextQuestion() {
+    if (currentIdx < questions.length - 1) {
+      currentIdx++;
+      renderQuestion();
+    } else {
+      submitQuiz();
+    }
+  }
+
+  function submitQuiz() {
+    clearInterval(timerInterval);
+    let score = 0;
+    questions.forEach((q, i) => {
+      if (userAnswers[i] === q.answer) score++;
+    });
+
+    const percent = Math.round((score / questions.length) * 100);
+    document.getElementById('quiz-body').style.display = 'none';
+    document.getElementById('timer-display').style.display = 'none';
+    document.getElementById('progress-bar').style.width = '100%';
+
+    const resultView = document.getElementById('result-view');
+    resultView.style.display = 'block';
+
+    let reviewHtml = '';
+    const letters = ['A', 'B', 'C', 'D'];
+    questions.forEach((q, i) => {
+      const isCorrect = userAnswers[i] === q.answer;
+      const userChoice = userAnswers[i] !== null ? `${letters[userAnswers[i]]}. ${q.options[userAnswers[i]]}` : 'Unanswered';
+      const correctChoice = `${letters[q.answer]}. ${q.options[q.answer]}`;
+
+      reviewHtml += `
+        <div class="review-item">
+          <span class="review-status ${isCorrect ? 'status-correct' : 'status-incorrect'}">
+            ${isCorrect ? '✓ Correct' : '✕ Incorrect'}
+          </span>
+          <div class="review-question">${i + 1}. ${q.question}</div>
+          <div class="review-ans">Your Answer: <span>${userChoice}</span></div>
+          ${!isCorrect ? `<div class="review-ans">Correct Answer: <span>${correctChoice}</span></div>` : ''}
+          <div class="review-explanation"><strong>Scientific Evaluation:</strong> ${q.explanation}</div>
+        </div>
+      `;
+    });
+
+    resultView.innerHTML = `
+      <div class="result-container">
+        <div class="score-circle" style="--percent: ${percent};">
+          <div class="score-circle-inner">
+            ${percent}%
+            <span class="score-total">${score}/${questions.length}</span>
+          </div>
+        </div>
+        <h2 class="result-title">${percent >= 80 ? 'Exemplary Scientific Literacy!' : percent >= 60 ? 'Competent Paper Analysis' : 'Review Scientific Hedging'}</h2>
+        <p class="result-desc">You completed the academic abstract and methodology assessment in ${document.getElementById('timer-display').textContent.replace('⏱ ', '')}.</p>
+        <button class="btn btn-restart" onclick="restartQuiz()">Retake Quiz</button>
+      </div>
+      <div class="review-list">
+        ${reviewHtml}
+      </div>
+    `;
+  }
+
+  function restartQuiz() {
+    currentIdx = 0;
+    userAnswers = new Array(questions.length).fill(null);
+    secondsElapsed = 0;
+    document.getElementById('timer-display').style.display = 'flex';
+    document.getElementById('quiz-body').style.display = 'block';
+    document.getElementById('result-view').style.display = 'none';
+    startTimer();
+    renderQuestion();
+  }
+
+  startTimer();
+  renderQuestion();
+</script>
+</body>
+</html>
