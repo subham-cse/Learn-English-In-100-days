@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Day 74 Quiz: Cross-Cultural Communication Dynamics</title>
+  <style>
+    :root {
+      --bg: #0f172a;
+      --card-bg: #1e293b;
+      --card-border: #334155;
+      --text: #f8fafc;
+      --text-muted: #94a3b8;
+      --primary: #14b8a6;
+      --primary-hover: #0d9488;
+      --success: #10b981;
+      --danger: #ef4444;
+      --accent: #06b6d4;
+      --option-bg: #334155;
+      --option-hover: #475569;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 24px 16px;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 720px;
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 32px;
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
+    }
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 24px;
+      border-bottom: 1px solid var(--card-border);
+      padding-bottom: 16px;
+    }
+
+    .badge {
+      background: rgba(20, 184, 166, 0.15);
+      color: var(--primary);
+      padding: 6px 14px;
+      border-radius: 9999px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .timer {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--accent);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .progress-bar-container {
+      width: 100%;
+      height: 6px;
+      background: #334155;
+      border-radius: 9999px;
+      margin-bottom: 28px;
+      overflow: hidden;
+    }
+
+    .progress-bar {
+      height: 100%;
+      background: linear-gradient(90deg, var(--primary), var(--accent));
+      width: 0%;
+      transition: width 0.3s ease;
+    }
+
+    .question-count {
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+
+    .question-text {
+      font-size: 1.25rem;
+      font-weight: 600;
+      line-height: 1.5;
+      margin-bottom: 24px;
+      color: #ffffff;
+    }
+
+    .cultural-quote {
+      background: #112527;
+      border-left: 4px solid var(--primary);
+      padding: 12px 18px;
+      border-radius: 0 8px 8px 0;
+      font-size: 0.95rem;
+      color: #ccfbf1;
+      margin-bottom: 20px;
+      line-height: 1.5;
+      font-style: italic;
+    }
+
+    .options {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 28px;
+    }
+
+    .option {
+      background: var(--option-bg);
+      border: 2px solid transparent;
+      padding: 14px 18px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      color: var(--text);
+    }
+
+    .option:hover {
+      background: var(--option-hover);
+      border-color: #475569;
+    }
+
+    .option.selected {
+      border-color: var(--primary);
+      background: rgba(20, 184, 166, 0.15);
+    }
+
+    .option-letter {
+      background: rgba(255, 255, 255, 0.1);
+      width: 26px;
+      height: 26px;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.85rem;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .option.selected .option-letter {
+      background: var(--primary);
+      color: #0f172a;
+    }
+
+    .footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .btn {
+      padding: 10px 22px;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      cursor: pointer;
+      border: none;
+      transition: all 0.2s ease;
+    }
+
+    .btn-prev {
+      background: transparent;
+      color: var(--text-muted);
+      border: 1px solid var(--card-border);
+    }
+
+    .btn-prev:hover:not(:disabled) {
+      background: #334155;
+      color: var(--text);
+    }
+
+    .btn-next {
+      background: var(--primary);
+      color: #0f172a;
+    }
+
+    .btn-next:hover:not(:disabled) {
+      background: var(--primary-hover);
+    }
+
+    .btn:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+
+    /* Score & Review Page */
+    .result-container {
+      text-align: center;
+      padding: 10px 0;
+    }
+
+    .score-circle {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: conic-gradient(var(--primary) calc(var(--percent) * 1%), #334155 0);
+      margin: 0 auto 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .score-circle-inner {
+      width: 96px;
+      height: 96px;
+      border-radius: 50%;
+      background: var(--card-bg);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.6rem;
+      font-weight: 700;
+    }
+
+    .score-total {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      font-weight: normal;
+    }
+
+    .result-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .result-desc {
+      color: var(--text-muted);
+      margin-bottom: 24px;
+      line-height: 1.5;
+    }
+
+    .review-list {
+      text-align: left;
+      margin-top: 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .review-item {
+      background: #151e2e;
+      border: 1px solid var(--card-border);
+      border-radius: 10px;
+      padding: 16px;
+    }
+
+    .review-question {
+      font-weight: 600;
+      margin-bottom: 12px;
+      font-size: 1rem;
+    }
+
+    .review-status {
+      display: inline-block;
+      padding: 3px 10px;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+      text-transform: uppercase;
+    }
+
+    .status-correct {
+      background: rgba(16, 185, 129, 0.2);
+      color: var(--success);
+    }
+
+    .status-incorrect {
+      background: rgba(239, 68, 68, 0.2);
+      color: var(--danger);
+    }
+
+    .review-ans {
+      font-size: 0.9rem;
+      margin-bottom: 6px;
+      color: var(--text-muted);
+    }
+
+    .review-ans span {
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .review-explanation {
+      margin-top: 10px;
+      padding-top: 10px;
+      border-top: 1px dashed #334155;
+      font-size: 0.85rem;
+      color: #2dd4bf;
+      line-height: 1.4;
+    }
+
+    .btn-restart {
+      margin-top: 24px;
+      background: var(--primary);
+      color: #0f172a;
+      padding: 12px 28px;
+    }
+
+    .btn-restart:hover {
+      background: var(--primary-hover);
+    }
+  </style>
+</head>
+<body>
+
+<div class="container" id="quiz-card">
+  <div class="header">
+    <span class="badge">Day 74 • Cross-Cultural Pragmatics</span>
+    <span class="timer" id="timer-display">⏱ 00:00</span>
+  </div>
+
+  <div class="progress-bar-container">
+    <div class="progress-bar" id="progress-bar"></div>
+  </div>
+
+  <div id="quiz-body">
+    <div class="question-count" id="q-counter">Question 1 of 5</div>
+    <div class="question-text" id="q-text">Loading question...</div>
+    <div id="q-cultural" class="cultural-quote" style="display: none;"></div>
+
+    <div class="options" id="options-container">
+      <!-- Options injected by JS -->
+    </div>
+
+    <div class="footer">
+      <button class="btn btn-prev" id="prev-btn" onclick="prevQuestion()" disabled>Previous</button>
+      <button class="btn btn-next" id="next-btn" onclick="nextQuestion()">Next</button>
+    </div>
+  </div>
+
+  <div id="result-view" style="display: none;">
+    <!-- Injected after submission -->
+  </div>
+</div>
+
+<script>
+  const questions = [
+    {
+      question: "According to Edward T. Hall's cultural framework, what defines a 'Low-Context' communication style?",
+      options: [
+        "Communication relies on shared ancestry, body language, and silence rather than spoken words.",
+        "Communication is explicit, literal, and transparent, with the primary message embedded directly in the words themselves.",
+        "Contracts are negotiated purely verbally over tea.",
+        "Subordinates never challenge executive superiors in meetings."
+      ],
+      answer: 1,
+      explanation: "Low-Context cultures (e.g., US, Germany, Netherlands) prioritize clear, literal, and explicit communication, operating on the premise that meaning resides directly in the spoken or written words."
+    },
+    {
+      question: "In the passage 'The Silent Chasm', what real message was communicated when the Japanese executive stated the proposal was 'worthy of deep reflection'?",
+      culturalQuote: "\"...the proposed timeline was 'exceptionally challenging and worthy of deep reflection'...\"",
+      options: [
+        "A formal request to sign the contract that afternoon.",
+        "An enthusiastic agreement to fast-track production.",
+        "A polite, diplomatic rejection intended to prevent a disruptive loss of face.",
+        "A request to double the project's financial budget."
+      ],
+      answer: 2,
+      explanation: "In high-context Japanese business communication, phrases like 'worthy of reflection' or 'very difficult' serve as courteous, indirect rejections that maintain social harmony (wa) without publicly embarrassing the counterpart."
+    },
+    {
+      question: "Why did the American executives misinterpret the German engineers' blunt critique of the software architecture?",
+      options: [
+        "Because the German engineers wrote their reviews in French.",
+        "Because Low-Context German culture views direct technical criticism as professional respect, whereas Americans expected positive cushioning.",
+        "Because the Germans intended to resign from the company.",
+        "Because the American executives did not understand how software compilers work."
+      ],
+      answer: 1,
+      explanation: "German professional communication often embraces unvarnished objective critique of the work itself, which the American managers erroneously interpreted as personal hostility due to different cultural feedback norms."
+    },
+    {
+      question: "What linguistic function do 'Downgraders' perform in indirect feedback cultures?",
+      culturalQuote: "\"Perhaps we might consider giving the figures a slight second look when convenient.\"",
+      options: [
+        "They degrade the audio quality of transatlantic telephone calls.",
+        "They demote employees to lower corporate job titles.",
+        "They soften negative criticism through qualifying phrases (e.g., 'perhaps', 'slightly') to preserve relational harmony.",
+        "They translate legal contracts into computer algorithms."
+      ],
+      answer: 2,
+      explanation: "Downgraders are linguistic softening devices used extensively in high-context and polite cultures to temper negative assessments and shield interpersonal relationships from direct friction."
+    },
+    {
+      question: "How should an international manager interpret prolonged silence in a meeting with high-context East Asian partners?",
+      options: [
+        "As an insult demonstrating utter boredom and disrespect.",
+        "As a technical microphone malfunction that requires disconnecting.",
+        "As a natural, respectful space for thoughtful reflection, consensus deliberation, and careful consideration.",
+        "As total agreement with all proposed contractual terms."
+      ],
+      answer: 2,
+      explanation: "In high-context Asian business cultures, silence is not awkward or hostile; it is a sign of contemplation, respect, and non-verbal consensus evaluation."
+    }
+  ];
+
+  let currentIdx = 0;
+  let userAnswers = new Array(questions.length).fill(null);
+  let secondsElapsed = 0;
+  let timerInterval = null;
+
+  function startTimer() {
+    timerInterval = setInterval(() => {
+      secondsElapsed++;
+      const mins = String(Math.floor(secondsElapsed / 60)).padStart(2, '0');
+      const secs = String(secondsElapsed % 60).padStart(2, '0');
+      document.getElementById('timer-display').textContent = `⏱ ${mins}:${secs}`;
+    }, 1000);
+  }
+
+  function renderQuestion() {
+    const q = questions[currentIdx];
+    document.getElementById('q-counter').textContent = `Question ${currentIdx + 1} of ${questions.length}`;
+    document.getElementById('q-text').textContent = q.question;
+
+    const cultEl = document.getElementById('q-cultural');
+    if (q.culturalQuote) {
+      cultEl.style.display = 'block';
+      cultEl.textContent = q.culturalQuote;
+    } else {
+      cultEl.style.display = 'none';
+    }
+
+    const optionsContainer = document.getElementById('options-container');
+    optionsContainer.innerHTML = '';
+
+    const letters = ['A', 'B', 'C', 'D'];
+    q.options.forEach((optText, index) => {
+      const optDiv = document.createElement('div');
+      optDiv.className = `option ${userAnswers[currentIdx] === index ? 'selected' : ''}`;
+      optDiv.onclick = () => selectOption(index);
+
+      optDiv.innerHTML = `
+        <div class="option-letter">${letters[index]}</div>
+        <div>${optText}</div>
+      `;
+      optionsContainer.appendChild(optDiv);
+    });
+
+    const progress = ((currentIdx + 1) / questions.length) * 100;
+    document.getElementById('progress-bar').style.width = `${progress}%`;
+
+    document.getElementById('prev-btn').disabled = currentIdx === 0;
+    const nextBtn = document.getElementById('next-btn');
+    if (currentIdx === questions.length - 1) {
+      nextBtn.textContent = 'Submit Quiz';
+      nextBtn.style.background = 'var(--success)';
+      nextBtn.style.color = '#0f172a';
+    } else {
+      nextBtn.textContent = 'Next';
+      nextBtn.style.background = 'var(--primary)';
+      nextBtn.style.color = '#0f172a';
+    }
+  }
+
+  function selectOption(index) {
+    userAnswers[currentIdx] = index;
+    renderQuestion();
+  }
+
+  function prevQuestion() {
+    if (currentIdx > 0) {
+      currentIdx--;
+      renderQuestion();
+    }
+  }
+
+  function nextQuestion() {
+    if (currentIdx < questions.length - 1) {
+      currentIdx++;
+      renderQuestion();
+    } else {
+      submitQuiz();
+    }
+  }
+
+  function submitQuiz() {
+    clearInterval(timerInterval);
+    let score = 0;
+    questions.forEach((q, i) => {
+      if (userAnswers[i] === q.answer) score++;
+    });
+
+    const percent = Math.round((score / questions.length) * 100);
+    document.getElementById('quiz-body').style.display = 'none';
+    document.getElementById('timer-display').style.display = 'none';
+    document.getElementById('progress-bar').style.width = '100%';
+
+    const resultView = document.getElementById('result-view');
+    resultView.style.display = 'block';
+
+    let reviewHtml = '';
+    const letters = ['A', 'B', 'C', 'D'];
+    questions.forEach((q, i) => {
+      const isCorrect = userAnswers[i] === q.answer;
+      const userChoice = userAnswers[i] !== null ? `${letters[userAnswers[i]]}. ${q.options[userAnswers[i]]}` : 'Unanswered';
+      const correctChoice = `${letters[q.answer]}. ${q.options[q.answer]}`;
+
+      reviewHtml += `
+        <div class="review-item">
+          <span class="review-status ${isCorrect ? 'status-correct' : 'status-incorrect'}">
+            ${isCorrect ? '✓ Correct' : '✕ Incorrect'}
+          </span>
+          <div class="review-question">${i + 1}. ${q.question}</div>
+          <div class="review-ans">Your Answer: <span>${userChoice}</span></div>
+          ${!isCorrect ? `<div class="review-ans">Correct Answer: <span>${correctChoice}</span></div>` : ''}
+          <div class="review-explanation"><strong>Cross-Cultural Analysis:</strong> ${q.explanation}</div>
+        </div>
+      `;
+    });
+
+    resultView.innerHTML = `
+      <div class="result-container">
+        <div class="score-circle" style="--percent: ${percent};">
+          <div class="score-circle-inner">
+            ${percent}%
+            <span class="score-total">${score}/${questions.length}</span>
+          </div>
+        </div>
+        <h2 class="result-title">${percent >= 80 ? 'Cross-Cultural Master!' : percent >= 60 ? 'Culturally Savvy' : 'Review High/Low Context Frameworks'}</h2>
+        <p class="result-desc">You completed the international pragmatics assessment in ${document.getElementById('timer-display').textContent.replace('⏱ ', '')}.</p>
+        <button class="btn btn-restart" onclick="restartQuiz()">Retake Quiz</button>
+      </div>
+      <div class="review-list">
+        ${reviewHtml}
+      </div>
+    `;
+  }
+
+  function restartQuiz() {
+    currentIdx = 0;
+    userAnswers = new Array(questions.length).fill(null);
+    secondsElapsed = 0;
+    document.getElementById('timer-display').style.display = 'flex';
+    document.getElementById('quiz-body').style.display = 'block';
+    document.getElementById('result-view').style.display = 'none';
+    startTimer();
+    renderQuestion();
+  }
+
+  startTimer();
+  renderQuestion();
+</script>
+</body>
+</html>
