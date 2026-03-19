@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Day 76 Reading Comprehension Quiz: Ocean Coral Restoration</title>
+  <style>
+    :root {
+      --primary: #0284c7;
+      --primary-dark: #0369a1;
+      --primary-light: #e0f2fe;
+      --success: #16a34a;
+      --danger: #dc2626;
+      --dark: #0f172a;
+      --gray: #64748b;
+      --light-bg: #f8fafc;
+      --white: #ffffff;
+      --border: #e2e8f0;
+      --radius: 12px;
+      --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+      min-height: 100vh;
+      color: var(--dark);
+      padding: 2rem 1rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .quiz-container {
+      background: var(--white);
+      max-width: 800px;
+      width: 100%;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 2.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .quiz-header {
+      border-bottom: 2px solid var(--border);
+      padding-bottom: 1.5rem;
+      margin-bottom: 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .badge {
+      background: var(--primary-light);
+      color: var(--primary-dark);
+      font-size: 0.85rem;
+      font-weight: 700;
+      padding: 0.35rem 0.85rem;
+      border-radius: 9999px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    h1 {
+      font-size: 1.6rem;
+      color: var(--dark);
+      font-weight: 800;
+      margin-top: 0.4rem;
+    }
+
+    .timer-badge {
+      background: #fef3c7;
+      color: #92400e;
+      font-weight: 700;
+      padding: 0.4rem 0.8rem;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .progress-bar-container {
+      width: 100%;
+      height: 8px;
+      background: var(--border);
+      border-radius: 4px;
+      margin-bottom: 2rem;
+      overflow: hidden;
+    }
+
+    .progress-bar {
+      height: 100%;
+      width: 20%;
+      background: linear-gradient(90deg, var(--primary), #38bdf8);
+      transition: width 0.3s ease;
+    }
+
+    .question-card {
+      display: none;
+    }
+
+    .question-card.active {
+      display: block;
+      animation: fadeIn 0.3s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .q-number {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--primary);
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+
+    .q-text {
+      font-size: 1.2rem;
+      font-weight: 600;
+      line-height: 1.5;
+      margin-bottom: 1.5rem;
+      color: var(--dark);
+    }
+
+    .options-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+    }
+
+    .option-btn {
+      background: var(--light-bg);
+      border: 2px solid var(--border);
+      border-radius: 10px;
+      padding: 1rem 1.25rem;
+      font-size: 1rem;
+      text-align: left;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      color: var(--dark);
+      line-height: 1.4;
+    }
+
+    .option-btn:hover {
+      background: var(--primary-light);
+      border-color: var(--primary);
+    }
+
+    .option-btn.selected {
+      background: #e0f2fe;
+      border-color: var(--primary);
+      font-weight: 600;
+    }
+
+    .opt-letter {
+      background: var(--white);
+      border: 1px solid var(--border);
+      width: 26px;
+      height: 26px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      font-size: 0.85rem;
+      flex-shrink: 0;
+      font-weight: 700;
+      color: var(--gray);
+    }
+
+    .nav-buttons {
+      margin-top: 2rem;
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .btn {
+      padding: 0.75rem 1.5rem;
+      border-radius: 8px;
+      font-weight: 700;
+      cursor: pointer;
+      font-size: 1rem;
+      border: none;
+      transition: all 0.2s ease;
+    }
+
+    .btn-prev {
+      background: var(--light-bg);
+      color: var(--gray);
+      border: 1px solid var(--border);
+    }
+
+    .btn-prev:hover:not(:disabled) {
+      background: var(--border);
+      color: var(--dark);
+    }
+
+    .btn-next, .btn-submit {
+      background: var(--primary);
+      color: var(--white);
+    }
+
+    .btn-next:hover, .btn-submit:hover {
+      background: var(--primary-dark);
+    }
+
+    .btn:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+
+    /* Score & Results View */
+    .results-view {
+      display: none;
+      text-align: center;
+      animation: fadeIn 0.4s ease;
+    }
+
+    .score-circle {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      margin: 1.5rem auto;
+      background: conic-gradient(var(--primary) calc(var(--score-pct) * 1%), #e2e8f0 0);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .score-circle::after {
+      content: attr(data-score);
+      position: absolute;
+      width: 110px;
+      height: 110px;
+      background: var(--white);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: var(--primary-dark);
+    }
+
+    .results-heading {
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: var(--dark);
+    }
+
+    .results-summary {
+      font-size: 1.1rem;
+      color: var(--gray);
+      margin-bottom: 2rem;
+    }
+
+    .review-accordion {
+      text-align: left;
+      margin-top: 2rem;
+      border-top: 1px solid var(--border);
+      padding-top: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    .review-item {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.25rem;
+      background: #fafafa;
+    }
+
+    .review-item.correct {
+      border-left: 5px solid var(--success);
+    }
+
+    .review-item.incorrect {
+      border-left: 5px solid var(--danger);
+    }
+
+    .review-q {
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      color: var(--dark);
+    }
+
+    .review-detail {
+      font-size: 0.95rem;
+      margin-top: 0.35rem;
+      line-height: 1.5;
+    }
+
+    .review-detail strong {
+      color: var(--dark);
+    }
+
+    .explanation-box {
+      margin-top: 0.75rem;
+      background: var(--primary-light);
+      padding: 0.75rem 1rem;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      color: #0369a1;
+      line-height: 1.45;
+    }
+
+    .btn-retake {
+      margin-top: 2rem;
+      background: var(--primary);
+      color: var(--white);
+      padding: 0.85rem 2rem;
+      border-radius: 8px;
+      font-weight: 700;
+      border: none;
+      cursor: pointer;
+      display: inline-block;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="quiz-container">
+    <div id="quiz-screen">
+      <div class="quiz-header">
+        <div>
+          <span class="badge">Day 76 Mastery</span>
+          <h1>Ocean Coral Restoration Quiz</h1>
+        </div>
+        <div class="timer-badge">⏱️ <span id="timer">00:00</span></div>
+      </div>
+
+      <div class="progress-bar-container">
+        <div class="progress-bar" id="progressBar"></div>
+      </div>
+
+      <div id="questions-wrapper">
+        <!-- Question 1 -->
+        <div class="question-card active" data-q="0">
+          <div class="q-number">Question 1 of 5</div>
+          <div class="q-text">According to the passage, what immediate physiological event triggers coral bleaching during periods of thermal stress?</div>
+          <div class="options-list">
+            <button class="option-btn" data-opt="0"><span class="opt-letter">A</span> Corals fail to deposit calcium carbonate due to ocean acidity.</button>
+            <button class="option-btn" data-opt="1"><span class="opt-letter">B</span> Corals expel their photosynthetic endosymbionts (zooxanthellae) due to oxidative stress.</button>
+            <button class="option-btn" data-opt="2"><span class="opt-letter">C</span> Corals undergo histocompatibility rejection against clonal propagules.</button>
+            <button class="option-btn" data-opt="3"><span class="opt-letter">D</span> Algal blooms consume all available marine nitrogen, causing reef suffocation.</button>
+          </div>
+        </div>
+
+        <!-- Question 2 -->
+        <div class="question-card" data-q="1">
+          <div class="q-number">Question 2 of 5</div>
+          <div class="q-text">What enables microfragmented coral tiles to form a mature reproductive colony in just 2 to 3 years?</div>
+          <div class="options-list">
+            <button class="option-btn" data-opt="0"><span class="opt-letter">A</span> Genetically identical clonal fragments recognize one another and fuse through histocompatibility.</button>
+            <button class="option-btn" data-opt="1"><span class="opt-letter">B</span> Microfragments absorb synthetic cryopreserved hormones directly from ceramic substrates.</button>
+            <button class="option-btn" data-opt="2"><span class="opt-letter">C</span> Branching corals mutate their DNA rapidly to outcompete benthic microalgae.</button>
+            <button class="option-btn" data-opt="3"><span class="opt-letter">D</span> The tiles are kept permanently inside high-salinity laboratory raceways.</button>
+          </div>
+        </div>
+
+        <!-- Question 3 -->
+        <div class="question-card" data-q="2">
+          <div class="q-number">Question 3 of 5</div>
+          <div class="q-text">What is the central distinction between conventional conservation and "assisted evolution" as outlined in the text?</div>
+          <div class="options-list">
+            <button class="option-btn" data-opt="0"><span class="opt-letter">A</span> Assisted evolution avoids all laboratory cultivation and relies solely on marine reserves.</button>
+            <button class="option-btn" data-opt="1"><span class="opt-letter">B</span> Assisted evolution proactively breeds and selects heat-tolerant genotypes rather than passively preserving existing wild strains.</button>
+            <button class="option-btn" data-opt="2"><span class="opt-letter">C</span> Conventional conservation uses cryopreservation, whereas assisted evolution only uses fragmentation.</button>
+            <button class="option-btn" data-opt="3"><span class="opt-letter">D</span> Assisted evolution completely replaces scleractinian corals with synthetic artificial reefs.</button>
+          </div>
+        </div>
+
+        <!-- Question 4 -->
+        <div class="question-card" data-q="3">
+          <div class="q-number">Question 4 of 5</div>
+          <div class="q-text">What potential ecological risk do critics associate with widespread selective outplanting of "super corals"?</div>
+          <div class="options-list">
+            <button class="option-btn" data-opt="0"><span class="opt-letter">A</span> Massive decrease in coral growth speed and calcification rates.</button>
+            <button class="option-btn" data-opt="1"><span class="opt-letter">B</span> Immediate poisoning of benthic macroinvertebrates.</button>
+            <button class="option-btn" data-opt="2"><span class="opt-letter">C</span> Genetic bottlenecking and unpredictable ecological perturbation.</button>
+            <button class="option-btn" data-opt="3"><span class="opt-letter">D</span> Inability of super corals to fuse via histocompatibility.</button>
+          </div>
+        </div>
+
+        <!-- Question 5 -->
+        <div class="question-card" data-q="4">
+          <div class="q-number">Question 5 of 5</div>
+          <div class="q-text">In the context of Paragraph 1, what does the term <em>anthropogenic</em> most accurately signify?</div>
+          <div class="options-list">
+            <button class="option-btn" data-opt="0"><span class="opt-letter">A</span> Relating to subterranean geological movements.</button>
+            <button class="option-btn" data-opt="1"><span class="opt-letter">B</span> Caused or generated by human activities.</button>
+            <button class="option-btn" data-opt="2"><span class="opt-letter">C</span> Occurring spontaneously in deep benthic trenches.</button>
+            <button class="option-btn" data-opt="3"><span class="opt-letter">D</span> Pertaining to photosynthetic microscopic algae.</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="nav-buttons">
+        <button class="btn btn-prev" id="prevBtn" disabled>← Previous</button>
+        <button class="btn btn-next" id="nextBtn">Next →</button>
+      </div>
+    </div>
+
+    <!-- Results Screen -->
+    <div class="results-view" id="results-screen">
+      <h2 class="results-heading">Quiz Complete!</h2>
+      <div class="score-circle" id="scoreCircle" style="--score-pct: 0;" data-score="0%"></div>
+      <p class="results-summary" id="resultSummary">You scored 0 out of 5</p>
+
+      <div class="review-accordion" id="reviewContainer">
+        <!-- Injected via JavaScript -->
+      </div>
+
+      <button class="btn btn-retake" onclick="resetQuiz()">🔄 Retake Quiz</button>
+    </div>
+  </div>
+
+  <script>
+    const quizData = [
+      {
+        q: "According to the passage, what immediate physiological event triggers coral bleaching during periods of thermal stress?",
+        options: [
+          "Corals fail to deposit calcium carbonate due to ocean acidity.",
+          "Corals expel their photosynthetic endosymbionts (zooxanthellae) due to oxidative stress.",
+          "Corals undergo histocompatibility rejection against clonal propagules.",
+          "Algal blooms consume all available marine nitrogen, causing reef suffocation."
+        ],
+        correct: 1,
+        explanation: "Paragraph 1 specifies that when sea temperatures exceed seasonal baselines, oxidative stress prompts corals to expel their photosynthetic dinoflagellates (zooxanthellae), causing the bleaching crisis."
+      },
+      {
+        q: "What enables microfragmented coral tiles to form a mature reproductive colony in just 2 to 3 years?",
+        options: [
+          "Genetically identical clonal fragments recognize one another and fuse through histocompatibility.",
+          "Microfragments absorb synthetic cryopreserved hormones directly from ceramic substrates.",
+          "Branching corals mutate their DNA rapidly to outcompete benthic microalgae.",
+          "The tiles are kept permanently inside high-salinity laboratory raceways."
+        ],
+        correct: 0,
+        explanation: "Paragraph 2 explains that clonal propagules mounted near one another recognize their shared genetics and fuse via histocompatibility, scaling growth by up to forty times."
+      },
+      {
+        q: "What is the central distinction between conventional conservation and 'assisted evolution' as outlined in the text?",
+        options: [
+          "Assisted evolution avoids all laboratory cultivation and relies solely on marine reserves.",
+          "Assisted evolution proactively breeds and selects heat-tolerant genotypes rather than passively preserving existing wild strains.",
+          "Conventional conservation uses cryopreservation, whereas assisted evolution only uses fragmentation.",
+          "Assisted evolution completely replaces scleractinian corals with synthetic artificial reefs."
+        ],
+        correct: 1,
+        explanation: "Paragraph 3 notes that assisted evolution deliberately selects and breeds thermally resilient 'super corals' possessing heat-tolerant genotypes or symbionts ahead of warming events."
+      },
+      {
+        q: "What potential ecological risk do critics associate with widespread selective outplanting of 'super corals'?",
+        options: [
+          "Massive decrease in coral growth speed and calcification rates.",
+          "Immediate poisoning of benthic macroinvertebrates.",
+          "Genetic bottlenecking and unpredictable ecological perturbation.",
+          "Inability of super corals to fuse via histocompatibility."
+        ],
+        correct: 2,
+        explanation: "Paragraph 3 states: 'While critics caution that widespread selective outplanting risks genetic bottlenecking and unpredictable ecosystem perturbation...'"
+      },
+      {
+        q: "In the context of Paragraph 1, what does the term 'anthropogenic' most accurately signify?",
+        options: [
+          "Relating to subterranean geological movements.",
+          "Caused or generated by human activities.",
+          "Occurring spontaneously in deep benthic trenches.",
+          "Pertaining to photosynthetic microscopic algae."
+        ],
+        correct: 1,
+        explanation: "'Anthropogenic' combines 'anthropo-' (human) and '-genic' (originating/produced by), referring to changes resulting from human actions."
+      }
+    ];
+
+    let currentQ = 0;
+    let userAnswers = new Array(quizData.length).fill(null);
+    let secondsElapsed = 0;
+    let timerInterval = null;
+
+    const cards = document.querySelectorAll('.question-card');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const progressBar = document.getElementById('progressBar');
+    const timerElem = document.getElementById('timer');
+
+    function startTimer() {
+      secondsElapsed = 0;
+      clearInterval(timerInterval);
+      timerInterval = setInterval(() => {
+        secondsElapsed++;
+        const mins = String(Math.floor(secondsElapsed / 60)).padStart(2, '0');
+        const secs = String(secondsElapsed % 60).padStart(2, '0');
+        timerElem.textContent = `${mins}:${secs}`;
+      }, 1000);
+    }
+
+    function showQuestion(index) {
+      cards.forEach((card, idx) => {
+        card.classList.toggle('active', idx === index);
+      });
+
+      prevBtn.disabled = index === 0;
+      if (index === quizData.length - 1) {
+        nextBtn.textContent = 'Submit Quiz ✓';
+        nextBtn.className = 'btn btn-submit';
+      } else {
+        nextBtn.textContent = 'Next →';
+        nextBtn.className = 'btn btn-next';
+      }
+
+      const pct = ((index + 1) / quizData.length) * 100;
+      progressBar.style.width = `${pct}%`;
+
+      // Highlight selected if any
+      const currentCard = cards[index];
+      const buttons = currentCard.querySelectorAll('.option-btn');
+      buttons.forEach((btn, optIdx) => {
+        btn.classList.toggle('selected', userAnswers[index] === optIdx);
+      });
+    }
+
+    // Attach click listeners to options
+    cards.forEach((card, qIdx) => {
+      const btns = card.querySelectorAll('.option-btn');
+      btns.forEach((btn, optIdx) => {
+        btn.addEventListener('click', () => {
+          userAnswers[qIdx] = optIdx;
+          btns.forEach(b => b.classList.remove('selected'));
+          btn.classList.add('selected');
+        });
+      });
+    });
+
+    prevBtn.addEventListener('click', () => {
+      if (currentQ > 0) {
+        currentQ--;
+        showQuestion(currentQ);
+      }
+    });
+
+    nextBtn.addEventListener('click', () => {
+      if (currentQ < quizData.length - 1) {
+        currentQ++;
+        showQuestion(currentQ);
+      } else {
+        finishQuiz();
+      }
+    });
+
+    function finishQuiz() {
+      clearInterval(timerInterval);
+      let score = 0;
+      userAnswers.forEach((ans, idx) => {
+        if (ans === quizData[idx].correct) score++;
+      });
+
+      const scorePct = Math.round((score / quizData.length) * 100);
+
+      document.getElementById('quiz-screen').style.display = 'none';
+      const resultsScreen = document.getElementById('results-screen');
+      resultsScreen.style.display = 'block';
+
+      const circle = document.getElementById('scoreCircle');
+      circle.style.setProperty('--score-pct', scorePct);
+      circle.setAttribute('data-score', `${scorePct}%`);
+
+      document.getElementById('resultSummary').textContent =
+        `You answered ${score} out of ${quizData.length} questions correctly in ${timerElem.textContent}!`;
+
+      const reviewContainer = document.getElementById('reviewContainer');
+      reviewContainer.innerHTML = '';
+
+      quizData.forEach((item, idx) => {
+        const isCorrect = userAnswers[idx] === item.correct;
+        const chosenText = userAnswers[idx] !== null ? item.options[userAnswers[idx]] : '<em>No answer chosen</em>';
+        const correctText = item.options[item.correct];
+
+        const itemDiv = document.createElement('div');
+        itemDiv.className = `review-item ${isCorrect ? 'correct' : 'incorrect'}`;
+        itemDiv.innerHTML = `
+          <div class="review-q">Q${idx + 1}. ${item.q}</div>
+          <div class="review-detail"><strong>Your Answer:</strong> ${chosenText} ${isCorrect ? '✅' : '❌'}</div>
+          ${!isCorrect ? `<div class="review-detail"><strong>Correct Answer:</strong> ${correctText}</div>` : ''}
+          <div class="explanation-box"><strong>Explanation:</strong> ${item.explanation}</div>
+        `;
+        reviewContainer.appendChild(itemDiv);
+      });
+    }
+
+    function resetQuiz() {
+      userAnswers = new Array(quizData.length).fill(null);
+      currentQ = 0;
+      document.getElementById('results-screen').style.display = 'none';
+      document.getElementById('quiz-screen').style.display = 'block';
+      startTimer();
+      showQuestion(0);
+    }
+
+    // Initialize
+    startTimer();
+    showQuestion(0);
+  </script>
+</body>
+</html>
