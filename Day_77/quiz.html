@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Day 77 Reading Comprehension Quiz: The Cue-Routine-Reward Loop</title>
+  <style>
+    :root {
+      --primary: #8b5cf6;
+      --primary-dark: #6d28d9;
+      --primary-light: #ede9fe;
+      --success: #16a34a;
+      --danger: #dc2626;
+      --dark: #0f172a;
+      --gray: #64748b;
+      --light-bg: #f8fafc;
+      --white: #ffffff;
+      --border: #e2e8f0;
+      --radius: 12px;
+      --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #f5f3ff 0%, #ede9fe 100%);
+      min-height: 100vh;
+      color: var(--dark);
+      padding: 2rem 1rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .quiz-container {
+      background: var(--white);
+      max-width: 800px;
+      width: 100%;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 2.5rem;
+      position: relative;
+    }
+
+    .quiz-header {
+      border-bottom: 2px solid var(--border);
+      padding-bottom: 1.5rem;
+      margin-bottom: 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .badge {
+      background: var(--primary-light);
+      color: var(--primary-dark);
+      font-size: 0.85rem;
+      font-weight: 700;
+      padding: 0.35rem 0.85rem;
+      border-radius: 9999px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    h1 {
+      font-size: 1.6rem;
+      color: var(--dark);
+      font-weight: 800;
+      margin-top: 0.4rem;
+    }
+
+    .timer-badge {
+      background: #fef3c7;
+      color: #92400e;
+      font-weight: 700;
+      padding: 0.4rem 0.8rem;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .progress-bar-container {
+      width: 100%;
+      height: 8px;
+      background: var(--border);
+      border-radius: 4px;
+      margin-bottom: 2rem;
+      overflow: hidden;
+    }
+
+    .progress-bar {
+      height: 100%;
+      width: 20%;
+      background: linear-gradient(90deg, var(--primary), #a78bfa);
+      transition: width 0.3s ease;
+    }
+
+    .question-card {
+      display: none;
+    }
+
+    .question-card.active {
+      display: block;
+      animation: fadeIn 0.3s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .q-number {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--primary);
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+
+    .q-text {
+      font-size: 1.2rem;
+      font-weight: 600;
+      line-height: 1.5;
+      margin-bottom: 1.5rem;
+      color: var(--dark);
+    }
+
+    .options-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+    }
+
+    .option-btn {
+      background: var(--light-bg);
+      border: 2px solid var(--border);
+      border-radius: 10px;
+      padding: 1rem 1.25rem;
+      font-size: 1rem;
+      text-align: left;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      color: var(--dark);
+      line-height: 1.4;
+    }
+
+    .option-btn:hover {
+      background: var(--primary-light);
+      border-color: var(--primary);
+    }
+
+    .option-btn.selected {
+      background: #ede9fe;
+      border-color: var(--primary);
+      font-weight: 600;
+    }
+
+    .opt-letter {
+      background: var(--white);
+      border: 1px solid var(--border);
+      width: 26px;
+      height: 26px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      font-size: 0.85rem;
+      flex-shrink: 0;
+      font-weight: 700;
+      color: var(--gray);
+    }
+
+    .nav-buttons {
+      margin-top: 2rem;
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .btn {
+      padding: 0.75rem 1.5rem;
+      border-radius: 8px;
+      font-weight: 700;
+      cursor: pointer;
+      font-size: 1rem;
+      border: none;
+      transition: all 0.2s ease;
+    }
+
+    .btn-prev {
+      background: var(--light-bg);
+      color: var(--gray);
+      border: 1px solid var(--border);
+    }
+
+    .btn-prev:hover:not(:disabled) {
+      background: var(--border);
+      color: var(--dark);
+    }
+
+    .btn-next, .btn-submit {
+      background: var(--primary);
+      color: var(--white);
+    }
+
+    .btn-next:hover, .btn-submit:hover {
+      background: var(--primary-dark);
+    }
+
+    .btn:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+
+    .results-view {
+      display: none;
+      text-align: center;
+      animation: fadeIn 0.4s ease;
+    }
+
+    .score-circle {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      margin: 1.5rem auto;
+      background: conic-gradient(var(--primary) calc(var(--score-pct) * 1%), #e2e8f0 0);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .score-circle::after {
+      content: attr(data-score);
+      position: absolute;
+      width: 110px;
+      height: 110px;
+      background: var(--white);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: var(--primary-dark);
+    }
+
+    .results-heading {
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: var(--dark);
+    }
+
+    .results-summary {
+      font-size: 1.1rem;
+      color: var(--gray);
+      margin-bottom: 2rem;
+    }
+
+    .review-accordion {
+      text-align: left;
+      margin-top: 2rem;
+      border-top: 1px solid var(--border);
+      padding-top: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    .review-item {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.25rem;
+      background: #fafafa;
+    }
+
+    .review-item.correct {
+      border-left: 5px solid var(--success);
+    }
+
+    .review-item.incorrect {
+      border-left: 5px solid var(--danger);
+    }
+
+    .review-q {
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      color: var(--dark);
+    }
+
+    .review-detail {
+      font-size: 0.95rem;
+      margin-top: 0.35rem;
+      line-height: 1.5;
+    }
+
+    .explanation-box {
+      margin-top: 0.75rem;
+      background: var(--primary-light);
+      padding: 0.75rem 1rem;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      color: var(--primary-dark);
+      line-height: 1.45;
+    }
+
+    .btn-retake {
+      margin-top: 2rem;
+      background: var(--primary);
+      color: var(--white);
+      padding: 0.85rem 2rem;
+      border-radius: 8px;
+      font-weight: 700;
+      border: none;
+      cursor: pointer;
+      display: inline-block;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="quiz-container">
+    <div id="quiz-screen">
+      <div class="quiz-header">
+        <div>
+          <span class="badge">Day 77 Mastery</span>
+          <h1>Habit Formation & Cognitive Psychology Quiz</h1>
+        </div>
+        <div class="timer-badge">⏱️ <span id="timer">00:00</span></div>
+      </div>
+
+      <div class="progress-bar-container">
+        <div class="progress-bar" id="progressBar"></div>
+      </div>
+
+      <div id="questions-wrapper">
+        <!-- Question 1 -->
+        <div class="question-card active" data-q="0">
+          <div class="q-number">Question 1 of 5</div>
+          <div class="q-text">Which anatomical structure in the brain is primarily responsible for executing automated habits through the process of "chunking"?</div>
+          <div class="options-list">
+            <button class="option-btn" data-opt="0"><span class="opt-letter">A</span> The prefrontal cortex</button>
+            <button class="option-btn" data-opt="1"><span class="opt-letter">B</span> The basal ganglia</button>
+            <button class="option-btn" data-opt="2"><span class="opt-letter">C</span> The visual occipital lobe</button>
+            <button class="option-btn" data-opt="3"><span class="opt-letter">D</span> The sensory auditory cortex</button>
+          </div>
+        </div>
+
+        <!-- Question 2 -->
+        <div class="question-card" data-q="1">
+          <div class="q-number">Question 2 of 5</div>
+          <div class="q-text">According to the passage, when does dopamine surge once a habit loop has become fully established?</div>
+          <div class="options-list">
+            <button class="option-btn" data-opt="0"><span class="opt-letter">A</span> Only hours after the reward has been completely consumed.</button>
+            <button class="option-btn" data-opt="1"><span class="opt-letter">B</span> Exclusively when a habit fails to yield its expected reward.</button>
+            <button class="option-btn" data-opt="2"><span class="opt-letter">C</span> In anticipation, directly upon encountering the cue before the routine begins.</button>
+            <button class="option-btn" data-opt="3"><span class="opt-letter">D</span> Only when the prefrontal cortex consciously overrides the basal ganglia.</button>
+          </div>
+        </div>
+
+        <!-- Question 3 -->
+        <div class="question-card" data-q="2">
+          <div class="q-number">Question 3 of 5</div>
+          <div class="q-text">What does "The Golden Rule of Habit Change" mandate regarding modifying entrenched behavioral patterns?</div>
+          <div class="options-list">
+            <button class="option-btn" data-opt="0"><span class="opt-letter">A</span> Eradicating the cue and eliminating all rewards through pure willpower.</button>
+            <button class="option-btn" data-opt="1"><span class="opt-letter">B</span> Replacing the routine while preserving both the original cue and the reward payoff.</button>
+            <button class="option-btn" data-opt="2"><span class="opt-letter">C</span> Allowing the basal ganglia to atrophy through prolonged cognitive isolation.</button>
+            <button class="option-btn" data-opt="3"><span class="opt-letter">D</span> Shifting all automated behaviors permanently to executive prefrontal control.</button>
+          </div>
+        </div>
+
+        <!-- Question 4 -->
+        <div class="question-card" data-q="3">
+          <div class="q-number">Question 4 of 5</div>
+          <div class="q-text">What insight does fMRI neuroimaging offer regarding "extinguished" or stopped habits?</div>
+          <div class="options-list">
+            <button class="option-btn" data-opt="0"><span class="opt-letter">A</span> Neurons in the basal ganglia dissolve and are permanently eliminated.</button>
+            <button class="option-btn" data-opt="1"><span class="opt-letter">B</span> Synaptic pathways remain dormant and can be reactivated under severe psychological stress.</button>
+            <button class="option-btn" data-opt="2"><span class="opt-letter">C</span> Ceased habits transform automatically into instinctive motor reflexes.</button>
+            <button class="option-btn" data-opt="3"><span class="opt-letter">D</span> Former habits migrate entirely into the cerebellar hemisphere.</button>
+          </div>
+        </div>
+
+        <!-- Question 5 -->
+        <div class="question-card" data-q="4">
+          <div class="q-number">Question 5 of 5</div>
+          <div class="q-text">In Paragraph 1, the evolutionary purpose of habit formation is described as:</div>
+          <div class="options-list">
+            <button class="option-btn" data-opt="0"><span class="opt-letter">A</span> Eliminating the need for any conscious problem-solving capacity.</button>
+            <button class="option-btn" data-opt="1"><span class="opt-letter">B</span> Maximizing glucose consumption during repetitive physical labor.</button>
+            <button class="option-btn" data-opt="2"><span class="opt-letter">C</span> Conserving metabolic energy and preventing prefrontal cognitive exhaustion.</button>
+            <button class="option-btn" data-opt="3"><span class="opt-letter">D</span> Enhancing auditory vigilance during nighttime sleep cycles.</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="nav-buttons">
+        <button class="btn btn-prev" id="prevBtn" disabled>← Previous</button>
+        <button class="btn btn-next" id="nextBtn">Next →</button>
+      </div>
+    </div>
+
+    <!-- Results Screen -->
+    <div class="results-view" id="results-screen">
+      <h2 class="results-heading">Quiz Complete!</h2>
+      <div class="score-circle" id="scoreCircle" style="--score-pct: 0;" data-score="0%"></div>
+      <p class="results-summary" id="resultSummary">You scored 0 out of 5</p>
+
+      <div class="review-accordion" id="reviewContainer"></div>
+
+      <button class="btn btn-retake" onclick="resetQuiz()">🔄 Retake Quiz</button>
+    </div>
+  </div>
+
+  <script>
+    const quizData = [
+      {
+        q: "Which anatomical structure in the brain is primarily responsible for executing automated habits through the process of 'chunking'?",
+        options: [
+          "The prefrontal cortex",
+          "The basal ganglia",
+          "The visual occipital lobe",
+          "The sensory auditory cortex"
+        ],
+        correct: 1,
+        explanation: "Paragraph 1 specifies that the brain delegates recurrent behaviors to the basal ganglia, an ancient subcortical cluster that consolidates action cascades via chunking."
+      },
+      {
+        q: "According to the passage, when does dopamine surge once a habit loop has become fully established?",
+        options: [
+          "Only hours after the reward has been completely consumed.",
+          "Exclusively when a habit fails to yield its expected reward.",
+          "In anticipation, directly upon encountering the cue before the routine begins.",
+          "Only when the prefrontal cortex consciously overrides the basal ganglia."
+        ],
+        correct: 2,
+        explanation: "Paragraph 2 explains that over time, the brain connects cue and reward via anticipatory dopamine surges; the cue itself triggers an immediate craving before the routine is performed."
+      },
+      {
+        q: "What does 'The Golden Rule of Habit Change' mandate regarding modifying entrenched behavioral patterns?",
+        options: [
+          "Eradicating the cue and eliminating all rewards through pure willpower.",
+          "Replacing the routine while preserving both the original cue and the reward payoff.",
+          "Allowing the basal ganglia to atrophy through prolonged cognitive isolation.",
+          "Shifting all automated behaviors permanently to executive prefrontal control."
+        ],
+        correct: 1,
+        explanation: "Paragraph 3 notes: 'To successfully reform a maladaptive habit, one must preserve the existing cue and maintain the anticipated reward, but consciously reprogram the intermediary routine.'"
+      },
+      {
+        q: "What insight does fMRI neuroimaging offer regarding 'extinguished' or stopped habits?",
+        options: [
+          "Neurons in the basal ganglia dissolve and are permanently eliminated.",
+          "Synaptic pathways remain dormant and can be reactivated under severe psychological stress.",
+          "Ceased habits transform automatically into instinctive motor reflexes.",
+          "Former habits migrate entirely into the cerebellar hemisphere."
+        ],
+        correct: 1,
+        explanation: "Paragraph 3 highlights that once etched into the basal ganglia, habit circuits remain dormant rather than erased, making them vulnerable to reactivation during acute stress."
+      },
+      {
+        q: "In Paragraph 1, the evolutionary purpose of habit formation is described as:",
+        options: [
+          "Eliminating the need for any conscious problem-solving capacity.",
+          "Maximizing glucose consumption during repetitive physical labor.",
+          "Conserving metabolic energy and preventing prefrontal cognitive exhaustion.",
+          "Enhancing auditory vigilance during nighttime sleep cycles."
+        ],
+        correct: 2,
+        explanation: "Paragraph 1 opens by detailing that the brain is an efficiency-maximizing organ designed to conserve glucose and avert decision fatigue in the prefrontal cortex."
+      }
+    ];
+
+    let currentQ = 0;
+    let userAnswers = new Array(quizData.length).fill(null);
+    let secondsElapsed = 0;
+    let timerInterval = null;
+
+    const cards = document.querySelectorAll('.question-card');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const progressBar = document.getElementById('progressBar');
+    const timerElem = document.getElementById('timer');
+
+    function startTimer() {
+      secondsElapsed = 0;
+      clearInterval(timerInterval);
+      timerInterval = setInterval(() => {
+        secondsElapsed++;
+        const mins = String(Math.floor(secondsElapsed / 60)).padStart(2, '0');
+        const secs = String(secondsElapsed % 60).padStart(2, '0');
+        timerElem.textContent = `${mins}:${secs}`;
+      }, 1000);
+    }
+
+    function showQuestion(index) {
+      cards.forEach((card, idx) => {
+        card.classList.toggle('active', idx === index);
+      });
+
+      prevBtn.disabled = index === 0;
+      if (index === quizData.length - 1) {
+        nextBtn.textContent = 'Submit Quiz ✓';
+        nextBtn.className = 'btn btn-submit';
+      } else {
+        nextBtn.textContent = 'Next →';
+        nextBtn.className = 'btn btn-next';
+      }
+
+      const pct = ((index + 1) / quizData.length) * 100;
+      progressBar.style.width = `${pct}%`;
+
+      const currentCard = cards[index];
+      const buttons = currentCard.querySelectorAll('.option-btn');
+      buttons.forEach((btn, optIdx) => {
+        btn.classList.toggle('selected', userAnswers[index] === optIdx);
+      });
+    }
+
+    cards.forEach((card, qIdx) => {
+      const btns = card.querySelectorAll('.option-btn');
+      btns.forEach((btn, optIdx) => {
+        btn.addEventListener('click', () => {
+          userAnswers[qIdx] = optIdx;
+          btns.forEach(b => b.classList.remove('selected'));
+          btn.classList.add('selected');
+        });
+      });
+    });
+
+    prevBtn.addEventListener('click', () => {
+      if (currentQ > 0) {
+        currentQ--;
+        showQuestion(currentQ);
+      }
+    });
+
+    nextBtn.addEventListener('click', () => {
+      if (currentQ < quizData.length - 1) {
+        currentQ++;
+        showQuestion(currentQ);
+      } else {
+        finishQuiz();
+      }
+    });
+
+    function finishQuiz() {
+      clearInterval(timerInterval);
+      let score = 0;
+      userAnswers.forEach((ans, idx) => {
+        if (ans === quizData[idx].correct) score++;
+      });
+
+      const scorePct = Math.round((score / quizData.length) * 100);
+
+      document.getElementById('quiz-screen').style.display = 'none';
+      const resultsScreen = document.getElementById('results-screen');
+      resultsScreen.style.display = 'block';
+
+      const circle = document.getElementById('scoreCircle');
+      circle.style.setProperty('--score-pct', scorePct);
+      circle.setAttribute('data-score', `${scorePct}%`);
+
+      document.getElementById('resultSummary').textContent =
+        `You answered ${score} out of ${quizData.length} questions correctly in ${timerElem.textContent}!`;
+
+      const reviewContainer = document.getElementById('reviewContainer');
+      reviewContainer.innerHTML = '';
+
+      quizData.forEach((item, idx) => {
+        const isCorrect = userAnswers[idx] === item.correct;
+        const chosenText = userAnswers[idx] !== null ? item.options[userAnswers[idx]] : '<em>No answer chosen</em>';
+        const correctText = item.options[item.correct];
+
+        const itemDiv = document.createElement('div');
+        itemDiv.className = `review-item ${isCorrect ? 'correct' : 'incorrect'}`;
+        itemDiv.innerHTML = `
+          <div class="review-q">Q${idx + 1}. ${item.q}</div>
+          <div class="review-detail"><strong>Your Answer:</strong> ${chosenText} ${isCorrect ? '✅' : '❌'}</div>
+          ${!isCorrect ? `<div class="review-detail"><strong>Correct Answer:</strong> ${correctText}</div>` : ''}
+          <div class="explanation-box"><strong>Explanation:</strong> ${item.explanation}</div>
+        `;
+        reviewContainer.appendChild(itemDiv);
+      });
+    }
+
+    function resetQuiz() {
+      userAnswers = new Array(quizData.length).fill(null);
+      currentQ = 0;
+      document.getElementById('results-screen').style.display = 'none';
+      document.getElementById('quiz-screen').style.display = 'block';
+      startTimer();
+      showQuestion(0);
+    }
+
+    startTimer();
+    showQuestion(0);
+  </script>
+</body>
+</html>
