@@ -1,0 +1,1789 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Phase 4 Milestone Mega Quiz | Reading & Comprehension (Days 61–80)</title>
+  <style>
+    :root {
+      --primary: #4f46e5;
+      --primary-hover: #4338ca;
+      --primary-light: #e0e7ff;
+      --secondary: #0ea5e9;
+      --success: #10b981;
+      --success-light: #d1fae5;
+      --danger: #ef4444;
+      --danger-light: #fee2e2;
+      --warning: #f59e0b;
+      --warning-light: #fef3c7;
+      --slate-50: #f8fafc;
+      --slate-100: #f1f5f9;
+      --slate-200: #e2e8f0;
+      --slate-300: #cbd5e1;
+      --slate-600: #475569;
+      --slate-700: #334155;
+      --slate-800: #1e293b;
+      --slate-900: #0f172a;
+      --card-bg: #ffffff;
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 16px;
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.08);
+      --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -2px rgba(0,0,0,0.08);
+      --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -4px rgba(0,0,0,0.1);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    body {
+      background-color: #f1f5f9;
+      color: var(--slate-800);
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      background: linear-gradient(135deg, #1e1b4b 0%, #312e81 50%, #4338ca 100%);
+      color: white;
+      padding: 1.25rem 2rem;
+      box-shadow: var(--shadow-md);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+
+    .header-content {
+      max-width: 1300px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .brand-title {
+      font-size: 1.35rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      letter-spacing: -0.02em;
+    }
+
+    .brand-badge {
+      background: rgba(255, 255, 255, 0.2);
+      padding: 0.2rem 0.6rem;
+      border-radius: 9999px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .quiz-meta {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .timer-container {
+      background: rgba(15, 23, 42, 0.55);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      padding: 0.4rem 1rem;
+      border-radius: var(--radius-md);
+      font-variant-numeric: tabular-nums;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 1.1rem;
+      font-weight: 600;
+    }
+
+    .timer-icon {
+      color: #38bdf8;
+    }
+
+    .timer-warning {
+      background: rgba(239, 68, 68, 0.3) !important;
+      border-color: #ef4444 !important;
+      color: #fee2e2 !important;
+      animation: pulse 1s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.6; }
+    }
+
+    .progress-summary {
+      font-size: 0.9rem;
+      color: #c7d2fe;
+    }
+
+    .main-container {
+      max-width: 1300px;
+      width: 100%;
+      margin: 1.5rem auto;
+      padding: 0 1rem;
+      display: grid;
+      grid-template-columns: 340px 1fr;
+      gap: 1.5rem;
+      flex: 1;
+    }
+
+    @media (max-width: 960px) {
+      .main-container {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Left Sidebar: Palette & Navigation */
+    .sidebar {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border-radius: var(--radius-lg);
+      padding: 1.25rem;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--slate-200);
+    }
+
+    .palette-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--slate-100);
+    }
+
+    .palette-header h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--slate-800);
+    }
+
+    .grid-counter {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--primary);
+    }
+
+    .question-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 0.5rem;
+    }
+
+    .grid-btn {
+      aspect-ratio: 1;
+      border: 1px solid var(--slate-200);
+      background-color: var(--slate-50);
+      border-radius: var(--radius-sm);
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--slate-700);
+      cursor: pointer;
+      transition: all 0.15s ease;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .grid-btn:hover {
+      border-color: var(--primary);
+      background-color: var(--primary-light);
+      color: var(--primary);
+    }
+
+    .grid-btn.active {
+      outline: 2px solid var(--primary);
+      outline-offset: 2px;
+      font-weight: 800;
+    }
+
+    .grid-btn.answered {
+      background-color: #e0f2fe;
+      border-color: #38bdf8;
+      color: #0369a1;
+    }
+
+    .grid-btn.flagged::after {
+      content: "";
+      position: absolute;
+      top: 3px;
+      right: 3px;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background-color: var(--warning);
+    }
+
+    .grid-btn.correct-eval {
+      background-color: var(--success-light) !important;
+      border-color: var(--success) !important;
+      color: #065f46 !important;
+    }
+
+    .grid-btn.incorrect-eval {
+      background-color: var(--danger-light) !important;
+      border-color: var(--danger) !important;
+      color: #991b1b !important;
+    }
+
+    .legend {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.6rem;
+      margin-top: 1rem;
+      font-size: 0.78rem;
+      color: var(--slate-600);
+      padding-top: 0.75rem;
+      border-top: 1px solid var(--slate-100);
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .legend-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 3px;
+    }
+
+    .overall-stats {
+      font-size: 0.85rem;
+      color: var(--slate-600);
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .stat-bar-bg {
+      background: var(--slate-100);
+      border-radius: 999px;
+      height: 8px;
+      overflow: hidden;
+    }
+
+    .stat-bar-fill {
+      background: var(--primary);
+      height: 100%;
+      width: 0%;
+      transition: width 0.3s ease;
+    }
+
+    /* Main Quiz View Area */
+    .quiz-workspace {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    .question-card {
+      background: var(--card-bg);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--slate-200);
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .question-top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+
+    .category-pill {
+      background: #eff6ff;
+      color: #2563eb;
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 0.35rem 0.85rem;
+      border-radius: 999px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      border: 1px solid #bfdbfe;
+    }
+
+    .flag-btn {
+      background: none;
+      border: 1px solid var(--slate-300);
+      padding: 0.35rem 0.75rem;
+      border-radius: var(--radius-sm);
+      font-size: 0.8rem;
+      color: var(--slate-600);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      transition: all 0.2s ease;
+    }
+
+    .flag-btn:hover {
+      background: var(--slate-50);
+      border-color: var(--warning);
+      color: var(--warning);
+    }
+
+    .flag-btn.flagged {
+      background: var(--warning-light);
+      border-color: var(--warning);
+      color: #b45309;
+      font-weight: 600;
+    }
+
+    .question-text-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--slate-900);
+      line-height: 1.45;
+    }
+
+    /* Excerpt Box */
+    .excerpt-box {
+      background: #f8fafc;
+      border-left: 4px solid var(--primary);
+      border-right: 1px solid var(--slate-200);
+      border-top: 1px solid var(--slate-200);
+      border-bottom: 1px solid var(--slate-200);
+      padding: 1.25rem 1.5rem;
+      border-radius: 0 var(--radius-md) var(--radius-md) 0;
+      font-size: 0.95rem;
+      color: var(--slate-700);
+      line-height: 1.7;
+      font-style: italic;
+    }
+
+    .excerpt-source {
+      display: block;
+      margin-top: 0.5rem;
+      font-style: normal;
+      font-size: 0.8rem;
+      color: var(--slate-600);
+      font-weight: 600;
+    }
+
+    .options-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+    }
+
+    .option-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      padding: 1.1rem 1.25rem;
+      border-radius: var(--radius-md);
+      border: 1.5px solid var(--slate-200);
+      cursor: pointer;
+      transition: all 0.2s ease;
+      background: white;
+    }
+
+    .option-item:hover {
+      border-color: var(--primary);
+      background: var(--slate-50);
+      transform: translateY(-1px);
+    }
+
+    .option-item.selected {
+      border-color: var(--primary);
+      background: #eff6ff;
+      box-shadow: 0 0 0 1px var(--primary);
+    }
+
+    .option-letter {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--slate-100);
+      border: 1px solid var(--slate-300);
+      color: var(--slate-700);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.85rem;
+      font-weight: 700;
+      flex-shrink: 0;
+      transition: all 0.2s;
+    }
+
+    .option-item.selected .option-letter {
+      background: var(--primary);
+      color: white;
+      border-color: var(--primary);
+    }
+
+    .option-text {
+      font-size: 0.98rem;
+      color: var(--slate-800);
+      line-height: 1.5;
+      flex: 1;
+    }
+
+    /* Nav Controller */
+    .nav-controller {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: white;
+      padding: 1rem 1.5rem;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--slate-200);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .btn {
+      padding: 0.65rem 1.35rem;
+      border-radius: var(--radius-sm);
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      border: none;
+      transition: all 0.2s ease;
+    }
+
+    .btn-secondary {
+      background: var(--slate-100);
+      color: var(--slate-700);
+      border: 1px solid var(--slate-300);
+    }
+
+    .btn-secondary:hover:not(:disabled) {
+      background: var(--slate-200);
+      color: var(--slate-900);
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background: var(--primary-hover);
+      box-shadow: 0 4px 12px rgba(79, 70, 229, 0.35);
+    }
+
+    .btn-success {
+      background: var(--success);
+      color: white;
+    }
+
+    .btn-success:hover {
+      background: #059669;
+      box-shadow: 0 4px 12px rgba(16, 185, 129, 0.35);
+    }
+
+    .btn:disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+      transform: none !important;
+      box-shadow: none !important;
+    }
+
+    /* Modal / Submission Confirmation */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.6);
+      backdrop-filter: blur(4px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 100;
+      padding: 1rem;
+    }
+
+    .modal-overlay.active {
+      display: flex;
+    }
+
+    .modal-box {
+      background: white;
+      border-radius: var(--radius-lg);
+      max-width: 480px;
+      width: 100%;
+      padding: 2rem;
+      box-shadow: var(--shadow-lg);
+      text-align: center;
+      animation: modalScale 0.25s ease-out;
+    }
+
+    @keyframes modalScale {
+      from { transform: scale(0.92); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    .modal-title {
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: var(--slate-900);
+      margin-bottom: 0.5rem;
+    }
+
+    .modal-body {
+      font-size: 0.95rem;
+      color: var(--slate-600);
+      margin-bottom: 1.5rem;
+      line-height: 1.6;
+    }
+
+    .modal-actions {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+    }
+
+    /* Results Dashboard */
+    .results-dashboard {
+      display: none;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .results-hero {
+      background: linear-gradient(135deg, #1e1b4b 0%, #312e81 60%, #4f46e5 100%);
+      color: white;
+      border-radius: var(--radius-lg);
+      padding: 2.5rem 2rem;
+      text-align: center;
+      box-shadow: var(--shadow-md);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .results-score-big {
+      font-size: 4rem;
+      font-weight: 900;
+      line-height: 1;
+      margin: 1rem 0;
+      color: #38bdf8;
+      text-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    }
+
+    .results-perf-title {
+      font-size: 1.6rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .results-stats-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 1rem;
+      max-width: 700px;
+      margin: 1.5rem auto 0;
+    }
+
+    .stat-pill {
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      padding: 0.85rem;
+      border-radius: var(--radius-md);
+    }
+
+    .stat-pill .val {
+      font-size: 1.35rem;
+      font-weight: 700;
+      display: block;
+    }
+
+    .stat-pill .lbl {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      opacity: 0.85;
+    }
+
+    /* Filter & Review Bar */
+    .review-filter-bar {
+      background: white;
+      border-radius: var(--radius-md);
+      padding: 0.85rem 1.25rem;
+      border: 1px solid var(--slate-200);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+
+    .filter-tabs {
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .filter-tab {
+      background: var(--slate-100);
+      border: 1px solid var(--slate-200);
+      padding: 0.4rem 0.85rem;
+      border-radius: 999px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      cursor: pointer;
+      color: var(--slate-700);
+      transition: all 0.15s;
+    }
+
+    .filter-tab.active {
+      background: var(--primary);
+      color: white;
+      border-color: var(--primary);
+    }
+
+    /* Review Questions List */
+    .review-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    .review-card {
+      background: white;
+      border-radius: var(--radius-lg);
+      padding: 1.75rem;
+      border: 1px solid var(--slate-200);
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .review-card.correct-card {
+      border-left: 6px solid var(--success);
+    }
+
+    .review-card.incorrect-card {
+      border-left: 6px solid var(--danger);
+    }
+
+    .review-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.9rem;
+      font-weight: 700;
+    }
+
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.25rem 0.65rem;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    .status-badge.correct {
+      background: var(--success-light);
+      color: #065f46;
+    }
+
+    .status-badge.incorrect {
+      background: var(--danger-light);
+      color: #991b1b;
+    }
+
+    .status-badge.unanswered {
+      background: var(--warning-light);
+      color: #92400e;
+    }
+
+    .review-option {
+      padding: 0.75rem 1rem;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--slate-200);
+      font-size: 0.9rem;
+      margin-top: 0.4rem;
+      display: flex;
+      gap: 0.5rem;
+      align-items: flex-start;
+    }
+
+    .review-option.user-selected-wrong {
+      background: var(--danger-light);
+      border-color: #fca5a5;
+      color: #991b1b;
+    }
+
+    .review-option.correct-choice {
+      background: var(--success-light);
+      border-color: #6ee7b7;
+      color: #065f46;
+      font-weight: 600;
+    }
+
+    .explanation-box {
+      background: #f8fafc;
+      border-radius: var(--radius-md);
+      padding: 1rem 1.25rem;
+      border: 1px solid var(--slate-200);
+      font-size: 0.9rem;
+      line-height: 1.6;
+      color: var(--slate-700);
+      margin-top: 0.5rem;
+    }
+
+    .explanation-title {
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 0.3rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem 1rem;
+      font-size: 0.85rem;
+      color: var(--slate-600);
+      margin-top: auto;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Sticky Header -->
+  <header>
+    <div class="header-content">
+      <div class="brand-title">
+        <span>📖 Phase 4 Milestone Mega Quiz</span>
+        <span class="brand-badge">Days 61–80</span>
+      </div>
+      <div class="quiz-meta">
+        <div class="progress-summary" id="headerProgress">0 / 30 Answered</div>
+        <div class="timer-container" id="timerBox">
+          <span class="timer-icon">⏱️</span>
+          <span id="timerText">45:00</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Body Content -->
+  <main class="main-container">
+    
+    <!-- Left Navigation / Palette -->
+    <aside class="sidebar">
+      <div class="card">
+        <div class="palette-header">
+          <h3>Question Palette</h3>
+          <span class="grid-counter" id="paletteCounter">0 / 30 Done</span>
+        </div>
+        
+        <div class="question-grid" id="questionGrid">
+          <!-- 30 Buttons injected by JS -->
+        </div>
+
+        <div class="legend">
+          <div class="legend-item">
+            <span class="legend-dot" style="background: #e0f2fe; border: 1px solid #38bdf8;"></span>
+            <span>Answered</span>
+          </div>
+          <div class="legend-item">
+            <span class="legend-dot" style="background: var(--slate-50); border: 1px solid var(--slate-300);"></span>
+            <span>Unanswered</span>
+          </div>
+          <div class="legend-item">
+            <span class="legend-dot" style="background: white; outline: 2px solid var(--primary);"></span>
+            <span>Active</span>
+          </div>
+          <div class="legend-item">
+            <span class="legend-dot" style="background: var(--warning);"></span>
+            <span>Flagged</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card overall-stats">
+        <div style="display:flex; justify-content:space-between; font-weight:600;">
+          <span>Progress</span>
+          <span id="progressPercent">0%</span>
+        </div>
+        <div class="stat-bar-bg">
+          <div class="stat-bar-fill" id="progressBar"></div>
+        </div>
+        <div style="font-size: 0.78rem; color: var(--slate-600); margin-top: 0.25rem;">
+          Focus: Critical Reading, Inferences, Technical & Financial Synthesis.
+        </div>
+      </div>
+    </aside>
+
+    <!-- Right Workspace Area -->
+    <section class="quiz-workspace" id="quizWorkspace">
+      <!-- Active Question Card -->
+      <div class="question-card" id="questionCard">
+        <div class="question-top-bar">
+          <span class="category-pill" id="questionCategory">Category</span>
+          <button class="flag-btn" id="flagBtn" onclick="toggleFlagCurrentQuestion()">
+            <span>🚩</span> <span id="flagBtnText">Flag Question</span>
+          </button>
+        </div>
+
+        <div class="excerpt-box" id="passageBox">
+          <div id="passageContent">Passage loading...</div>
+          <span class="excerpt-source" id="passageSource"></span>
+        </div>
+
+        <h2 class="question-text-title" id="questionTitle">Question Prompt loading...</h2>
+
+        <div class="options-list" id="optionsContainer">
+          <!-- Options A, B, C, D -->
+        </div>
+      </div>
+
+      <!-- Navigation & Submit Controls -->
+      <div class="nav-controller">
+        <button class="btn btn-secondary" id="prevBtn" onclick="navigateQuestion(-1)">
+          ← Previous
+        </button>
+        <div style="display: flex; gap: 0.75rem;">
+          <button class="btn btn-secondary" id="nextBtn" onclick="navigateQuestion(1)">
+            Next →
+          </button>
+          <button class="btn btn-success" id="submitBtn" onclick="openSubmitModal()">
+            Submit Quiz
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Post-Quiz Results Dashboard (Initially Hidden) -->
+    <section class="results-dashboard" id="resultsDashboard">
+      <div class="results-hero">
+        <h2 class="results-perf-title" id="performanceTitle">Evaluation Completed!</h2>
+        <p style="opacity: 0.9;" id="performanceSubtitle">Comprehensive analysis of your reading and comprehension mastery.</p>
+        <div class="results-score-big" id="finalScoreDisplay">0 / 30</div>
+        
+        <div class="results-stats-row">
+          <div class="stat-pill">
+            <span class="val" id="scorePercentVal">0%</span>
+            <span class="lbl">Accuracy</span>
+          </div>
+          <div class="stat-pill">
+            <span class="val" id="timeSpentVal">00:00</span>
+            <span class="lbl">Time Taken</span>
+          </div>
+          <div class="stat-pill">
+            <span class="val" id="correctCountVal">0</span>
+            <span class="lbl">Correct</span>
+          </div>
+          <div class="stat-pill">
+            <span class="val" id="incorrectCountVal">0</span>
+            <span class="lbl">Incorrect</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="review-filter-bar">
+        <div class="filter-tabs">
+          <button class="filter-tab active" onclick="setReviewFilter('all', this)">All Questions (30)</button>
+          <button class="filter-tab" onclick="setReviewFilter('incorrect', this)" id="tabIncorrect">Incorrect (0)</button>
+          <button class="filter-tab" onclick="setReviewFilter('flagged', this)" id="tabFlagged">Flagged (0)</button>
+        </div>
+        <button class="btn btn-primary" onclick="restartQuiz()">
+          🔄 Retake Quiz
+        </button>
+      </div>
+
+      <!-- Question by question review items -->
+      <div class="review-list" id="reviewList"></div>
+    </section>
+
+  </main>
+
+  <!-- Submit Confirmation Modal -->
+  <div class="modal-overlay" id="submitModal">
+    <div class="modal-box">
+      <h3 class="modal-title">Ready to Submit?</h3>
+      <p class="modal-body" id="modalStatusText">
+        You have answered 0 of 30 questions. Are you ready to finalize your test and view comprehensive pedagogical solutions?
+      </p>
+      <div class="modal-actions">
+        <button class="btn btn-secondary" onclick="closeSubmitModal()">Return to Quiz</button>
+        <button class="btn btn-success" onclick="confirmQuizSubmission()">Yes, Finalize & Score</button>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p>Phase 4 Milestone Mega Quiz &bull; Learn English in 100 Days &bull; Days 61–80 Comprehensive Review</p>
+  </footer>
+
+  <script>
+    /* =====================================================================
+       30 HIGH-QUALITY MULTIPLE CHOICE QUESTIONS (DAYS 61–80 COMPREHENSION)
+       ===================================================================== */
+    const quizQuestions = [
+      {
+        id: 1,
+        category: "Reading Strategy: Skimming & Scanning",
+        passage: "Eye-tracking heatmaps consistently reveal that digital readers exhibit an 'F-shaped' fixation pattern when evaluating informational web copy: two horizontal fixations across upper passages, followed by a systemic, truncated downward sweep along the left edge.",
+        source: "Nielsen Norman Group Research Synthesis",
+        question: "Based on the passage and speed-reading principles, which tactical takeaway is most actionable for a researcher scanning a web article for specific statistical metrics?",
+        options: [
+          "Read every sentence verbatim in the first three paragraphs before jumping to conclusion headers.",
+          "Target paragraph openings, subheadings, and bold left-margin keywords rather than tracking full horizontal sentences through mid-paragraphs.",
+          "Expand peripheral vision exclusively along the bottom-right quadrant of the viewport.",
+          "Subvocalize each line at high velocity to bypass visual scanning blind spots."
+        ],
+        answer: 1,
+        explanation: "The F-pattern shows that digital readers focus heavily on top horizontal sweeps and subsequent left-margin scans. Effective scanning capitalizes on this by spotting leftmost anchors, subheadings, and lead lines rather than wasting fixations reading full horizontal sentences across middle and lower paragraphs."
+      },
+      {
+        id: 2,
+        category: "Contextual Vocabulary Clues: Antonyms",
+        passage: "Unlike the fleeting, ephemeral fads of social media virality, the company's foundational corporate values were remarkably perennial, enduring through multi-decade market downturns and structural reorganizations.",
+        source: "Organizational Leadership Quarterly",
+        question: "In this passage, what context clue allows the reader to deduce the meaning of 'perennial'?",
+        options: [
+          "A direct definition introduced by parentheses and a semicolon.",
+          "An antonym contrast anchored by the phrase 'Unlike the fleeting, ephemeral fads'.",
+          "A cause-and-effect relationship initiated by market downturns.",
+          "An etymological breakdown of botanical terminology."
+        ],
+        answer: 1,
+        explanation: "The contrast marker 'Unlike' directly pits 'fleeting, ephemeral fads' against 'perennial' values that are 'enduring through multi-decade market downturns'. The explicit contrast serves as an antonym context clue indicating lasting permanence."
+      },
+      {
+        id: 3,
+        category: "Contextual Vocabulary Clues: Cause & Effect",
+        passage: "Because the factory discharged untreated toxic effluents into the riverbed over six months, the indigenous fish populations suffered deleterious consequences, with reproductive viability dropping by eighty percent.",
+        source: "Environmental Toxicology Report",
+        question: "What does the word 'deleterious' mean within the logical framework of this sentence?",
+        options: [
+          "Beneficial and regenerative to aquatic flora",
+          "Harmful, destructive, and damaging to biological welfare",
+          "Inconsequential and statistically negligible",
+          "Intermittent and rapidly self-correcting"
+        ],
+        answer: 1,
+        explanation: "The causal connective 'Because... toxic effluents' led directly to an 80% collapse in reproductive viability. This cause-and-effect structure proves 'deleterious' signifies severe harm and damage."
+      },
+      {
+        id: 4,
+        category: "Context Clues: Appositive & Definition",
+        passage: "The coral reef demonstrated obligate mutualism—a reciprocal symbiotic relationship wherein neither organism can survive without the biochemical support of the other—making bleaching events doubly catastrophic.",
+        source: "Marine Biology Digest",
+        question: "How is the definition of 'obligate mutualism' structured within the text?",
+        options: [
+          "Through a metaphorical comparison with terrestrial ecosystems.",
+          "Through an appositive phrase enclosed between dashes explaining the term directly.",
+          "Through an inverted rhetorical question followed by statistical proof.",
+          "Through an ironic negation stating what mutualism is not."
+        ],
+        answer: 1,
+        explanation: "The dashes enclose an appositive definition: 'a reciprocal symbiotic relationship wherein neither organism can survive without the biochemical support of the other', directly explaining the technical term."
+      },
+      {
+        id: 5,
+        category: "Main Idea vs. Details: The Umbrella Test",
+        passage: "Remote work reduces urban vehicular emissions by curtailing daily commutes. It empowers companies to source specialized international talent without relocation overhead. Furthermore, it affords workers flexible hours that elevate reported family satisfaction scores.",
+        source: "Workplace Dynamics Review",
+        question: "Applying the 'Umbrella Test' (identifying the broad concept that encompasses all other statements), which sentence best captures the unifying main idea?",
+        options: [
+          "Vehicular traffic is the preeminent driver of global environmental degradation.",
+          "International hiring logistics create substantial relocation overhead for modern corporations.",
+          "Remote work yields multidimensional benefits spanning ecological, organizational, and personal welfare.",
+          "Family satisfaction scores correlate directly with work hour autonomy."
+        ],
+        answer: 2,
+        explanation: "The 'Umbrella Test' asks: which statement is broad enough to cover all the specific supporting details without introducing irrelevant generalizations? Option C synthesizes the environmental ('ecological'), organizational ('talent without relocation'), and personal ('family satisfaction') points raised in the text."
+      },
+      {
+        id: 6,
+        category: "Author's Tone: Nuance & Voice",
+        passage: "The tech startup boasts that its new algorithmic toothbrush will 'democratize dental hygiene and disrupt the global wellness paradigm.' One must marvel at the audacity of packaging a vibrating plastic stick with Bluetooth connectivity as the vanguard of human liberation.",
+        source: "Silicon Valley Tech Critique",
+        question: "Which term most accurately characterizes the author's tone in this passage?",
+        options: [
+          "Objective and analytical",
+          "Cynical and sardonic",
+          "Didactic and instructional",
+          "Ambivalent and contemplative"
+        ],
+        answer: 1,
+        explanation: "The author mocks the startup's grandiose jargon ('democratize', 'vanguard of human liberation') by diminishing the product as a mere 'vibrating plastic stick with Bluetooth'. This biting, mocking attitude is classic cynical and sardonic commentary."
+      },
+      {
+        id: 7,
+        category: "Author's Tone: Melancholic vs. Didactic",
+        passage: "To navigate cognitive fatigue in high-stress environments, students must adopt deliberate metacognitive habits: log study intervals in 25-minute blocks, eliminate notification pings, and enforce ten-minute sensory resets.",
+        source: "Applied Cognitive Science Guide",
+        question: "What is the primary rhetorical tone of this excerpt?",
+        options: [
+          "Melancholic",
+          "Didactic",
+          "Cynical",
+          "Eulogistic"
+        ],
+        answer: 1,
+        explanation: "'Didactic' means intended to instruct, advise, or provide prescriptive guidance. The passage uses imperative prescriptions ('must adopt', 'log study intervals', 'eliminate notification pings') to teach optimal cognitive habits."
+      },
+      {
+        id: 8,
+        category: "Textual Inference & Deductive Reasoning",
+        passage: "Whenever regional water temperatures in the sanctuary exceed 29°C for more than three consecutive weeks, juvenile clownfish cease acoustic territorial signaling. During the summer of 2024, bioacoustic hydrophones recorded continuous clownfish territorial chatter throughout June, July, and August.",
+        source: "Ichthyology Field Notes",
+        question: "What valid inference must be drawn strictly from the text provided?",
+        options: [
+          "Water temperatures in the sanctuary never exceeded 29°C for three consecutive weeks during that summer.",
+          "Adult clownfish emigrated from the sanctuary due to severe thermal stress.",
+          "Hydrophones frequently malfunction when ambient ocean temperatures rise above 29°C.",
+          "Clownfish populations increased exponentially due to warmer waters."
+        ],
+        answer: 0,
+        explanation: "Premise 1: If temp > 29°C for > 3 weeks, clownfish cease chatter. Premise 2: Clownfish chatted continuously all summer (they did not cease). Therefore, by modus tollens, the condition (temp > 29°C for > 3 consecutive weeks) did not occur."
+      },
+      {
+        id: 9,
+        category: "Business Case Study: Bottlenecks & Tradeoffs",
+        passage: "Apex Logistics witnessed a 40% surge in order volume following its holiday promotion. However, while packaging automation operated at 95% capacity, outbound dispatch loading docks could process only 12 trucks per hour against an incoming freight rate of 28 trucks per hour, causing 14-hour staging yard gridlocks.",
+        source: "Supply Chain Operations Audit",
+        question: "What operational diagnosis is directly substantiated by this case study?",
+        options: [
+          "Packaging automation represents the critical primary bottleneck of the warehouse.",
+          "The loading dock dispatch throughput is the operational bottleneck constraining fulfillment capacity.",
+          "Customer demand collapsed due to ineffective holiday promotional pricing.",
+          "Apex Logistics should immediately de-automate packaging to harmonize warehouse speeds."
+        ],
+        answer: 1,
+        explanation: "The warehouse's packaging was operating smoothly at 95% capacity, but loading docks could process only 12 trucks/hr against 28 trucks/hr arriving, creating yard gridlock. The loading dock dispatch capacity is the classic bottleneck choking system throughput."
+      },
+      {
+        id: 10,
+        category: "Business Analysis: Key Performance Indicators",
+        passage: "SaaS Enterprise 'Novus' reported an annual Customer Acquisition Cost (CAC) of $1,200 alongside an Average Revenue Per User (ARPU) of $30/month. The enterprise also noted a median customer lifetime of 48 months and an annualized churn rate of 4.5%.",
+        source: "Quarterly SaaS Investor Briefing",
+        question: "Evaluating the customer Lifetime Value to Customer Acquisition Cost ratio (LTV:CAC), how should financial analysts rate Novus's unit economics?",
+        options: [
+          "Dismal: LTV is lower than CAC, generating a net cash deficit on every acquired user.",
+          "Highly attractive: Lifetime Value ($1,440) surpasses CAC ($1,200), yielding a healthy positive ratio above 1.0.",
+          "Catastrophic: Annualized churn of 4.5% completely eliminates all monthly recurring margins.",
+          "Indeterminate: Customer lifetime cannot be correlated with monthly revenue metrics."
+        ],
+        answer: 1,
+        explanation: "LTV = Monthly ARPU ($30) × Median Lifetime (48 months) = $1,440. CAC is $1,200. Since LTV ($1,440) exceeds CAC ($1,200), the company generates positive gross return per acquired customer."
+      },
+      {
+        id: 11,
+        category: "Technical Documentation: REST APIs",
+        passage: "The `/v2/subscriptions/{id}` endpoint responds to HTTP `PUT` requests by updating the target resource representation in its entirety. Clients must note that `PUT` is idempotent: dispatching multiple identical requests sequentially produces the identical system state as a single invocation.",
+        source: "Developer Platform Architecture Specification",
+        question: "According to the documentation, what does 'idempotent' mean in the context of the PUT method?",
+        options: [
+          "Every repeated request generates a unique new database record with incremented IDs.",
+          "Executing the identical request multiple times yields the same resultant system state as executing it once.",
+          "The endpoint automatically rejects any secondary request dispatched within 60 seconds.",
+          "The request alters both server and client hardware configurations concurrently."
+        ],
+        answer: 1,
+        explanation: "The passage explicitly states: '`PUT` is idempotent: dispatching multiple identical requests sequentially produces the identical system state as a single invocation.'"
+      },
+      {
+        id: 12,
+        category: "Technical Documentation: Systems Architecture",
+        passage: "Transitioning our monolithic backend into decoupled microservices minimized deployment blast radiuses and empowered independent scaling. Nevertheless, cross-service RPC overhead increased network latency by 35ms per request, requiring the deployment of distributed Redis cache layers.",
+        source: "Infrastructure Engineering Post-Mortem",
+        question: "What core architectural tradeoff does the author highlight?",
+        options: [
+          "Gaining complete database uniformity while sacrificing container security.",
+          "Gaining isolated deployment stability and scalability at the cost of heightened network communication latency.",
+          "Eliminating server hardware completely while exponentially expanding developer headcount.",
+          "Sacrificing horizontal scalability to guarantee zero-millisecond local cache retrieval."
+        ],
+        answer: 1,
+        explanation: "The tradeoff explicitly pairs benefits ('minimized deployment blast radiuses and independent scaling') with drawbacks ('increased network latency by 35ms per request' due to RPC overhead)."
+      },
+      {
+        id: 13,
+        category: "Opinion Editorials: Persuasive Structure",
+        passage: "Proponents of aggressive urban highway expansion argue that additional lanes alleviate gridlock during peak hours. However, empirical traffic data over fifty years demonstrates the inevitability of induced demand: expanded capacity merely stimulates additional car trips, restoring congestion to baseline levels within three years.",
+        source: "Urban Planning & Mobility Editorial",
+        question: "In this argument, how does the author handle the opponent's claim regarding highway lane expansion?",
+        options: [
+          "By accepting it as unassailable truth and urging increased highway budgets.",
+          "By acknowledging it as a concession before rebutting it with the counter-evidence of 'induced demand'.",
+          "By attacking the personal moral integrity of urban civil engineers.",
+          "By changing the topic from transportation to rural agricultural subsidies."
+        ],
+        answer: 1,
+        explanation: "The author introduces the proponent argument ('argue that additional lanes alleviate gridlock') and immediately pivots with 'However', neutralizing it with empirical evidence of 'induced demand'."
+      },
+      {
+        id: 14,
+        category: "Persuasive Rhetoric: Discourse Markers",
+        passage: "The candidate presented impressive econometric modeling during the symposium. Notwithstanding these theoretical triumphs, her complete refusal to address local labor displacements left the municipal panel deeply skeptical.",
+        source: "Civic Policy Journal",
+        question: "What is the rhetorical function of the transitional word 'Notwithstanding' in this passage?",
+        options: [
+          "To introduce a direct chronological sequence of experimental procedures.",
+          "To signal a concession that contrasts the candidate's theoretical strengths with her practical shortcomings.",
+          "To prove that the candidate's econometric modeling was mathematically fraudulent.",
+          "To offer an exhaustive list of municipal committee members."
+        ],
+        answer: 1,
+        explanation: "'Notwithstanding' is an adversative / concessive discourse marker meaning 'in spite of' or 'despite'. It concedes the theoretical modeling strengths while spotlighting the fatal omission of labor displacement."
+      },
+      {
+        id: 15,
+        category: "Logical Fallacies: False Dilemma",
+        passage: "'Either our municipality allocates fifty million dollars immediately to the centralized data surveillance grid, or we surrender our streets unconditionally to lawless pandemonium.'",
+        source: "City Council Debate Transcript",
+        question: "Which classical informal fallacy is committed in this argument?",
+        options: [
+          "Ad Hominem",
+          "False Dilemma (Either-Or Fallacy)",
+          "Post Hoc Ergo Propter Hoc",
+          "Appeal to Antiquity"
+        ],
+        answer: 1,
+        explanation: "A False Dilemma artificially restricts complex policy choices to two extreme, mutually exclusive options (spend $50M on surveillance OR total criminal chaos), ignoring viable middle-ground policing alternatives."
+      },
+      {
+        id: 16,
+        category: "Logical Fallacies: Straw Man",
+        passage: "Speaker A: 'We should allocate a modest portion of the defense research budget toward clean energy initiatives.' Speaker B: 'My opponent wants to leave our nation completely defenseless against foreign adversaries and dismantle the armed forces overnight!'",
+        source: "Public Discourse Analysis",
+        question: "Which logical fallacy does Speaker B employ against Speaker A?",
+        options: [
+          "Straw Man",
+          "Circular Reasoning (Begging the Question)",
+          "Slippery Slope without causal links",
+          "Hasty Generalization"
+        ],
+        answer: 0,
+        explanation: "A Straw Man fallacy occurs when an interlocutor distorts or exaggerates an opponent's moderate stance into an extreme, absurd caricature ('dismantle armed forces overnight') that is easier to attack."
+      },
+      {
+        id: 17,
+        category: "Logical Fallacies: Correlation vs. Causation",
+        passage: "A municipal survey discovered that ice cream sales and accidental drownings in community lakes peak during the exact same summer weeks. The city council concluded that consuming ice cream causes severe swimming cramps that precipitate drowning, and proposed banning ice cream vendors near beaches.",
+        source: "Statistical Reasoning Handbook",
+        question: "What fundamental analytical error did the city council commit?",
+        options: [
+          "Failing to account for a confounding third variable (high summer temperatures) that drives both phenomena.",
+          "Overestimating the price elasticity of dairy products.",
+          "Confusing qualitative ethnographic interviews with quantitative metrics.",
+          "Misidentifying the grammatical subject of the public health decree."
+        ],
+        answer: 0,
+        explanation: "Correlation does not imply causation. The confounding variable is summer heat: hot weather causes more people to buy ice cream AND more people to swim in lakes, inflating drowning incidents independently."
+      },
+      {
+        id: 18,
+        category: "Logical Fallacies: Ad Hominem",
+        passage: "'Dr. Vance's peer-reviewed paper on seismic fault stress mechanics cannot be trusted because he went through an acrimonious divorce and is notoriously irritable during department faculty meetings.'",
+        source: "Academic Debate Critique",
+        question: "Why is this argument an example of an Ad Hominem fallacy?",
+        options: [
+          "It challenges the geological methodology using seismic sensor data.",
+          "It attacks Dr. Vance's personal life and temperament rather than addressing the empirical validity of his seismic research.",
+          "It uses circular logic to validate fault stress mechanics.",
+          "It assumes that all faculty meetings are universally contentious."
+        ],
+        answer: 1,
+        explanation: "An Ad Hominem fallacy attacks the person's character, personal life, or irrelevant traits rather than evaluating the substantive evidence and validity of their scientific claims."
+      },
+      {
+        id: 19,
+        category: "Scientific Abstracts: Methodology & Significance",
+        passage: "We conducted a double-blind, randomized controlled trial (n=450) evaluating peptide-9 against a saline placebo in patients with cognitive impairment. The treatment cohort exhibited a statistically significant improvement on the ADAS-Cog scale (p < 0.001, 95% CI [2.4, 4.1]), with adverse events comparable across both groups.",
+        source: "Journal of Clinical Neurology",
+        question: "What does the notation 'p < 0.001' signify regarding the observed improvement in the treatment cohort?",
+        options: [
+          "There is less than a 0.1% probability that the observed cognitive difference occurred under the null hypothesis of pure chance.",
+          "Exactly 0.1% of patients in the study experienced dangerous adverse drug interactions.",
+          "The medication is guaranteed to cure cognitive impairment in 99.9% of all human beings.",
+          "The trial was terminated early because 0.001% of the sample dropped out."
+        ],
+        answer: 0,
+        explanation: "A p-value (p < 0.001) indicates that if there were truly no drug effect (the null hypothesis), the likelihood of observing a difference this large or larger purely by random sampling chance is less than 1 in 1,000 (0.1%)."
+      },
+      {
+        id: 20,
+        category: "Scientific Literacy: Neuroplasticity",
+        passage: "Adult neuroplasticity refutes the historic dogma that the mammalian brain is hardwired after adolescence. Experience-dependent synaptogenesis persists across senescence: adults acquiring complex musical instruments exhibit measurable volumetric expansion in gray matter within motor and auditory cortices.",
+        source: "Cognitive Neuroscience Annual",
+        question: "According to the abstract, what outdated biological belief does neuroplasticity refute?",
+        options: [
+          "The belief that musical ability is governed by genetics rather than auditory processing.",
+          "The assumption that structural neural architecture is rigid and incapable of growth after adolescence.",
+          "The theory that synapses require biochemical energy to transmit neurotransmitters.",
+          "The principle that sensory organs transmit impulses directly to the spine."
+        ],
+        answer: 1,
+        explanation: "The passage notes that adult neuroplasticity 'refutes the historic dogma that the mammalian brain is hardwired after adolescence', demonstrating continued synaptic growth into old age ('senescence')."
+      },
+      {
+        id: 21,
+        category: "Literary Analysis: Allegory & Subtext",
+        passage: "The clock on the ministry tower was frozen permanently at twelve, yet the bells struck thirteen at dawn. In the courtyard below, clerks in identical gray serge suits dutifully synchronized their pocket watches to the chime, never glancing at the unmoving bronze hands above.",
+        source: "Dystopian Novella Excerpt",
+        question: "What thematic subtext is most clearly conveyed through the mechanical imagery of the clock and clerks?",
+        options: [
+          "The economic prosperity resulting from high-precision municipal horology.",
+          "The institutionalized absurdity of totalitarian conformity where citizens obediently accept state falsehoods over observable reality.",
+          "The technological superiority of spring-loaded pocket watches over tower clocks.",
+          "A realistic historical depiction of standard clock maintenance during the industrial revolution."
+        ],
+        answer: 1,
+        explanation: "The frozen clock striking thirteen and clerks synchronizing their watches without question symbolize blind obedience and state-enforced absurdity—hallmarks of totalitarian allegory where reality is dictated by authority rather than truth."
+      },
+      {
+        id: 22,
+        category: "Literary Analysis: Extended Metaphor",
+        passage: "Her memories were not tidy books resting on mahogany shelves; they were unruly driftwood tossed by a nocturnal tide, surfacing abruptly in the foamy surf of her consciousness only to be pulled under by undertows of grief.",
+        source: "Contemporary Fiction Excerpt",
+        question: "What extended metaphor is used to illustrate the protagonist's recollections?",
+        options: [
+          "An organized academic library with cataloged volumes.",
+          "An unpredictable ocean with flotsam, tides, and perilous undertows.",
+          "A high-speed locomotive racing down steel tracks.",
+          "A clockwork mechanism whose gears bind under extreme friction."
+        ],
+        answer: 1,
+        explanation: "The passage explicitly compares memories to 'unruly driftwood tossed by a nocturnal tide, surfacing abruptly in the foamy surf... pulled under by undertows', establishing an extended maritime/oceanic metaphor."
+      },
+      {
+        id: 23,
+        category: "Financial Reports: Margins & Income Statements",
+        passage: "For Q3, Meridian Corp posted revenues of $500M with Cost of Goods Sold (COGS) at $300M, generating a Gross Profit of $200M (40% gross margin). Operating expenses totaled $120M, yielding Operating Income of $80M. Following interest and tax expenses of $25M, Net Income concluded at $55M.",
+        source: "Quarterly Financial Statements 10-Q",
+        question: "What is Meridian Corp's operating margin for Q3?",
+        options: [
+          "40% ($200M / $500M)",
+          "16% ($80M / $500M)",
+          "11% ($55M / $500M)",
+          "60% ($300M / $500M)"
+        ],
+        answer: 1,
+        explanation: "Operating Margin = Operating Income / Revenue. Operating Income is $80M and Revenue is $500M. $80M ÷ $500M = 0.16 or 16%."
+      },
+      {
+        id: 24,
+        category: "Financial Literacy: Forward Guidance",
+        passage: "While Q2 revenue expanded 28% year-over-year, management lowered full-year forward guidance, citing semiconductor supply bottlenecks, foreign exchange headwinds, and decelerating enterprise subscription pipelines in EMEA.",
+        source: "Equity Research Analyst Note",
+        question: "Why might institutional investors sell shares despite strong historical Q2 revenue growth?",
+        options: [
+          "Financial markets focus exclusively on historical accounting audits from preceding quarters.",
+          "Lowered forward guidance signals that future earnings and revenue momentum will decelerate.",
+          "Enterprise subscriptions in EMEA carry no monetary value on balance sheets.",
+          "Supply chain bottlenecks automatically forgive corporate debt liabilities."
+        ],
+        answer: 1,
+        explanation: "Equity valuations are forward-looking. When management lowers forward guidance, it warns the market that upcoming earnings will be weaker than previously modeled, prompting downward price adjustments."
+      },
+      {
+        id: 25,
+        category: "Legal & Contracts: Indemnification Clauses",
+        passage: "'Vendor shall defend, indemnify, and hold harmless Client and its officers from and against any third-party claims, liabilities, damages, or costs (including reasonable legal fees) arising directly from Vendor's breach of warranty or intellectual property infringement.'",
+        source: "Master Services Agreement (MSA)",
+        question: "Under this clause, what obligation does the Vendor assume if a patent holder sues the Client over Vendor's software?",
+        options: [
+          "Client must pay Vendor's legal defense fees and issue a public retraction.",
+          "Vendor must legally defend Client and absorb the resulting damages and legal costs.",
+          "Both parties immediately dissolve their legal incorporation and void the contract.",
+          "The patent holder must be hired as an independent subcontractor to mediate the dispute."
+        ],
+        answer: 1,
+        explanation: "An indemnification and 'hold harmless' clause requires the indemnifying party (Vendor) to absorb third-party liability and cover the Client's legal fees and financial damages arising from IP infringement."
+      },
+      {
+        id: 26,
+        category: "Legal & Privacy: Third-Party Disclosures",
+        passage: "'We do not monetize your personal data through sale to data brokers. However, we may disclose pseudonymous device identifiers and telemetry logs to vetted analytics processors to optimize application latency, subject to contractual confidentiality constraints.'",
+        source: "Global Privacy Policy Document",
+        question: "Which statement accurately synthesizes the company's privacy commitments?",
+        options: [
+          "The company sells personal phone numbers and billing data to third-party advertising brokers.",
+          "The company does not sell personal data to brokers, but shares telemetry and device identifiers with confidential analytics processors.",
+          "The company guarantees that no telemetry data will ever leave the user's physical device.",
+          "The application completely disables server telemetry whenever latency increases."
+        ],
+        answer: 1,
+        explanation: "The policy distinguishes between selling data to brokers (which it prohibits) and transmitting telemetry/pseudonymous identifiers to vetted analytics processors under strict confidentiality constraints."
+      },
+      {
+        id: 27,
+        category: "Cross-Cultural Communication: Context High vs Low",
+        passage: "In high-context communication cultures, significant meaning is embedded in shared relational history, nonverbal cues, and situational etiquette. Conversely, low-context cultures prioritize explicit verbal explicitness, codifying expectations into exhaustive written rules with minimal reliance on tacit inference.",
+        source: "Cross-Cultural Management Studies",
+        question: "When a manager from a low-context culture conducts a project debrief with team members from a high-context culture, what friction point is most likely to arise?",
+        options: [
+          "The low-context manager may perceive polite nuance as evasive ambiguity, while high-context staff may view direct bluntness as unrefined and aggressive.",
+          "Both cultures will automatically agree on all unwritten assumptions without discussion.",
+          "High-context employees will demand three hundred pages of legal disclaimers for every task.",
+          "Low-context managers will communicate exclusively through metaphors and nonverbal gestures."
+        ],
+        answer: 0,
+        explanation: "Low-context speakers value direct, unambiguous verbalization and may interpret subtlety as obfuscation. High-context speakers value face-saving, harmony, and implicit cues, often viewing raw bluntness as abrasive."
+      },
+      {
+        id: 28,
+        category: "Comparative Text Synthesis: Ecology & Economy",
+        passage: "Text A argues that carbon taxation is the only market-aligned mechanism capable of inducing rapid industrial decarbonization. Text B counters that carbon taxation imposes regressive economic burdens on low-income households while major industrial polluters simply pass tariff costs to end consumers without restructuring operations.",
+        source: "Environmental Policy Symposium",
+        question: "What core point of tension emerges from the synthesis of Text A and Text B?",
+        options: [
+          "Both texts agree that industrial polluters always lower consumer prices under carbon taxes.",
+          "Text A highlights market efficiency, whereas Text B warns of socio-economic regressivity and corporate evasion of real structural abatement.",
+          "Text B argues that greenhouse gas emissions do not influence regional climate patterns.",
+          "Text A claims that all modern corporations have already accomplished total decarbonization."
+        ],
+        answer: 1,
+        explanation: "Synthesizing the texts highlights the tension between theoretical market efficiency (Text A) and real-world socioeconomic equity concerns, where costs fall regressively onto consumers without forcing corporate structural change (Text B)."
+      },
+      {
+        id: 29,
+        category: "Psychology: Habit Formation & Behavioral Loops",
+        passage: "Charles Duhigg's habit loop consists of three interlocking components: the cue (a contextual trigger), the routine (the behavioral execution), and the reward (the neurochemical payoff). Neuroscientists find that modifying entrenched behaviors rarely succeeds by extinguishing the cue; instead, one must preserve the cue and reward while substituting the routine.",
+        source: "Behavioral Psychology Review",
+        question: "According to the passage, what is the scientifically proven strategy for transforming an unwanted habit?",
+        options: [
+          "Eliminating the neurological reward mechanism through chemical suppression.",
+          "Maintaining the original cue and reward while inserting an alternative, healthier routine.",
+          "Attempting to avoid all environmental cues indefinitely through sheer willpower.",
+          "Executing multiple conflicting routines simultaneously to confuse neural pathways."
+        ],
+        answer: 1,
+        explanation: "The passage states: 'modifying entrenched behaviors rarely succeeds by extinguishing the cue; instead, one must preserve the cue and reward while substituting the routine.'"
+      },
+      {
+        id: 30,
+        category: "Speed Reading & Meta-Guiding Techniques",
+        passage: "Subvocalization—the internal auditory pronunciation of words during silent reading—caps processing speed near 250 words per minute. Meta-guiding methods, such as utilizing a pacer (a finger, pen, or visual pointer), train the eyes to maintain smooth saccadic sweeps, suppressing subvocalization and expanding visual span.",
+        source: "Applied Reading Ergonomics",
+        question: "What is the primary physiological benefit of employing a pacer according to the text?",
+        options: [
+          "It forces the reader to pronounce each syllable with heightened acoustic clarity.",
+          "It guides eye movement in smooth saccadic sweeps, reducing subvocal auditory latency and expanding visual span.",
+          "It physically measures the thickness of paper pages to prevent double-turning.",
+          "It lowers blood pressure by requiring rhythmic finger drumming on the desk."
+        ],
+        answer: 1,
+        explanation: "The passage explains that using a pacer (meta-guiding) trains the eyes into smooth saccadic movements, which helps suppress inner vocalization (subvocalization) and broadens visual intake per fixation."
+      }
+    ];
+
+    /* =====================================================================
+       STATE MANAGEMENT & ENGINE
+       ===================================================================== */
+    let currentQuestionIndex = 0;
+    const userAnswers = new Array(quizQuestions.length).fill(null);
+    const flaggedQuestions = new Set();
+    let quizSubmitted = false;
+
+    // Timer: 45 minutes = 2700 seconds
+    const TOTAL_SECONDS = 45 * 60;
+    let secondsRemaining = TOTAL_SECONDS;
+    let timerInterval = null;
+
+    /* Initialize app on load */
+    window.addEventListener("DOMContentLoaded", () => {
+      buildQuestionGrid();
+      loadQuestion(0);
+      startTimer();
+      updateProgressMetrics();
+    });
+
+    /* Build Question Grid 1-30 */
+    function buildQuestionGrid() {
+      const grid = document.getElementById("questionGrid");
+      grid.innerHTML = "";
+      quizQuestions.forEach((q, idx) => {
+        const btn = document.createElement("button");
+        btn.className = "grid-btn";
+        btn.id = `grid-btn-${idx}`;
+        btn.textContent = idx + 1;
+        btn.title = `Question ${idx + 1}: ${q.category}`;
+        btn.onclick = () => jumpToQuestion(idx);
+        grid.appendChild(btn);
+      });
+    }
+
+    /* Timer Logic */
+    function startTimer() {
+      const timerText = document.getElementById("timerText");
+      const timerBox = document.getElementById("timerBox");
+
+      timerInterval = setInterval(() => {
+        if (secondsRemaining <= 0) {
+          clearInterval(timerInterval);
+          autoSubmitQuizTimeExpired();
+          return;
+        }
+        secondsRemaining--;
+        const mins = Math.floor(secondsRemaining / 60);
+        const secs = secondsRemaining % 60;
+        timerText.textContent = `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+
+        if (secondsRemaining < 300) { // under 5 minutes
+          timerBox.classList.add("timer-warning");
+        }
+      }, 1000);
+    }
+
+    function autoSubmitQuizTimeExpired() {
+      if (quizSubmitted) return;
+      alert("Time has expired! Your answers are now being evaluated.");
+      confirmQuizSubmission();
+    }
+
+    /* Load Question into Workspace */
+    function loadQuestion(index) {
+      if (index < 0 || index >= quizQuestions.length) return;
+      currentQuestionIndex = index;
+      const q = quizQuestions[index];
+
+      // Update Top Meta
+      document.getElementById("questionCategory").textContent = `Q${index + 1}: ${q.category}`;
+      document.getElementById("passageContent").textContent = q.passage;
+      document.getElementById("passageSource").textContent = `— Source: ${q.source}`;
+      document.getElementById("questionTitle").textContent = q.question;
+
+      // Update Flag status
+      updateFlagButtonState();
+
+      // Render Options
+      const optionsContainer = document.getElementById("optionsContainer");
+      optionsContainer.innerHTML = "";
+      const letters = ["A", "B", "C", "D"];
+
+      q.options.forEach((optText, optIdx) => {
+        const optDiv = document.createElement("div");
+        optDiv.className = "option-item" + (userAnswers[index] === optIdx ? " selected" : "");
+        optDiv.onclick = () => selectOption(optIdx);
+
+        const letterSpan = document.createElement("div");
+        letterSpan.className = "option-letter";
+        letterSpan.textContent = letters[optIdx];
+
+        const textSpan = document.createElement("div");
+        textSpan.className = "option-text";
+        textSpan.textContent = optText;
+
+        optDiv.appendChild(letterSpan);
+        optDiv.appendChild(textSpan);
+        optionsContainer.appendChild(optDiv);
+      });
+
+      // Update Nav Buttons
+      document.getElementById("prevBtn").disabled = (index === 0);
+      document.getElementById("nextBtn").disabled = (index === quizQuestions.length - 1);
+
+      // Update Grid Active State
+      document.querySelectorAll(".grid-btn").forEach((b, i) => {
+        b.classList.toggle("active", i === index);
+      });
+    }
+
+    /* Option Selection */
+    function selectOption(optionIndex) {
+      if (quizSubmitted) return;
+      userAnswers[currentQuestionIndex] = optionIndex;
+      loadQuestion(currentQuestionIndex);
+      updateGridStatus(currentQuestionIndex);
+      updateProgressMetrics();
+    }
+
+    /* Toggle Flag */
+    function toggleFlagCurrentQuestion() {
+      if (flaggedQuestions.has(currentQuestionIndex)) {
+        flaggedQuestions.delete(currentQuestionIndex);
+      } else {
+        flaggedQuestions.add(currentQuestionIndex);
+      }
+      updateFlagButtonState();
+      updateGridStatus(currentQuestionIndex);
+    }
+
+    function updateFlagButtonState() {
+      const flagBtn = document.getElementById("flagBtn");
+      const isFlagged = flaggedQuestions.has(currentQuestionIndex);
+      flagBtn.classList.toggle("flagged", isFlagged);
+      document.getElementById("flagBtnText").textContent = isFlagged ? "Flagged for Review" : "Flag Question";
+    }
+
+    /* Navigation Helpers */
+    function navigateQuestion(step) {
+      const newIndex = currentQuestionIndex + step;
+      if (newIndex >= 0 && newIndex < quizQuestions.length) {
+        loadQuestion(newIndex);
+      }
+    }
+
+    function jumpToQuestion(index) {
+      loadQuestion(index);
+    }
+
+    /* Update single grid cell UI */
+    function updateGridStatus(index) {
+      const btn = document.getElementById(`grid-btn-${index}`);
+      if (!btn) return;
+
+      const isAnswered = userAnswers[index] !== null;
+      btn.classList.toggle("answered", isAnswered);
+      btn.classList.toggle("flagged", flaggedQuestions.has(index));
+    }
+
+    /* Update Progress Counters & Bars */
+    function updateProgressMetrics() {
+      const answeredCount = userAnswers.filter(a => a !== null).length;
+      const total = quizQuestions.length;
+      const pct = Math.round((answeredCount / total) * 100);
+
+      document.getElementById("headerProgress").textContent = `${answeredCount} / ${total} Answered`;
+      document.getElementById("paletteCounter").textContent = `${answeredCount} / ${total} Done`;
+      document.getElementById("progressPercent").textContent = `${pct}%`;
+      document.getElementById("progressBar").style.width = `${pct}%`;
+    }
+
+    /* Modal submission triggers */
+    function openSubmitModal() {
+      const answeredCount = userAnswers.filter(a => a !== null).length;
+      const unanswered = quizQuestions.length - answeredCount;
+      const modalText = document.getElementById("modalStatusText");
+      
+      if (unanswered > 0) {
+        modalText.innerHTML = `You have answered <strong>${answeredCount} of 30</strong> questions. <br><span style="color:var(--danger); font-weight:600;">You still have ${unanswered} unanswered question(s).</span><br>Are you certain you wish to submit now?`;
+      } else {
+        modalText.innerHTML = `Great work! You have answered all <strong>30 of 30</strong> questions.<br>Confirm submission to view your graded evaluation and detailed solutions.`;
+      }
+
+      document.getElementById("submitModal").classList.add("active");
+    }
+
+    function closeSubmitModal() {
+      document.getElementById("submitModal").classList.remove("active");
+    }
+
+    /* Grade Quiz and Show Dashboard */
+    function confirmQuizSubmission() {
+      closeSubmitModal();
+      clearInterval(timerInterval);
+      quizSubmitted = true;
+
+      // Calculate Scores
+      let correctCount = 0;
+      quizQuestions.forEach((q, idx) => {
+        if (userAnswers[idx] === q.answer) {
+          correctCount++;
+        }
+      });
+
+      const total = quizQuestions.length;
+      const pct = Math.round((correctCount / total) * 100);
+      const incorrectCount = total - correctCount;
+      const timeSpentSecs = TOTAL_SECONDS - secondsRemaining;
+      const minsSpent = Math.floor(timeSpentSecs / 60);
+      const secsSpent = timeSpentSecs % 60;
+      const timeString = `${minsSpent}m ${secsSpent}s`;
+
+      // Update Grid Buttons with Correct/Incorrect highlights
+      quizQuestions.forEach((q, idx) => {
+        const btn = document.getElementById(`grid-btn-${idx}`);
+        if (btn) {
+          btn.classList.remove("answered", "active");
+          if (userAnswers[idx] === q.answer) {
+            btn.classList.add("correct-eval");
+          } else {
+            btn.classList.add("incorrect-eval");
+          }
+        }
+      });
+
+      // Update Results Header
+      document.getElementById("finalScoreDisplay").textContent = `${correctCount} / ${total}`;
+      document.getElementById("scorePercentVal").textContent = `${pct}%`;
+      document.getElementById("timeSpentVal").textContent = timeString;
+      document.getElementById("correctCountVal").textContent = correctCount;
+      document.getElementById("incorrectCountVal").textContent = incorrectCount;
+      document.getElementById("tabIncorrect").textContent = `Incorrect (${incorrectCount})`;
+      document.getElementById("tabFlagged").textContent = `Flagged (${flaggedQuestions.size})`;
+
+      // Performance badge and title
+      const perfTitle = document.getElementById("performanceTitle");
+      const perfSubtitle = document.getElementById("performanceSubtitle");
+      if (pct >= 90) {
+        perfTitle.textContent = "🏆 Exemplary Master of Reading & Synthesis!";
+        perfSubtitle.textContent = "You demonstrated extraordinary analytical proficiency across complex texts, fallacies, and technical documents.";
+      } else if (pct >= 75) {
+        perfTitle.textContent = "🎯 Proficient Analytical Reader!";
+        perfSubtitle.textContent = "Strong comprehension and inference capabilities with minor opportunities for refinement.";
+      } else if (pct >= 50) {
+        perfTitle.textContent = "📚 Competent Reader — Review Key Fallacies";
+        perfSubtitle.textContent = "Solid foundational intuition; dedicate time to financial calculations and subtle textual clues.";
+      } else {
+        perfTitle.textContent = "🌱 Developing Reader — Active Review Advised";
+        perfSubtitle.textContent = "Consult the detailed solution breakdown below to reinforce reading strategies and inference logic.";
+      }
+
+      // Render Review List
+      renderReviewCards("all");
+
+      // Hide workspace, show results dashboard
+      document.getElementById("quizWorkspace").style.display = "none";
+      document.getElementById("resultsDashboard").style.display = "flex";
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    /* Render Review Cards with Filtering */
+    function renderReviewCards(filterMode) {
+      const reviewList = document.getElementById("reviewList");
+      reviewList.innerHTML = "";
+      const letters = ["A", "B", "C", "D"];
+
+      quizQuestions.forEach((q, idx) => {
+        const userChoice = userAnswers[idx];
+        const isCorrect = (userChoice === q.answer);
+        const isFlagged = flaggedQuestions.has(idx);
+
+        // Filter check
+        if (filterMode === "incorrect" && isCorrect) return;
+        if (filterMode === "flagged" && !isFlagged) return;
+
+        const card = document.createElement("div");
+        card.className = `review-card ${isCorrect ? 'correct-card' : 'incorrect-card'}`;
+
+        // Top line
+        const header = document.createElement("div");
+        header.className = "review-card-header";
+        
+        const catInfo = document.createElement("span");
+        catInfo.textContent = `Question ${idx + 1}: ${q.category}`;
+
+        const statusBadge = document.createElement("span");
+        if (userChoice === null) {
+          statusBadge.className = "status-badge unanswered";
+          statusBadge.textContent = "Unanswered";
+        } else if (isCorrect) {
+          statusBadge.className = "status-badge correct";
+          statusBadge.textContent = "✓ Correct (+1.0)";
+        } else {
+          statusBadge.className = "status-badge incorrect";
+          statusBadge.textContent = "✕ Incorrect";
+        }
+
+        header.appendChild(catInfo);
+        header.appendChild(statusBadge);
+        card.appendChild(header);
+
+        // Excerpt
+        const passageDiv = document.createElement("div");
+        passageDiv.className = "excerpt-box";
+        passageDiv.style.margin = "0.5rem 0";
+        passageDiv.innerHTML = `${q.passage}<br><span class="excerpt-source">— ${q.source}</span>`;
+        card.appendChild(passageDiv);
+
+        // Prompt
+        const prompt = document.createElement("div");
+        prompt.style.fontWeight = "700";
+        prompt.style.fontSize = "1rem";
+        prompt.textContent = q.question;
+        card.appendChild(prompt);
+
+        // Options review
+        const optionsList = document.createElement("div");
+        optionsList.style.marginTop = "0.5rem";
+
+        q.options.forEach((optText, optIdx) => {
+          const optRow = document.createElement("div");
+          optRow.className = "review-option";
+
+          const isUserPick = (userChoice === optIdx);
+          const isRightAnswer = (optIdx === q.answer);
+
+          if (isRightAnswer) {
+            optRow.classList.add("correct-choice");
+          } else if (isUserPick && !isCorrect) {
+            optRow.classList.add("user-selected-wrong");
+          }
+
+          let prefix = `<strong>${letters[optIdx]}.</strong> `;
+          if (isUserPick && isRightAnswer) {
+            prefix += "<span>(Your Choice ✓)</span> ";
+          } else if (isUserPick && !isRightAnswer) {
+            prefix += "<span>(Your Choice ✕)</span> ";
+          } else if (isRightAnswer) {
+            prefix += "<span>(Correct Answer)</span> ";
+          }
+
+          optRow.innerHTML = `${prefix} ${optText}`;
+          optionsList.appendChild(optRow);
+        });
+        card.appendChild(optionsList);
+
+        // Explanation Box
+        const expBox = document.createElement("div");
+        expBox.className = "explanation-box";
+        expBox.innerHTML = `
+          <div class="explanation-title">💡 Pedagogical Explanation:</div>
+          <div>${q.explanation}</div>
+        `;
+        card.appendChild(expBox);
+
+        reviewList.appendChild(card);
+      });
+    }
+
+    /* Filter Tabs Switcher */
+    function setReviewFilter(filter, tabBtn) {
+      document.querySelectorAll(".filter-tab").forEach(t => t.classList.remove("active"));
+      tabBtn.classList.add("active");
+      renderReviewCards(filter);
+    }
+
+    /* Retake Quiz */
+    function restartQuiz() {
+      if (!confirm("Are you sure you want to reset your quiz answers and retake this test?")) return;
+      
+      userAnswers.fill(null);
+      flaggedQuestions.clear();
+      quizSubmitted = false;
+      secondsRemaining = TOTAL_SECONDS;
+
+      document.getElementById("timerBox").classList.remove("timer-warning");
+      document.getElementById("resultsDashboard").style.display = "none";
+      document.getElementById("quizWorkspace").style.display = "flex";
+
+      buildQuestionGrid();
+      loadQuestion(0);
+      updateProgressMetrics();
+      startTimer();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  </script>
+</body>
+</html>
