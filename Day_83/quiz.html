@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Day 83 PEEL Paragraph Writing Quiz</title>
+  <style>
+    :root {
+      --primary: #10b981;
+      --primary-dark: #047857;
+      --primary-light: #d1fae5;
+      --success: #16a34a;
+      --danger: #dc2626;
+      --dark: #0f172a;
+      --gray: #64748b;
+      --light-bg: #f8fafc;
+      --white: #ffffff;
+      --border: #e2e8f0;
+      --radius: 12px;
+      --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #f0fdf4 0%, #d1fae5 100%);
+      min-height: 100vh;
+      color: var(--dark);
+      padding: 2rem 1rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .quiz-container {
+      background: var(--white);
+      max-width: 800px;
+      width: 100%;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 2.5rem;
+      position: relative;
+    }
+
+    .quiz-header {
+      border-bottom: 2px solid var(--border);
+      padding-bottom: 1.5rem;
+      margin-bottom: 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .badge {
+      background: var(--primary-light);
+      color: var(--primary-dark);
+      font-size: 0.85rem;
+      font-weight: 700;
+      padding: 0.35rem 0.85rem;
+      border-radius: 9999px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    h1 {
+      font-size: 1.6rem;
+      color: var(--dark);
+      font-weight: 800;
+      margin-top: 0.4rem;
+    }
+
+    .timer-badge {
+      background: #fef3c7;
+      color: #92400e;
+      font-weight: 700;
+      padding: 0.4rem 0.8rem;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .progress-bar-container {
+      width: 100%;
+      height: 8px;
+      background: var(--border);
+      border-radius: 4px;
+      margin-bottom: 2rem;
+      overflow: hidden;
+    }
+
+    .progress-bar {
+      height: 100%;
+      width: 20%;
+      background: linear-gradient(90deg, var(--primary), #34d399);
+      transition: width 0.3s ease;
+    }
+
+    .question-card {
+      display: none;
+    }
+
+    .question-card.active {
+      display: block;
+      animation: fadeIn 0.3s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .q-number {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--primary-dark);
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+
+    .q-text {
+      font-size: 1.2rem;
+      font-weight: 600;
+      line-height: 1.5;
+      margin-bottom: 1.5rem;
+      color: var(--dark);
+    }
+
+    .options-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+    }
+
+    .option-btn {
+      background: var(--light-bg);
+      border: 2px solid var(--border);
+      border-radius: 10px;
+      padding: 1rem 1.25rem;
+      font-size: 1rem;
+      text-align: left;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      color: var(--dark);
+      line-height: 1.4;
+    }
+
+    .option-btn:hover {
+      background: var(--primary-light);
+      border-color: var(--primary);
+    }
+
+    .option-btn.selected {
+      background: #d1fae5;
+      border-color: var(--primary-dark);
+      font-weight: 600;
+    }
+
+    .opt-letter {
+      background: var(--white);
+      border: 1px solid var(--border);
+      width: 26px;
+      height: 26px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      font-size: 0.85rem;
+      flex-shrink: 0;
+      font-weight: 700;
+      color: var(--gray);
+    }
+
+    .nav-buttons {
+      margin-top: 2rem;
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .btn {
+      padding: 0.75rem 1.5rem;
+      border-radius: 8px;
+      font-weight: 700;
+      cursor: pointer;
+      font-size: 1rem;
+      border: none;
+      transition: all 0.2s ease;
+    }
+
+    .btn-prev {
+      background: var(--light-bg);
+      color: var(--gray);
+      border: 1px solid var(--border);
+    }
+
+    .btn-prev:hover:not(:disabled) {
+      background: var(--border);
+      color: var(--dark);
+    }
+
+    .btn-next, .btn-submit {
+      background: var(--primary);
+      color: var(--white);
+    }
+
+    .btn-next:hover, .btn-submit:hover {
+      background: var(--primary-dark);
+    }
+
+    .btn:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+
+    .results-view {
+      display: none;
+      text-align: center;
+      animation: fadeIn 0.4s ease;
+    }
+
+    .score-circle {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      margin: 1.5rem auto;
+      background: conic-gradient(var(--primary) calc(var(--score-pct) * 1%), #e2e8f0 0);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .score-circle::after {
+      content: attr(data-score);
+      position: absolute;
+      width: 110px;
+      height: 110px;
+      background: var(--white);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: var(--primary-dark);
+    }
+
+    .results-heading {
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: var(--dark);
+    }
+
+    .results-summary {
+      font-size: 1.1rem;
+      color: var(--gray);
+      margin-bottom: 2rem;
+    }
+
+    .review-accordion {
+      text-align: left;
+      margin-top: 2rem;
+      border-top: 1px solid var(--border);
+      padding-top: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    .review-item {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.25rem;
+      background: #fafafa;
+    }
+
+    .review-item.correct {
+      border-left: 5px solid var(--success);
+    }
+
+    .review-item.incorrect {
+      border-left: 5px solid var(--danger);
+    }
+
+    .review-q {
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      color: var(--dark);
+    }
+
+    .review-detail {
+      font-size: 0.95rem;
+      margin-top: 0.35rem;
+      line-height: 1.5;
+    }
+
+    .explanation-box {
+      margin-top: 0.75rem;
+      background: var(--primary-light);
+      padding: 0.75rem 1rem;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      color: var(--primary-dark);
+      line-height: 1.45;
+    }
+
+    .btn-retake {
+      margin-top: 2rem;
+      background: var(--primary);
+      color: var(--white);
+      padding: 0.85rem 2rem;
+      border-radius: 8px;
+      font-weight: 700;
+      border: none;
+      cursor: pointer;
+      display: inline-block;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="quiz-container">
+    <div id="quiz-screen">
+      <div class="quiz-header">
+        <div>
+          <span class="badge">Day 83 Writing Mastery</span>
+          <h1>PEEL Paragraph Method Quiz</h1>
+        </div>
+        <div class="timer-badge">⏱️ <span id="timer">00:00</span></div>
+      </div>
+
+      <div class="progress-bar-container">
+        <div class="progress-bar" id="progressBar"></div>
+      </div>
+
+      <div id="questions-wrapper">
+        <!-- Question 1 -->
+        <div class="question-card active" data-q="0">
+          <div class="q-number">Question 1 of 5</div>
+          <div class="q-text">In the PEEL paragraph structure, what does the acronym stand for?</div>
+          <div class="options-list">
+            <button class="option-btn" data-opt="0"><span class="opt-letter">A</span> Preamble, Exposition, Example, Logic</button>
+            <button class="option-btn" data-opt="1"><span class="opt-letter">B</span> Point, Explanation, Evidence, Link</button>
+            <button class="option-btn" data-opt="2"><span class="opt-letter">C</span> Perspective, Emotion, Evaluation, Language</button>
+            <button class="option-btn" data-opt="3"><span class="opt-letter">D</span> Paragraph, Expansion, Evidence, Lexicon</button>
+          </div>
+        </div>
+
+        <!-- Question 2 -->
+        <div class="question-card" data-q="1">
+          <div class="q-number">Question 2 of 5</div>
+          <div class="q-text">What is the central function of the "Explanation" (E) sentence in a PEEL paragraph?</div>
+          <div class="options-list">
+            <button class="option-btn" data-opt="0"><span class="opt-letter">A</span> To quote a famous author without any introductory comment.</button>
+            <button class="option-btn" data-opt="1"><span class="opt-letter">B</span> To unpack the underlying causal mechanism and explain why and how the Point is true.</button>
+            <button class="option-btn" data-opt="2"><span class="opt-letter">C</span> To repeat the exact words of the topic sentence with synonyms.</button>
+            <button class="option-btn" data-opt="3"><span class="opt-letter">D</span> To ask rhetorical questions to distract the reader.</button>
+          </div>
+        </div>
+
+        <!-- Question 3 -->
+        <div class="question-card" data-q="2">
+          <div class="q-number">Question 3 of 5</div>
+          <div class="q-text">Which of the following sentences best exemplifies the "Link" (L) component?</div>
+          <div class="options-list">
+            <button class="option-btn" data-opt="0"><span class="opt-letter">A</span> A 2024 Harvard report revealed a 28% increase in employee engagement.</button>
+            <button class="option-btn" data-opt="1"><span class="opt-letter">B</span> First, let us look at the history of commercial aviation.</button>
+            <button class="option-btn" data-opt="2"><span class="opt-letter">C</span> Therefore, integrating renewable microgrids is not merely an ecological choice, but an essential prerequisite for national urban security.</button>
+            <button class="option-btn" data-opt="3"><span class="opt-letter">D</span> In this paragraph I am going to talk about pollution.</button>
+          </div>
+        </div>
+
+        <!-- Question 4 -->
+        <div class="question-card" data-q="3">
+          <div class="q-number">Question 4 of 5</div>
+          <div class="q-text">What common academic writing error occurs when an author writes a "naked quote" or raw statistic without prior context?</div>
+          <div class="options-list">
+            <button class="option-btn" data-opt="0"><span class="opt-letter">A</span> Dropping Evidence without an introductory Explanation or Point to give it analytical meaning.</button>
+            <button class="option-btn" data-opt="1"><span class="opt-letter">B</span> Exceeding the maximum allowed page length of an essay.</button>
+            <button class="option-btn" data-opt="2"><span class="opt-letter">C</span> Failing to use exclamation points after numbers.</button>
+            <button class="option-btn" data-opt="3"><span class="opt-letter">D</span> Confusing American spelling with British spelling.</button>
+          </div>
+        </div>
+
+        <!-- Question 5 -->
+        <div class="question-card" data-q="4">
+          <div class="q-number">Question 5 of 5</div>
+          <div class="q-text">Which sentence functions most effectively as a strong "Point" (Topic Sentence)?</div>
+          <div class="options-list">
+            <button class="option-btn" data-opt="0"><span class="opt-letter">A</span> What do you think about artificial intelligence in schools?</button>
+            <button class="option-btn" data-opt="1"><span class="opt-letter">B</span> Generative AI enhances customized learning by adapting pedagogical feedback to individual student pace.</button>
+            <button class="option-btn" data-opt="2"><span class="opt-letter">C</span> According to UNESCO, 72% of classrooms lack internet access.</button>
+            <button class="option-btn" data-opt="3"><span class="opt-letter">D</span> Next, let us turn to page 45 of our textbook.</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="nav-buttons">
+        <button class="btn btn-prev" id="prevBtn" disabled>← Previous</button>
+        <button class="btn btn-next" id="nextBtn">Next →</button>
+      </div>
+    </div>
+
+    <!-- Results Screen -->
+    <div class="results-view" id="results-screen">
+      <h2 class="results-heading">PEEL Method Assessment Complete!</h2>
+      <div class="score-circle" id="scoreCircle" style="--score-pct: 0;" data-score="0%"></div>
+      <p class="results-summary" id="resultSummary">You scored 0 out of 5</p>
+
+      <div class="review-accordion" id="reviewContainer"></div>
+
+      <button class="btn btn-retake" onclick="resetQuiz()">🔄 Retake Quiz</button>
+    </div>
+  </div>
+
+  <script>
+    const quizData = [
+      {
+        q: "In the PEEL paragraph structure, what does the acronym stand for?",
+        options: [
+          "Preamble, Exposition, Example, Logic",
+          "Point, Explanation, Evidence, Link",
+          "Perspective, Emotion, Evaluation, Language",
+          "Paragraph, Expansion, Evidence, Lexicon"
+        ],
+        correct: 1,
+        explanation: "PEEL stands for Point (Topic Sentence), Explanation (Elaboration/Reasoning), Evidence (Data/Citation), and Link (Synthesis/Thesis tie-back)."
+      },
+      {
+        q: "What is the central function of the 'Explanation' (E) sentence in a PEEL paragraph?",
+        options: [
+          "To quote a famous author without any introductory comment.",
+          "To unpack the underlying causal mechanism and explain why and how the Point is true.",
+          "To repeat the exact words of the topic sentence with synonyms.",
+          "To ask rhetorical questions to distract the reader."
+        ],
+        correct: 1,
+        explanation: "Explanation illuminates the cause-and-effect mechanism, proving to the reader *why* and *how* the claim works theoretically."
+      },
+      {
+        q: "Which of the following sentences best exemplifies the 'Link' (L) component?",
+        options: [
+          "A 2024 Harvard report revealed a 28% increase in employee engagement.",
+          "First, let us look at the history of commercial aviation.",
+          "Therefore, integrating renewable microgrids is not merely an ecological choice, but an essential prerequisite for national urban security.",
+          "In this paragraph I am going to talk about pollution."
+        ],
+        correct: 2,
+        explanation: "A strong Link clinches the argument by explicitly answering 'So what?' and connecting the verified finding back to the governing thesis."
+      },
+      {
+        q: "What common academic writing error occurs when an author writes a 'naked quote' or raw statistic without prior context?",
+        options: [
+          "Dropping Evidence without an introductory Explanation or Point to give it analytical meaning.",
+          "Exceeding the maximum allowed page length of an essay.",
+          "Failing to use exclamation points after numbers.",
+          "Confusing American spelling with British spelling."
+        ],
+        correct: 0,
+        explanation: "Dumping raw data or quotes without establishing the Point or explaining the mechanism forces the reader to guess the author's logic."
+      },
+      {
+        q: "Which sentence functions most effectively as a strong 'Point' (Topic Sentence)?",
+        options: [
+          "What do you think about artificial intelligence in schools?",
+          "Generative AI enhances customized learning by adapting pedagogical feedback to individual student pace.",
+          "According to UNESCO, 72% of classrooms lack internet access.",
+          "Next, let us turn to page 45 of our textbook."
+        ],
+        correct: 1,
+        explanation: "Option B is an assertive, declarative, single-focus claim that establishes a clear governing argument without data-dumping."
+      }
+    ];
+
+    let currentQ = 0;
+    let userAnswers = new Array(quizData.length).fill(null);
+    let secondsElapsed = 0;
+    let timerInterval = null;
+
+    const cards = document.querySelectorAll('.question-card');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const progressBar = document.getElementById('progressBar');
+    const timerElem = document.getElementById('timer');
+
+    function startTimer() {
+      secondsElapsed = 0;
+      clearInterval(timerInterval);
+      timerInterval = setInterval(() => {
+        secondsElapsed++;
+        const mins = String(Math.floor(secondsElapsed / 60)).padStart(2, '0');
+        const secs = String(secondsElapsed % 60).padStart(2, '0');
+        timerElem.textContent = `${mins}:${secs}`;
+      }, 1000);
+    }
+
+    function showQuestion(index) {
+      cards.forEach((card, idx) => {
+        card.classList.toggle('active', idx === index);
+      });
+
+      prevBtn.disabled = index === 0;
+      if (index === quizData.length - 1) {
+        nextBtn.textContent = 'Submit Quiz ✓';
+        nextBtn.className = 'btn btn-submit';
+      } else {
+        nextBtn.textContent = 'Next →';
+        nextBtn.className = 'btn btn-next';
+      }
+
+      const pct = ((index + 1) / quizData.length) * 100;
+      progressBar.style.width = `${pct}%`;
+
+      const currentCard = cards[index];
+      const buttons = currentCard.querySelectorAll('.option-btn');
+      buttons.forEach((btn, optIdx) => {
+        btn.classList.toggle('selected', userAnswers[index] === optIdx);
+      });
+    }
+
+    cards.forEach((card, qIdx) => {
+      const btns = card.querySelectorAll('.option-btn');
+      btns.forEach((btn, optIdx) => {
+        btn.addEventListener('click', () => {
+          userAnswers[qIdx] = optIdx;
+          btns.forEach(b => b.classList.remove('selected'));
+          btn.classList.add('selected');
+        });
+      });
+    });
+
+    prevBtn.addEventListener('click', () => {
+      if (currentQ > 0) {
+        currentQ--;
+        showQuestion(currentQ);
+      }
+    });
+
+    nextBtn.addEventListener('click', () => {
+      if (currentQ < quizData.length - 1) {
+        currentQ++;
+        showQuestion(currentQ);
+      } else {
+        finishQuiz();
+      }
+    });
+
+    function finishQuiz() {
+      clearInterval(timerInterval);
+      let score = 0;
+      userAnswers.forEach((ans, idx) => {
+        if (ans === quizData[idx].correct) score++;
+      });
+
+      const scorePct = Math.round((score / quizData.length) * 100);
+
+      document.getElementById('quiz-screen').style.display = 'none';
+      const resultsScreen = document.getElementById('results-screen');
+      resultsScreen.style.display = 'block';
+
+      const circle = document.getElementById('scoreCircle');
+      circle.style.setProperty('--score-pct', scorePct);
+      circle.setAttribute('data-score', `${scorePct}%`);
+
+      document.getElementById('resultSummary').textContent =
+        `You answered ${score} out of ${quizData.length} questions correctly in ${timerElem.textContent}!`;
+
+      const reviewContainer = document.getElementById('reviewContainer');
+      reviewContainer.innerHTML = '';
+
+      quizData.forEach((item, idx) => {
+        const isCorrect = userAnswers[idx] === item.correct;
+        const chosenText = userAnswers[idx] !== null ? item.options[userAnswers[idx]] : '<em>No answer chosen</em>';
+        const correctText = item.options[item.correct];
+
+        const itemDiv = document.createElement('div');
+        itemDiv.className = `review-item ${isCorrect ? 'correct' : 'incorrect'}`;
+        itemDiv.innerHTML = `
+          <div class="review-q">Q${idx + 1}. ${item.q}</div>
+          <div class="review-detail"><strong>Your Answer:</strong> ${chosenText} ${isCorrect ? '✅' : '❌'}</div>
+          ${!isCorrect ? `<div class="review-detail"><strong>Correct Answer:</strong> ${correctText}</div>` : ''}
+          <div class="explanation-box"><strong>Explanation:</strong> ${item.explanation}</div>
+        `;
+        reviewContainer.appendChild(itemDiv);
+      });
+    }
+
+    function resetQuiz() {
+      userAnswers = new Array(quizData.length).fill(null);
+      currentQ = 0;
+      document.getElementById('results-screen').style.display = 'none';
+      document.getElementById('quiz-screen').style.display = 'block';
+      startTimer();
+      showQuestion(0);
+    }
+
+    startTimer();
+    showQuestion(0);
+  </script>
+</body>
+</html>
