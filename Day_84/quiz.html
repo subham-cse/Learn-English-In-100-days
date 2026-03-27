@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Day 84 Essay Introductions & Thesis Statements Quiz</title>
+  <style>
+    :root {
+      --primary: #6366f1;
+      --primary-dark: #4f46e5;
+      --primary-light: #e0e7ff;
+      --success: #16a34a;
+      --danger: #dc2626;
+      --dark: #0f172a;
+      --gray: #64748b;
+      --light-bg: #f8fafc;
+      --white: #ffffff;
+      --border: #e2e8f0;
+      --radius: 12px;
+      --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #eef2ff 0%, #e0e7ff 100%);
+      min-height: 100vh;
+      color: var(--dark);
+      padding: 2rem 1rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .quiz-container {
+      background: var(--white);
+      max-width: 800px;
+      width: 100%;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 2.5rem;
+      position: relative;
+    }
+
+    .quiz-header {
+      border-bottom: 2px solid var(--border);
+      padding-bottom: 1.5rem;
+      margin-bottom: 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .badge {
+      background: var(--primary-light);
+      color: var(--primary-dark);
+      font-size: 0.85rem;
+      font-weight: 700;
+      padding: 0.35rem 0.85rem;
+      border-radius: 9999px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    h1 {
+      font-size: 1.6rem;
+      color: var(--dark);
+      font-weight: 800;
+      margin-top: 0.4rem;
+    }
+
+    .timer-badge {
+      background: #fef3c7;
+      color: #92400e;
+      font-weight: 700;
+      padding: 0.4rem 0.8rem;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .progress-bar-container {
+      width: 100%;
+      height: 8px;
+      background: var(--border);
+      border-radius: 4px;
+      margin-bottom: 2rem;
+      overflow: hidden;
+    }
+
+    .progress-bar {
+      height: 100%;
+      width: 20%;
+      background: linear-gradient(90deg, var(--primary), #818cf8);
+      transition: width 0.3s ease;
+    }
+
+    .question-card {
+      display: none;
+    }
+
+    .question-card.active {
+      display: block;
+      animation: fadeIn 0.3s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .q-number {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--primary-dark);
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+
+    .q-text {
+      font-size: 1.2rem;
+      font-weight: 600;
+      line-height: 1.5;
+      margin-bottom: 1.5rem;
+      color: var(--dark);
+    }
+
+    .options-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+    }
+
+    .option-btn {
+      background: var(--light-bg);
+      border: 2px solid var(--border);
+      border-radius: 10px;
+      padding: 1rem 1.25rem;
+      font-size: 1rem;
+      text-align: left;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      color: var(--dark);
+      line-height: 1.4;
+    }
+
+    .option-btn:hover {
+      background: var(--primary-light);
+      border-color: var(--primary);
+    }
+
+    .option-btn.selected {
+      background: #e0e7ff;
+      border-color: var(--primary-dark);
+      font-weight: 600;
+    }
+
+    .opt-letter {
+      background: var(--white);
+      border: 1px solid var(--border);
+      width: 26px;
+      height: 26px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      font-size: 0.85rem;
+      flex-shrink: 0;
+      font-weight: 700;
+      color: var(--gray);
+    }
+
+    .nav-buttons {
+      margin-top: 2rem;
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .btn {
+      padding: 0.75rem 1.5rem;
+      border-radius: 8px;
+      font-weight: 700;
+      cursor: pointer;
+      font-size: 1rem;
+      border: none;
+      transition: all 0.2s ease;
+    }
+
+    .btn-prev {
+      background: var(--light-bg);
+      color: var(--gray);
+      border: 1px solid var(--border);
+    }
+
+    .btn-prev:hover:not(:disabled) {
+      background: var(--border);
+      color: var(--dark);
+    }
+
+    .btn-next, .btn-submit {
+      background: var(--primary);
+      color: var(--white);
+    }
+
+    .btn-next:hover, .btn-submit:hover {
+      background: var(--primary-dark);
+    }
+
+    .btn:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+
+    .results-view {
+      display: none;
+      text-align: center;
+      animation: fadeIn 0.4s ease;
+    }
+
+    .score-circle {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      margin: 1.5rem auto;
+      background: conic-gradient(var(--primary) calc(var(--score-pct) * 1%), #e2e8f0 0);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .score-circle::after {
+      content: attr(data-score);
+      position: absolute;
+      width: 110px;
+      height: 110px;
+      background: var(--white);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: var(--primary-dark);
+    }
+
+    .results-heading {
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: var(--dark);
+    }
+
+    .results-summary {
+      font-size: 1.1rem;
+      color: var(--gray);
+      margin-bottom: 2rem;
+    }
+
+    .review-accordion {
+      text-align: left;
+      margin-top: 2rem;
+      border-top: 1px solid var(--border);
+      padding-top: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    .review-item {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.25rem;
+      background: #fafafa;
+    }
+
+    .review-item.correct {
+      border-left: 5px solid var(--success);
+    }
+
+    .review-item.incorrect {
+      border-left: 5px solid var(--danger);
+    }
+
+    .review-q {
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      color: var(--dark);
+    }
+
+    .review-detail {
+      font-size: 0.95rem;
+      margin-top: 0.35rem;
+      line-height: 1.5;
+    }
+
+    .explanation-box {
+      margin-top: 0.75rem;
+      background: var(--primary-light);
+      padding: 0.75rem 1rem;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      color: var(--primary-dark);
+      line-height: 1.45;
+    }
+
+    .btn-retake {
+      margin-top: 2rem;
+      background: var(--primary);
+      color: var(--white);
+      padding: 0.85rem 2rem;
+      border-radius: 8px;
+      font-weight: 700;
+      border: none;
+      cursor: pointer;
+      display: inline-block;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="quiz-container">
+    <div id="quiz-screen">
+      <div class="quiz-header">
+        <div>
+          <span class="badge">Day 84 Essay Architecture</span>
+          <h1>Introductions & Thesis Statements Quiz</h1>
+        </div>
+        <div class="timer-badge">⏱️ <span id="timer">00:00</span></div>
+      </div>
+
+      <div class="progress-bar-container">
+        <div class="progress-bar" id="progressBar"></div>
+      </div>
+
+      <div id="questions-wrapper">
+        <!-- Question 1 -->
+        <div class="question-card active" data-q="0">
+          <div class="q-number">Question 1 of 5</div>
+          <div class="q-text">What is the structural sequence of the "Funnel Model" for academic essay introductions?</div>
+          <div class="options-list">
+            <button class="option-btn" data-opt="0"><span class="opt-letter">A</span> Specific thesis statement → Detailed evidence paragraph → General dictionary definition</button>
+            <button class="option-btn" data-opt="1"><span class="opt-letter">B</span> Broad engaging hook → Narrowing contextual bridge → Explicit arguable thesis statement</button>
+            <button class="option-btn" data-opt="2"><span class="opt-letter">C</span> Rhetorical questions → Personal emotional apology → Statistical table</button>
+            <button class="option-btn" data-opt="3"><span class="opt-letter">D</span> Conclusion summary → Works cited list → Thesis statement</button>
+          </div>
+        </div>
+
+        <!-- Question 2 -->
+        <div class="question-card" data-q="1">
+          <div class="q-number">Question 2 of 5</div>
+          <div class="q-text">Which of the following represents an amateur opening cliché that should be strictly avoided in serious writing?</div>
+          <div class="options-list">
+            <button class="option-btn" data-opt="0"><span class="opt-letter">A</span> "In an era characterized by hyper-connectivity, rates of acute social isolation have peaked."</button>
+            <button class="option-btn" data-opt="1"><span class="opt-letter">B</span> "Since the dawn of human civilization, people have always thought about happiness."</button>
+            <button class="option-btn" data-opt="2"><span class="opt-letter">C</span> "Despite accounting for over 70% of Earth's surface, oceanic ecosystems remain 80% unmapped."</button>
+            <button class="option-btn" data-opt="3"><span class="opt-letter">D</span> "While autonomous vehicles promise fewer traffic collisions, their algorithms raise urgent liability questions."</button>
+          </div>
+        </div>
+
+        <!-- Question 3 -->
+        <div class="question-card" data-q="2">
+          <div class="q-number">Question 3 of 5</div>
+          <div class="q-text">What is the "Golden Test" to verify whether a sentence functions as a genuine academic thesis statement?</div>
+          <div class="options-list">
+            <button class="option-btn" data-opt="0"><span class="opt-letter">A</span> It must contain more than fifty words and two semicolons.</button>
+            <button class="option-btn" data-opt="1"><span class="opt-letter">B</span> An intelligent and reasonable person must be able to logically disagree with its claim.</button>
+            <button class="option-btn" data-opt="2"><span class="opt-letter">C</span> It must be a verifiable scientific fact that everyone agrees with universally.</button>
+            <button class="option-btn" data-opt="3"><span class="opt-letter">D</span> It must cite at least three authors in parentheses.</button>
+          </div>
+        </div>
+
+        <!-- Question 4 -->
+        <div class="question-card" data-q="3">
+          <div class="q-number">Question 4 of 5</div>
+          <div class="q-text">Which of the following sentences is a strong, arguable, analytical thesis statement rather than a descriptive fact?</div>
+          <div class="options-list">
+            <button class="option-btn" data-opt="0"><span class="opt-letter">A</span> "Many countries have implemented various environmental laws in recent decades."</button>
+            <button class="option-btn" data-opt="1"><span class="opt-letter">B</span> "Although carbon taxation faces political resistance, it remains the most economically efficient climate policy because it internalizes environmental externalities and incentivizes private-sector green innovation."</button>
+            <button class="option-btn" data-opt="2"><span class="opt-letter">C</span> "The Paris Agreement is an international treaty on climate change adopted in 2015."</button>
+            <button class="option-btn" data-opt="3"><span class="opt-letter">D</span> "Pollution has negative consequences on the health of human beings and animals."</button>
+          </div>
+        </div>
+
+        <!-- Question 5 -->
+        <div class="question-card" data-q="4">
+          <div class="q-number">Question 5 of 5</div>
+          <div class="q-text">Why do writing experts recommend drafting the introduction <em>after</em> completing the essay body paragraphs?</div>
+          <div class="options-list">
+            <button class="option-btn" data-opt="0"><span class="opt-letter">A</span> Because essay guidelines forbid writing introductions on the first day.</button>
+            <button class="option-btn" data-opt="1"><span class="opt-letter">B</span> Because once arguments and evidence are fully developed in the body, the author knows precisely what context and thesis promises need to be established.</button>
+            <button class="option-btn" data-opt="2"><span class="opt-letter">C</span> Because introductions do not count toward the final essay grade.</button>
+            <button class="option-btn" data-opt="3"><span class="opt-letter">D</span> Because introductory paragraphs are automatically generated by software.</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="nav-buttons">
+        <button class="btn btn-prev" id="prevBtn" disabled>← Previous</button>
+        <button class="btn btn-next" id="nextBtn">Next →</button>
+      </div>
+    </div>
+
+    <!-- Results Screen -->
+    <div class="results-view" id="results-screen">
+      <h2 class="results-heading">Essay Architecture Assessment Complete!</h2>
+      <div class="score-circle" id="scoreCircle" style="--score-pct: 0;" data-score="0%"></div>
+      <p class="results-summary" id="resultSummary">You scored 0 out of 5</p>
+
+      <div class="review-accordion" id="reviewContainer"></div>
+
+      <button class="btn btn-retake" onclick="resetQuiz()">🔄 Retake Quiz</button>
+    </div>
+  </div>
+
+  <script>
+    const quizData = [
+      {
+        q: "What is the structural sequence of the 'Funnel Model' for academic essay introductions?",
+        options: [
+          "Specific thesis statement → Detailed evidence paragraph → General dictionary definition",
+          "Broad engaging hook → Narrowing contextual bridge → Explicit arguable thesis statement",
+          "Rhetorical questions → Personal emotional apology → Statistical table",
+          "Conclusion summary → Works cited list → Thesis statement"
+        ],
+        correct: 1,
+        explanation: "The funnel moves from wide to narrow: engaging hook (wide) → contextual bridge/scoping (middle) → precise, debatable thesis statement (narrow)."
+      },
+      {
+        q: "Which of the following represents an amateur opening cliché that should be strictly avoided in serious writing?",
+        options: [
+          "In an era characterized by hyper-connectivity, rates of acute social isolation have peaked.",
+          "Since the dawn of human civilization, people have always thought about happiness.",
+          "Despite accounting for over 70% of Earth's surface, oceanic ecosystems remain 80% unmapped.",
+          "While autonomous vehicles promise fewer traffic collisions, their algorithms raise urgent liability questions."
+        ],
+        correct: 1,
+        explanation: "'Since the dawn of civilization / time' is a recognized amateur cliché that is historically dubious and adds zero substance."
+      },
+      {
+        q: "What is the 'Golden Test' to verify whether a sentence functions as a genuine academic thesis statement?",
+        options: [
+          "It must contain more than fifty words and two semicolons.",
+          "An intelligent and reasonable person must be able to logically disagree with its claim.",
+          "It must be a verifiable scientific fact that everyone agrees with universally.",
+          "It must cite at least three authors in parentheses."
+        ],
+        correct: 1,
+        explanation: "A thesis statement must be debatable; if nobody can reasonably argue against it, it is a factual description rather than an argumentative stance."
+      },
+      {
+        q: "Which of the following sentences is a strong, arguable, analytical thesis statement rather than a descriptive fact?",
+        options: [
+          "Many countries have implemented various environmental laws in recent decades.",
+          "Although carbon taxation faces political resistance, it remains the most economically efficient climate policy because it internalizes environmental externalities and incentivizes private-sector green innovation.",
+          "The Paris Agreement is an international treaty on climate change adopted in 2015.",
+          "Pollution has negative consequences on the health of human beings and animals."
+        ],
+        correct: 1,
+        explanation: "Option B combines a concession, a definitive stance ('most economically efficient'), and an analytical roadmap with two clear mechanisms."
+      },
+      {
+        q: "Why do writing experts recommend drafting the introduction after completing the essay body paragraphs?",
+        options: [
+          "Because essay guidelines forbid writing introductions on the first day.",
+          "Because once arguments and evidence are fully developed in the body, the author knows precisely what context and thesis promises need to be established.",
+          "Because introductions do not count toward the final essay grade.",
+          "Because introductory paragraphs are automatically generated by software."
+        ],
+        correct: 1,
+        explanation: "Writing the body first crystallizes your exact findings, making it far simpler to introduce the topic and align the thesis with what you actually proved."
+      }
+    ];
+
+    let currentQ = 0;
+    let userAnswers = new Array(quizData.length).fill(null);
+    let secondsElapsed = 0;
+    let timerInterval = null;
+
+    const cards = document.querySelectorAll('.question-card');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const progressBar = document.getElementById('progressBar');
+    const timerElem = document.getElementById('timer');
+
+    function startTimer() {
+      secondsElapsed = 0;
+      clearInterval(timerInterval);
+      timerInterval = setInterval(() => {
+        secondsElapsed++;
+        const mins = String(Math.floor(secondsElapsed / 60)).padStart(2, '0');
+        const secs = String(secondsElapsed % 60).padStart(2, '0');
+        timerElem.textContent = `${mins}:${secs}`;
+      }, 1000);
+    }
+
+    function showQuestion(index) {
+      cards.forEach((card, idx) => {
+        card.classList.toggle('active', idx === index);
+      });
+
+      prevBtn.disabled = index === 0;
+      if (index === quizData.length - 1) {
+        nextBtn.textContent = 'Submit Quiz ✓';
+        nextBtn.className = 'btn btn-submit';
+      } else {
+        nextBtn.textContent = 'Next →';
+        nextBtn.className = 'btn btn-next';
+      }
+
+      const pct = ((index + 1) / quizData.length) * 100;
+      progressBar.style.width = `${pct}%`;
+
+      const currentCard = cards[index];
+      const buttons = currentCard.querySelectorAll('.option-btn');
+      buttons.forEach((btn, optIdx) => {
+        btn.classList.toggle('selected', userAnswers[index] === optIdx);
+      });
+    }
+
+    cards.forEach((card, qIdx) => {
+      const btns = card.querySelectorAll('.option-btn');
+      btns.forEach((btn, optIdx) => {
+        btn.addEventListener('click', () => {
+          userAnswers[qIdx] = optIdx;
+          btns.forEach(b => b.classList.remove('selected'));
+          btn.classList.add('selected');
+        });
+      });
+    });
+
+    prevBtn.addEventListener('click', () => {
+      if (currentQ > 0) {
+        currentQ--;
+        showQuestion(currentQ);
+      }
+    });
+
+    nextBtn.addEventListener('click', () => {
+      if (currentQ < quizData.length - 1) {
+        currentQ++;
+        showQuestion(currentQ);
+      } else {
+        finishQuiz();
+      }
+    });
+
+    function finishQuiz() {
+      clearInterval(timerInterval);
+      let score = 0;
+      userAnswers.forEach((ans, idx) => {
+        if (ans === quizData[idx].correct) score++;
+      });
+
+      const scorePct = Math.round((score / quizData.length) * 100);
+
+      document.getElementById('quiz-screen').style.display = 'none';
+      const resultsScreen = document.getElementById('results-screen');
+      resultsScreen.style.display = 'block';
+
+      const circle = document.getElementById('scoreCircle');
+      circle.style.setProperty('--score-pct', scorePct);
+      circle.setAttribute('data-score', `${scorePct}%`);
+
+      document.getElementById('resultSummary').textContent =
+        `You answered ${score} out of ${quizData.length} questions correctly in ${timerElem.textContent}!`;
+
+      const reviewContainer = document.getElementById('reviewContainer');
+      reviewContainer.innerHTML = '';
+
+      quizData.forEach((item, idx) => {
+        const isCorrect = userAnswers[idx] === item.correct;
+        const chosenText = userAnswers[idx] !== null ? item.options[userAnswers[idx]] : '<em>No answer chosen</em>';
+        const correctText = item.options[item.correct];
+
+        const itemDiv = document.createElement('div');
+        itemDiv.className = `review-item ${isCorrect ? 'correct' : 'incorrect'}`;
+        itemDiv.innerHTML = `
+          <div class="review-q">Q${idx + 1}. ${item.q}</div>
+          <div class="review-detail"><strong>Your Answer:</strong> ${chosenText} ${isCorrect ? '✅' : '❌'}</div>
+          ${!isCorrect ? `<div class="review-detail"><strong>Correct Answer:</strong> ${correctText}</div>` : ''}
+          <div class="explanation-box"><strong>Explanation:</strong> ${item.explanation}</div>
+        `;
+        reviewContainer.appendChild(itemDiv);
+      });
+    }
+
+    function resetQuiz() {
+      userAnswers = new Array(quizData.length).fill(null);
+      currentQ = 0;
+      document.getElementById('results-screen').style.display = 'none';
+      document.getElementById('quiz-screen').style.display = 'block';
+      startTimer();
+      showQuestion(0);
+    }
+
+    startTimer();
+    showQuestion(0);
+  </script>
+</body>
+</html>
