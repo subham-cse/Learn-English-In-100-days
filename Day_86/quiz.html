@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Day 86 Quiz: Essay Conclusions & Forward-Looking Summaries</title>
+  <style>
+    :root {
+      --primary: #4f46e5;
+      --primary-hover: #4338ca;
+      --success: #16a34a;
+      --danger: #dc2626;
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+      --text: #1e293b;
+      --muted: #64748b;
+      --border: #e2e8f0;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+    body { background: var(--bg); color: var(--text); line-height: 1.6; padding: 24px 16px; min-height: 100vh; display: flex; justify-content: center; align-items: center; }
+    .quiz-container { background: var(--card-bg); max-width: 680px; width: 100%; border-radius: 16px; box-shadow: 0 10px 25px -5px rgba(0,0,0,0.1), 0 8px 10px -6px rgba(0,0,0,0.1); padding: 32px; border: 1px solid var(--border); }
+    .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; padding-bottom: 16px; border-bottom: 1px solid var(--border); }
+    .badge { background: #e0e7ff; color: var(--primary); font-size: 0.85rem; font-weight: 600; padding: 4px 12px; border-radius: 9999px; }
+    .timer { font-size: 0.95rem; font-weight: 600; color: var(--muted); }
+    .progress-bar-container { width: 100%; height: 8px; background: #e2e8f0; border-radius: 4px; overflow: hidden; margin-bottom: 24px; }
+    .progress-bar { height: 100%; width: 20%; background: var(--primary); transition: width 0.3s ease; }
+    .question-title { font-size: 1.25rem; font-weight: 700; margin-bottom: 8px; color: #0f172a; }
+    .question-context { font-size: 0.95rem; color: var(--muted); margin-bottom: 20px; font-style: italic; }
+    .options { display: flex; flex-direction: column; gap: 12px; margin-bottom: 24px; }
+    .option-btn { background: #ffffff; border: 2px solid var(--border); padding: 14px 18px; border-radius: 10px; font-size: 0.98rem; text-align: left; cursor: pointer; transition: all 0.2s ease; display: flex; align-items: flex-start; gap: 12px; }
+    .option-btn:hover:not(:disabled) { border-color: var(--primary); background: #f5f3ff; }
+    .option-btn.selected { border-color: var(--primary); background: #e0e7ff; }
+    .option-btn.correct { border-color: var(--success); background: #dcfce7; color: #14532d; font-weight: 600; }
+    .option-btn.incorrect { border-color: var(--danger); background: #fee2e2; color: #7f1d1d; }
+    .option-btn:disabled { cursor: default; }
+    .explanation-box { padding: 16px; border-radius: 10px; font-size: 0.92rem; margin-bottom: 24px; display: none; line-height: 1.5; }
+    .explanation-box.correct { background: #f0fdf4; border: 1px solid #86efac; color: #166534; }
+    .explanation-box.incorrect { background: #fef2f2; border: 1px solid #fca5a5; color: #991b1b; }
+    .footer { display: flex; justify-content: space-between; align-items: center; }
+    .btn { background: var(--primary); color: white; border: none; padding: 10px 22px; border-radius: 8px; font-weight: 600; cursor: pointer; transition: background 0.2s; }
+    .btn:hover { background: var(--primary-hover); }
+    .btn:disabled { background: #cbd5e1; cursor: not-allowed; }
+    .score-card { text-align: center; padding: 20px 0; }
+    .score-card h2 { font-size: 2rem; margin-bottom: 12px; }
+    .score-circle { width: 120px; height: 120px; border-radius: 50%; background: #e0e7ff; color: var(--primary); display: flex; align-items: center; justify-content: center; font-size: 2rem; font-weight: 800; margin: 20px auto; }
+    .score-summary { margin-bottom: 24px; color: var(--muted); }
+  </style>
+</head>
+<body>
+
+<div class="quiz-container" id="quizContainer">
+  <div class="header">
+    <span class="badge">Day 86: Essay Conclusions</span>
+    <span class="timer" id="timer">Time: 00:00</span>
+  </div>
+
+  <div class="progress-bar-container">
+    <div class="progress-bar" id="progressBar"></div>
+  </div>
+
+  <div id="quizContent">
+    <h3 class="question-title" id="questionTitle">Loading question...</h3>
+    <p class="question-context" id="questionContext"></p>
+
+    <div class="options" id="optionsContainer"></div>
+
+    <div class="explanation-box" id="explanationBox"></div>
+
+    <div class="footer">
+      <span id="questionCounter" style="color: var(--muted); font-size: 0.9rem;">Question 1 of 5</span>
+      <button class="btn" id="actionBtn" disabled onclick="handleAction()">Next Question</button>
+    </div>
+  </div>
+
+  <div id="scoreCard" class="score-card" style="display: none;">
+    <h2>Quiz Complete!</h2>
+    <div class="score-circle" id="scoreCircle">0%</div>
+    <p class="score-summary" id="scoreSummary"></p>
+    <button class="btn" onclick="restartQuiz()">Try Again</button>
+  </div>
+</div>
+
+<script>
+  const questions = [
+    {
+      title: "What is the primary role of an advanced essay conclusion?",
+      context: "Synthesizing vs. summarizing",
+      options: [
+        "To introduce newly discovered empirical datasets that contradict the body paragraphs.",
+        "To restate the introduction's thesis verbatim and list each paragraph's topic sentence.",
+        "To synthesize findings into an intellectual cohesive whole and project forward into broader implications.",
+        "To apologize for limitations and state that further research is someone else's responsibility."
+      ],
+      correct: 2,
+      explanation: "A high-level conclusion synthesizes the analyzed arguments and answers 'So what?', contextualizing the findings and looking forward rather than mechanically repeating old sentences."
+    },
+    {
+      title: "Which transitional phrase is most appropriate for a formal, high-impact conclusion?",
+      context: "Transitional register and academic tone",
+      options: [
+        "In a nutshell,",
+        "Taken together,",
+        "As I said before in paragraph two,",
+        "All in all like I said,"
+      ],
+      correct: 1,
+      explanation: "'Taken together,' is an elevated cohesive marker that signals conceptual synthesis without informal clichés like 'In a nutshell' or conversational self-references."
+    },
+    {
+      title: "Why is introducing a brand new empirical study in your concluding paragraph considered a flaw?",
+      context: "Evidence placement and essay structure",
+      options: [
+        "Because conclusions should never contain facts or logic.",
+        "Because any data requiring critical analysis must be scrutinized in the body, not dropped unanalyzed at the end.",
+        "Because conclusions must only discuss emotional responses.",
+        "Because readers do not read the final paragraph anyway."
+      ],
+      correct: 1,
+      explanation: "Evidence requires dissection and context. Introducing raw, unexamined data in the conclusion violates essay architecture, leaving the evidence unsupported."
+    },
+    {
+      title: "Identify the best forward-looking conclusion sentence below:",
+      context: "Evaluating argumentative strength and vision",
+      options: [
+        "Thus, cars pollute, bikes are great, and walking is healthy as proven above.",
+        "Consequently, unless urban infrastructure pivots toward integrated multimodal transit, decarbonization targets will remain aspirational ideals rather than practical realities.",
+        "In conclusion, maybe someone in government will do something about traffic someday.",
+        "This is why I personally think cars are bad and people should stop driving."
+      ],
+      correct: 1,
+      explanation: "This sentence articulates the tangible stakes ('consequently, unless...'), maintains an objective, rigorous tone, and evaluates the forward-looking ramifications."
+    },
+    {
+      title: "What does the 'So What?' test evaluate in an essay's conclusion?",
+      context: "Relevance and intellectual value",
+      options: [
+        "Whether the essay reached the required word count minimum.",
+        "Whether the reader understands why the argument matters beyond the confines of the paper itself.",
+        "Whether the author used slang words correctly.",
+        "Whether the bibliography has alphabetical ordering."
+      ],
+      correct: 1,
+      explanation: "The 'So What?' interrogation forces the writer to connect their specific thesis to systemic impacts, practical applications, or future societal/academic significance."
+    }
+  ];
+
+  let currentIdx = 0;
+  let score = 0;
+  let timerSeconds = 0;
+  let timerInterval = null;
+  let answered = false;
+
+  function startTimer() {
+    timerInterval = setInterval(() => {
+      timerSeconds++;
+      const mins = String(Math.floor(timerSeconds / 60)).padStart(2, '0');
+      const secs = String(timerSeconds % 60).padStart(2, '0');
+      document.getElementById('timer').textContent = `Time: ${mins}:${secs}`;
+    }, 1000);
+  }
+
+  function loadQuestion() {
+    answered = false;
+    const q = questions[currentIdx];
+    document.getElementById('questionTitle').textContent = q.title;
+    document.getElementById('questionContext').textContent = q.context;
+    document.getElementById('questionCounter').textContent = `Question ${currentIdx + 1} of ${questions.length}`;
+    document.getElementById('progressBar').style.width = `${((currentIdx + 1) / questions.length) * 100}%`;
+
+    const optContainer = document.getElementById('optionsContainer');
+    optContainer.innerHTML = '';
+    q.options.forEach((opt, i) => {
+      const btn = document.createElement('button');
+      btn.className = 'option-btn';
+      btn.innerHTML = `<strong>${String.fromCharCode(65 + i)}.</strong> <span>${opt}</span>`;
+      btn.onclick = () => selectOption(i);
+      optContainer.appendChild(btn);
+    });
+
+    const expBox = document.getElementById('explanationBox');
+    expBox.style.display = 'none';
+    expBox.className = 'explanation-box';
+    expBox.innerHTML = '';
+
+    const actionBtn = document.getElementById('actionBtn');
+    actionBtn.disabled = true;
+    actionBtn.textContent = currentIdx === questions.length - 1 ? "Finish Quiz" : "Next Question";
+  }
+
+  function selectOption(index) {
+    if (answered) return;
+    answered = true;
+    const q = questions[currentIdx];
+    const buttons = document.querySelectorAll('.option-btn');
+
+    buttons.forEach((btn, i) => {
+      btn.disabled = true;
+      if (i === q.correct) {
+        btn.classList.add('correct');
+      } else if (i === index) {
+        btn.classList.add('incorrect');
+      }
+    });
+
+    const expBox = document.getElementById('explanationBox');
+    expBox.style.display = 'block';
+    if (index === q.correct) {
+      score++;
+      expBox.className = 'explanation-box correct';
+      expBox.innerHTML = `<strong>Correct!</strong> ${q.explanation}`;
+    } else {
+      expBox.className = 'explanation-box incorrect';
+      expBox.innerHTML = `<strong>Incorrect.</strong> ${q.explanation}`;
+    }
+
+    document.getElementById('actionBtn').disabled = false;
+  }
+
+  function handleAction() {
+    if (currentIdx < questions.length - 1) {
+      currentIdx++;
+      loadQuestion();
+    } else {
+      clearInterval(timerInterval);
+      showScore();
+    }
+  }
+
+  function showScore() {
+    document.getElementById('quizContent').style.display = 'none';
+    const scoreCard = document.getElementById('scoreCard');
+    scoreCard.style.display = 'block';
+    const percent = Math.round((score / questions.length) * 100);
+    document.getElementById('scoreCircle').textContent = `${percent}%`;
+    document.getElementById('scoreSummary').textContent = `You answered ${score} out of ${questions.length} questions correctly in ${document.getElementById('timer').textContent.replace('Time: ', '')}.`;
+  }
+
+  function restartQuiz() {
+    currentIdx = 0;
+    score = 0;
+    timerSeconds = 0;
+    document.getElementById('quizContent').style.display = 'block';
+    document.getElementById('scoreCard').style.display = 'none';
+    startTimer();
+    loadQuestion();
+  }
+
+  startTimer();
+  loadQuestion();
+</script>
+
+</body>
+</html>
