@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Day 94 Quiz: Formal Debate & Argumentation</title>
+  <style>
+    :root {
+      --primary: #b91c1c;
+      --primary-hover: #991b1b;
+      --success: #16a34a;
+      --danger: #dc2626;
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+      --text: #1e293b;
+      --muted: #64748b;
+      --border: #e2e8f0;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+    body { background: var(--bg); color: var(--text); line-height: 1.6; padding: 24px 16px; min-height: 100vh; display: flex; justify-content: center; align-items: center; }
+    .quiz-container { background: var(--card-bg); max-width: 680px; width: 100%; border-radius: 16px; box-shadow: 0 10px 25px -5px rgba(0,0,0,0.1), 0 8px 10px -6px rgba(0,0,0,0.1); padding: 32px; border: 1px solid var(--border); }
+    .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; padding-bottom: 16px; border-bottom: 1px solid var(--border); }
+    .badge { background: #fee2e2; color: var(--primary); font-size: 0.85rem; font-weight: 600; padding: 4px 12px; border-radius: 9999px; }
+    .timer { font-size: 0.95rem; font-weight: 600; color: var(--muted); }
+    .progress-bar-container { width: 100%; height: 8px; background: #e2e8f0; border-radius: 4px; overflow: hidden; margin-bottom: 24px; }
+    .progress-bar { height: 100%; width: 20%; background: var(--primary); transition: width 0.3s ease; }
+    .question-title { font-size: 1.25rem; font-weight: 700; margin-bottom: 8px; color: #0f172a; }
+    .question-context { font-size: 0.95rem; color: var(--muted); margin-bottom: 20px; font-style: italic; }
+    .options { display: flex; flex-direction: column; gap: 12px; margin-bottom: 24px; }
+    .option-btn { background: #ffffff; border: 2px solid var(--border); padding: 14px 18px; border-radius: 10px; font-size: 0.98rem; text-align: left; cursor: pointer; transition: all 0.2s ease; display: flex; align-items: flex-start; gap: 12px; }
+    .option-btn:hover:not(:disabled) { border-color: var(--primary); background: #fef2f2; }
+    .option-btn.selected { border-color: var(--primary); background: #fee2e2; }
+    .option-btn.correct { border-color: var(--success); background: #dcfce7; color: #14532d; font-weight: 600; }
+    .option-btn.incorrect { border-color: var(--danger); background: #fee2e2; color: #7f1d1d; }
+    .option-btn:disabled { cursor: default; }
+    .explanation-box { padding: 16px; border-radius: 10px; font-size: 0.92rem; margin-bottom: 24px; display: none; line-height: 1.5; }
+    .explanation-box.correct { background: #f0fdf4; border: 1px solid #86efac; color: #166534; }
+    .explanation-box.incorrect { background: #fef2f2; border: 1px solid #fca5a5; color: #991b1b; }
+    .footer { display: flex; justify-content: space-between; align-items: center; }
+    .btn { background: var(--primary); color: white; border: none; padding: 10px 22px; border-radius: 8px; font-weight: 600; cursor: pointer; transition: background 0.2s; }
+    .btn:hover { background: var(--primary-hover); }
+    .btn:disabled { background: #cbd5e1; cursor: not-allowed; }
+    .score-card { text-align: center; padding: 20px 0; }
+    .score-card h2 { font-size: 2rem; margin-bottom: 12px; }
+    .score-circle { width: 120px; height: 120px; border-radius: 50%; background: #fee2e2; color: var(--primary); display: flex; align-items: center; justify-content: center; font-size: 2rem; font-weight: 800; margin: 20px auto; }
+    .score-summary { margin-bottom: 24px; color: var(--muted); }
+  </style>
+</head>
+<body>
+
+<div class="quiz-container" id="quizContainer">
+  <div class="header">
+    <span class="badge">Day 94: Formal Debate & Argumentation</span>
+    <span class="timer" id="timer">Time: 00:00</span>
+  </div>
+
+  <div class="progress-bar-container">
+    <div class="progress-bar" id="progressBar"></div>
+  </div>
+
+  <div id="quizContent">
+    <h3 class="question-title" id="questionTitle">Loading question...</h3>
+    <p class="question-context" id="questionContext"></p>
+
+    <div class="options" id="optionsContainer"></div>
+
+    <div class="explanation-box" id="explanationBox"></div>
+
+    <div class="footer">
+      <span id="questionCounter" style="color: var(--muted); font-size: 0.9rem;">Question 1 of 5</span>
+      <button class="btn" id="actionBtn" disabled onclick="handleAction()">Next Question</button>
+    </div>
+  </div>
+
+  <div id="scoreCard" class="score-card" style="display: none;">
+    <h2>Quiz Complete!</h2>
+    <div class="score-circle" id="scoreCircle">0%</div>
+    <p class="score-summary" id="scoreSummary"></p>
+    <button class="btn" onclick="restartQuiz()">Try Again</button>
+  </div>
+</div>
+
+<script>
+  const questions = [
+    {
+      title: "What does the AREI framework represent in argumentation theory?",
+      context: "Core argument anatomy",
+      options: [
+        "Action, Reaction, Energy, Initiative",
+        "Assertion, Reasoning, Evidence, Impact",
+        "Agitation, Resistance, Evaluation, Inference",
+        "Analysis, Rhetoric, Eloquence, Injunction"
+      ],
+      correct: 1,
+      explanation: "AREI stands for Assertion (the claim), Reasoning (the causal explanation), Evidence (empirical validation), and Impact (the ultimate consequence and significance)."
+    },
+    {
+      title: "What is a 'Straw Man' fallacy?",
+      context: "Logical fallacy identification",
+      options: [
+        "Attacking an opponent's physical appearance rather than their logic.",
+        "Distorting or exaggerating an opponent's argument to make it trivially easy to refute.",
+        "Assuming that because event B followed event A, event A caused event B.",
+        "Arguing that two extreme choices are the only available alternatives."
+      ],
+      correct: 1,
+      explanation: "A Straw Man fallacy deliberately misrepresents or oversimplifies the opponent's true position so that the speaker can defeat an artificial caricature of the argument."
+    },
+    {
+      title: "What is the primary benefit of the 'Steelmanning' technique in debate?",
+      context: "Debate strategy and persuasive psychology",
+      options: [
+        "It confuses the audience with technical metal terminology.",
+        "It addresses the strongest, most reasonable interpretation of your opponent's view, making your eventual rebuttal far more convincing.",
+        "It forces the debate judges to declare a premature draw.",
+        "It allows you to avoid bringing any empirical evidence of your own."
+      ],
+      correct: 1,
+      explanation: "Steelmanning articulates the opposing perspective in its most charitable and potent form; when you refute that elevated version, your position becomes undeniable."
+    },
+    {
+      title: "Which sentence exemplifies a nuanced concession paired with a comparative counterpoint?",
+      context: "Concession and comparative weighing",
+      options: [
+        "Everything you just said is completely wrong and you are foolish.",
+        "Even granting that onboarding new security software introduces a minor 2-week learning curve, the resulting mitigation of ransomware vulnerability far outweighs temporary friction.",
+        "I guess you are right, let's just do whatever you want.",
+        "Computers are bad anyway so none of this matters."
+      ],
+      correct: 1,
+      explanation: "This sentence concedes a minor operational reality ('minor 2-week learning curve') while decisively winning on comparative magnitude and long-term consequence ('mitigation of ransomware')."
+    },
+    {
+      title: "What are the four sequential steps in the formal rebuttal protocol?",
+      context: "Refutation architecture",
+      options: [
+        "Shout, Mock, Deny, Leave",
+        "Signal (They say), State (I disagree), Support (Because), Summarize/Weigh (Therefore)",
+        "Question, Cross-examine, Accuse, Convict",
+        "Agree, Apologize, Concede, Retreat"
+      ],
+      correct: 1,
+      explanation: "The four-step refutation protocol cleanly delineates what the opponent claimed, what your counter-thesis is, why your evidence proves it, and why your impact outweighs theirs."
+    }
+  ];
+
+  let currentIdx = 0;
+  let score = 0;
+  let timerSeconds = 0;
+  let timerInterval = null;
+  let answered = false;
+
+  function startTimer() {
+    timerInterval = setInterval(() => {
+      timerSeconds++;
+      const mins = String(Math.floor(timerSeconds / 60)).padStart(2, '0');
+      const secs = String(timerSeconds % 60).padStart(2, '0');
+      document.getElementById('timer').textContent = `Time: ${mins}:${secs}`;
+    }, 1000);
+  }
+
+  function loadQuestion() {
+    answered = false;
+    const q = questions[currentIdx];
+    document.getElementById('questionTitle').textContent = q.title;
+    document.getElementById('questionContext').textContent = q.context;
+    document.getElementById('questionCounter').textContent = `Question ${currentIdx + 1} of ${questions.length}`;
+    document.getElementById('progressBar').style.width = `${((currentIdx + 1) / questions.length) * 100}%`;
+
+    const optContainer = document.getElementById('optionsContainer');
+    optContainer.innerHTML = '';
+    q.options.forEach((opt, i) => {
+      const btn = document.createElement('button');
+      btn.className = 'option-btn';
+      btn.innerHTML = `<strong>${String.fromCharCode(65 + i)}.</strong> <span>${opt}</span>`;
+      btn.onclick = () => selectOption(i);
+      optContainer.appendChild(btn);
+    });
+
+    const expBox = document.getElementById('explanationBox');
+    expBox.style.display = 'none';
+    expBox.className = 'explanation-box';
+    expBox.innerHTML = '';
+
+    const actionBtn = document.getElementById('actionBtn');
+    actionBtn.disabled = true;
+    actionBtn.textContent = currentIdx === questions.length - 1 ? "Finish Quiz" : "Next Question";
+  }
+
+  function selectOption(index) {
+    if (answered) return;
+    answered = true;
+    const q = questions[currentIdx];
+    const buttons = document.querySelectorAll('.option-btn');
+
+    buttons.forEach((btn, i) => {
+      btn.disabled = true;
+      if (i === q.correct) {
+        btn.classList.add('correct');
+      } else if (i === index) {
+        btn.classList.add('incorrect');
+      }
+    });
+
+    const expBox = document.getElementById('explanationBox');
+    expBox.style.display = 'block';
+    if (index === q.correct) {
+      score++;
+      expBox.className = 'explanation-box correct';
+      expBox.innerHTML = `<strong>Correct!</strong> ${q.explanation}`;
+    } else {
+      expBox.className = 'explanation-box incorrect';
+      expBox.innerHTML = `<strong>Incorrect.</strong> ${q.explanation}`;
+    }
+
+    document.getElementById('actionBtn').disabled = false;
+  }
+
+  function handleAction() {
+    if (currentIdx < questions.length - 1) {
+      currentIdx++;
+      loadQuestion();
+    } else {
+      clearInterval(timerInterval);
+      showScore();
+    }
+  }
+
+  function showScore() {
+    document.getElementById('quizContent').style.display = 'none';
+    const scoreCard = document.getElementById('scoreCard');
+    scoreCard.style.display = 'block';
+    const percent = Math.round((score / questions.length) * 100);
+    document.getElementById('scoreCircle').textContent = `${percent}%`;
+    document.getElementById('scoreSummary').textContent = `You answered ${score} out of ${questions.length} questions correctly in ${document.getElementById('timer').textContent.replace('Time: ', '')}.`;
+  }
+
+  function restartQuiz() {
+    currentIdx = 0;
+    score = 0;
+    timerSeconds = 0;
+    document.getElementById('quizContent').style.display = 'block';
+    document.getElementById('scoreCard').style.display = 'none';
+    startTimer();
+    loadQuestion();
+  }
+
+  startTimer();
+  loadQuestion();
+</script>
+
+</body>
+</html>
