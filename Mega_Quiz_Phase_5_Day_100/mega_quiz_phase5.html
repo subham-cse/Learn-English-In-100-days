@@ -1,0 +1,1765 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phase 5 Milestone Mega Quiz & Capstone Assessment | Learn English in 100 Days</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #1e3a8a;
+            --primary-light: #3b82f6;
+            --primary-dark: #172554;
+            --accent: #f59e0b;
+            --accent-hover: #d97706;
+            --success: #10b981;
+            --success-light: #d1fae5;
+            --danger: #ef4444;
+            --danger-light: #fee2e2;
+            --neutral-bg: #f8fafc;
+            --card-bg: #ffffff;
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+            --border-color: #e2e8f0;
+            --shadow-sm: 0 2px 4px rgba(0,0,0,0.05);
+            --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
+            --shadow-lg: 0 10px 25px rgba(0,0,0,0.12);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #1e3a8a 100%);
+            color: var(--text-main);
+            min-height: 100vh;
+            padding: 24px 16px;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            background-color: var(--card-bg);
+            border-radius: 20px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.35);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* HEADER */
+        header {
+            background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 60%, #4f46e5 100%);
+            color: #ffffff;
+            padding: 40px 30px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: "";
+            position: absolute;
+            top: -50px;
+            right: -50px;
+            width: 200px;
+            height: 200px;
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 50%;
+        }
+
+        header::after {
+            content: "";
+            position: absolute;
+            bottom: -60px;
+            left: -60px;
+            width: 220px;
+            height: 220px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 50%;
+        }
+
+        .badge-capsule {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.18);
+            backdrop-filter: blur(8px);
+            padding: 6px 18px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        h1 {
+            font-size: 2.3rem;
+            font-weight: 800;
+            line-height: 1.25;
+            margin-bottom: 12px;
+            letter-spacing: -0.5px;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            opacity: 0.92;
+            max-width: 760px;
+            margin: 0 auto 20px;
+        }
+
+        .phase-tags {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .phase-tag {
+            background-color: rgba(255, 255, 255, 0.15);
+            padding: 6px 14px;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.2s ease;
+        }
+
+        .phase-tag:hover {
+            background-color: rgba(255, 255, 255, 0.25);
+            transform: translateY(-2px);
+        }
+
+        /* INSTRUCTIONS & METRICS BAR */
+        .dashboard-bar {
+            background-color: var(--neutral-bg);
+            border-bottom: 1px solid var(--border-color);
+            padding: 20px 30px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            align-items: center;
+        }
+
+        .metric-card {
+            background: white;
+            padding: 14px 20px;
+            border-radius: 12px;
+            box-shadow: var(--shadow-sm);
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            border: 1px solid var(--border-color);
+        }
+
+        .metric-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+        }
+
+        .metric-icon.blue { background-color: #dbeafe; color: #1d4ed8; }
+        .metric-icon.amber { background-color: #fef3c7; color: #b45309; }
+        .metric-icon.green { background-color: #d1fae5; color: #047857; }
+
+        .metric-info h4 {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .metric-info .value {
+            font-size: 1.35rem;
+            font-weight: 700;
+            color: var(--text-main);
+        }
+
+        .timer-val {
+            font-family: 'Courier New', Courier, monospace;
+            color: #b45309 !important;
+            font-weight: 800;
+        }
+
+        /* QUIZ MAIN WORKSPACE */
+        .quiz-workspace {
+            padding: 30px;
+            display: grid;
+            grid-template-columns: 1fr 310px;
+            gap: 30px;
+        }
+
+        @media (max-width: 900px) {
+            .quiz-workspace {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* QUESTION CARD */
+        .question-card {
+            background: white;
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: var(--shadow-sm);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .q-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid var(--border-color);
+            gap: 10px;
+        }
+
+        .q-number {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .q-topic-tag {
+            background-color: #eff6ff;
+            color: var(--primary);
+            border: 1px solid #bfdbfe;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .q-prompt {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--text-main);
+            margin-bottom: 25px;
+            line-height: 1.45;
+        }
+
+        /* OPTIONS LIST */
+        .options-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 30px;
+        }
+
+        .option-item {
+            background: #ffffff;
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
+            padding: 16px 20px;
+            cursor: pointer;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            position: relative;
+        }
+
+        .option-item:hover {
+            border-color: var(--primary-light);
+            background-color: #f8fafc;
+            transform: translateX(4px);
+        }
+
+        .option-item.selected {
+            border-color: var(--primary);
+            background-color: #eff6ff;
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+        }
+
+        .option-letter {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            background-color: var(--neutral-bg);
+            border: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            flex-shrink: 0;
+            transition: all 0.2s;
+        }
+
+        .option-item.selected .option-letter {
+            background-color: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        .option-text {
+            font-size: 1.02rem;
+            color: #334155;
+            flex-grow: 1;
+            padding-top: 3px;
+        }
+
+        /* NAVIGATION BUTTONS */
+        .q-navigation-btns {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border-radius: 10px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            border: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.2s ease;
+        }
+
+        .btn-outline {
+            background: white;
+            border: 2px solid var(--border-color);
+            color: var(--text-main);
+        }
+
+        .btn-outline:hover:not(:disabled) {
+            border-color: var(--primary);
+            color: var(--primary);
+            background: #f8fafc;
+        }
+
+        .btn-outline:disabled {
+            opacity: 0.45;
+            cursor: not-allowed;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-light);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .btn-success {
+            background: var(--success);
+            color: white;
+        }
+
+        .btn-success:hover {
+            background: #059669;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+        }
+
+        /* SIDEBAR: QUESTION GRID PALETTE */
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .palette-card {
+            background: white;
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 24px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .palette-title {
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            color: var(--text-main);
+        }
+
+        .palette-legend {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 16px;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .legend-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+        }
+
+        .legend-dot.answered { background-color: var(--primary); }
+        .legend-dot.unanswered { background-color: #e2e8f0; }
+        .legend-dot.active { background-color: var(--accent); }
+
+        .question-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 8px;
+        }
+
+        .grid-btn {
+            aspect-ratio: 1;
+            border: 1px solid var(--border-color);
+            background-color: #f8fafc;
+            color: var(--text-muted);
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .grid-btn:hover {
+            border-color: var(--primary-light);
+            background-color: #f1f5f9;
+        }
+
+        .grid-btn.answered {
+            background-color: #dbeafe;
+            color: #1e40af;
+            border-color: #93c5fd;
+        }
+
+        .grid-btn.current {
+            border: 2px solid var(--accent);
+            box-shadow: 0 0 0 2px rgba(245, 158, 11, 0.3);
+            font-weight: 800;
+            color: var(--accent-hover);
+        }
+
+        .submit-panel {
+            margin-top: 10px;
+        }
+
+        .submit-panel .btn {
+            width: 100%;
+            justify-content: center;
+            padding: 14px;
+            font-size: 1.05rem;
+        }
+
+        /* PROGRESS BAR */
+        .progress-section {
+            padding: 0 30px 10px;
+        }
+
+        .progress-track {
+            height: 8px;
+            background-color: #e2e8f0;
+            border-radius: 20px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #3b82f6, #10b981);
+            width: 3.33%;
+            transition: width 0.3s ease;
+        }
+
+        .progress-label {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            margin-top: 6px;
+        }
+
+        /* RESULTS & EVALUATION VIEW */
+        .results-view {
+            display: none;
+            padding: 36px 30px;
+            background: #f8fafc;
+        }
+
+        .score-hero {
+            background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 50%, #3b82f6 100%);
+            color: white;
+            border-radius: 20px;
+            padding: 40px 30px;
+            text-align: center;
+            box-shadow: var(--shadow-lg);
+            margin-bottom: 35px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .score-hero h2 {
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+        }
+
+        .score-ring {
+            font-size: 4.8rem;
+            font-weight: 900;
+            margin: 15px 0;
+            letter-spacing: -1px;
+        }
+
+        .score-pill {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(8px);
+            padding: 8px 24px;
+            border-radius: 30px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .score-hero p {
+            max-width: 650px;
+            margin: 0 auto;
+            font-size: 1.05rem;
+            opacity: 0.92;
+        }
+
+        /* CATEGORY BREAKDOWN GRID */
+        .category-breakdown {
+            margin-bottom: 40px;
+        }
+
+        .section-heading {
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: var(--text-main);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 18px;
+        }
+
+        .cat-card {
+            background: white;
+            border: 1px solid var(--border-color);
+            border-radius: 14px;
+            padding: 20px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .cat-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .cat-title {
+            font-weight: 700;
+            font-size: 0.95rem;
+            color: var(--text-main);
+        }
+
+        .cat-score {
+            font-weight: 800;
+            font-size: 1.1rem;
+            color: var(--primary);
+        }
+
+        .cat-bar-track {
+            height: 8px;
+            background: #e2e8f0;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .cat-bar-fill {
+            height: 100%;
+            border-radius: 10px;
+            background: var(--primary);
+            transition: width 0.6s ease;
+        }
+
+        /* DETAILED REVIEW LIST */
+        .review-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .review-item {
+            background: white;
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
+            padding: 26px;
+            box-shadow: var(--shadow-sm);
+            border-left: 6px solid var(--border-color);
+        }
+
+        .review-item.is-correct {
+            border-left-color: var(--success);
+        }
+
+        .review-item.is-incorrect {
+            border-left-color: var(--danger);
+        }
+
+        .review-item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 14px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .review-q-title {
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .status-badge {
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .status-badge.correct {
+            background: var(--success-light);
+            color: #065f46;
+        }
+
+        .status-badge.incorrect {
+            background: var(--danger-light);
+            color: #991b1b;
+        }
+
+        .review-prompt {
+            font-size: 1.08rem;
+            font-weight: 600;
+            color: #1e293b;
+            margin-bottom: 18px;
+            line-height: 1.5;
+        }
+
+        .answer-comparison {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 14px;
+            margin-bottom: 18px;
+        }
+
+        .ans-box {
+            padding: 14px 18px;
+            border-radius: 10px;
+            font-size: 0.95rem;
+        }
+
+        .ans-box.user {
+            background: #f1f5f9;
+            border: 1px solid #cbd5e1;
+            color: #334155;
+        }
+
+        .ans-box.user.correct {
+            background: var(--success-light);
+            border-color: #a7f3d0;
+            color: #065f46;
+        }
+
+        .ans-box.user.incorrect {
+            background: var(--danger-light);
+            border-color: #fecaca;
+            color: #991b1b;
+        }
+
+        .ans-box.actual {
+            background: #ecfdf5;
+            border: 1px solid #a7f3d0;
+            color: #065f46;
+        }
+
+        .explanation-box {
+            background-color: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 18px 20px;
+            border-left: 4px solid var(--accent);
+        }
+
+        .explanation-title {
+            font-weight: 700;
+            font-size: 0.9rem;
+            color: #92400e;
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .explanation-text {
+            color: #334155;
+            font-size: 0.95rem;
+            line-height: 1.55;
+        }
+
+        .retake-wrapper {
+            margin-top: 40px;
+            text-align: center;
+            padding-top: 25px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        /* MODAL CONFIRMATION */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(15, 23, 42, 0.7);
+            backdrop-filter: blur(4px);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            padding: 20px;
+        }
+
+        .modal-dialog {
+            background: white;
+            border-radius: 18px;
+            padding: 32px;
+            max-width: 460px;
+            width: 100%;
+            box-shadow: var(--shadow-lg);
+            text-align: center;
+            animation: modalPop 0.25s ease-out;
+        }
+
+        @keyframes modalPop {
+            from { transform: scale(0.9); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        .modal-icon {
+            font-size: 3rem;
+            color: var(--accent);
+            margin-bottom: 16px;
+        }
+
+        .modal-title {
+            font-size: 1.4rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+            color: var(--text-main);
+        }
+
+        .modal-desc {
+            color: var(--text-muted);
+            margin-bottom: 24px;
+            font-size: 0.95rem;
+        }
+
+        .modal-actions {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+        }
+
+        /* RESPONSIVE BREAKPOINTS */
+        @media (max-width: 768px) {
+            header {
+                padding: 30px 20px;
+            }
+            h1 {
+                font-size: 1.8rem;
+            }
+            .dashboard-bar {
+                padding: 15px 20px;
+            }
+            .quiz-workspace {
+                padding: 20px 15px;
+            }
+            .question-card {
+                padding: 20px 18px;
+            }
+            .q-prompt {
+                font-size: 1.15rem;
+            }
+            .options-list {
+                gap: 10px;
+            }
+            .option-item {
+                padding: 14px 16px;
+            }
+            .score-ring {
+                font-size: 3.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- HEADER -->
+        <header>
+            <div class="badge-capsule">
+                <i class="fas fa-graduation-cap"></i> Days 81–100 Capstone Milestone
+            </div>
+            <h1>Phase 5 Mega Quiz: Executive Fluency & Advanced Rhetoric</h1>
+            <p class="subtitle">
+                Comprehensive 30-Question Evaluator testing professional correspondence, argumentative essay architecture, career negotiations, public speaking, connected speech phonetics, and lifelong fluency synthesis.
+            </p>
+            <div class="phase-tags">
+                <span class="phase-tag"><i class="fas fa-envelope-open-text"></i> Email Etiquette & BLUF</span>
+                <span class="phase-tag"><i class="fas fa-layer-group"></i> PEEL & Essay Architecture</span>
+                <span class="phase-tag"><i class="fas fa-briefcase"></i> STAR & Salary Negotiation</span>
+                <span class="phase-tag"><i class="fas fa-microphone-alt"></i> Public Speaking & Presentations</span>
+                <span class="phase-tag"><i class="fas fa-wave-square"></i> Connected Speech & Intonation</span>
+                <span class="phase-tag"><i class="fas fa-infinity"></i> Lifelong Synthesis</span>
+            </div>
+        </header>
+
+        <!-- DASHBOARD METRIC BAR -->
+        <div class="dashboard-bar">
+            <div class="metric-card">
+                <div class="metric-icon blue"><i class="fas fa-list-check"></i></div>
+                <div class="metric-info">
+                    <h4>Assessment Scope</h4>
+                    <div class="value">30 MCQs</div>
+                </div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-icon amber"><i class="fas fa-stopwatch"></i></div>
+                <div class="metric-info">
+                    <h4>Time Remaining</h4>
+                    <div class="value timer-val" id="timerDisplay">45:00</div>
+                </div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-icon green"><i class="fas fa-chart-line"></i></div>
+                <div class="metric-info">
+                    <h4>Completion</h4>
+                    <div class="value" id="answeredRatio">0 / 30</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- PROGRESS SECTION -->
+        <div class="progress-section">
+            <div class="progress-track">
+                <div class="progress-fill" id="progressBar"></div>
+            </div>
+            <div class="progress-label">
+                <span id="currentStatusText">Question 1 of 30</span>
+                <span id="percentText">0% Complete</span>
+            </div>
+        </div>
+
+        <!-- QUIZ ACTIVE WORKSPACE -->
+        <div class="quiz-workspace" id="quizWorkspace">
+            <!-- QUESTION CARD -->
+            <div class="question-card">
+                <div>
+                    <div class="q-header">
+                        <span class="q-number" id="qNumberLabel">Question 01 of 30</span>
+                        <span class="q-topic-tag" id="qTopicTag">Email Etiquette</span>
+                    </div>
+                    <div class="q-prompt" id="qPromptText">
+                        Loading question...
+                    </div>
+                    <div class="options-list" id="optionsContainer">
+                        <!-- Options injected dynamically -->
+                    </div>
+                </div>
+
+                <div class="q-navigation-btns">
+                    <button class="btn btn-outline" id="prevBtn" onclick="navigateQuestion(-1)">
+                        <i class="fas fa-arrow-left"></i> Previous
+                    </button>
+                    <button class="btn btn-primary" id="nextBtn" onclick="navigateQuestion(1)">
+                        Next <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- SIDEBAR QUESTION GRID -->
+            <aside class="sidebar">
+                <div class="palette-card">
+                    <div class="palette-title">
+                        <span><i class="fas fa-th"></i> Question Palette</span>
+                        <span style="font-size: 0.85rem; color: var(--text-muted); font-weight: normal;" id="paletteSummary">0 Answered</span>
+                    </div>
+                    <div class="palette-legend">
+                        <div class="legend-item"><span class="legend-dot active"></span> Current</div>
+                        <div class="legend-item"><span class="legend-dot answered"></span> Answered</div>
+                        <div class="legend-item"><span class="legend-dot unanswered"></span> Unanswered</div>
+                    </div>
+                    <div class="question-grid" id="questionGrid">
+                        <!-- 30 buttons injected dynamically -->
+                    </div>
+
+                    <div class="submit-panel">
+                        <button class="btn btn-success" onclick="confirmSubmitQuiz()">
+                            <i class="fas fa-paper-plane"></i> Submit Assessment
+                        </button>
+                    </div>
+                </div>
+            </aside>
+        </div>
+
+        <!-- RESULTS & EVALUATION VIEW -->
+        <div class="results-view" id="resultsView">
+            <div class="score-hero">
+                <div class="badge-capsule" style="background: rgba(255,255,255,0.25);">
+                    <i class="fas fa-award"></i> Assessment Summary
+                </div>
+                <h2>Phase 5 Capstone Performance Report</h2>
+                <div class="score-ring" id="finalScoreText">28 / 30</div>
+                <div class="score-pill" id="scorePercentageBadge">93.3% — C2 Executive Mastery</div>
+                <p id="scoreFeedbackSummary">
+                    Outstanding grasp of advanced rhetoric, executive correspondence, interview frameworks, and phonological principles.
+                </p>
+            </div>
+
+            <!-- CATEGORY BREAKDOWN -->
+            <div class="category-breakdown">
+                <h3 class="section-heading"><i class="fas fa-chart-pie"></i> Pedagogical Domain Competence</h3>
+                <div class="categories-grid" id="categoriesGrid">
+                    <!-- Categorical bars rendered dynamically -->
+                </div>
+            </div>
+
+            <!-- DETAILED QUESTION-BY-QUESTION REVIEW -->
+            <div class="review-section">
+                <h3 class="section-heading"><i class="fas fa-clipboard-check"></i> Comprehensive Question Review</h3>
+                <div class="review-list" id="reviewList">
+                    <!-- 30 Review items injected dynamically -->
+                </div>
+            </div>
+
+            <div class="retake-wrapper">
+                <button class="btn btn-primary" onclick="restartQuiz()" style="padding: 16px 36px; font-size: 1.1rem;">
+                    <i class="fas fa-rotate-right"></i> Retake Phase 5 Mega Quiz
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- SUBMISSION CONFIRMATION MODAL -->
+    <div class="modal-overlay" id="confirmModal">
+        <div class="modal-dialog">
+            <div class="modal-icon"><i class="fas fa-triangle-exclamation"></i></div>
+            <h3 class="modal-title" id="modalTitle">Submit Assessment?</h3>
+            <p class="modal-desc" id="modalDesc">
+                You still have unanswered questions. Are you sure you wish to submit now for final evaluation?
+            </p>
+            <div class="modal-actions">
+                <button class="btn btn-outline" onclick="closeModal()">Review Answers</button>
+                <button class="btn btn-success" onclick="finalizeSubmission()">Confirm & Submit</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 30 HIGH-QUALITY MULTIPLE CHOICE QUESTIONS (DAYS 81-100 & CAPSTONE REVIEW)
+        const quizQuestions = [
+            {
+                id: 1,
+                category: "Professional Correspondence",
+                topic: "BLUF Methodology",
+                question: "When applying the BLUF (Bottom Line Up Front) methodology to executive email correspondence, which sentence best exemplifies an effective opening?",
+                options: [
+                    "I hope this email finds you well; I am writing to provide an extensive historical background regarding vendor pricing before we consider contract amendments.",
+                    "Action Required: Please approve the attached $45,000 cloud infrastructure contract renewal by Thursday, Oct 15, to avoid service disruption.",
+                    "As per our previous discussions last quarter, there are several subtle nuances regarding our third-party vendors that I wanted to chat about when you are free.",
+                    "Vendor contracts have historically represented a challenging aspect of our internal workflows, and recently several department leaders met to debate renewals."
+                ],
+                correctAnswer: 1,
+                explanation: "The BLUF method demands putting the critical request, decision, or conclusion in the very first sentence. Option B states the explicit action required ('Please approve'), the exact financial scope ('$45,000'), a firm deadline ('Thursday, Oct 15'), and the concrete consequence ('avoid service disruption'), eliminating fluff."
+            },
+            {
+                id: 2,
+                category: "Professional Correspondence",
+                topic: "Action-Oriented Subject Lines",
+                question: "In corporate communication, which subject line and sign-off pairing reflects the highest standard of executive clarity and professionalism?",
+                options: [
+                    "Subject: 'Quick question about the deck' | Sign-off: 'Thx,'",
+                    "Subject: '[URGENT!!!!!] PLEASE OPEN IMMEDIATELY' | Sign-off: 'Yours faithfully,'",
+                    "Subject: '[DECISION REQUIRED] Q4 Marketing Budget Allocation – Due Nov 12' | Sign-off: 'Best regards,'",
+                    "Subject: 'Updates on our team meeting from yesterday afternoon' | Sign-off: 'Cheers!'"
+                ],
+                correctAnswer: 2,
+                explanation: "High-impact business email subject lines employ bracketed action tags (e.g., [DECISION REQUIRED], [ACTION], [INFO]), identify the exact topic concisely, and provide a clear deadline. 'Best regards,' or 'Warm regards,' provides an appropriate, balanced professional closing."
+            },
+            {
+                id: 3,
+                category: "Professional Correspondence",
+                topic: "De-escalating Passive-Aggressive Phrasing",
+                question: "When sending a follow-up email to a colleague who missed an agreed project milestone, which phrasing best replaces the passive-aggressive cliché 'Per my last email'?",
+                options: [
+                    "As you clearly failed to review in my prior correspondence, the project files were attached.",
+                    "Re-attaching the project specifications here for convenience; could you let me know if you need any additional context to finalize the draft?",
+                    "Just bumping this to the very top of your inbox since I still haven't received a response after two days.",
+                    "I am writing again because nobody answered my earlier email regarding the milestone."
+                ],
+                correctAnswer: 1,
+                explanation: "Phrases like 'Per my last email' or 'As stated previously' register as accusatory and hostile. Professional communicators preserve cross-functional goodwill by re-providing the resource proactively ('Re-attaching here for convenience') and constructively inquiring whether blockers or questions exist."
+            },
+            {
+                id: 4,
+                category: "Professional Correspondence",
+                topic: "Three-Tier Escalation Ladder",
+                question: "Within the Three-Tier Escalation Ladder framework for professional follow-up, what characterizes a 'Tier 2' escalation communication?",
+                options: [
+                    "Sending a polite, low-pressure private message assuming positive intent and inquiring if there is a scheduling conflict.",
+                    "Immediately filing a formal grievance with Human Resources and demanding disciplinary action for non-responsiveness.",
+                    "Articulating the concrete downstream dependencies/impact of the delay and copying direct project leads or managers for operational transparency.",
+                    "Unilaterally pausing all department operations and refusing to communicate until the other party apologizes."
+                ],
+                correctAnswer: 2,
+                explanation: "Tier 1 is a gentle 1-on-1 nudge assuming positive intent. Tier 2 escalates by objectively framing the business risk (downstream deadlines, client deliverables) and introducing direct managers/leads on CC to establish operational visibility. Tier 3 is formal executive escalation."
+            },
+            {
+                id: 5,
+                category: "Academic & Analytical Writing",
+                topic: "The PEEL Framework",
+                question: "In the PEEL analytical paragraph structure (Point, Explanation, Evidence, Link), what is the primary rhetorical function of the 'Link'?",
+                options: [
+                    "To introduce a completely new, unrelated topic to create suspense for the subsequent paragraph.",
+                    "To insert digital hyperlinks and URLs to external online research databases.",
+                    "To synthesize the paragraph's finding back to the overarching thesis statement or create a cohesive bridge to the next conceptual point.",
+                    "To list the definitions of difficult vocabulary words used in the paragraph."
+                ],
+                correctAnswer: 2,
+                explanation: "The Link ('L') serves two critical structural roles: it connects the paragraph's specific empirical evidence and analysis back to the controlling thesis statement of the entire work, or forms a transitional bridge leading seamlessly into the subsequent paragraph's topic sentence."
+            },
+            {
+                id: 6,
+                category: "Academic & Analytical Writing",
+                topic: "PEEL Paragraph Identification",
+                question: "Examine the sentence: 'A longitudinal analysis of 450 enterprise organizations demonstrated that companies adopting asynchronous documentation recorded a 28% reduction in project delivery delays.' Which element of the PEEL model does this sentence illustrate?",
+                options: [
+                    "Point (Controlling topic sentence)",
+                    "Explanation (Conceptual unpacking of the mechanism)",
+                    "Evidence (Empirical, verifiable data or case study support)",
+                    "Link (Synthesis back to the overarching thesis)"
+                ],
+                correctAnswer: 2,
+                explanation: "This sentence provides concrete, measurable empirical data ('longitudinal analysis of 450 enterprise organizations', '28% reduction'), which serves as Evidence to validate an underlying argument."
+            },
+            {
+                id: 7,
+                category: "Academic & Analytical Writing",
+                topic: "Thesis Statement Architecture",
+                question: "Which thesis statement best demonstrates the advanced academic architecture: [Concession/Counter-argument] + [Core Claim] + [Roadmap of Key Drivers]?",
+                options: [
+                    "Artificial intelligence is an exciting new technology that has both pros and cons in modern society.",
+                    "Although proponents argue that strict return-to-office mandates foster spontaneous collaboration, distributed work models drive superior enterprise growth by broadening talent acquisition, lowering facility overhead, and elevating employee retention.",
+                    "In this paper, I will discuss why working from home is better than working in a cubicle for employees.",
+                    "Remote work has increased dramatically since 2020 because employees prefer avoiding traffic and spending more time with family."
+                ],
+                correctAnswer: 1,
+                explanation: "Option B incorporates a formal concession ('Although proponents argue...'), followed by a definitive, arguable claim ('distributed work models drive superior enterprise growth'), and a tripartite evidentiary roadmap ('by broadening talent acquisition, lowering facility overhead, and elevating employee retention')."
+            },
+            {
+                id: 8,
+                category: "Academic & Analytical Writing",
+                topic: "Academic Hooks & Introductions",
+                question: "Which introductory hook strategy is universally discouraged in advanced academic and executive writing?",
+                options: [
+                    "Presenting a striking statistical anomaly or counter-intuitive empirical finding.",
+                    "Opening with a trite dictionary definition, such as: 'Merriam-Webster defines innovation as...'",
+                    "Framing a high-stakes real-world dilemma or structural paradox.",
+                    "Illustrating a catalytic historical or regulatory shift that disrupts conventional assumptions."
+                ],
+                correctAnswer: 1,
+                explanation: "Opening essays or speeches with dictionary definitions ('Webster defines X as...') is a hackneyed, amateurish cliché. High-caliber rhetoric opens with provocative questions, counter-intuitive data, paradoxical observations, or compelling macro trends."
+            },
+            {
+                id: 9,
+                category: "Academic & Analytical Writing",
+                topic: "Comma Splice Elimination",
+                question: "Which of the following sentences is grammatically sound and successfully eliminates a comma splice?",
+                options: [
+                    "The quarterly earnings fell short of analyst forecasts, the executive committee convened an emergency meeting.",
+                    "The quarterly earnings fell short of analyst forecasts, however, the executive committee convened an emergency meeting.",
+                    "The quarterly earnings fell short of analyst forecasts; consequently, the executive committee convened an emergency meeting.",
+                    "The quarterly earnings fell short of analyst forecasts, therefore the executive committee convened an emergency meeting."
+                ],
+                correctAnswer: 2,
+                explanation: "Options A, B, and D all commit comma splices (joining independent clauses with merely a comma, or a comma plus a conjunctive adverb). Option C correctly uses a semicolon prior to the conjunctive adverb ('consequently') followed by a comma, which is grammatically standard."
+            },
+            {
+                id: 10,
+                category: "Academic & Analytical Writing",
+                topic: "Macro & Micro-Cohesive Devices",
+                question: "To signal an analytical pivot where the writer concedes a valid opposing point before firmly reinforcing their primary thesis, which transitional pair is most appropriate?",
+                options: [
+                    "Furthermore ... In addition",
+                    "Admittedly ... Nonetheless",
+                    "Consequently ... Hence",
+                    "In the first place ... Similarly"
+                ],
+                correctAnswer: 1,
+                explanation: "'Admittedly' signals concession (validating a counter-claim or constraint), while 'Nonetheless' (or 'Nevertheless') acts as an adversative pivot that re-establishes the author's primary argument in spite of the concession."
+            },
+            {
+                id: 11,
+                category: "Academic & Analytical Writing",
+                topic: "Forward-Looking Conclusions",
+                question: "What distinguishes an exceptional, forward-looking essay conclusion from a basic formulaic summary?",
+                options: [
+                    "It repeats the introductory thesis verbatim and adds two brand-new factual statistics not mentioned in the body.",
+                    "It synthesizes core insights, illuminates broader systemic implications ('so what?'), and offers strategic foresight or a call to action.",
+                    "It apologizes to the reader for any research shortcomings and suggests consulting alternative websites.",
+                    "It concludes abruptly on the final body paragraph evidence point without any synthetic reflection."
+                ],
+                correctAnswer: 1,
+                explanation: "Sophisticated conclusions transcend repetitive mechanical summaries. They synthesize the collective findings into an integrated takeaway, answer the 'so what?' question regarding real-world impact, and articulate forward-looking implications or actionable solutions."
+            },
+            {
+                id: 12,
+                category: "Professional Correspondence",
+                topic: "Reports & Executive Summaries",
+                question: "What is the primary operational objective of an Executive Summary at the start of a 40-page technical business report?",
+                options: [
+                    "To withhold key conclusions so readers are compelled to read all forty pages like a suspense thriller.",
+                    "To act as an alphabetical index of all charts, tables, and glossaries used in the appendix.",
+                    "To allow time-constrained executives to comprehend the core problem, primary findings, financial impact, and strategic recommendations in 2–3 minutes.",
+                    "To duplicate the methodology and literature review sections verbatim for peer review."
+                ],
+                correctAnswer: 2,
+                explanation: "An Executive Summary is a self-contained, high-density brief engineered for C-suite leaders. It distills the business context, methodology overview, essential findings, risk/ROI metrics, and explicit action items so decisions can be made rapidly."
+            },
+            {
+                id: 13,
+                category: "Career & Interview Mastery",
+                topic: "Resume Optimization & Impact Metrics",
+                question: "Which resume bullet point adheres to the gold standard of [Action Verb] + [Context/Scope] + [Quantified Business Outcome]?",
+                options: [
+                    "Responsible for helping manage client relationships and software implementations during the second quarter.",
+                    "Spearheaded enterprise CRM migration across 14 global offices, reducing customer churn by 19% and recovering $540,000 in annual recurring revenue.",
+                    "Assisted with daily team standups and made sure all software engineers were satisfied with sprint backlogs.",
+                    "Successfully worked very hard on challenging technical projects, achieving great feedback from department heads."
+                ],
+                correctAnswer: 1,
+                explanation: "Option B uses an authoritative action verb ('Spearheaded'), outlines tangible scope ('enterprise CRM migration across 14 global offices'), and proves high-value business impact with dual quantitative metrics ('reducing customer churn by 19%', 'recovering $540,000 ARR'). Avoid passive phrasing like 'Responsible for'."
+            },
+            {
+                id: 14,
+                category: "Career & Interview Mastery",
+                topic: "Value Proposition & Elevator Pitch",
+                question: "In a 60-second elevator pitch or tailored cover letter opening, what is the most effective approach to establishing competitive differentiation?",
+                options: [
+                    "Chronologically recounting your academic courses and hobbies starting from secondary school.",
+                    "Articulating a tailored Value Proposition that directly maps your specific achievements to solving the hiring company's immediate strategic pain points.",
+                    "Flattering the company excessively with generic superlatives while explaining your personal need for the job title.",
+                    "Listing a long succession of generic adjectives such as 'passionate, dynamic, self-starter, synergistic team-player.'"
+                ],
+                correctAnswer: 1,
+                explanation: "Effective candidate positioning hinges on a tailored Value Proposition: demonstrating clear understanding of the prospective employer's strategic bottlenecks and illustrating specifically how your skills and track record will resolve those challenges."
+            },
+            {
+                id: 15,
+                category: "Career & Interview Mastery",
+                topic: "The STAR Interview Method",
+                question: "When structuring behavioral interview answers using the STAR technique (Situation, Task, Action, Result), how should a candidate allocate their speaking time?",
+                options: [
+                    "70% on Situation & Task backstory, 15% on Action, and 15% on Result.",
+                    "15% Situation, 10% Task, 50% Action (specific personal interventions), and 25% Result (measurable outcomes and insights).",
+                    "90% on Result, omitting what the context or problem actually was.",
+                    "50% on complaining about how poorly organized the previous company's crisis was."
+                ],
+                correctAnswer: 1,
+                explanation: "In STAR, Situation and Task should be framed concisely (approx. 20–25% total) simply to provide context. The bulk of the response must focus on the candidate's specific individual Actions (approx. 50%), culminating in quantifiable Results and strategic takeaways (approx. 25%)."
+            },
+            {
+                id: 16,
+                category: "Career & Interview Mastery",
+                topic: "Navigating Interview Weaknesses",
+                question: "How should an executive candidate handle the classic question: 'What is your greatest professional weakness?'",
+                options: [
+                    "Use a disguised strength cliché, such as: 'I am a hopeless perfectionist who simply works too hard because I care too much.'",
+                    "State candidly that you have no weaknesses because your past performance reviews have all been stellar.",
+                    "Identify a genuine, non-critical technical or operational area of development, describe the structured system implemented to address it, and demonstrate recent measurable progress.",
+                    "Disclose a fundamental core requirement of the role and admit you struggle with it and dislike doing it."
+                ],
+                correctAnswer: 2,
+                explanation: "Disguised virtues ('perfectionist') come across as inauthentic. Interviewers seek emotional intelligence and self-awareness: identify a legitimate, non-fatal development area, showcase deliberate countermeasures taken (courses, mentorship, software systems), and cite positive ongoing results."
+            },
+            {
+                id: 17,
+                category: "Career & Interview Mastery",
+                topic: "Salary Negotiation Diplomacy",
+                question: "When an interviewer asks for your target salary early in the hiring process before job responsibilities are fully detailed, which response best protects your negotiation leverage?",
+                options: [
+                    "I refuse to discuss money with you until you put a formal written offer in front of me.",
+                    "At this stage, my priority is ensuring this role is a strong mutual strategic fit; once we confirm that, I am confident we can agree on a package that reflects market benchmarks for this scope of impact.",
+                    "Whatever number you usually pay people in this department is fine with me; compensation is not a factor.",
+                    "I require at least $250,000 or I will terminate this interview right now."
+                ],
+                correctAnswer: 1,
+                explanation: "Diplomatic salary deflection delays anchoring before the candidate has showcased value. Option B maintains a collaborative, value-centric tone ('strategic fit'), while framing compensation around objective market benchmarks once scope is clarified."
+            },
+            {
+                id: 18,
+                category: "Presentations & Public Speaking",
+                topic: "The Rule of Three & Signposting",
+                question: "Why do master presenters leverage the 'Rule of Three' in conjunction with verbal signposting during keynote presentations?",
+                options: [
+                    "Because corporate presentations are legally restricted to exactly three slides.",
+                    "Because human working memory naturally processes and retains information structured in triads, while signposting provides mental navigational markers.",
+                    "Because it prevents audience members from asking more than three questions during the post-presentation Q&A.",
+                    "Because speakers must limit their total presentation duration to three minutes."
+                ],
+                correctAnswer: 1,
+                explanation: "Cognitive linguistics demonstrates that the human mind easily encodes and retrieves ideas grouped into trios (e.g., 'Speed, Quality, Cost'). Verbal signposts ('First, we explore... Next, we examine... Finally, we will review...') create clear cognitive roadmaps for the audience."
+            },
+            {
+                id: 19,
+                category: "Presentations & Public Speaking",
+                topic: "Managing Skeptical & Hostile Q&A",
+                question: "If a senior stakeholder interrupts your presentation with a skeptical challenge questioning your operational projections, what is the best verbal strategy?",
+                options: [
+                    "Interrupt them back immediately, declare that their objection is baseless, and rapidly advance to the next slide.",
+                    "Apologize profusely and concede on the spot that your model is probably deeply flawed.",
+                    "Acknowledge the legitimacy of their concern, calmly summarize the underlying assumptions supporting your figures, and offer an offline deep dive if granular modeling is desired.",
+                    "Ignore the stakeholder completely and pretend you did not hear their comment."
+                ],
+                correctAnswer: 2,
+                explanation: "Executive composure requires validating the stakeholder's focus ('That is a critical risk factor to examine'), restating the baseline assumptions or data sources objectively, and offering a post-meeting offline review to avoid derailing the main session."
+            },
+            {
+                id: 20,
+                category: "Presentations & Public Speaking",
+                topic: "Freytag's Pyramid in Pitches",
+                question: "How is Freytag's Narrative Pyramid adapted to construct high-conversion startup or corporate investment pitches?",
+                options: [
+                    "By recounting ancient mythology and literary folklore to amuse the investment committee.",
+                    "By moving from Status Quo Pain (Exposition/Inciting Incident) to Market Friction & Solution Architecture (Rising Action), Product Traction & Moat (Climax), and Financial Projections & ROI (Resolution).",
+                    "By opening with an apology for technical difficulties and closing with an exhaustive 80-page financial balance sheet.",
+                    "By skipping all explanations of market problems and jumping immediately to the company's valuation."
+                ],
+                correctAnswer: 1,
+                explanation: "Business storytelling utilizes dramatic tension: introducing the status quo and customer pain point (inciting incident), building the solution architecture and market opportunity (rising action), demonstrating product breakthrough and competitive advantage (climax), and resolving with financial returns and vision (resolution)."
+            },
+            {
+                id: 21,
+                category: "Presentations & Public Speaking",
+                topic: "The Meeting 'Parking Lot' Technique",
+                question: "What is the strategic objective of the 'Parking Lot' (or 'Issue Bin') technique during executive meetings?",
+                options: [
+                    "To assign parking spaces in the company garage to visiting clients.",
+                    "To log worthwhile but tangential discussions so the core agenda remains on schedule, while assigning an owner to follow up on them later.",
+                    "To permanently discard and ignore difficult employee questions so management does not have to answer them.",
+                    "To force attendees to conduct meetings while walking in the facility parking lot."
+                ],
+                correctAnswer: 1,
+                explanation: "The 'Parking Lot' preserves agenda discipline and meeting momentum. When valuable, complex, but off-topic issues arise, the facilitator records them publicly in the 'Parking Lot' with an agreed owner and follow-up timeline, preventing tangent derailments."
+            },
+            {
+                id: 22,
+                category: "Debate & Argumentation",
+                topic: "Burden of Proof & Rebuttal",
+                question: "In formal debate and argumentation frameworks, which statement accurately defines the 'Burden of Proof'?",
+                options: [
+                    "The opposing party must automatically disprove any speculative claim made, even if no supporting evidence was provided.",
+                    "The advocate proposing a resolution, policy intervention, or change to the status quo bears the foundational obligation to substantiate their claim with sufficient evidence.",
+                    "The adjudicator or audience is required to independently look up empirical facts during the debate to verify arguments.",
+                    "Burden of proof refers to the physical thickness of printed evidentiary binders brought into the boardroom."
+                ],
+                correctAnswer: 1,
+                explanation: "In formal debate and legal rhetoric, the 'Burden of Proof' (onus probandi) rests squarely on the party proposing a change to the status quo or making an affirmative claim. If they fail to provide adequate empirical warrant, the proposition is rejected by default."
+            },
+            {
+                id: 23,
+                category: "Networking & Fluency",
+                topic: "The F.O.R.D. Model",
+                question: "During professional networking events, what does the conversational rapport acronym 'F.O.R.D.' represent?",
+                options: [
+                    "Finance, Operations, Revenue, Dividends",
+                    "Family, Occupation, Recreation, Dreams",
+                    "Facts, Opinions, Rebuttals, Data",
+                    "Feedback, Objectives, Responsibilities, Deadlines"
+                ],
+                correctAnswer: 1,
+                explanation: "The F.O.R.D. framework (Family, Occupation, Recreation, Dreams) is a proven conversational scaffolding model used to establish organic, engaging, and culturally appropriate rapport in professional and social networking."
+            },
+            {
+                id: 24,
+                category: "Networking & Fluency",
+                topic: "Graceful Conversational Exits",
+                question: "Which statement exemplifies a polished, graceful exit from a conversation at a professional conference?",
+                options: [
+                    "I am getting bored, so I am going to find someone more senior to speak with.",
+                    "I need to use the restroom right now; please don't follow me.",
+                    "It was fantastic hearing about your team's migration to serverless, Marcus. I want to ensure we both have time to circulate before the keynote, but let's connect on LinkedIn to keep in touch.",
+                    "Our allotted conversational time has expired; goodbye."
+                ],
+                correctAnswer: 2,
+                explanation: "A masterclass networking exit follows a three-part structure: (1) sincere appreciation referencing a specific detail discussed, (2) a polite mutual rationale for circulating ('ensure we both have time to circulate'), and (3) a seamless bridge to future contact (LinkedIn/business card exchange)."
+            },
+            {
+                id: 25,
+                category: "Phonetics & Connected Speech",
+                topic: "Intrusive /r/ Sound",
+                question: "When a speaker pronounces the phrase 'law and order' as 'law-r-and order' in rapid speech, which phonological phenomenon is occurring?",
+                options: [
+                    "Intrusive /r/ (an epenthetic rhotic glide inserted between two consecutive vowel sounds)",
+                    "Glottal reinforcement (stopping the airflow at the vocal folds)",
+                    "Complete elision (the total dropping of an unstressed vowel or consonant)",
+                    "Regressive nasal assimilation"
+                ],
+                correctAnswer: 0,
+                explanation: "Intrusive /r/ occurs when an /r/ sound is inserted between two vowels to facilitate connected speech where no orthographic 'r' is present (e.g., 'law and order' -> /lɔːrəndɔːdə/, 'idea of' -> /aɪˈdɪərəv/)."
+            },
+            {
+                id: 26,
+                category: "Phonetics & Connected Speech",
+                topic: "Elision & Assimilation",
+                question: "Pronouncing 'last night' as 'las-night' (dropping the final /t/) and 'ten cars' as 'teng-cars' (shifting the alveolar /n/ to velar /ŋ/ before velar /k/) illustrate which two connected speech phenomena?",
+                options: [
+                    "Catenation and Inversion",
+                    "Elision (sound deletion) and Assimilation (sound modification to match adjacent sounds)",
+                    "Diphthongization and Sibilance",
+                    "Epenthesis and Nominalization"
+                ],
+                correctAnswer: 1,
+                explanation: "Elision refers to the deletion or omission of a phoneme in rapid speech (dropping the /t/ in 'last night'). Assimilation occurs when a speech sound changes its place or manner of articulation to harmonize with an adjacent phoneme (alveolar /n/ shifting to velar /ŋ/ before /k/)."
+            },
+            {
+                id: 27,
+                category: "Phonetics & Connected Speech",
+                topic: "Tonic Syllable & Pragmatic Implicature",
+                question: "Consider the sentence: 'I never said she stole the company budget.' Shifting the primary tonic syllable stress to the word 'SHE' creates which specific pragmatic implicature?",
+                options: [
+                    "Someone else made the accusation, not me.",
+                    "I never uttered those exact words; someone else must have fabricated that rumor.",
+                    "I acknowledge that someone stole the budget, but it was another person, not her.",
+                    "She merely borrowed the funds temporarily; she did not permanently steal them."
+                ],
+                correctAnswer: 2,
+                explanation: "Tonic syllable placement governs focus and implicature. Emphasizing 'SHE' ('I never said SHE stole the company budget') conveys contrastive focus: the speaker does not deny that a theft occurred, but denies naming her as the perpetrator."
+            },
+            {
+                id: 28,
+                category: "Networking & Fluency",
+                topic: "Register Calibration",
+                question: "Which transformation successfully elevates casual workplace phrasing into executive-level diplomatic precision?",
+                options: [
+                    "Casual: 'We blew the deadline because engineering was being super lazy.' -> Executive: 'Engineering failed completely and ruined our quarter.'",
+                    "Casual: 'We blew the deadline because engineering was being super lazy.' -> Executive: 'The deliverable encountered unforeseen technical bottlenecks during architecture validation, necessitating a recalibration of our delivery timeline.'",
+                    "Casual: 'We blew the deadline because engineering was being super lazy.' -> Executive: 'Deadlines are arbitrary social constructs, so we will ship whenever we finish.'",
+                    "Casual: 'We blew the deadline because engineering was being super lazy.' -> Executive: 'Stuff happened behind the scenes and we couldn't wrap it up.'"
+                ],
+                correctAnswer: 1,
+                explanation: "Executive register avoids toxic blame and emotional colloquialisms ('super lazy', 'blew it'), reframing issues through objective, systems-oriented terminology ('unforeseen technical bottlenecks', 'recalibration of our delivery timeline')."
+            },
+            {
+                id: 29,
+                category: "Presentations & Public Speaking",
+                topic: "Public Speaking & Pause Mastery",
+                question: "In professional keynote delivery, what is the strategic rhetorical purpose of a deliberate pause placed immediately prior to revealing a crucial statistic?",
+                options: [
+                    "To give the speaker an opportunity to glance at their watch or check personal messages.",
+                    "To generate cognitive anticipation, command audience focus, and elevate the perceived significance of the upcoming insight.",
+                    "To signal to the audience that the speaker has lost their train of thought and requires assistance.",
+                    "To invite the audience to begin applauding before the presentation is completed."
+                ],
+                correctAnswer: 1,
+                explanation: "The deliberate rhetorical pause acts as acoustic punctuation. Inserting a 2-second pause before a key insight arrests wandering attention, creates heightened curiosity, and signals to the listener that the forthcoming statement is of paramount importance."
+            },
+            {
+                id: 30,
+                category: "Networking & Fluency",
+                topic: "Lifelong Fluency Synthesis",
+                question: "According to applied SLA (Second Language Acquisition) research, what strategy is most effective for sustaining and expanding advanced (C1/C2) English mastery throughout one's professional life?",
+                options: [
+                    "Ceasing all English engagement once formal certificates are achieved, assuming language proficiency is permanently fixed.",
+                    "Memorizing isolated bilingual vocabulary lists for ten minutes once a year.",
+                    "Multimodal immersion: continuous analytical reading of advanced texts, intentional speaking in high-stakes environments, active production, and regular spaced retrieval practice.",
+                    "Restricting English consumption solely to television shows with subtitles translated into one's native language."
+                ],
+                correctAnswer: 2,
+                explanation: "Advanced language proficiency is dynamic; without sustained multimodal input and active output, lexical attrition occurs. Lifelong C1/C2 mastery requires challenging reading, active professional discourse, continuous vocabulary retrieval, and deliberate reflection."
+            }
+        ];
+
+        // STATE MANAGEMENT
+        let currentQuestionIndex = 0;
+        let userAnswers = new Array(quizQuestions.length).fill(null);
+        let timeRemainingSeconds = 45 * 60; // 45:00
+        let timerInterval = null;
+        let isSubmitted = false;
+
+        // INITIALIZATION
+        window.addEventListener('DOMContentLoaded', () => {
+            renderQuestionGrid();
+            renderQuestion(0);
+            startTimer();
+            updateDashboardMetrics();
+        });
+
+        // RENDER 30-QUESTION GRID PALETTE
+        function renderQuestionGrid() {
+            const gridContainer = document.getElementById('questionGrid');
+            gridContainer.innerHTML = '';
+            for (let i = 0; i < quizQuestions.length; i++) {
+                const btn = document.createElement('button');
+                btn.className = 'grid-btn';
+                btn.id = `grid-btn-${i}`;
+                btn.innerText = i + 1;
+                btn.onclick = () => jumpToQuestion(i);
+                gridContainer.appendChild(btn);
+            }
+            updateGridStatus();
+        }
+
+        // UPDATE GRID STYLING
+        function updateGridStatus() {
+            for (let i = 0; i < quizQuestions.length; i++) {
+                const btn = document.getElementById(`grid-btn-${i}`);
+                if (!btn) continue;
+                btn.className = 'grid-btn';
+                if (userAnswers[i] !== null) {
+                    btn.classList.add('answered');
+                }
+                if (i === currentQuestionIndex) {
+                    btn.classList.add('current');
+                }
+            }
+            const answeredCount = userAnswers.filter(a => a !== null).length;
+            document.getElementById('paletteSummary').innerText = `${answeredCount} of 30 Answered`;
+        }
+
+        // RENDER CURRENT QUESTION
+        function renderQuestion(index) {
+            currentQuestionIndex = index;
+            const q = quizQuestions[index];
+
+            document.getElementById('qNumberLabel').innerText = `Question ${String(index + 1).padStart(2, '0')} of 30`;
+            document.getElementById('qTopicTag').innerText = q.topic;
+            document.getElementById('qPromptText').innerText = q.question;
+
+            const optionsContainer = document.getElementById('optionsContainer');
+            optionsContainer.innerHTML = '';
+
+            const letters = ['A', 'B', 'C', 'D'];
+            q.options.forEach((optText, optIdx) => {
+                const optItem = document.createElement('div');
+                optItem.className = 'option-item';
+                if (userAnswers[index] === optIdx) {
+                    optItem.classList.add('selected');
+                }
+                optItem.onclick = () => selectOption(optIdx);
+
+                optItem.innerHTML = `
+                    <div class="option-letter">${letters[optIdx]}</div>
+                    <div class="option-text">${optText}</div>
+                `;
+                optionsContainer.appendChild(optItem);
+            });
+
+            // Update Nav Buttons
+            document.getElementById('prevBtn').disabled = (index === 0);
+            const nextBtn = document.getElementById('nextBtn');
+            if (index === quizQuestions.length - 1) {
+                nextBtn.innerHTML = 'Review <i class="fas fa-check-double"></i>';
+            } else {
+                nextBtn.innerHTML = 'Next <i class="fas fa-arrow-right"></i>';
+            }
+
+            updateGridStatus();
+            updateDashboardMetrics();
+        }
+
+        // SELECT OPTION
+        function selectOption(optIdx) {
+            if (isSubmitted) return;
+            userAnswers[currentQuestionIndex] = optIdx;
+
+            // Update UI selection
+            const optionItems = document.querySelectorAll('.option-item');
+            optionItems.forEach((item, idx) => {
+                if (idx === optIdx) {
+                    item.classList.add('selected');
+                } else {
+                    item.classList.remove('selected');
+                }
+            });
+
+            updateGridStatus();
+            updateDashboardMetrics();
+        }
+
+        // NAVIGATION
+        function navigateQuestion(direction) {
+            const nextIdx = currentQuestionIndex + direction;
+            if (nextIdx >= 0 && nextIdx < quizQuestions.length) {
+                renderQuestion(nextIdx);
+            } else if (nextIdx === quizQuestions.length) {
+                confirmSubmitQuiz();
+            }
+        }
+
+        function jumpToQuestion(index) {
+            if (index >= 0 && index < quizQuestions.length) {
+                renderQuestion(index);
+            }
+        }
+
+        // DASHBOARD METRICS UPDATE
+        function updateDashboardMetrics() {
+            const answeredCount = userAnswers.filter(a => a !== null).length;
+            const percent = Math.round((answeredCount / quizQuestions.length) * 100);
+
+            document.getElementById('answeredRatio').innerText = `${answeredCount} / 30`;
+            document.getElementById('progressBar').style.width = `${(answeredCount / quizQuestions.length) * 100}%`;
+            document.getElementById('currentStatusText').innerText = `Question ${currentQuestionIndex + 1} of 30`;
+            document.getElementById('percentText').innerText = `${percent}% Answered`;
+        }
+
+        // TIMER FUNCTIONS
+        function startTimer() {
+            timerInterval = setInterval(() => {
+                if (timeRemainingSeconds > 0) {
+                    timeRemainingSeconds--;
+                    renderTimer();
+                } else {
+                    clearInterval(timerInterval);
+                    finalizeSubmission();
+                }
+            }, 1000);
+        }
+
+        function renderTimer() {
+            const minutes = Math.floor(timeRemainingSeconds / 60);
+            const seconds = timeRemainingSeconds % 60;
+            const formatted = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+            const timerEl = document.getElementById('timerDisplay');
+            if (timerEl) {
+                timerEl.innerText = formatted;
+                if (timeRemainingSeconds < 300) {
+                    timerEl.style.color = '#ef4444';
+                }
+            }
+        }
+
+        // SUBMISSION FLOW
+        function confirmSubmitQuiz() {
+            if (isSubmitted) return;
+            const answeredCount = userAnswers.filter(a => a !== null).length;
+            const unanswered = quizQuestions.length - answeredCount;
+
+            const modal = document.getElementById('confirmModal');
+            const modalDesc = document.getElementById('modalDesc');
+
+            if (unanswered > 0) {
+                modalDesc.innerText = `You have answered ${answeredCount} of 30 questions. You have ${unanswered} unanswered question(s). Are you sure you wish to submit now?`;
+            } else {
+                modalDesc.innerText = `All 30 questions answered! Would you like to submit your assessment and view your comprehensive evaluation?`;
+            }
+            modal.style.display = 'flex';
+        }
+
+        function closeModal() {
+            document.getElementById('confirmModal').style.display = 'none';
+        }
+
+        function finalizeSubmission() {
+            closeModal();
+            if (isSubmitted) return;
+            isSubmitted = true;
+            clearInterval(timerInterval);
+
+            // Hide workspace, show results
+            document.getElementById('quizWorkspace').style.display = 'none';
+            document.getElementById('resultsView').style.display = 'block';
+
+            evaluateResults();
+            window.scrollTo({ top: 300, behavior: 'smooth' });
+        }
+
+        // EVALUATION AND REVIEW GENERATION
+        function evaluateResults() {
+            let correctCount = 0;
+            const categoryStats = {};
+
+            quizQuestions.forEach((q, idx) => {
+                const userAns = userAnswers[idx];
+                const isCorrect = (userAns === q.correctAnswer);
+                if (isCorrect) correctCount++;
+
+                if (!categoryStats[q.category]) {
+                    categoryStats[q.category] = { total: 0, correct: 0 };
+                }
+                categoryStats[q.category].total++;
+                if (isCorrect) categoryStats[q.category].correct++;
+            });
+
+            const scorePercent = Math.round((correctCount / quizQuestions.length) * 1000) / 10;
+            document.getElementById('finalScoreText').innerText = `${correctCount} / 30`;
+
+            // Performance tiering
+            let badgeText = '';
+            let feedbackText = '';
+            if (scorePercent >= 90) {
+                badgeText = `${scorePercent}% — C2 Executive Mastery`;
+                feedbackText = "Mastery demonstrated across all professional competencies! You exhibit fluent rhetorical precision, authoritative corporate diplomacy, sophisticated structural control, and nuanced phonological command.";
+            } else if (scorePercent >= 75) {
+                badgeText = `${scorePercent}% — C1 Advanced Professional`;
+                feedbackText = "Strong executive communication capabilities. You possess robust command over analytical structures, interview strategies, and business correspondence, with minor refinements needed in specialized nuances.";
+            } else if (scorePercent >= 60) {
+                badgeText = `${scorePercent}% — B2 Operational Proficiency`;
+                feedbackText = "Solid foundational competence in corporate and academic English. Review the detailed explanations below to strengthen debate frameworks, phonological catenation, and advanced paragraph links.";
+            } else {
+                badgeText = `${scorePercent}% — Foundation in Progress`;
+                feedbackText = "Key communication fundamentals established, but targeted revision is recommended across structured writing (PEEL), BLUF email protocol, and connected speech.";
+            }
+
+            document.getElementById('scorePercentageBadge').innerText = badgeText;
+            document.getElementById('scoreFeedbackSummary').innerText = feedbackText;
+
+            // Render Category Breakdown
+            const categoriesGrid = document.getElementById('categoriesGrid');
+            categoriesGrid.innerHTML = '';
+            Object.keys(categoryStats).forEach(cat => {
+                const stat = categoryStats[cat];
+                const catPercent = Math.round((stat.correct / stat.total) * 100);
+                const catCard = document.createElement('div');
+                catCard.className = 'cat-card';
+                catCard.innerHTML = `
+                    <div class="cat-card-header">
+                        <span class="cat-title">${cat}</span>
+                        <span class="cat-score">${stat.correct}/${stat.total} (${catPercent}%)</span>
+                    </div>
+                    <div class="cat-bar-track">
+                        <div class="cat-bar-fill" style="width: ${catPercent}%;"></div>
+                    </div>
+                `;
+                categoriesGrid.appendChild(catCard);
+            });
+
+            // Render Question-by-Question Review
+            const reviewList = document.getElementById('reviewList');
+            reviewList.innerHTML = '';
+            const letters = ['A', 'B', 'C', 'D'];
+
+            quizQuestions.forEach((q, idx) => {
+                const userAns = userAnswers[idx];
+                const isCorrect = (userAns === q.correctAnswer);
+                const isSkipped = (userAns === null);
+
+                const reviewItem = document.createElement('div');
+                reviewItem.className = `review-item ${isCorrect ? 'is-correct' : 'is-incorrect'}`;
+
+                let statusBadge = '';
+                if (isCorrect) {
+                    statusBadge = `<span class="status-badge correct"><i class="fas fa-check-circle"></i> Correct</span>`;
+                } else if (isSkipped) {
+                    statusBadge = `<span class="status-badge incorrect"><i class="fas fa-circle-minus"></i> Unanswered</span>`;
+                } else {
+                    statusBadge = `<span class="status-badge incorrect"><i class="fas fa-circle-xmark"></i> Incorrect</span>`;
+                }
+
+                const userAnsText = isSkipped ? 'No option selected' : `${letters[userAns]}. ${q.options[userAns]}`;
+                const correctAnsText = `${letters[q.correctAnswer]}. ${q.options[q.correctAnswer]}`;
+
+                reviewItem.innerHTML = `
+                    <div class="review-item-header">
+                        <div class="review-q-title">
+                            <span>Q${idx + 1}.</span>
+                            <span>${q.topic}</span>
+                            <span style="font-size: 0.8rem; color: var(--text-muted); font-weight: normal;">(${q.category})</span>
+                        </div>
+                        ${statusBadge}
+                    </div>
+                    <div class="review-prompt">${q.question}</div>
+                    <div class="answer-comparison">
+                        <div class="ans-box user ${isCorrect ? 'correct' : 'incorrect'}">
+                            <strong>Your Answer:</strong><br>
+                            ${userAnsText}
+                        </div>
+                        <div class="ans-box actual">
+                            <strong>Correct Answer:</strong><br>
+                            ${correctAnsText}
+                        </div>
+                    </div>
+                    <div class="explanation-box">
+                        <div class="explanation-title"><i class="fas fa-lightbulb"></i> Pedagogical Breakdown</div>
+                        <div class="explanation-text">${q.explanation}</div>
+                    </div>
+                `;
+                reviewList.appendChild(reviewItem);
+            });
+        }
+
+        // RETAKE QUIZ
+        function restartQuiz() {
+            isSubmitted = false;
+            userAnswers = new Array(quizQuestions.length).fill(null);
+            timeRemainingSeconds = 45 * 60;
+            currentQuestionIndex = 0;
+
+            document.getElementById('resultsView').style.display = 'none';
+            document.getElementById('quizWorkspace').style.display = 'grid';
+
+            startTimer();
+            renderQuestionGrid();
+            renderQuestion(0);
+            updateDashboardMetrics();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>
