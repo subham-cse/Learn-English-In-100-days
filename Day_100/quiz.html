@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Day 100 Capstone Quiz: Lifelong English Mastery</title>
+  <style>
+    :root {
+      --primary: #6366f1;
+      --primary-hover: #4f46e5;
+      --success: #16a34a;
+      --danger: #dc2626;
+      --gold: #f59e0b;
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+      --text: #1e293b;
+      --muted: #64748b;
+      --border: #e2e8f0;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+    body { background: var(--bg); color: var(--text); line-height: 1.6; padding: 24px 16px; min-height: 100vh; display: flex; justify-content: center; align-items: center; }
+    .quiz-container { background: var(--card-bg); max-width: 680px; width: 100%; border-radius: 16px; box-shadow: 0 10px 25px -5px rgba(0,0,0,0.1), 0 8px 10px -6px rgba(0,0,0,0.1); padding: 32px; border: 1px solid var(--border); }
+    .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; padding-bottom: 16px; border-bottom: 1px solid var(--border); }
+    .badge { background: #fef3c7; color: #b45309; font-size: 0.85rem; font-weight: 700; padding: 4px 12px; border-radius: 9999px; display: flex; align-items: center; gap: 6px; }
+    .timer { font-size: 0.95rem; font-weight: 600; color: var(--muted); }
+    .progress-bar-container { width: 100%; height: 8px; background: #e2e8f0; border-radius: 4px; overflow: hidden; margin-bottom: 24px; }
+    .progress-bar { height: 100%; width: 20%; background: linear-gradient(90deg, #6366f1, #f59e0b); transition: width 0.3s ease; }
+    .question-title { font-size: 1.25rem; font-weight: 700; margin-bottom: 8px; color: #0f172a; }
+    .question-context { font-size: 0.95rem; color: var(--muted); margin-bottom: 20px; font-style: italic; }
+    .options { display: flex; flex-direction: column; gap: 12px; margin-bottom: 24px; }
+    .option-btn { background: #ffffff; border: 2px solid var(--border); padding: 14px 18px; border-radius: 10px; font-size: 0.98rem; text-align: left; cursor: pointer; transition: all 0.2s ease; display: flex; align-items: flex-start; gap: 12px; }
+    .option-btn:hover:not(:disabled) { border-color: var(--primary); background: #f5f3ff; }
+    .option-btn.selected { border-color: var(--primary); background: #e0e7ff; }
+    .option-btn.correct { border-color: var(--success); background: #dcfce7; color: #14532d; font-weight: 600; }
+    .option-btn.incorrect { border-color: var(--danger); background: #fee2e2; color: #7f1d1d; }
+    .option-btn:disabled { cursor: default; }
+    .explanation-box { padding: 16px; border-radius: 10px; font-size: 0.92rem; margin-bottom: 24px; display: none; line-height: 1.5; }
+    .explanation-box.correct { background: #f0fdf4; border: 1px solid #86efac; color: #166534; }
+    .explanation-box.incorrect { background: #fef2f2; border: 1px solid #fca5a5; color: #991b1b; }
+    .footer { display: flex; justify-content: space-between; align-items: center; }
+    .btn { background: var(--primary); color: white; border: none; padding: 10px 22px; border-radius: 8px; font-weight: 600; cursor: pointer; transition: background 0.2s; }
+    .btn:hover { background: var(--primary-hover); }
+    .btn:disabled { background: #cbd5e1; cursor: not-allowed; }
+    .score-card { text-align: center; padding: 24px 0; }
+    .score-card h2 { font-size: 2.2rem; color: #1e1b4b; margin-bottom: 8px; }
+    .score-circle { width: 130px; height: 130px; border-radius: 50%; background: linear-gradient(135deg, #6366f1, #f59e0b); color: white; display: flex; align-items: center; justify-content: center; font-size: 2.4rem; font-weight: 800; margin: 20px auto; box-shadow: 0 10px 20px rgba(99, 102, 241, 0.3); }
+    .score-summary { margin-bottom: 24px; color: var(--muted); font-size: 1.05rem; }
+    .graduation-badge { display: inline-block; background: #fef3c7; color: #b45309; padding: 8px 20px; border-radius: 9999px; font-weight: 700; margin-bottom: 20px; font-size: 0.95rem; }
+  </style>
+</head>
+<body>
+
+<div class="quiz-container" id="quizContainer">
+  <div class="header">
+    <span class="badge">🎓 Day 100: Final Capstone Assessment</span>
+    <span class="timer" id="timer">Time: 00:00</span>
+  </div>
+
+  <div class="progress-bar-container">
+    <div class="progress-bar" id="progressBar"></div>
+  </div>
+
+  <div id="quizContent">
+    <h3 class="question-title" id="questionTitle">Loading question...</h3>
+    <p class="question-context" id="questionContext"></p>
+
+    <div class="options" id="optionsContainer"></div>
+
+    <div class="explanation-box" id="explanationBox"></div>
+
+    <div class="footer">
+      <span id="questionCounter" style="color: var(--muted); font-size: 0.9rem;">Question 1 of 5</span>
+      <button class="btn" id="actionBtn" disabled onclick="handleAction()">Next Question</button>
+    </div>
+  </div>
+
+  <div id="scoreCard" class="score-card" style="display: none;">
+    <div class="graduation-badge">🏆 100-DAY PROGRAM COMPLETED</div>
+    <h2>Congratulations, Graduate!</h2>
+    <div class="score-circle" id="scoreCircle">0%</div>
+    <p class="score-summary" id="scoreSummary"></p>
+    <p style="margin-bottom: 24px; font-size: 0.95rem; color: #475569;">You have reached the pinnacle of this 100-day journey. Continue practicing with the 30-minute daily routine to sustain lifelong mastery!</p>
+    <button class="btn" onclick="restartQuiz()">Review Capstone Quiz</button>
+  </div>
+</div>
+
+<script>
+  const questions = [
+    {
+      title: "What marks the transition from 'Conscious Competence' to 'Unconscious Mastery' in language learning?",
+      context: "Psychology of fluency acquisition",
+      options: [
+        "Memorizing every single entry in an unabridged dictionary.",
+        "Moving from deliberate, rule-based formulation to intuitive, effortless linguistic reflexes and natural expression.",
+        "Refusing to ever speak your native language again under any circumstances.",
+        "Scoring 100% on a multiple choice spelling quiz."
+      ],
+      correct: 1,
+      explanation: "Unconscious mastery occurs when syntax, register modulation, and idiomatic precision become automatic, second-nature reflexes that require no conscious cognitive translation."
+    },
+    {
+      title: "What are the three pillars of the 30-Minute Daily Maintenance Formula?",
+      context: "Lifelong immersion routine",
+      options: [
+        "10 min grammar drills, 10 min flashcards, 10 min translation",
+        "10 min active input (high-register reading), 10 min audio shadowing, 10 min generative output (writing/speaking)",
+        "30 min watching television with subtitles",
+        "30 min reading dictionary definitions"
+      ],
+      correct: 1,
+      explanation: "The daily 30-minute formula balances active high-register reading, phonetic vocal shadowing, and creative self-expression to prevent language attrition."
+    },
+    {
+      title: "What is the core philosophy behind the 'Never Zero Rule' for language maintenance?",
+      context: "Habit formation and neuroplasticity",
+      options: [
+        "Never make zero dollars in income.",
+        "Never let a day pass with zero engagement in English, even if it is just a single paragraph, a 3-minute podcast, or one sentence.",
+        "Never receive a zero score on an academic test.",
+        "Always talk for zero minutes in a meeting."
+      ],
+      correct: 1,
+      explanation: "The 'Never Zero Rule' protects neuroplastic pathways by ensuring that even on the busiest days, the brain maintains active micro-contact with the language."
+    },
+    {
+      title: "How should an advanced graduate describe their relationship with the English language moving forward?",
+      context: "Communicator identity and mindset",
+      options: [
+        "As an apologetic student who must constantly say 'Sorry for my English.'",
+        "As an empowered global communicator who owns their seat at the table and communicates with purpose and authenticity.",
+        "As someone who has finished learning and will never learn a new word again.",
+        "As someone who only speaks English when compelled by management."
+      ],
+      correct: 1,
+      explanation: "Graduates step into the identity of empowered communicators who express ideas with presence, authority, and emotional resonance rather than perpetual self-doubt."
+    },
+    {
+      title: "Which daily practice most effectively bridges the gap between passive listening and active spoken cadence?",
+      context: "Phonetic articulation training",
+      options: [
+        "Reading silent subtitles with the volume muted.",
+        "Audio Shadowing (speaking simultaneously with high-caliber native speakers to calibrate pacing, connected speech, and intonation).",
+        "Writing 5,000 words without reading them aloud.",
+        "Listening to white noise while sleeping."
+      ],
+      correct: 1,
+      explanation: "Audio Shadowing trains the physical speech muscles, entraining rhythm, elision, linking, and intonational contours directly into muscle memory."
+    }
+  ];
+
+  let currentIdx = 0;
+  let score = 0;
+  let timerSeconds = 0;
+  let timerInterval = null;
+  let answered = false;
+
+  function startTimer() {
+    timerInterval = setInterval(() => {
+      timerSeconds++;
+      const mins = String(Math.floor(timerSeconds / 60)).padStart(2, '0');
+      const secs = String(timerSeconds % 60).padStart(2, '0');
+      document.getElementById('timer').textContent = `Time: ${mins}:${secs}`;
+    }, 1000);
+  }
+
+  function loadQuestion() {
+    answered = false;
+    const q = questions[currentIdx];
+    document.getElementById('questionTitle').textContent = q.title;
+    document.getElementById('questionContext').textContent = q.context;
+    document.getElementById('questionCounter').textContent = `Question ${currentIdx + 1} of ${questions.length}`;
+    document.getElementById('progressBar').style.width = `${((currentIdx + 1) / questions.length) * 100}%`;
+
+    const optContainer = document.getElementById('optionsContainer');
+    optContainer.innerHTML = '';
+    q.options.forEach((opt, i) => {
+      const btn = document.createElement('button');
+      btn.className = 'option-btn';
+      btn.innerHTML = `<strong>${String.fromCharCode(65 + i)}.</strong> <span>${opt}</span>`;
+      btn.onclick = () => selectOption(i);
+      optContainer.appendChild(btn);
+    });
+
+    const expBox = document.getElementById('explanationBox');
+    expBox.style.display = 'none';
+    expBox.className = 'explanation-box';
+    expBox.innerHTML = '';
+
+    const actionBtn = document.getElementById('actionBtn');
+    actionBtn.disabled = true;
+    actionBtn.textContent = currentIdx === questions.length - 1 ? "Finish Capstone" : "Next Question";
+  }
+
+  function selectOption(index) {
+    if (answered) return;
+    answered = true;
+    const q = questions[currentIdx];
+    const buttons = document.querySelectorAll('.option-btn');
+
+    buttons.forEach((btn, i) => {
+      btn.disabled = true;
+      if (i === q.correct) {
+        btn.classList.add('correct');
+      } else if (i === index) {
+        btn.classList.add('incorrect');
+      }
+    });
+
+    const expBox = document.getElementById('explanationBox');
+    expBox.style.display = 'block';
+    if (index === q.correct) {
+      score++;
+      expBox.className = 'explanation-box correct';
+      expBox.innerHTML = `<strong>Correct!</strong> ${q.explanation}`;
+    } else {
+      expBox.className = 'explanation-box incorrect';
+      expBox.innerHTML = `<strong>Incorrect.</strong> ${q.explanation}`;
+    }
+
+    document.getElementById('actionBtn').disabled = false;
+  }
+
+  function handleAction() {
+    if (currentIdx < questions.length - 1) {
+      currentIdx++;
+      loadQuestion();
+    } else {
+      clearInterval(timerInterval);
+      showScore();
+    }
+  }
+
+  function showScore() {
+    document.getElementById('quizContent').style.display = 'none';
+    const scoreCard = document.getElementById('scoreCard');
+    scoreCard.style.display = 'block';
+    const percent = Math.round((score / questions.length) * 100);
+    document.getElementById('scoreCircle').textContent = `${percent}%`;
+    document.getElementById('scoreSummary').textContent = `You achieved ${score} out of ${questions.length} on the Capstone Evaluation in ${document.getElementById('timer').textContent.replace('Time: ', '')}.`;
+  }
+
+  function restartQuiz() {
+    currentIdx = 0;
+    score = 0;
+    timerSeconds = 0;
+    document.getElementById('quizContent').style.display = 'block';
+    document.getElementById('scoreCard').style.display = 'none';
+    startTimer();
+    loadQuestion();
+  }
+
+  startTimer();
+  loadQuestion();
+</script>
+
+</body>
+</html>
